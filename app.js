@@ -82,7 +82,7 @@
   }
   function avatar(dorsal, name, cls) {
     return '<span class="avatar ' + (cls || "") + '"><span class="avatar__ini">' + esc(inits(name)) + '</span>' +
-      '<img src="fotos/' + dorsal + '.png?v=35" alt="" onerror="this.parentNode.classList.add(\'is-empty\');this.remove()">' +
+      '<img src="fotos/' + dorsal + '.png?v=36" alt="" onerror="this.parentNode.classList.add(\'is-empty\');this.remove()">' +
       '<b class="avatar__d">' + dorsal + '</b></span>';
   }
   function estadoTag(estado) {
