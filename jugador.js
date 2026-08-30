@@ -120,7 +120,7 @@
     document.getElementById("nav").style.display = "none";
     document.getElementById("playerName").textContent = "MIS DATOS GPS";
     var c = document.getElementById("crest");
-    c.className = "crest crest--club"; c.innerHTML = '<img src="icons/escudo.png?v=34" alt="">';
+    c.className = "crest crest--club"; c.innerHTML = '<img src="icons/escudo.png?v=35" alt="">';
     var opts = DATA.refPartido.players.slice()
       .sort(function (a, b) { return a.dorsal - b.dorsal; })
       .map(function (p) { return '<option value="' + p.dorsal + '">#' + p.dorsal + " · " + esc(p.jugador) + "</option>"; }).join("");
@@ -145,7 +145,7 @@
   }
   function photoHTML(dorsal, name) {
     return '<span class="crest__ini">' + esc(inits(name)) + '</span>' +
-      '<img src="fotos/' + dorsal + '.png?v=34" alt="" ' +
+      '<img src="fotos/' + dorsal + '.png?v=35" alt="" ' +
       'onerror="this.parentNode.classList.add(\'is-empty\');this.remove()">';
   }
 

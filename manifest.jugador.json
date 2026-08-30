@@ -1,6 +1,6 @@
 {
   "name": "Mis datos GPS · AT Baleares",
-  "short_name": "Mis datos GPS",
+  "short_name": "GPS",
   "description": "Tus datos de GPS: sesión, microciclo, carga aguda-crónica y tu perfil frente a la media del equipo.",
   "lang": "es",
   "start_url": "./jugador.html",

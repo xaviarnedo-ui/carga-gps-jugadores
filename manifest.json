@@ -1,6 +1,6 @@
 {
   "name": "Carga GPS · AT Baleares",
-  "short_name": "Carga GPS",
+  "short_name": "GPS",
   "description": "Seguimiento de carga GPS del equipo: objetivos individuales, semáforo por métrica y carga aguda-crónica.",
   "lang": "es",
   "start_url": "./index.html",
