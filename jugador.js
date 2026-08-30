@@ -120,7 +120,7 @@
     document.getElementById("nav").style.display = "none";
     document.getElementById("playerName").textContent = "MIS DATOS GPS";
     var c = document.getElementById("crest");
-    c.className = "crest crest--club"; c.innerHTML = '<img src="icons/escudo.png?v=36" alt="">';
+    c.className = "crest crest--club"; c.innerHTML = '<img src="icons/escudo.png?v=37" alt="">';
     var opts = DATA.refPartido.players.slice()
       .sort(function (a, b) { return a.dorsal - b.dorsal; })
       .map(function (p) { return '<option value="' + p.dorsal + '">#' + p.dorsal + " · " + esc(p.jugador) + "</option>"; }).join("");
@@ -145,7 +145,7 @@
   }
   function photoHTML(dorsal, name) {
     return '<span class="crest__ini">' + esc(inits(name)) + '</span>' +
-      '<img src="fotos/' + dorsal + '.png?v=36" alt="" ' +
+      '<img src="fotos/' + dorsal + '.png?v=37" alt="" ' +
       'onerror="this.parentNode.classList.add(\'is-empty\');this.remove()">';
   }
 
@@ -537,9 +537,12 @@
   /* ------------------------------ PERFIL ----------------------------- */
   function screenPerfil() {
     var t = DATA.refPartido.teamAvg || {};
+    var squad = DATA.refPartido.players || [];
     var axes = RADAR.map(function (mm) {
-      return { name: mm.short, label: mm.label, me: ME[mm.key], team: t[mm.key], dec: mm.dec || 0, unit: mm.unit };
-    }).filter(function (a) { return a.team; });
+      var mx = 0;
+      squad.forEach(function (p) { if (p[mm.key] != null && p[mm.key] > mx) mx = p[mm.key]; });
+      return { name: mm.short, label: mm.label, me: ME[mm.key], team: t[mm.key], max: mx, dec: mm.dec || 0, unit: mm.unit };
+    }).filter(function (a) { return a.max > 0; });
 
     var table = '<div class="tablewrap" style="margin-top:12px"><table class="grid">' +
       '<thead><tr><th class="col-player">Métrica</th><th>Tú</th><th>Equipo</th><th>Dif.</th></tr></thead><tbody>' +
@@ -558,7 +561,7 @@
 
     return '<div class="card">' +
       '<div class="card__title">Tu perfil de partido <span class="count">media de ' + (ME.partidos || 0) + ' partido' + ((ME.partidos || 0) === 1 ? '' : 's') + '</span></div>' +
-      '<div class="muted" style="margin-bottom:10px">Tu REF_PARTIDO (media de tus partidos estimados a 95′) frente a la media del equipo.</div>' +
+      '<div class="muted" style="margin-bottom:10px">Tu REF_PARTIDO (media de tus partidos estimados a 95′) frente a la media del equipo. El borde de la telaraña es el mejor registro de la plantilla en cada métrica.</div>' +
       '<div class="radar-wrap">' + radarSVG(axes) +
       '<div class="radar-legend"><span><i class="me"></i>Tú</span><span><i class="team"></i>Media equipo</span></div>' +
       '</div>' +
@@ -568,29 +571,27 @@
   }
 
   function radarSVG(axes) {
-    var N = axes.length, cx = 160, cy = 148, R = 100, teamR = R * 0.55;
+    var N = axes.length, cx = 160, cy = 148, R = 100;
     function ang(i) { return -Math.PI / 2 + i * 2 * Math.PI / N; }
     function P(i, r) { return [(cx + r * Math.cos(ang(i))).toFixed(1), (cy + r * Math.sin(ang(i))).toFixed(1)]; }
     function poly(rs) { return axes.map(function (a, i) { return P(i, rs[i]).join(","); }).join(" "); }
+    // radio para un valor v en el eje i: el borde (R) = mejor registro de la plantilla
+    function rad(v, a) { return (v == null || !a.max) ? 6 : Math.max(6, Math.min(R, R * (v / a.max))); }
 
-    var rings = [0.28, 0.55, 0.82, 1].map(function (f) {
-      return '<polygon class="grid-poly" points="' + axes.map(function (a, i) { return P(i, R * f).join(","); }).join(" ") + '"' +
-        (f === 0.55 ? ' style="stroke:var(--oro);opacity:.35"' : '') + '/>';
+    var rings = [0.25, 0.5, 0.75, 1].map(function (f) {
+      return '<polygon class="grid-poly" points="' + axes.map(function (a, i) { return P(i, R * f).join(","); }).join(" ") + '"/>';
     }).join("");
     var spokes = axes.map(function (a, i) { var e = P(i, R); return '<line class="spoke" x1="' + cx + '" y1="' + cy + '" x2="' + e[0] + '" y2="' + e[1] + '"/>'; }).join("");
 
-    var teamPoly = '<polygon class="team-poly" points="' + poly(axes.map(function () { return teamR; })) + '"/>';
-    var meR = axes.map(function (a) {
-      if (a.me == null || !a.team) return 6;
-      return Math.max(6, Math.min(R, teamR * (a.me / a.team)));
-    });
+    var teamPoly = '<polygon class="team-poly" points="' + poly(axes.map(function (a) { return rad(a.team, a); })) + '"/>';
+    var meR = axes.map(function (a) { return rad(a.me, a); });
     var mePoly = '<polygon class="me-poly" points="' + poly(meR) + '"/>';
     var meDots = axes.map(function (a, i) { var q = P(i, meR[i]); return '<circle class="me-dot" cx="' + q[0] + '" cy="' + q[1] + '" r="2.6"/>'; }).join("");
 
     var labels = axes.map(function (a, i) {
       var q = P(i, R + 15), x = +q[0], y = +q[1];
       var anchor = Math.abs(x - cx) < 8 ? "middle" : (x < cx ? "end" : "start");
-      var f = a.dec ? fmtDec(a.me, a.dec) : fmt(a.me);
+      var f = a.dec ? fmtDec(a.max, a.dec) : fmt(a.max);
       return '<text class="ax-name" x="' + x + '" y="' + (y - 2) + '" text-anchor="' + anchor + '">' + esc(a.name) + '</text>' +
         '<text class="ax-val" x="' + x + '" y="' + (y + 9) + '" text-anchor="' + anchor + '">' + f + '</text>';
     }).join("");

@@ -82,7 +82,7 @@
   }
   function avatar(dorsal, name, cls) {
     return '<span class="avatar ' + (cls || "") + '"><span class="avatar__ini">' + esc(inits(name)) + '</span>' +
-      '<img src="fotos/' + dorsal + '.png?v=36" alt="" onerror="this.parentNode.classList.add(\'is-empty\');this.remove()">' +
+      '<img src="fotos/' + dorsal + '.png?v=37" alt="" onerror="this.parentNode.classList.add(\'is-empty\');this.remove()">' +
       '<b class="avatar__d">' + dorsal + '</b></span>';
   }
   function estadoTag(estado) {
@@ -602,9 +602,12 @@
     var series = [{ name: "Media equipo", color: "var(--oro)", dashed: true, vals: t }];
     sel.forEach(function (p, i) { series.push({ name: p.jugador, color: CMP_COLORS[i % CMP_COLORS.length], vals: p }); });
 
+    var squad = DATA.refPartido.players || [];
     var axes = RADAR.map(function (mm) {
-      return { key: mm.key, name: mm.short, label: mm.label, unit: mm.unit, dec: mm.dec || 0, team: t[mm.key] };
-    }).filter(function (a) { return a.team; });
+      var mx = 0;
+      squad.forEach(function (p) { if (p[mm.key] != null && p[mm.key] > mx) mx = p[mm.key]; });
+      return { key: mm.key, name: mm.short, label: mm.label, unit: mm.unit, dec: mm.dec || 0, team: t[mm.key], max: mx };
+    }).filter(function (a) { return a.max > 0; });
 
     var chips = '<div class="cmp-chips">' + roster().map(function (p) {
       var on = state.cmp.indexOf(p.dorsal) >= 0;
@@ -635,7 +638,7 @@
     }
 
     return '<div class="card"><div class="card__title">Perfil de partido</div>' +
-      '<div class="muted" style="margin-bottom:10px">Telaraña de la media del equipo (REF_PARTIDO). Selecciona jugadores para superponer su perfil y compararlos.</div>' +
+      '<div class="muted" style="margin-bottom:10px">Telaraña de la media del equipo (REF_PARTIDO). Selecciona jugadores para superponer su perfil. El borde de la telaraña es el mejor registro de la plantilla en cada métrica.</div>' +
       chips +
       '<div class="radar-wrap" style="margin-top:8px">' + radarSVG(series, axes) + lg + '</div>' +
       (sel.length ? '<button class="btn btn--ghost" data-cmp-clear style="margin-top:8px">Quitar todos</button>' : '') +
@@ -644,18 +647,17 @@
   }
 
   function radarSVG(series, axes) {
-    var N = axes.length, cx = 160, cy = 150, R = 100, teamR = R * 0.55;
+    var N = axes.length, cx = 160, cy = 150, R = 100;
     function ang(i) { return -Math.PI / 2 + i * 2 * Math.PI / N; }
     function P(i, r) { return [(cx + r * Math.cos(ang(i))).toFixed(1), (cy + r * Math.sin(ang(i))).toFixed(1)]; }
-    var rings = [0.28, 0.55, 0.82, 1].map(function (f) {
-      return '<polygon class="grid-poly" points="' + axes.map(function (a, i) { return P(i, R * f).join(","); }).join(" ") + '"' +
-        (f === 0.55 ? ' style="stroke:var(--oro);opacity:.35"' : '') + '/>';
+    var rings = [0.25, 0.5, 0.75, 1].map(function (f) {
+      return '<polygon class="grid-poly" points="' + axes.map(function (a, i) { return P(i, R * f).join(","); }).join(" ") + '"/>';
     }).join("");
     var spokes = axes.map(function (a, i) { var e = P(i, R); return '<line class="spoke" x1="' + cx + '" y1="' + cy + '" x2="' + e[0] + '" y2="' + e[1] + '"/>'; }).join("");
     var polys = series.map(function (s) {
       var pts = axes.map(function (a, i) {
-        var v = s.vals[a.key], tv = a.team;
-        var r = (v == null || !tv) ? teamR : Math.max(6, Math.min(R, teamR * (v / tv)));
+        var v = s.vals[a.key];
+        var r = (v == null || !a.max) ? 6 : Math.max(6, Math.min(R, R * (v / a.max)));
         return P(i, r).join(",");
       }).join(" ");
       var fill = s.dashed ? "none" : "color-mix(in srgb, " + s.color + " 16%, transparent)";
@@ -665,7 +667,7 @@
     var labels = axes.map(function (a, i) {
       var q = P(i, R + 15), x = +q[0], y = +q[1];
       var anchor = Math.abs(x - cx) < 8 ? "middle" : (x < cx ? "end" : "start");
-      var f = a.dec ? fmtDec(a.team, a.dec) : fmt(a.team);
+      var f = a.dec ? fmtDec(a.max, a.dec) : fmt(a.max);
       return '<text class="ax-name" x="' + x + '" y="' + (y - 2) + '" text-anchor="' + anchor + '">' + esc(a.name) + '</text>' +
         '<text class="ax-val" x="' + x + '" y="' + (y + 9) + '" text-anchor="' + anchor + '">' + f + '</text>';
     }).join("");
