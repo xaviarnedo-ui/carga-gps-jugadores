@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es" data-theme="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carga GPS · AT Baleares</title>
+<meta name="description" content="Seguimiento de carga GPS del equipo: objetivos individuales, semáforo por métrica y carga aguda-crónica.">
+<meta name="theme-color" content="#16345E">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Carga GPS">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="styles.css?v=34">
+</head>
+<body>
+<div class="shell">
+
+  <header class="topbar">
+    <div class="topbar__row">
+      <div class="crest" aria-hidden="true"><img src="icons/escudo.png" alt="Atlético Baleares"></div>
+      <div class="topbar__titles">
+        <h1 class="topbar__title">CARGA GPS</h1>
+        <p class="topbar__sub" id="topbarSub">AT Baleares · Preparación física</p>
+      </div>
+      <button class="iconbtn" id="themeBtn" type="button" title="Cambiar tema" aria-label="Cambiar tema">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36A5.5 5.5 0 0 1 12.6 3.1 9.1 9.1 0 0 0 12 3Z" fill="currentColor"/></svg>
+      </button>
+    </div>
+
+    <div class="micro-select" id="microSelect" role="tablist" aria-label="Microciclo"></div>
+
+    <div class="micro-meta" id="microMeta"></div>
+  </header>
+
+  <div class="layout">
+
+  <nav class="bottomnav" id="nav" aria-label="Secciones">
+    <button class="navitem is-active" data-screen="inicio" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1Z" fill="currentColor"/></svg>
+      <span>Inicio</span>
+    </button>
+    <button class="navitem" data-screen="sesion" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v3H4Zm0 5.5h16v3H4Zm0 5.5h16v3H4Z" fill="currentColor"/></svg>
+      <span>Sesión</span>
+    </button>
+    <button class="navitem" data-screen="micro" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm1 5v9h12V9Zm2 2h3v3H8Z" fill="currentColor"/></svg>
+      <span>Microciclo</span>
+    </button>
+    <button class="navitem" data-screen="cargaac" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5h2v9.2l4-4.2 4 3 6-6.5V19Z" fill="currentColor"/></svg>
+      <span>Carga A:C</span>
+    </button>
+    <button class="navitem" data-screen="partidos" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7Zm0 3.2 6 3.3v6.9l-6 3.3-6-3.3V8.5Z" fill="currentColor"/><circle cx="12" cy="12" r="2.4" fill="currentColor"/></svg>
+      <span>Partidos</span>
+    </button>
+  </nav>
+
+  <main class="content" id="view" tabindex="-1"></main>
+
+  </div>
+
+</div>
+
+<script src="data.js?v=34"></script>
+<script src="app.js?v=34"></script>
+</body>
+</html>
