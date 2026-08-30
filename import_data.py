@@ -395,12 +395,16 @@ def load_microcycle(path):
     calc = (max(done_dates) if done_dates
             else (cac["calcISO"] or (orden[-1][2] if orden else None)))
 
+    # ¿todas las sesiones Y partidos del microciclo tienen datos?
+    completo = bool(orden) and all(any_load(sesiones.get(k) or partidos.get(k))
+                                   for kind, k, _ in orden)
+
     # el "activo" lo decide main() (siempre el microciclo más reciente); aquí solo la meta base
     meta = dict(n=n, titulo=f"Microciclo {n}", tipo=tipo,
                 semana=week_label(a3, n), temporada="2026-27",
                 calculoISO=calc,
                 calculoFecha=(dt.date.fromisoformat(calc).strftime("%d/%m") if calc else "—"),
-                estado="cerrado")
+                estado="cerrado", completo=completo)
 
     # cargasObjetivo (solo sesiones): obj = del Excel (ya es solo-sesiones), real = Σ sesiones
     cargas_obj = build_sessions_only(sesiones, ses_keys, acu)
@@ -543,9 +547,9 @@ def main():
     build_series(all_days, micro_data, cac_by_n)
 
     # nº de partidos que hay DETRÁS de la tabla REF_PARTIDO. Según las notas de la hoja,
-    # la referencia vigente es la media de PT1-PT3, PT5, PT6, PT7 y PT8 (PT4 anulado;
-    # días "Modified" y la sustitución de GPS de Hernández fuera).
-    REF_MATCHES = {"PT1", "PT2", "PT3", "PT5", "PT6", "PT7", "PT8"}
+    # la referencia vigente es la media de PT1-PT3, PT5-PT9 (PT4 anulado; días "Modified"
+    # y la sustitución de GPS de Hernández fuera). Cierre de pretemporada tras PT9.
+    REF_MATCHES = {"PT1", "PT2", "PT3", "PT5", "PT6", "PT7", "PT8", "PT9"}
     NO_REF = {(17, "PT2"), (24, "PT2"), (24, "PT3"), (23, "PT3"), (14, "PT3")}
     partidos_ref = {}
     for n, m in sorted(micro_data.items()):
@@ -587,7 +591,8 @@ def main():
         },
         "refPartido": {
             "nota": ("REF_PARTIDO = media de los partidos válidos de cada jugador, cada uno estimado a 95' "
-                     "con fórmula de fatiga (PT1-PT3, PT5, PT6, PT7 y PT8; PT4 anulado; días 'Modified' fuera). "
+                     "con fórmula de fatiga (PT1-PT3, PT5-PT9; PT4 anulado; días 'Modified' fuera). "
+                     "Cierre de pretemporada tras PT9 (vs Porreres, 30/08). "
                      "La media del equipo se calcula con toda la plantilla de campo. "
                      "Vel. máx tomada del mejor registro de partido."),
             "players": ref_players,

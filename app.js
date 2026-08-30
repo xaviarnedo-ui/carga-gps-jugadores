@@ -82,7 +82,7 @@
   }
   function avatar(dorsal, name, cls) {
     return '<span class="avatar ' + (cls || "") + '"><span class="avatar__ini">' + esc(inits(name)) + '</span>' +
-      '<img src="fotos/' + dorsal + '.png?v=37" alt="" onerror="this.parentNode.classList.add(\'is-empty\');this.remove()">' +
+      '<img src="fotos/' + dorsal + '.png?v=38" alt="" onerror="this.parentNode.classList.add(\'is-empty\');this.remove()">' +
       '<b class="avatar__d">' + dorsal + '</b></span>';
   }
   function estadoTag(estado) {
@@ -281,7 +281,7 @@
 
     h += '<div class="card">' +
       '<div class="card__title">' + esc(meta.titulo || state.micro) + (meta.tipo ? ' · Tipo ' + esc(meta.tipo) : '') +
-      (meta.estado === "activo" ? ' <span class="count">EN CURSO</span>' : '') + '</div>' +
+      (meta.estado === "activo" ? ' <span class="count">' + (meta.completo ? "COMPLETADO" : "EN CURSO") + '</span>' : '') + '</div>' +
       '<div class="muted">' + esc(meta.semana || "") + ' · último cálculo <b>' + esc(meta.calculoFecha || "—") + '</b></div>' +
       '<div class="kpi-row" style="margin-top:12px">' +
       kpi(doneSes.length + "/" + sesK.length, "Sesiones cargadas") +
@@ -682,7 +682,7 @@
     MICROS.forEach(function (k) {
       var mm = DATA[k].meta || {};
       host.appendChild(el('<button class="chip' + (k === state.micro ? " is-active" : "") + '" role="tab" data-micro="' + k + '">' +
-        k + (mm.estado === "activo" ? '<span class="chip__tag">ACTIVO</span>' : '') + '</button>'));
+        k + (mm.estado === "activo" ? '<span class="chip__tag">' + (mm.completo ? "COMPLETO" : "ACTIVO") + '</span>' : '') + '</button>'));
     });
     var meta = currentMicro().meta || {};
     document.getElementById("microMeta").innerHTML =
