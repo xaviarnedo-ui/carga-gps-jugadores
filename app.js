@@ -82,7 +82,7 @@
   }
   function avatar(dorsal, name, cls) {
     return '<span class="avatar ' + (cls || "") + '"><span class="avatar__ini">' + esc(inits(name)) + '</span>' +
-      '<img src="fotos/' + dorsal + '.png?v=38" alt="" onerror="this.parentNode.classList.add(\'is-empty\');this.remove()">' +
+      '<img src="fotos/' + dorsal + '.png?v=39" alt="" onerror="this.parentNode.classList.add(\'is-empty\');this.remove()">' +
       '<b class="avatar__d">' + dorsal + '</b></span>';
   }
   function estadoTag(estado) {
@@ -333,7 +333,7 @@
     var plWeek = {};
     m.cargaAC.players.forEach(function (p) {
       var t = 0, any = false;
-      Object.keys(p).forEach(function (k) { if (/^pl(S|PT)\d/.test(k) && p[k] != null) { t += p[k]; any = true; } });
+      Object.keys(p).forEach(function (k) { if (/^pl(S|PT|J)\d/.test(k) && p[k] != null) { t += p[k]; any = true; } });
       if (any) plWeek[p.dorsal] = t;
     });
     var pMet = METRICS.map(function (mm) {
@@ -502,7 +502,7 @@
 
     var players = ac.players.slice().sort(sortPlayers);
     var rows = players.map(function (p) {
-      var pk = Object.keys(p).filter(function (k) { return /^pl(S|PT)\d+/.test(k); });
+      var pk = Object.keys(p).filter(function (k) { return /^pl(S|PT|J)\d+/.test(k); });
       var pairs = pk.map(function (k) { return { label: k.slice(2), value: p[k] }; });
       var body = '<div class="grouprow" style="align-items:center;gap:12px;margin-bottom:8px">' +
         '<span class="acwr ' + acwrClass(p.acwr) + '" style="font-size:17px">' + fmtDec(p.acwr, 2) + '</span>' +

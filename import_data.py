@@ -318,7 +318,7 @@ def parse_carga_ac(ws):
     pl_cols = []
     for j in range(4, len(hdr)):
         h = str(hdr[j] or "")
-        m = re.search(r"PL\s+(S\d+\w*|PT\d+)", h)
+        m = re.search(r"PL\s+(S\d+\w*|PT\d+|J\d+)", h)
         if m:
             pl_cols.append((j, m.group(1)))
     aguda_col = len(hdr) - 2
@@ -361,12 +361,15 @@ def load_microcycle(path):
     wb = openpyxl.load_workbook(path, data_only=True)
     sesiones, partidos, orden = {}, {}, []
     for name in wb.sheetnames:
-        if name.endswith("_GPS") and name.startswith("PT"):
-            key = name[:-4]
+        if not name.endswith("_GPS"):
+            continue
+        key = name[:-4]
+        a1 = str(wb[name].cell(1, 1).value or "").upper()
+        # hoja de partido: PTx_GPS (pretemporada) o Jx_GPS (liga); A1 empieza por "PARTIDO"
+        if a1.startswith("PARTIDO") or re.match(r"(PT|J)\d", key):
             partidos[key] = parse_match(wb[name])
             orden.append(("partido", key, partidos[key]["date"]))
-        elif name.endswith("_GPS"):
-            key = name[:-4]
+        else:
             # S6a/S6b -> se mantienen separadas (así están en el Excel)
             sesiones[key] = parse_session(wb[name])
             orden.append(("sesion", key, sesiones[key]["date"]))

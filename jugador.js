@@ -120,7 +120,7 @@
     document.getElementById("nav").style.display = "none";
     document.getElementById("playerName").textContent = "MIS DATOS GPS";
     var c = document.getElementById("crest");
-    c.className = "crest crest--club"; c.innerHTML = '<img src="icons/escudo.png?v=38" alt="">';
+    c.className = "crest crest--club"; c.innerHTML = '<img src="icons/escudo.png?v=39" alt="">';
     var opts = DATA.refPartido.players.slice()
       .sort(function (a, b) { return a.dorsal - b.dorsal; })
       .map(function (p) { return '<option value="' + p.dorsal + '">#' + p.dorsal + " · " + esc(p.jugador) + "</option>"; }).join("");
@@ -145,7 +145,7 @@
   }
   function photoHTML(dorsal, name) {
     return '<span class="crest__ini">' + esc(inits(name)) + '</span>' +
-      '<img src="fotos/' + dorsal + '.png?v=38" alt="" ' +
+      '<img src="fotos/' + dorsal + '.png?v=39" alt="" ' +
       'onerror="this.parentNode.classList.add(\'is-empty\');this.remove()">';
   }
 
@@ -280,7 +280,7 @@
     var co = m.cargasObjetivo;
     var p = co.players.find(function (x) { return x.dorsal === DORSAL; });
     var ta = co.teamAvg;
-    var sesKeys = sessionKeys(m).filter(function (k) { return !/^PT\d+$/.test(k); });
+    var sesKeys = sessionKeys(m).filter(function (k) { return !isMatch(m, k); });
     var total = sesKeys.length;
     var pend = sesKeys.filter(function (k) { return !isCompleted(getSession(m, k)); })
       .map(function (k) { return k + " " + roleShort(sessionRole(getSession(m, k))); });
