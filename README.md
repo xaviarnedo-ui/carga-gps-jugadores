@@ -74,10 +74,11 @@ cd ~/Desktop/carga-gps && python3 import_data.py --avisar && git commit -am "dat
 
 ## Notificaciones push (avisos de datos nuevos)
 
-El jugador activa el aviso con la campana de la barra superior (necesita tener la
-app **añadida a la pantalla de inicio** en iPhone, iOS 16.4+; en Android va también
-desde el navegador). `import_data.py --avisar` manda entonces una notificación
-«Datos de GPS actualizados».
+Cada persona (jugador o cuerpo técnico) activa el aviso con la campana de la barra
+superior, en su vista — necesita tener la app **añadida a la pantalla de inicio**
+en iPhone (iOS 16.4+); en Android va también desde el navegador. `import_data.py
+--avisar` manda entonces una notificación «Datos de GPS actualizados» a todos los
+suscritos. Las suscripciones del cuerpo técnico se guardan con `dorsal` nulo.
 
 Usa el mismo proyecto Supabase que la app de hábitos. **Montaje (una vez):**
 
