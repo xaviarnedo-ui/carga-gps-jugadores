@@ -1,13 +1,13 @@
-/* Service worker — cache básico para uso offline en el campo. */
-var CACHE = "carga-gps-v40";
+/* Service worker — cache básico para uso offline en el campo + notificaciones push. */
+var CACHE = "carga-gps-v41";
 var ASSETS = [
   "./",
   "./index.html",
   "./jugador.html",
-  "./styles.css?v=39",
-  "./app.js?v=39",
-  "./jugador.js?v=39",
-  "./data.js?v=39",
+  "./styles.css?v=41",
+  "./app.js?v=41",
+  "./jugador.js?v=41",
+  "./data.js?v=41",
   "./manifest.json",
   "./manifest.jugador.json",
   "./icons/escudo.png",
@@ -45,4 +45,30 @@ self.addEventListener("fetch", function (e) {
     return;
   }
   e.respondWith(caches.match(e.request).then(function (r) { return r || fetch(e.request); }));
+});
+
+/* ---- Notificaciones push ---- */
+self.addEventListener("push", function (e) {
+  var p = { title: "Carga GPS", body: "Datos de GPS actualizados", url: "./jugador.html" };
+  if (e.data) {
+    try { var j = e.data.json(); p.title = j.title || p.title; p.body = j.body || p.body; p.url = j.url || p.url; }
+    catch (x) { p.body = e.data.text(); }
+  }
+  e.waitUntil(self.registration.showNotification(p.title, {
+    body: p.body,
+    icon: "./icons/icon-192.png",
+    badge: "./icons/icon-192.png",
+    data: { url: p.url }
+  }));
+});
+
+self.addEventListener("notificationclick", function (e) {
+  e.notification.close();
+  var url = (e.notification.data && e.notification.data.url) || "./jugador.html";
+  e.waitUntil(self.clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (cl) {
+    for (var i = 0; i < cl.length; i++) {
+      if ("focus" in cl[i]) { cl[i].navigate && cl[i].navigate(url); return cl[i].focus(); }
+    }
+    if (self.clients.openWindow) return self.clients.openWindow(url);
+  }));
 });

@@ -774,12 +774,119 @@
     try { next ? localStorage.setItem(THEME_KEY, next) : localStorage.removeItem(THEME_KEY); } catch (e) {}
   });
 
+  /* ---------------------- avisos (push) ------------------------------ */
+  var PUSH = {
+    enabled: false, // poner a true cuando la tabla gps_push_subs y la función gps-notify estén en Supabase
+    url: "https://cqjuqlrjidzulefeupqy.supabase.co",
+    anon: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNxanVxbHJqaWR6dWxlZmV1cHF5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY0OTcxMTQsImV4cCI6MjEwMjA3MzExNH0.QxXV-PLREwxc2rJKs5TSNR81-u5I8o_AnSaHxz7ZaJE",
+    vapid: "BIez-kUYmKbzOphKs5GPzQ44qguPuPk9faMa2vsGLZ8RYjfb235nBM_gSid-PDgNu36DPgMS1v78phRbaArY64A"
+  };
+  function pushSupported() {
+    return PUSH.enabled && "serviceWorker" in navigator && "PushManager" in window &&
+      "Notification" in window && typeof Notification.requestPermission === "function";
+  }
+  function b64ToU8(s) {
+    var pad = "=".repeat((4 - (s.length % 4)) % 4);
+    var raw = atob((s + pad).replace(/-/g, "+").replace(/_/g, "/"));
+    var out = new Uint8Array(raw.length);
+    for (var i = 0; i < raw.length; i++) out[i] = raw.charCodeAt(i);
+    return out;
+  }
+  function currentSub() {
+    if (!pushSupported()) return Promise.resolve(null);
+    return navigator.serviceWorker.ready.then(function (reg) { return reg.pushManager.getSubscription(); });
+  }
+  function pushEnable() {
+    return Promise.resolve(Notification.requestPermission()).then(function (perm) {
+      if (perm !== "granted") throw new Error("perm");
+      return navigator.serviceWorker.register("sw.js")
+        .then(function () { return navigator.serviceWorker.ready; })
+        .then(function (reg) {
+          return reg.pushManager.getSubscription().then(function (s) {
+            return s || reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64ToU8(PUSH.vapid) });
+          });
+        })
+        .then(function (sub) {
+          var j = sub.toJSON();
+          return fetch(PUSH.url + "/rest/v1/gps_push_subs", {
+            method: "POST",
+            headers: {
+              "apikey": PUSH.anon, "Authorization": "Bearer " + PUSH.anon,
+              "Content-Type": "application/json", "Prefer": "resolution=merge-duplicates,return=minimal"
+            },
+            body: JSON.stringify({
+              dorsal: DORSAL, endpoint: j.endpoint,
+              p256dh: j.keys.p256dh, auth: j.keys.auth,
+              user_agent: (navigator.userAgent || "").slice(0, 300)
+            })
+          }).then(function (r) { if (!r.ok) throw new Error("save " + r.status); });
+        });
+    });
+  }
+  function pushDisable() {
+    return currentSub().then(function (sub) {
+      if (!sub) return;
+      var ep = sub.endpoint;
+      return sub.unsubscribe().catch(function () {}).then(function () {
+        return fetch(PUSH.url + "/rest/v1/gps_push_subs?endpoint=eq." + encodeURIComponent(ep), {
+          method: "DELETE",
+          headers: { "apikey": PUSH.anon, "Authorization": "Bearer " + PUSH.anon }
+        }).catch(function () {});
+      });
+    });
+  }
+  function refreshBell() {
+    var b = document.getElementById("bellBtn");
+    if (!b) return;
+    if (!pushSupported() || !ME) { b.hidden = true; return; }
+    b.hidden = false;
+    currentSub().then(function (s) {
+      var on = !!s;
+      b.classList.toggle("is-on", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.title = on ? "Avisos activados · toca para desactivar" : "Activar avisos de datos nuevos";
+    }).catch(function () {});
+  }
+  var toastT;
+  function toast(msg) {
+    var el = document.getElementById("gpsToast");
+    if (!el) { el = document.createElement("div"); el.id = "gpsToast"; el.className = "toast"; document.body.appendChild(el); }
+    el.textContent = msg;
+    requestAnimationFrame(function () { el.classList.add("show"); });
+    clearTimeout(toastT);
+    toastT = setTimeout(function () { el.classList.remove("show"); }, 3200);
+  }
+  (function wireBell() {
+    var b = document.getElementById("bellBtn");
+    if (!b) return;
+    b.addEventListener("click", function () {
+      if (!pushSupported()) return;
+      if (Notification.permission === "denied") {
+        toast("Notificaciones bloqueadas. Actívalas en los ajustes del móvil.");
+        return;
+      }
+      b.disabled = true;
+      currentSub().then(function (s) {
+        return s
+          ? pushDisable().then(function () { toast("Avisos desactivados"); })
+          : pushEnable().then(function () { toast("Listo · te avisaremos cuando haya datos nuevos"); });
+      }).catch(function (e) {
+        toast(String(e && e.message) === "perm" ? "No has dado permiso para las notificaciones" : "No se pudo cambiar. Inténtalo otra vez.");
+      }).then(function () {
+        b.disabled = false;
+        refreshBell();
+      });
+    });
+  })();
+
   /* --------------------------- arranque ------------------------------ */
   if (!ME) { renderGate(); }
   else {
     render();
     if ("serviceWorker" in navigator) {
-      window.addEventListener("load", function () { navigator.serviceWorker.register("sw.js").catch(function () {}); });
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("sw.js").catch(function () {}).then(refreshBell);
+      });
     }
   }
 })();

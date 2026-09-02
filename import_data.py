@@ -13,7 +13,7 @@ La app SOLO muestra lo que hay en el Excel (obj / real / dif / ACWR / medias ya 
 Lo único que calcula este script: el 'real' acumulado solo-sesiones (el Excel mezcla el
 partido) y la serie diaria de Player Load de 28 días para la gráfica de Carga A:C.
 """
-import json, re, glob, os, datetime as dt
+import json, re, glob, os, sys, datetime as dt
 import openpyxl
 
 GPS_DIR = os.path.expanduser("~/Desktop/AT BALEARES 26-27/GPS")
@@ -513,6 +513,49 @@ def build_series(all_days, micro_data, cac_by_n):
         m["cargaAC"]["serieTeam"] = dict(pl=tpl, aguda=tag_, cronica=tcr, acwr=tac, ses=tse)
 
 
+# ---------------------------------------------------------------- avisos push
+def _load_env():
+    env = {}
+    p = os.path.join(os.path.dirname(__file__), ".env")
+    if os.path.exists(p):
+        for line in open(p, encoding="utf-8"):
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                env[k.strip()] = v.strip()
+    return env
+
+
+def notificar():
+    """Llama a la Edge Function gps-notify: manda un push a los jugadores suscritos."""
+    import urllib.request
+    import urllib.error
+    env = _load_env()
+    base = env.get("SUPABASE_URL", "https://cqjuqlrjidzulefeupqy.supabase.co").rstrip("/")
+    secret = env.get("GPS_NOTIFY_SECRET")
+    anon = env.get("SUPABASE_ANON_KEY", "")
+    if not secret:
+        print("  aviso NO enviado: falta GPS_NOTIFY_SECRET en .env (copia .env.example a .env)")
+        return
+    payload = json.dumps({
+        "title": "Carga GPS",
+        "body": f"Datos de GPS actualizados · {dt.datetime.now().strftime('%d/%m %H:%M')}",
+        "url": "./jugador.html",
+    }).encode("utf-8")
+    req = urllib.request.Request(
+        base + "/functions/v1/gps-notify", data=payload, method="POST",
+        headers={"Content-Type": "application/json",
+                 "x-gps-secret": secret,
+                 "Authorization": "Bearer " + anon})
+    try:
+        with urllib.request.urlopen(req, timeout=20) as r:
+            print("  aviso enviado:", r.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        print("  aviso ERROR", e.code, e.read().decode("utf-8", "replace"))
+    except Exception as e:
+        print("  aviso ERROR:", e)
+
+
 # ---------------------------------------------------------------- main
 def main():
     coef, ref, ref_notas = load_tipo()
@@ -622,6 +665,11 @@ def main():
         print(f"  M{n} [{m['meta']['estado']}] {m['meta']['semana']} · "
               f"{len(m['sesiones'])} sesiones + {len(m['partidos'])} partidos · calc {m['meta']['calculoFecha']}")
     print("  jugadores REF_PARTIDO:", len(ref_players))
+
+    if "--avisar" in sys.argv:
+        notificar()
+    else:
+        print("  (para avisar a los jugadores suscritos: python3 import_data.py --avisar)")
 
 
 if __name__ == "__main__":

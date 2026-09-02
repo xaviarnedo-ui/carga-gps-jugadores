@@ -66,6 +66,28 @@ cd ~/Desktop/carga-gps && python3 import_data.py && git commit -am "datos" && gi
 GitHub Pages se actualiza solo en ~1 min. Si tocas `styles.css` / `*.js`, sube
 también `?v=N` en `index.html`/`jugador.html` y el `CACHE` de `sw.js`.
 
+Para avisar a los jugadores suscritos de que hay datos nuevos, añade `--avisar`:
+
+```bash
+cd ~/Desktop/carga-gps && python3 import_data.py --avisar && git commit -am "datos" && git push
+```
+
+## Notificaciones push (avisos de datos nuevos)
+
+El jugador activa el aviso con la campana de la barra superior (necesita tener la
+app **añadida a la pantalla de inicio** en iPhone, iOS 16.4+; en Android va también
+desde el navegador). `import_data.py --avisar` manda entonces una notificación
+«Datos de GPS actualizados».
+
+Usa el mismo proyecto Supabase que la app de hábitos. **Montaje (una vez):**
+
+1. SQL Editor de Supabase → ejecuta `supabase-gps-notificaciones.sql` (crea `gps_push_subs`).
+2. Edge Functions → *Create function* `gps-notify` → pega `supabase-edge-function-gps-notify.ts`.
+3. En los *Secrets* de esa función añade `GPS_NOTIFY_SECRET` (mismo valor que en tu `.env`
+   local; copia `.env.example` a `.env`). `VAPID_PUBLIC_KEY` / `VAPID_PRIVATE_KEY` ya existen.
+
+No hay cron: la función solo se dispara cuando ejecutas `--avisar`.
+
 ## Previsualizar en local
 
 ```bash
@@ -86,7 +108,9 @@ cd ~/Desktop/carga-gps && python3 -m http.server 4599
 | `import_data.py` | Lee los Excel → genera `data.js` |
 | `manifest.json` / `manifest.jugador.json` + `icons/` | PWA (incluye `icons/escudo.png`) |
 | `fotos/<dorsal>.png` | Foto de cada jugador (240 px, recortadas de las fichas 4K de `~/Desktop/AT BALEARES 26-27/Fotos jugadores/`) |
-| `sw.js` | Cache offline |
+| `sw.js` | Cache offline + notificaciones push |
+| `supabase-gps-notificaciones.sql` + `supabase-edge-function-gps-notify.ts` | Backend de las notificaciones (Supabase) |
+| `.env.example` | Plantilla para `.env` (no se sube): claves para `import_data.py --avisar` |
 | `gen_data.py`, `gen_icons.py` | Generador de datos de ejemplo (histórico) e iconos |
 
 ## Estructura de `data.js`
