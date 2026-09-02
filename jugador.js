@@ -776,10 +776,10 @@
 
   /* ---------------------- avisos (push) ------------------------------ */
   var PUSH = {
-    enabled: false, // poner a true cuando la tabla gps_push_subs y la función gps-notify estén en Supabase
-    url: "https://cqjuqlrjidzulefeupqy.supabase.co",
-    anon: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNxanVxbHJqaWR6dWxlZmV1cHF5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY0OTcxMTQsImV4cCI6MjEwMjA3MzExNH0.QxXV-PLREwxc2rJKs5TSNR81-u5I8o_AnSaHxz7ZaJE",
-    vapid: "BIez-kUYmKbzOphKs5GPzQ44qguPuPk9faMa2vsGLZ8RYjfb235nBM_gSid-PDgNu36DPgMS1v78phRbaArY64A"
+    enabled: true,
+    url: "https://laqwymoxwegemdjlqqya.supabase.co",
+    anon: "sb_publishable_pegqesc0ZQEwn1c_-wxbAQ_hkHhfVU7",
+    vapid: "BJvc-Cfu81fMFptJKtpBG5qFhgpb2KJLaiI4ZlMVo2atyIXGaTjfQ_Yh2YVa2bLfTh__2HDN0UWnnlK2YekcJ-c"
   };
   function pushSupported() {
     return PUSH.enabled && "serviceWorker" in navigator && "PushManager" in window &&
@@ -808,17 +808,20 @@
         })
         .then(function (sub) {
           var j = sub.toJSON();
-          return fetch(PUSH.url + "/rest/v1/gps_push_subs", {
-            method: "POST",
-            headers: {
-              "apikey": PUSH.anon, "Authorization": "Bearer " + PUSH.anon,
-              "Content-Type": "application/json", "Prefer": "resolution=merge-duplicates,return=minimal"
-            },
-            body: JSON.stringify({
-              dorsal: DORSAL, endpoint: j.endpoint,
-              p256dh: j.keys.p256dh, auth: j.keys.auth,
-              user_agent: (navigator.userAgent || "").slice(0, 300)
-            })
+          var h = { "apikey": PUSH.anon, "Authorization": "Bearer " + PUSH.anon };
+          // borra cualquier registro anterior de este endpoint y crea uno limpio
+          return fetch(PUSH.url + "/rest/v1/gps_push_subs?endpoint=eq." + encodeURIComponent(j.endpoint), {
+            method: "DELETE", headers: h
+          }).catch(function () {}).then(function () {
+            return fetch(PUSH.url + "/rest/v1/gps_push_subs", {
+              method: "POST",
+              headers: { "apikey": PUSH.anon, "Authorization": "Bearer " + PUSH.anon, "Content-Type": "application/json", "Prefer": "return=minimal" },
+              body: JSON.stringify({
+                dorsal: DORSAL, endpoint: j.endpoint,
+                p256dh: j.keys.p256dh, auth: j.keys.auth,
+                user_agent: (navigator.userAgent || "").slice(0, 300)
+              })
+            });
           }).then(function (r) { if (!r.ok) throw new Error("save " + r.status); });
         });
     });

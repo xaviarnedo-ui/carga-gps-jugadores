@@ -68,14 +68,15 @@ CÓMO DESPLEGAR (todo desde el dashboard de Supabase, sin instalar nada):
 
 1. Ejecuta supabase-gps-notificaciones.sql en el SQL Editor (crea la tabla).
 
-2. Supabase Dashboard -> Edge Functions -> Create function -> nombre: gps-notify
+2. Edge Functions -> Deploy a new function (editor del navegador) -> nombre: gps-notify
    Pega este código (sin este comentario final).
+   IMPORTANTE: desactiva "Verify JWT" para esta función (la protege x-gps-secret).
 
-3. Edge Functions -> gps-notify -> Settings -> Secrets. Añade:
+3. Edge Functions -> Secrets (Manage secrets). Añade los 3:
      GPS_NOTIFY_SECRET  = (el mismo valor que tienes en tu .env local)
-   Los otros ya existen de la app de hábitos:
-     VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY
-   SUPABASE_URL y SUPABASE_SERVICE_ROLE_KEY los rellena Supabase solo.
+     VAPID_PUBLIC_KEY   = (la del .env / jugador.js)
+     VAPID_PRIVATE_KEY  = (la del .env)
+   SUPABASE_URL y SUPABASE_SERVICE_ROLE_KEY los inyecta Supabase solo.
 
 4. NO hace falta cron: la función se dispara solo cuando tú ejecutas
    `python3 import_data.py --avisar`.

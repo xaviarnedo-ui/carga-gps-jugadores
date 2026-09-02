@@ -531,7 +531,7 @@ def notificar():
     import urllib.request
     import urllib.error
     env = _load_env()
-    base = env.get("SUPABASE_URL", "https://cqjuqlrjidzulefeupqy.supabase.co").rstrip("/")
+    base = env.get("SUPABASE_URL", "https://laqwymoxwegemdjlqqya.supabase.co").rstrip("/")
     secret = env.get("GPS_NOTIFY_SECRET")
     anon = env.get("SUPABASE_ANON_KEY", "")
     if not secret:
@@ -546,6 +546,7 @@ def notificar():
         base + "/functions/v1/gps-notify", data=payload, method="POST",
         headers={"Content-Type": "application/json",
                  "x-gps-secret": secret,
+                 "apikey": anon,
                  "Authorization": "Bearer " + anon})
     try:
         with urllib.request.urlopen(req, timeout=20) as r:

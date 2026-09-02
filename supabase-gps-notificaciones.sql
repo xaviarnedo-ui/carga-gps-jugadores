@@ -1,5 +1,5 @@
 -- Suscripciones a notificaciones push de la app de Carga GPS (sin login).
--- Reutiliza el mismo proyecto Supabase que la app de hábitos.
+-- Proyecto Supabase propio: laqwymoxwegemdjlqqya
 -- Ejecútalo una vez en el SQL Editor de Supabase.
 
 create table if not exists gps_push_subs (
@@ -14,9 +14,11 @@ create table if not exists gps_push_subs (
 
 alter table gps_push_subs enable row level security;
 
--- La app no tiene login. El jugador (rol anon) puede darse de alta y de baja,
--- pero NADIE con la anon key puede LEER la lista (no hay policy de select):
--- solo la Edge Function, que usa la service_role key, puede leerla para enviar.
-create policy "gps_push alta"        on gps_push_subs for insert to anon, authenticated with check (true);
-create policy "gps_push actualizar"  on gps_push_subs for update to anon, authenticated using (true) with check (true);
-create policy "gps_push baja"        on gps_push_subs for delete to anon, authenticated using (true);
+-- La app no tiene login: el jugador (rol anon) da de alta y de baja su propio
+-- endpoint de push. Los datos que se guardan (endpoint + claves) no sirven de
+-- nada sin la clave VAPID privada, que vive solo en la Edge Function.
+-- La policy de SELECT es necesaria para que PostgREST pueda ejecutar el DELETE.
+create policy "gps_push ver"        on gps_push_subs for select to anon, authenticated using (true);
+create policy "gps_push alta"       on gps_push_subs for insert to anon, authenticated with check (true);
+create policy "gps_push actualizar" on gps_push_subs for update to anon, authenticated using (true) with check (true);
+create policy "gps_push baja"       on gps_push_subs for delete to anon, authenticated using (true);
