@@ -67,31 +67,29 @@ URL: `https://xaviarnedo-ui.github.io/carga-gps-jugadores/`
 cd ~/Desktop/carga-gps && python3 import_data.py && git commit -am "datos" && git push
 ```
 
+`import_data.py` **siempre** manda la notificación push a los suscritos. Para
+regenerar sin avisar (pruebas): `python3 import_data.py --sin-avisar`.
+
 GitHub Pages se actualiza solo en ~1 min. Si tocas `styles.css` / `*.js`, sube
 también `?v=N` en `index.html`/`jugador.html` y el `CACHE` de `sw.js`.
-
-Para avisar a los jugadores suscritos de que hay datos nuevos, añade `--avisar`:
-
-```bash
-cd ~/Desktop/carga-gps && python3 import_data.py --avisar && git commit -am "datos" && git push
-```
 
 ## Notificaciones push (avisos de datos nuevos)
 
 Cada persona (jugador o cuerpo técnico) activa el aviso con la campana de la barra
 superior, en su vista — necesita tener la app **añadida a la pantalla de inicio**
-en iPhone (iOS 16.4+); en Android va también desde el navegador. `import_data.py
---avisar` manda entonces una notificación «Datos de GPS actualizados» a todos los
-suscritos. Las suscripciones del cuerpo técnico se guardan con `dorsal` nulo.
+en iPhone (iOS 16.4+); en Android va también desde el navegador. Cada `import_data.py`
+manda una notificación «Datos de GPS actualizados» (y, si alguien tiene el ACWR de
+HSR o Sprints en peligro, lo añade al texto). Las suscripciones del cuerpo técnico
+se guardan con `dorsal` nulo.
 
-Usa el mismo proyecto Supabase que la app de hábitos. **Montaje (una vez):**
+Proyecto Supabase propio (`laqwymoxwegemdjlqqya`). **Montaje (ya hecho):**
 
-1. SQL Editor de Supabase → ejecuta `supabase-gps-notificaciones.sql` (crea `gps_push_subs`).
-2. Edge Functions → *Create function* `gps-notify` → pega `supabase-edge-function-gps-notify.ts`.
-3. En los *Secrets* de esa función añade `GPS_NOTIFY_SECRET` (mismo valor que en tu `.env`
-   local; copia `.env.example` a `.env`). `VAPID_PUBLIC_KEY` / `VAPID_PRIVATE_KEY` ya existen.
+1. `supabase-gps-notificaciones.sql` en el SQL Editor (crea `gps_push_subs` + policies).
+2. Edge Function `gps-notify` con `supabase-edge-function-gps-notify.ts`.
+3. Secrets de la función: `GPS_NOTIFY_SECRET`, `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`
+   (todo en `.env`; copia `.env.example` a `.env`).
 
-No hay cron: la función solo se dispara cuando ejecutas `--avisar`.
+No hay cron: la función se dispara desde `import_data.py`.
 
 ## Previsualizar en local
 

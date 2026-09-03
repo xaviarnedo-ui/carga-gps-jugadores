@@ -6,8 +6,9 @@ Fuente: ~/Desktop/AT BALEARES 26-27/GPS/
   - Microciclo_Tipo.xlsx  (hojas MICROCICLOS = coeficientes, REF_PARTIDO)
   - Microciclos/Microciclo 1..6.xlsx  (hojas Sxx_GPS, PTx_GPS, CARGAS_OBJETIVO|Acumulado, CARGA_AC)
 
-Uso:  python3 import_data.py
-Salida:  data.js  ->  window.GPS_DATA_ALL = { meta, refPartido, coeficientes, microciclos, M1..M6 }
+Uso:  python3 import_data.py                (regenera data.js Y avisa a los suscritos)
+      python3 import_data.py --sin-avisar   (regenera sin mandar notificación)
+Salida:  data.js  ->  window.GPS_DATA_ALL = { meta, refPartido, coeficientes, microciclos, M1..M8 }
 
 La app SOLO muestra lo que hay en el Excel (obj / real / dif / ACWR / medias ya calculados).
 Lo único que calcula este script: el 'real' acumulado solo-sesiones (el Excel mezcla el
@@ -736,10 +737,12 @@ def main():
               f"{len(m['sesiones'])} sesiones + {len(m['partidos'])} partidos · calc {m['meta']['calculoFecha']}")
     print("  jugadores REF_PARTIDO:", len(ref_players))
 
-    if "--avisar" in sys.argv:
-        notificar(DATA)
+    # Por defecto SIEMPRE se avisa a los suscritos. Para regenerar sin avisar
+    # (pruebas, comprobaciones), usar:  python3 import_data.py --sin-avisar
+    if any(a in sys.argv for a in ("--sin-avisar", "--no-avisar")):
+        print("  (aviso omitido: --sin-avisar)")
     else:
-        print("  (para avisar a los jugadores suscritos: python3 import_data.py --avisar)")
+        notificar(DATA)
 
 
 if __name__ == "__main__":
