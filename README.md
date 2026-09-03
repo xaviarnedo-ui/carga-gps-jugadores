@@ -19,8 +19,12 @@ al añadir la app a la pantalla de inicio sigue sabiendo quién es. Abrir
 - **Inicio** — estado del microciclo; **avisos destacados** (récords de Vel. máx, desviaciones ±50% del objetivo, volumen bajo del microciclo); avisos de carga ACWR; reparto de semáforo de la última sesión; y **Top 5 por parámetro** de la última sesión y del microciclo.
 - **Sesión** — media del equipo (6 métricas + Vel. máx, Player Load y duración) y, debajo, cada jugador con un **minicírculo** del % medio conseguido (color de semáforo); al desplegar, su real / objetivo individual / media equipo.
 - **Microciclo** — lo mismo pero con el acumulado de sesiones del microciclo.
-- **Carga A:C** — ACWR del equipo + gráfica de 28 días de la media del equipo; debajo cada jugador con su gráfica individual en un desplegable.
+- **Carga A:C** — ACWR del equipo + gráfica de 28 días de la media del equipo; debajo cada jugador con su gráfica individual y sus **3 ACWR (PL / HSR / Sprints)** en un desplegable.
 - **Partidos** — telaraña de la media del equipo (REF_PARTIDO); seleccionas jugadores (hasta 5) y se superponen sus perfiles para compararlos, con tabla numérica.
+
+Las listas de jugadores de la vista entrenador van **por orden de dorsal**. Un jugador que
+ya aparece en los Excel pero todavía no tiene fila en `REF_PARTIDO` (fichaje reciente) se
+añade automáticamente a la plantilla con la referencia vacía.
 
 
 ## Datos: de dónde salen
@@ -158,10 +162,16 @@ M6: {
 
 ## ACWR (carga aguda / crónica)
 
-- **Aguda** = Σ Player Load de los últimos 7 días naturales ÷ 7 (los descansos cuentan como 0).
+- **Aguda** = Σ de la métrica de los últimos 7 días naturales ÷ 7 (los descansos cuentan como 0).
 - **Crónica** = Σ de los últimos 28 días ÷ 28.
 - **ACWR** = aguda ÷ crónica.
 - Zonas: 🔵 < 0,80 infracarga · 🟢 0,80–1,30 óptima · 🟠 1,31–1,50 precaución · 🔴 > 1,50 riesgo.
+- Desde **M8** la hoja `CARGA_AC` trae 3 ACWR: **Player Load, HSR y Sprints**. El importador
+  los detecta por los encabezados `ACWR PL / ACWR HSR / ACWR Sprint` (los micros antiguos con
+  un solo bloque siguen funcionando). El HSR y el Sprint solo se avisan en dirección peligro
+  (> 1,30): en la vista entrenador (card *Avisos de carga*), en la de jugador (Carga A:C) y
+  en el cuerpo de la notificación push. Se excluye del aviso a quien aún no tiene base crónica
+  suficiente (fichajes, bajas largas): su ACWR se dispara por falta de histórico, no por carga.
 - Al principio de temporada (M1–M2) el ACWR sale disparado (crónica aún casi vacía): no es fiable hasta que hay ~4 semanas de datos.
 
 ## Notas sobre los datos reales

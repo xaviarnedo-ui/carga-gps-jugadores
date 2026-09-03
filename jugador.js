@@ -322,6 +322,22 @@
       ? '<div style="margin:16px 0 2px" class="section-label">Últimos 28 días</div>' + acwrChart(p.serie, ac.serieDias, curSes)
       : "";
 
+    var extra = "";
+    if (p.acwrHsr != null || p.acwrSprint != null) {
+      var danger = [];
+      [["HSR", p.acwrHsr], ["Sprints", p.acwrSprint]].forEach(function (x) {
+        if (x[1] != null && x[1] > 1.30) danger.push(x[0] + " " + fmtDec(x[1], 2));
+      });
+      extra = '<div class="section-label" style="margin:16px 0 6px">ACWR por métrica</div>' +
+        '<div class="kpi-row">' +
+        kpi('<span class="acwr ' + acwrClass(p.acwrHsr) + '">' + fmtDec(p.acwrHsr, 2) + '</span>', "ACWR HSR", ta.acwrHsr != null ? "equipo " + fmtDec(ta.acwrHsr, 2) : "") +
+        kpi('<span class="acwr ' + acwrClass(p.acwrSprint) + '">' + fmtDec(p.acwrSprint, 2) + '</span>', "ACWR Sprints", ta.acwrSprint != null ? "equipo " + fmtDec(ta.acwrSprint, 2) : "") +
+        '</div>' +
+        (danger.length
+          ? '<div class="alert" style="margin-top:10px">' + iconWarn() + '<div><b>Zona de peligro en ' + esc(danger.join(" y ")) + '.</b> Tu carga de alta intensidad ha subido muy rápido respecto a tu media de las últimas semanas. Coméntalo con tu preparador.</div></div>'
+          : '');
+    }
+
     return '<div class="card">' +
       '<div class="card__title">Tu carga aguda·crónica</div>' +
       '<div class="stat-hero">' +
@@ -334,6 +350,7 @@
       '</div>' +
       chart +
       '<div style="margin-top:14px">' + msg + '</div>' +
+      extra +
       '<div class="note" style="margin-top:12px">Cada columna es tu Player Load de ese día (los días sin entrenamiento cuentan como 0). ' +
       'La línea azul es la media de los últimos 7 días (aguda); la dorada, la de los últimos 28 (crónica). ' +
       'El punto de abajo es tu ACWR de cada día = aguda ÷ crónica.</div>' +

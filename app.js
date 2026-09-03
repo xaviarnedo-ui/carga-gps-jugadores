@@ -53,6 +53,18 @@
     if (v <= 1.50) return "warn";
     return "high";
   }
+  // fila de los 3 ACWR (Player Load, HSR, Sprints). `dangerOnly` = solo pinta
+  // los que están en zona de peligro (>1,30), para las cabeceras compactas.
+  function acwr3(p, dangerOnly) {
+    var rows = dangerOnly
+      ? [["HSR", p.acwrHsr], ["SPR", p.acwrSprint]]
+      : [["PL", p.acwr], ["HSR", p.acwrHsr], ["SPR", p.acwrSprint]];
+    return rows.map(function (x) {
+      if (x[1] == null) return "";
+      if (dangerOnly && !(x[1] > 1.30)) return "";
+      return '<span class="acwr ' + acwrClass(x[1]) + '" style="font-size:12px">' + esc(x[0]) + ' ' + fmtDec(x[1], 2) + '</span>';
+    }).join("");
+  }
 
   function currentMicro() { return DATA[state.micro]; }
   function sessionKeys(m) { return (m.orden || []).map(function (o) { return o.key; }); }
@@ -69,9 +81,7 @@
   var GRP_ORDER = { D: 0, M: 1, DL: 2, P: 3 };
   var GRP_LABEL = { D: "DEF", M: "MED", DL: "DEL", P: "POR" };
   function sortPlayers(a, b) {
-    var ga = GRP_ORDER[a.grupo] != null ? GRP_ORDER[a.grupo] : 9;
-    var gb = GRP_ORDER[b.grupo] != null ? GRP_ORDER[b.grupo] : 9;
-    return ga !== gb ? ga - gb : a.dorsal - b.dorsal;
+    return (a.dorsal || 0) - (b.dorsal || 0);
   }
   function refPlayer(d) { return DATA.refPartido.players.find(function (p) { return p.dorsal === d; }); }
   function roster() { return DATA.refPartido.players.slice().sort(sortPlayers); }
@@ -191,13 +201,32 @@
     var lastKey = lastCompletedSessionKey(m);
     var last = getSession(m, lastKey);
 
-    // avisos ACWR
-    var av = m.cargaAC.players.filter(function (p) {
-      return p.acwr === 0 || (p.acwr && (p.acwr < 0.80 || p.acwr > 1.30));
-    }).sort(function (a, b) {
-      var sa = a.acwr === 0 ? 99 : Math.abs(a.acwr - 1.05), sb = b.acwr === 0 ? 99 : Math.abs(b.acwr - 1.05);
-      return sb - sa;
-    });
+    // avisos ACWR — Player Load (4 estados) + HSR y Sprints (solo peligro > 1,30)
+    var SEVR = { hi: 3, mid: 2, low: 1 };
+    function acwrIssues(p) {
+      var out = [];
+      if (p.acwr === 0) out.push({ sev: "hi", msg: "ACWR PL 0,00 — sin Player Load en 7 días. Revisar reintroducción." });
+      else if (p.acwr > 1.50) out.push({ sev: "hi", msg: "ACWR PL " + fmtDec(p.acwr, 2) + " — riesgo de sobrecarga (>1,50)." });
+      else if (p.acwr > 1.30) out.push({ sev: "mid", msg: "ACWR PL " + fmtDec(p.acwr, 2) + " — precaución (1,31–1,50)." });
+      else if (p.acwr && p.acwr < 0.80) out.push({ sev: "low", msg: "ACWR PL " + fmtDec(p.acwr, 2) + " — infracarga (<0,80)." });
+      [["acwrHsr", "cargaCronicaHsr", "HSR", 30], ["acwrSprint", "cargaCronicaSprint", "Sprints", 1]].forEach(function (x) {
+        var v = p[x[0]];
+        if (v != null && v > 1.30) {
+          var base = (p[x[1]] != null && p[x[1]] < x[3]) ? " · base aún corta" : "";
+          out.push({ sev: v > 1.50 ? "hi" : "mid",
+            msg: "ACWR " + x[2] + " " + fmtDec(v, 2) + " — " + (v > 1.50 ? "muy por encima de 1,50" : "zona de peligro (>1,30)") + base + "." });
+        }
+      });
+      return out;
+    }
+    var avList = m.cargaAC.players.map(function (p) { return { p: p, iss: acwrIssues(p) }; })
+      .filter(function (x) { return x.iss.length; })
+      .sort(function (a, b) {
+        var ra = Math.max.apply(null, a.iss.map(function (i) { return SEVR[i.sev]; }));
+        var rb = Math.max.apply(null, b.iss.map(function (i) { return SEVR[i.sev]; }));
+        return rb - ra;
+      });
+    var av = avList;
 
     // cumplimiento equipo (distancia acumulada, solo sesiones)
     var co = m.cargasObjetivo.teamAvg.distancia;
@@ -300,16 +329,13 @@
     }
 
     // avisos de carga
-    h += '<div class="card"><div class="card__title">Avisos de carga (ACWR)</div>';
-    if (!av.length) h += '<div class="alert alert--ok">' + iconOk() + '<div>Toda la plantilla dentro de zona (0,80–1,30).</div></div>';
-    else h += av.map(function (p) {
-      var cls = (p.acwr === 0 || p.acwr > 1.50) ? "alert" : p.acwr > 1.30 ? "alert alert--ok" : "alert alert--info";
-      var msg = p.acwr === 0 ? "ACWR 0,00 — sin Player Load en 7 días. Revisar reintroducción."
-        : p.acwr > 1.50 ? "ACWR " + fmtDec(p.acwr, 2) + " — riesgo de sobrecarga (>1,50)."
-        : p.acwr > 1.30 ? "ACWR " + fmtDec(p.acwr, 2) + " — precaución (1,31–1,50)."
-        : "ACWR " + fmtDec(p.acwr, 2) + " — infracarga (<0,80).";
+    h += '<div class="card"><div class="card__title">Avisos de carga (ACWR) <span class="count">PL · HSR · Sprints</span></div>';
+    if (!avList.length) h += '<div class="alert alert--ok">' + iconOk() + '<div>Toda la plantilla dentro de zona en Player Load, HSR y Sprints.</div></div>';
+    else h += avList.map(function (x) {
+      var worst = x.iss.reduce(function (a, b) { return SEVR[b.sev] > SEVR[a.sev] ? b : a; });
+      var cls = worst.sev === "hi" ? "alert" : worst.sev === "mid" ? "alert alert--ok" : "alert alert--info";
       return '<div class="' + cls + '" data-goto="cargaac" style="margin-bottom:8px;cursor:pointer">' + iconWarn() +
-        '<div><b>' + esc(p.jugador) + '</b> · ' + msg + '</div></div>';
+        '<div><b>' + esc(x.p.jugador) + '</b> · ' + x.iss.map(function (i) { return esc(i.msg); }).join(" ") + '</div></div>';
     }).join("");
     h += '</div>';
 
@@ -504,12 +530,19 @@
     var rows = players.map(function (p) {
       var pk = Object.keys(p).filter(function (k) { return /^pl(S|PT|J)\d+/.test(k); });
       var pairs = pk.map(function (k) { return { label: k.slice(2), value: p[k] }; });
-      var body = '<div class="grouprow" style="align-items:center;gap:12px;margin-bottom:8px">' +
+      var hsrSpr = (p.acwrHsr != null || p.acwrSprint != null)
+        ? '<div class="muted" style="margin-bottom:8px">HSR ' +
+            '<span class="acwr ' + acwrClass(p.acwrHsr) + '" style="font-size:12px">' + fmtDec(p.acwrHsr, 2) + '</span> · Sprints ' +
+            '<span class="acwr ' + acwrClass(p.acwrSprint) + '" style="font-size:12px">' + fmtDec(p.acwrSprint, 2) + '</span>' +
+            ' · equipo HSR ' + fmtDec(ta.acwrHsr, 2) + ' / SPR ' + fmtDec(ta.acwrSprint, 2) + '</div>'
+        : "";
+      var body = '<div class="grouprow" style="align-items:center;gap:12px;margin-bottom:6px">' +
         '<span class="acwr ' + acwrClass(p.acwr) + '" style="font-size:17px">' + fmtDec(p.acwr, 2) + '</span>' +
-        '<span class="muted">Aguda <b>' + fmt(p.cargaAguda) + '</b> · Crónica <b>' + fmt(p.cargaCronica) + '</b> · equipo ' + fmtDec(ta.acwr, 2) + '</span></div>' +
+        '<span class="muted">PL · Aguda <b>' + fmt(p.cargaAguda) + '</b> · Crónica <b>' + fmt(p.cargaCronica) + '</b> · equipo ' + fmtDec(ta.acwr, 2) + '</span></div>' +
+        hsrSpr +
         (p.serie && ac.serieDias ? acwrChart(p.serie, ac.serieDias, curSes) : trendBars(pairs)) +
         shareLine(p.dorsal, p.jugador);
-      var sm = '<span class="acwr ' + acwrClass(p.acwr) + '">' + fmtDec(p.acwr, 2) + '</span>';
+      var sm = '<span class="acwr ' + acwrClass(p.acwr) + '">' + fmtDec(p.acwr, 2) + '</span>' + acwr3(p, true);
       return playerDetails(p.dorsal, p.jugador, p.grupo, sm, body);
     }).join("");
 

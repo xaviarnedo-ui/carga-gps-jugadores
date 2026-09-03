@@ -314,28 +314,46 @@ def parse_acumulado(ws):
 
 def parse_carga_ac(ws):
     hi, hdr = header_row(ws)
-    # columnas dinámicas: ACWR (idx3), luego PL Sxx..., aguda, cronica
-    pl_cols = []
-    for j in range(4, len(hdr)):
-        h = str(hdr[j] or "")
-        m = re.search(r"PL\s+(S\d+\w*|PT\d+|J\d+)", h)
-        if m:
-            pl_cols.append((j, m.group(1)))
-    aguda_col = len(hdr) - 2
-    cron_col = len(hdr) - 1
+    n = len(hdr)
+    # La hoja trae 1 bloque (solo PL) en los micros antiguos, o 3 bloques
+    # (PL, HSR, Sprint) desde M8: cada bloque = [ACWR x, <métrica Sxx...>, aguda, crónica].
+    SUF = {"PL": "", "HSR": "Hsr", "SPRINT": "Sprint"}
+    starts = []
+    for j in range(n):
+        mm = re.match(r"\s*ACWR(?:\s+(PL|HSR|Sprint))?\s*$", str(hdr[j] or ""), re.I)
+        if mm:
+            starts.append((j, SUF[(mm.group(1) or "PL").upper()]))
+    if not starts:
+        starts = [(3, "")]
+    blocks = []
+    for i, (j, suf) in enumerate(starts):
+        end = starts[i + 1][0] if i + 1 < len(starts) else n
+        blocks.append((j, end, suf))
+
     prows, media = player_rows(ws, hi)
+
+    def block_vals(row, j, end, suf):
+        d = {"acwr" + suf: num(row[j]),
+             "cargaAguda" + suf: num(row[end - 2]),
+             "cargaCronica" + suf: num(row[end - 1])}
+        if suf == "":  # solo el bloque PL guarda las columnas por sesión (para la gráfica)
+            for c in range(j + 1, end - 2):
+                m = re.search(r"PL\s+(S\d+\w*|PT\d+|J\d+)", str(hdr[c] or ""))
+                if m:
+                    d["pl" + m.group(1)] = num(row[c])
+        return d
+
     players = []
     for row in prows:
-        rec = dict(dorsal=int(row[0]), jugador=titlecase(row[1]), grupo=(row[2] or "").strip(),
-                   acwr=num(row[3]),
-                   cargaAguda=num(row[aguda_col]), cargaCronica=num(row[cron_col]))
-        for j, key in pl_cols:
-            rec["pl" + key] = num(row[j])
+        rec = dict(dorsal=int(row[0]), jugador=titlecase(row[1]), grupo=(row[2] or "").strip())
+        for b in blocks:
+            rec.update(block_vals(row, *b))
         players.append(rec)
     team = None
     if media:
-        team = dict(acwr=num(media[3]),
-                    cargaAguda=num(media[aguda_col]), cargaCronica=num(media[cron_col]))
+        team = {}
+        for b in blocks:
+            team.update(block_vals(media, *b))
     a2 = ws.cell(2, 1).value or ""
     a3 = ws.cell(3, 1).value or ""
     calc = find_date(a2)
@@ -344,7 +362,7 @@ def parse_carga_ac(ws):
         if m:
             calc = dt.date(2026, int(m.group(2)), int(m.group(1)))
     return dict(players=players, teamAvg=team, nota=(a2 + " " + a3).strip(),
-                calcISO=iso(calc), plCols=[k for _, k in pl_cols])
+                calcISO=iso(calc))
 
 
 # ---------------------------------------------------------------- microciclos
@@ -526,7 +544,34 @@ def _load_env():
     return env
 
 
-def notificar():
+def _first_name(nom):
+    # "Espiñeiro, A." -> "Espiñeiro"
+    return str(nom or "").split(",")[0].strip() or str(nom or "").strip()
+
+
+def _danger_line(DATA):
+    """Jugadores con ACWR de HSR o Sprints en zona de peligro (>1,30) en el micro activo."""
+    activo = next((k for k in DATA if re.match(r"^M\d+$", k)
+                   and DATA[k].get("meta", {}).get("estado") == "activo"), None)
+    if not activo:
+        return ""
+    hsr, spr = [], []
+    for p in DATA[activo]["cargaAC"]["players"]:
+        # se excluye a quien aún no tiene base crónica suficiente (fichajes, bajas largas):
+        # su ACWR sale disparado por falta de histórico, no por sobrecarga real.
+        if (p.get("acwrHsr") or 0) > 1.30 and (p.get("cargaCronicaHsr") or 0) >= 30:
+            hsr.append(_first_name(p["jugador"]))
+        if (p.get("acwrSprint") or 0) > 1.30 and (p.get("cargaCronicaSprint") or 0) >= 1:
+            spr.append(_first_name(p["jugador"]))
+    parts = []
+    if hsr:
+        parts.append("HSR: " + ", ".join(hsr))
+    if spr:
+        parts.append("Sprints: " + ", ".join(spr))
+    return (" ⚠️ ACWR alto — " + " · ".join(parts)) if parts else ""
+
+
+def notificar(DATA=None):
     """Llama a la Edge Function gps-notify: manda un push a los jugadores suscritos."""
     import urllib.request
     import urllib.error
@@ -537,9 +582,12 @@ def notificar():
     if not secret:
         print("  aviso NO enviado: falta GPS_NOTIFY_SECRET en .env (copia .env.example a .env)")
         return
+    body_txt = f"Datos de GPS actualizados · {dt.datetime.now().strftime('%d/%m %H:%M')}"
+    if DATA:
+        body_txt += _danger_line(DATA)
     payload = json.dumps({
         "title": "Carga GPS",
-        "body": f"Datos de GPS actualizados · {dt.datetime.now().strftime('%d/%m %H:%M')}",
+        "body": body_txt,
         "url": "./jugador.html",
     }).encode("utf-8")
     req = urllib.request.Request(
@@ -609,6 +657,27 @@ def main():
                 if p.get(METRICS[0]) and p[METRICS[0]]["real"] is not None:
                     partidos_ref[p["dorsal"]] = partidos_ref.get(p["dorsal"], 0) + 1
 
+    # fichajes recientes: jugadores que ya aparecen en los datos pero aún no
+    # tienen fila propia en REF_PARTIDO (Microciclo_Tipo.xlsx). Se añaden con
+    # referencia vacía para que salgan en la plantilla y puedan usar la app.
+    for n, m in micro_data.items():
+        for bucket in (m["sesiones"], m["partidos"]):
+            for s in bucket.values():
+                for p in s["players"]:
+                    d = p["dorsal"]
+                    if d not in ref:
+                        ref[d] = dict(dorsal=d, jugador=p.get("jugador") or f"#{d}",
+                                      grupo=(p.get("grupo") or "").strip(),
+                                      distancia=None, hmld=None, hsr=None,
+                                      sprint=None, acc=None, dec=None)
+        for p in m["cargaAC"]["players"]:
+            d = p["dorsal"]
+            if d not in ref:
+                ref[d] = dict(dorsal=d, jugador=p.get("jugador") or f"#{d}",
+                              grupo=(p.get("grupo") or "").strip(),
+                              distancia=None, hmld=None, hsr=None,
+                              sprint=None, acc=None, dec=None)
+
     # REF_PARTIDO: añade velMax (mejor de partido, si no de sesión) y nº de partidos
     ref_players = []
     for dor, r in sorted(ref.items()):
@@ -668,7 +737,7 @@ def main():
     print("  jugadores REF_PARTIDO:", len(ref_players))
 
     if "--avisar" in sys.argv:
-        notificar()
+        notificar(DATA)
     else:
         print("  (para avisar a los jugadores suscritos: python3 import_data.py --avisar)")
 
