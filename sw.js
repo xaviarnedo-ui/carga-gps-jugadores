@@ -1,13 +1,13 @@
 /* Service worker — cache básico para uso offline en el campo + notificaciones push. */
-var CACHE = "carga-gps-v44";
+var CACHE = "carga-gps-v45";
 var ASSETS = [
   "./",
   "./index.html",
   "./jugador.html",
-  "./styles.css?v=44",
-  "./app.js?v=44",
-  "./jugador.js?v=44",
-  "./data.js?v=44",
+  "./styles.css?v=45",
+  "./app.js?v=45",
+  "./jugador.js?v=45",
+  "./data.js?v=45",
   "./manifest.json",
   "./manifest.jugador.json",
   "./icons/escudo.png",
@@ -35,8 +35,11 @@ self.addEventListener("fetch", function (e) {
   if (url.origin !== self.location.origin) return;
   // data.js siempre fresco si hay red (los datos cambian cada día)
   if (url.pathname.endsWith("/data.js")) {
+    // cache:"no-store" para saltarse también la caché HTTP del navegador
+    // (GitHub Pages manda Cache-Control: max-age=600 y si no, se sirve una
+    // copia de hasta 10 min aunque el SW "pida red").
     e.respondWith(
-      fetch(e.request).then(function (r) {
+      fetch(url.href, { cache: "no-store" }).then(function (r) {
         var copy = r.clone();
         caches.open(CACHE).then(function (c) { c.put(e.request, copy); });
         return r;
