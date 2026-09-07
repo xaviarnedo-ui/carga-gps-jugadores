@@ -255,8 +255,26 @@ def parse_session(ws):
         team["playerLoad"] = num(media[22])
     team = team_extras(team, players)
 
+    # Si NINGÚN jugador tiene dato real, la sesión aún no se ha hecho aunque la
+    # fila MEDIA EQUIPO traiga valores (son planificados, no reales).
+    if team and not _hecha(players):
+        for k in METRICS:
+            if isinstance(team.get(k), dict):
+                team[k]["real"] = team[k]["dif"] = None
+        team["velMax"] = team["playerLoad"] = None
+        team.pop("duracion", None)
+
     return dict(date=iso(date), role=role, tipo=tipo, nota=a2, titulo=a1,
                 players=players, teamAvg=team)
+
+
+def _hecha(players):
+    """True si algún jugador tiene un dato real (la sesión/partido ya se disputó)."""
+    return any(
+        p.get("playerLoad") is not None
+        or any(isinstance(p.get(k), dict) and p[k].get("real") is not None for k in METRICS)
+        for p in players
+    )
 
 
 def parse_match(ws):
@@ -288,6 +306,12 @@ def parse_match(ws):
         team["velMax"] = num(media[9])
         team["playerLoad"] = num(media[10])
     team = team_extras(team, players)
+    if team and not _hecha(players):
+        for k in METRICS:
+            if isinstance(team.get(k), dict):
+                team[k]["real"] = team[k]["dif"] = None
+        team["velMax"] = team["playerLoad"] = None
+        team.pop("duracion", None)
     # nota: A2 + cualquier nota "ESTIMADO…" del pie (p.ej. GPS extraviado).
     nota = str(a2).strip()
     estimado = False

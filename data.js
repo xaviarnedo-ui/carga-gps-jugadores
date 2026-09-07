@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-09-07 12:10",
+  "generado": "2026-09-07 12:23",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-9)"
  },
  "refPartido": {
@@ -78879,33 +78879,33 @@ window.GPS_DATA_ALL = {
     "teamAvg": {
      "distancia": {
       "obj": 6889.3,
-      "real": 5537.4,
-      "dif": -1351.9
+      "real": null,
+      "dif": null
      },
      "hmld": {
       "obj": 1058.8,
-      "real": 923.9,
-      "dif": -134.9
+      "real": null,
+      "dif": null
      },
      "hsr": {
       "obj": 307.7,
-      "real": 357.3,
-      "dif": 49.6
+      "real": null,
+      "dif": null
      },
      "sprint": {
       "obj": 7.9,
-      "real": 7.1,
-      "dif": -0.8
+      "real": null,
+      "dif": null
      },
      "acc": {
       "obj": 15.9,
-      "real": 12.9,
-      "dif": -3
+      "real": null,
+      "dif": null
      },
      "dec": {
       "obj": 20.9,
-      "real": 19.5,
-      "dif": -1.4
+      "real": null,
+      "dif": null
      },
      "velMax": null,
      "playerLoad": null
@@ -79621,33 +79621,33 @@ window.GPS_DATA_ALL = {
     "teamAvg": {
      "distancia": {
       "obj": 2995.3,
-      "real": 3278.4,
-      "dif": 283.1
+      "real": null,
+      "dif": null
      },
      "hmld": {
       "obj": 329.4,
-      "real": 426,
-      "dif": 96.6
+      "real": null,
+      "dif": null
      },
      "hsr": {
       "obj": 56,
-      "real": 191.8,
-      "dif": 135.8
+      "real": null,
+      "dif": null
      },
      "sprint": {
       "obj": 0.8,
-      "real": 3.4,
-      "dif": 2.6
+      "real": null,
+      "dif": null
      },
      "acc": {
       "obj": 6.4,
-      "real": 9.2,
-      "dif": 2.8
+      "real": null,
+      "dif": null
      },
      "dec": {
       "obj": 10.1,
-      "real": 5.9,
-      "dif": -4.2
+      "real": null,
+      "dif": null
      },
      "velMax": null,
      "playerLoad": null
@@ -80363,33 +80363,33 @@ window.GPS_DATA_ALL = {
     "teamAvg": {
      "distancia": {
       "obj": 3993.8,
-      "real": 2817.6,
-      "dif": -1176.2
+      "real": null,
+      "dif": null
      },
      "hmld": {
       "obj": 462.7,
-      "real": 326.4,
-      "dif": -136.3
+      "real": null,
+      "dif": null
      },
      "hsr": {
       "obj": 88.6,
-      "real": 19.8,
-      "dif": -68.8
+      "real": null,
+      "dif": null
      },
      "sprint": {
       "obj": 2,
-      "real": 0,
-      "dif": -2
+      "real": null,
+      "dif": null
      },
      "acc": {
       "obj": 10.8,
-      "real": 11.9,
-      "dif": 1.1
+      "real": null,
+      "dif": null
      },
      "dec": {
       "obj": 16.1,
-      "real": 12.8,
-      "dif": -3.3
+      "real": null,
+      "dif": null
      },
      "velMax": null,
      "playerLoad": null
