@@ -238,6 +238,8 @@
     if (!done) head += '<div class="muted" style="margin-bottom:10px">' +
       (match ? 'Partido previsto. Aún sin datos.' : 'Sesión prevista. Aún sin datos: se muestran solo tus objetivos.') + '</div>';
     else if (match) head += '<div class="muted" style="margin-bottom:10px">Un partido no lleva objetivo: se compara tu dato con la media del equipo.</div>';
+    if (match && s.estimado) head += '<div class="alert alert--info" style="margin-bottom:10px">' + iconWarn() +
+      '<div><b>Datos estimados.</b> No hay GPS real de este partido; los valores son una estimación.</div></div>';
     if (estado === "na") head += estadoBanner(match ? "na-match" : "na") + '<div style="height:10px"></div>';
 
     var rows = "";

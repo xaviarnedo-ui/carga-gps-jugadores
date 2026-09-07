@@ -445,6 +445,8 @@
       state.session + ' · ' + esc(match ? ('vs ' + (s.rival || '—')) : roleShort(sessionRole(s))) + ' · ' + esc(fdate(s.date)) + '</span></div>';
     if (!done) head += '<div class="muted" style="margin-bottom:10px">' + (match ? 'Partido previsto, sin datos.' : 'Sesión prevista: solo objetivos.') + '</div>';
     else if (match) head += '<div class="muted" style="margin-bottom:10px">Un partido no lleva objetivo.</div>';
+    if (match && s.estimado) head += '<div class="alert alert--info" style="margin-bottom:10px">' + iconWarn() +
+      '<div><b>Datos estimados</b> — sin GPS real de este partido (ver nota al pie).</div></div>';
 
     var teamBody = done
       ? teamMetricCards(ta) +

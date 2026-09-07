@@ -288,8 +288,17 @@ def parse_match(ws):
         team["velMax"] = num(media[9])
         team["playerLoad"] = num(media[10])
     team = team_extras(team, players)
-    return dict(date=iso(date), role="Partido", rival=rival, nota=a2, titulo=a1,
-               players=players, teamAvg=team)
+    # nota: A2 + cualquier nota "ESTIMADO…" del pie (p.ej. GPS extraviado).
+    nota = str(a2).strip()
+    estimado = False
+    for r in range(hi + 1, ws.max_row + 1):
+        c = str(ws.cell(r, 1).value or "").strip()
+        if c[:8].upper() == "ESTIMADO":
+            estimado = True
+            nota = c if (not nota or "pendiente" in nota.lower()) else nota + " · " + c
+            break
+    return dict(date=iso(date), role="Partido", rival=rival, nota=nota, titulo=a1,
+               estimado=estimado, players=players, teamAvg=team)
 
 
 def parse_acumulado(ws):
