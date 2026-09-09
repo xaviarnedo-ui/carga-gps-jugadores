@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-09-07 12:23",
+  "generado": "2026-09-09 10:09",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-9)"
  },
  "refPartido": {
@@ -48546,7 +48546,8 @@ window.GPS_DATA_ALL = {
       },
       "velMax": 9.18,
       "playerLoad": 73,
-      "duracion": "0:16:39"
+      "duracion": "0:16:39",
+      "estado": "rehab"
      },
      {
       "dorsal": 17,
@@ -57238,7 +57239,8 @@ window.GPS_DATA_ALL = {
       },
       "velMax": 27.86,
       "playerLoad": 277,
-      "duracion": "0:26:07"
+      "duracion": "0:26:07",
+      "estado": "rehab"
      },
      {
       "dorsal": 4,
@@ -58734,7 +58736,8 @@ window.GPS_DATA_ALL = {
       },
       "velMax": 29.85,
       "playerLoad": 270,
-      "duracion": "0:25:22"
+      "duracion": "0:25:22",
+      "estado": "rehab"
      },
      {
       "dorsal": 26,
@@ -58806,8 +58809,8 @@ window.GPS_DATA_ALL = {
       "real": 17.2,
       "dif": -3.4
      },
-     "velMax": 25.6,
-     "playerLoad": 591,
+     "velMax": 25.3,
+     "playerLoad": 612,
      "duracion": "1:07:32"
     }
    },
@@ -68233,7 +68236,8 @@ window.GPS_DATA_ALL = {
       },
       "velMax": 20.16,
       "playerLoad": 129,
-      "duracion": "0:16:32"
+      "duracion": "0:16:32",
+      "estado": "rehab"
      },
      {
       "dorsal": 11,
@@ -68727,8 +68731,8 @@ window.GPS_DATA_ALL = {
       "real": 19.5,
       "dif": -1.4
      },
-     "velMax": 29.2,
-     "playerLoad": 547,
+     "velMax": 29.9,
+     "playerLoad": 575,
      "duracion": "1:10:03"
     }
    },
@@ -69501,7 +69505,8 @@ window.GPS_DATA_ALL = {
       },
       "velMax": 19.12,
       "playerLoad": 191,
-      "duracion": "0:15:55"
+      "duracion": "0:15:55",
+      "estado": "rehab"
      },
      {
       "dorsal": 26,
@@ -69573,8 +69578,8 @@ window.GPS_DATA_ALL = {
       "real": 5.9,
       "dif": -4.2
      },
-     "velMax": 27.0,
-     "playerLoad": 319,
+     "velMax": 27.5,
+     "playerLoad": 327,
      "duracion": "0:57:52"
     }
    },
@@ -70041,7 +70046,8 @@ window.GPS_DATA_ALL = {
       },
       "velMax": 20.03,
       "playerLoad": 304,
-      "duracion": "0:24:08"
+      "duracion": "0:24:08",
+      "estado": "rehab"
      },
      {
       "dorsal": 17,
@@ -70346,7 +70352,8 @@ window.GPS_DATA_ALL = {
       },
       "velMax": 23.52,
       "playerLoad": 266,
-      "duracion": "0:24:08"
+      "duracion": "0:24:08",
+      "estado": "rehab"
      },
      {
       "dorsal": 26,
@@ -70418,8 +70425,8 @@ window.GPS_DATA_ALL = {
       "real": 12.8,
       "dif": -3.3
      },
-     "velMax": 22.9,
-     "playerLoad": 308,
+     "velMax": 23.0,
+     "playerLoad": 311,
      "duracion": "0:46:18"
     }
    }
@@ -77350,7 +77357,8 @@ window.GPS_DATA_ALL = {
       },
       "velMax": 22.51,
       "playerLoad": 83,
-      "duracion": "0:09:53"
+      "duracion": "0:09:53",
+      "estado": "rehab"
      },
      {
       "dorsal": 26,

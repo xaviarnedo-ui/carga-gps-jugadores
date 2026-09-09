@@ -241,6 +241,8 @@
     if (match && s.estimado) head += '<div class="alert alert--info" style="margin-bottom:10px">' + iconWarn() +
       '<div><b>Datos estimados.</b> No hay GPS real de este partido; los valores son una estimación.</div></div>';
     if (estado === "na") head += estadoBanner(match ? "na-match" : "na") + '<div style="height:10px"></div>';
+    else if (estado === "rehab") head += estadoBanner("rehab") + '<div style="height:10px"></div>';
+    else if (estado === "parcial") head += estadoBanner("parcial") + '<div style="height:10px"></div>';
 
     var rows = "";
     if (estado !== "na") {
@@ -248,7 +250,7 @@
         var c = p ? p[mm.key] : null;
         var me = c ? c.real : null;
         var obj = (match || estado === "rehab") ? null : (c ? c.obj : null);
-        return mrow(mm.label, mm.unit, me, obj, teamOf(mm.key), 0);
+        return mrow(mm.label, mm.unit, me, obj, estado === "rehab" ? null : teamOf(mm.key), 0);
       }).join("");
     }
 

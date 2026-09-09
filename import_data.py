@@ -76,7 +76,7 @@ def s_to_hms(s):
 def team_extras(team, players):
     """Rellena la media de velMax / playerLoad y la duración del equipo a partir de los
     jugadores participantes (el Excel no trae estas medias)."""
-    parts = [p for p in players if p.get("estado") != "na"]
+    parts = [p for p in players if p.get("estado") not in ("na", "rehab")]
 
     def mean(key):
         vals = [p.get(key) for p in parts if p.get(key) is not None]
@@ -239,10 +239,16 @@ def parse_session(ws):
         rec["velMax"] = num(row[21])
         rec["playerLoad"] = num(row[22])
         rec["duracion"] = (str(row[23]).strip() if row[23] not in (None, "·", "") else None)
-        # estado: sin ningún real ni duración -> no participó
+        # estado:
+        #  - sin ningún real ni PL              -> "na" (no participó)
+        #  - con real pero SIN Dif en ninguna   -> "rehab" (trabajo individual, no se
+        #    compara con el objetivo ni cuenta para la media; el Excel deja Dif vacío)
         has_real = any(rec[k] and rec[k]["real"] is not None for k in METRICS) or rec["playerLoad"] is not None
+        has_dif = any(rec[k] and rec[k]["dif"] is not None for k in METRICS)
         if not has_real:
             rec["estado"] = "na"
+        elif not has_dif:
+            rec["estado"] = "rehab"
         players.append(rec)
 
     team = None

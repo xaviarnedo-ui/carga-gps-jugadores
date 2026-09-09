@@ -463,10 +463,13 @@
       var body = "";
       if (p.estado === "na") body = '<div class="muted">Sin datos en esta sesión.</div>';
       else {
-        body = METRICS.map(function (mm) {
+        var reh = p.estado === "rehab";
+        if (reh) body = '<div class="alert alert--info" style="margin-bottom:8px">' + iconWarn() +
+          '<div><b>Trabajo individual (rehab).</b> Datos informativos: sin objetivo, fuera de la media del equipo.</div></div>';
+        body += METRICS.map(function (mm) {
           var c = p[mm.key] || {};
           var tr = (ta[mm.key] || {}).real;
-          return mrow(mm.label, mm.unit, c.real, (match ? null : c.obj), tr, "media equipo", 0);
+          return mrow(mm.label, mm.unit, c.real, (match || reh ? null : c.obj), reh ? null : tr, "media equipo", 0);
         }).join("");
         body += '<div class="info-metrics" style="margin-top:9px">' +
           kpi(p.velMax != null ? fmtDec(p.velMax, 1) : "—", "Vel. máx km/h") +
