@@ -155,10 +155,14 @@
     document.getElementById("crest").innerHTML = photoHTML(ME.dorsal, ME.jugador);
     var meta = DATA[state.micro].meta || {};
     var estado = meta.estado === "activo" ? (meta.completo ? "COMPLETADO" : "EN CURSO") : "CERRADO";
+    var dispoTag = ME.dispo === "baja"
+      ? '<span class="tag tag--baja">Baja</span>'
+      : ME.dispo === "rehab" ? '<span class="tag tag--rehab">Readaptación</span>' : '';
     document.getElementById("microMeta").innerHTML =
       '<span><b>' + esc(meta.titulo || state.micro) + (meta.tipo ? ' · Tipo ' + esc(meta.tipo) : '') + '</b> · ' + estado + '</span>' +
       '<span>' + esc(meta.semana || "") + '</span>' +
-      '<span>Último cálculo <b>' + esc(meta.calculoFecha || "—") + '</b></span>';
+      '<span>Último cálculo <b>' + esc(meta.calculoFecha || "—") + '</b></span>' +
+      (dispoTag ? '<span>' + dispoTag + '</span>' : '');
     document.getElementById("topbarSub").textContent =
       ((DATA.meta && DATA.meta.club) || "Carga GPS") + " · " + (meta.temporada || "");
   }

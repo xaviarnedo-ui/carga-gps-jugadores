@@ -95,6 +95,16 @@
       '<img src="fotos/' + dorsal + '.png?v=39" alt="" onerror="this.parentNode.classList.add(\'is-empty\');this.remove()">' +
       '<b class="avatar__d">' + dorsal + '</b></span>';
   }
+  function dispoOf(dorsal) {
+    var p = DATA.refPartido.players.find(function (x) { return x.dorsal === dorsal; });
+    return (p && p.dispo) || "ok";
+  }
+  function dispoChip(dorsal) {
+    var d = dispoOf(dorsal);
+    if (d === "rehab") return '<span class="tag tag--rehab" title="En readaptación">Readapt.</span>';
+    if (d === "baja") return '<span class="tag tag--baja" title="Baja / lesión">Baja</span>';
+    return "";
+  }
   function estadoTag(estado) {
     if (estado === "na") return '<span class="tag tag--na">No participó</span>';
     if (estado === "rehab") return '<span class="tag tag--rehab">Rehab</span>';
@@ -181,7 +191,7 @@
   function playerDetails(dorsal, name, grupo, summary, body, open) {
     return '<details class="pdet"' + (open ? ' open' : '') + '>' +
       '<summary>' + avatar(dorsal, name, "avatar--sm") +
-      '<span class="pdet__name">' + esc(name) + '</span>' +
+      '<span class="pdet__name">' + esc(name) + ' ' + dispoChip(dorsal) + '</span>' +
       '<span class="pdet__sum">' + summary + '</span>' +
       '<span class="pdet__chev">▾</span></summary>' +
       '<div class="pdet__body">' + body + '</div></details>';
@@ -338,6 +348,21 @@
         '<div><b>' + esc(x.p.jugador) + '</b> · ' + x.iss.map(function (i) { return esc(i.msg); }).join(" ") + '</div></div>';
     }).join("");
     h += '</div>';
+
+    // disponibilidad (bajas / readaptación)
+    var dispo = DATA.refPartido.players.slice()
+      .filter(function (p) { return p.dispo === "baja" || p.dispo === "rehab"; })
+      .sort(function (a, b) { return (a.dispo === "baja" ? 0 : 1) - (b.dispo === "baja" ? 0 : 1) || a.dorsal - b.dorsal; });
+    if (dispo.length) {
+      h += '<div class="card"><div class="card__title">Disponibilidad <span class="count">' + dispo.length + ' fuera del grupo</span></div>';
+      h += dispo.map(function (p) {
+        return '<div class="alert ' + (p.dispo === "baja" ? "" : "alert--info") + '" style="margin-bottom:8px">' + iconWarn() +
+          '<div><b>' + esc(p.jugador) + '</b> · ' + (p.dispo === "baja"
+            ? "Baja — sin entrenar con el grupo ni jugar."
+            : "En readaptación — trabajo individual, aún sin sesiones con el grupo.") + '</div></div>';
+      }).join("");
+      h += '<div class="muted" style="font-size:11px">Se calcula mirando la participación de los últimos días (sesiones normales, rehab y partidos).</div></div>';
+    }
 
     // última sesión
     h += '<div class="card"><div class="card__title">Última sesión <span class="count">' + lastKey + " · " + esc(roleShort(sessionRole(last))) + '</span></div>' +

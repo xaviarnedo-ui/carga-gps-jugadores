@@ -422,6 +422,11 @@ def load_microcycle(path):
         if not name.endswith("_GPS"):
             continue
         key = name[:-4]
+        # solo sesiones (Sxx) y partidos (PTx / Jx). Hojas "Extra_*" (rehab
+        # controlado fuera de la planificación) NO cuentan como sesión: su carga
+        # ya va en CARGA_AC/ACWR de esos jugadores.
+        if not re.match(r"(S\d+|PT\d+|J\d+)\w*$", key):
+            continue
         a1 = str(wb[name].cell(1, 1).value or "").upper()
         # hoja de partido: PTx_GPS (pretemporada) o Jx_GPS (liga); A1 empieza por "PARTIDO"
         if a1.startswith("PARTIDO") or re.match(r"(PT|J)\d", key):
@@ -645,6 +650,46 @@ def notificar(DATA=None):
         print("  aviso ERROR:", e)
 
 
+def compute_dispo(micro_data, ref_players):
+    """Marca la disponibilidad de cada jugador:
+      - ok     : ha entrenado normal o jugado un partido en los últimos ~6 días
+      - rehab  : sin entrenar normal, pero con trabajo individual reciente (readaptación)
+      - baja   : sin entrenar normal ni jugar (lesión / baja)
+    """
+    ev = []  # (iso, dorsal, clase)  clase: normal | rehab | match | na
+    for m in micro_data.values():
+        for s in m["sesiones"].values():
+            if not s.get("date"):
+                continue
+            for p in s["players"]:
+                est = p.get("estado")
+                ev.append((s["date"], p["dorsal"],
+                           "rehab" if est == "rehab" else ("na" if est == "na" else "normal")))
+        for s in m["partidos"].values():
+            if not s.get("date"):
+                continue
+            for p in s["players"]:
+                ev.append((s["date"], p["dorsal"], "na" if p.get("estado") == "na" else "match"))
+    real = [e for e in ev if e[2] != "na"]
+    if not real:
+        return
+    cutoff = max(e[0] for e in real)                      # último día con actividad real
+    cut = dt.date.fromisoformat(cutoff)
+    lim_ok = (cut - dt.timedelta(days=6)).isoformat()     # "entrena normal" = en la última semana
+    lim_reh = (cut - dt.timedelta(days=13)).isoformat()   # readaptación = últimas 2 semanas
+    for p in ref_players:
+        mine = [(d, c) for (d, dor, c) in ev if dor == p["dorsal"] and d <= cutoff]
+        activo = any(c in ("normal", "match") and d >= lim_ok for d, c in mine)
+        if activo:
+            p["dispo"] = "ok"
+        elif any(c == "rehab" and d >= lim_reh for d, c in mine):
+            p["dispo"] = "rehab"
+        elif any(c in ("normal", "match", "rehab") for d, c in mine):
+            p["dispo"] = "baja"
+        else:
+            p["dispo"] = "ok"  # nunca ha aparecido con datos: no marcamos
+
+
 # ---------------------------------------------------------------- main
 def main():
     coef, ref, ref_notas = load_tipo()
@@ -732,6 +777,8 @@ def main():
         tavg[k] = round(sum(vals) / len(vals), 1 if k == "velMax" else 0)
         if k != "velMax":
             tavg[k] = int(tavg[k])
+
+    compute_dispo(micro_data, ref_players)
 
     # el microciclo más reciente es el "activo"
     n_activo = max(micro_data)
