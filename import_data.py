@@ -600,13 +600,26 @@ def _danger_line(DATA):
                    and DATA[k].get("meta", {}).get("estado") == "activo"), None)
     if not activo:
         return ""
+    calc = DATA[activo]["meta"].get("calculoISO")
+    primera = {p["dorsal"]: p.get("primeraFecha") for p in DATA["refPartido"]["players"]}
+    dispo = {p["dorsal"]: p.get("dispo") for p in DATA["refPartido"]["players"]}
+
+    def base_ok(dor):
+        # se excluye a quien está de baja/readaptación (su ACWR se dispara por
+        # falta de carga reciente, no por sobrecarga — ya se avisa en Disponibilidad)
+        # y a quien lleva <21 días en el equipo (fichajes recientes, sin histórico).
+        if dispo.get(dor) not in (None, "ok"):
+            return False
+        pf = primera.get(dor)
+        if not pf or not calc:
+            return True
+        return (dt.date.fromisoformat(calc) - dt.date.fromisoformat(pf)).days >= 21
+
     hsr, spr = [], []
     for p in DATA[activo]["cargaAC"]["players"]:
-        # se excluye a quien aún no tiene base crónica suficiente (fichajes, bajas largas):
-        # su ACWR sale disparado por falta de histórico, no por sobrecarga real.
-        if (p.get("acwrHsr") or 0) > 1.30 and (p.get("cargaCronicaHsr") or 0) >= 30:
+        if (p.get("acwrHsr") or 0) > 1.30 and base_ok(p["dorsal"]):
             hsr.append(_first_name(p["jugador"]))
-        if (p.get("acwrSprint") or 0) > 1.30 and (p.get("cargaCronicaSprint") or 0) >= 1:
+        if (p.get("acwrSprint") or 0) > 1.30 and base_ok(p["dorsal"]):
             spr.append(_first_name(p["jugador"]))
     parts = []
     if hsr:
@@ -648,6 +661,23 @@ def notificar(DATA=None):
         print("  aviso ERROR", e.code, e.read().decode("utf-8", "replace"))
     except Exception as e:
         print("  aviso ERROR:", e)
+
+
+def compute_primera_fecha(micro_data):
+    """dorsal -> primer día (ISO) en el que aparece en cualquier sesión/partido.
+    Sirve para no disparar avisos de ACWR por poca base histórica (fichajes)."""
+    first = {}
+    for m in micro_data.values():
+        for bucket in (m["sesiones"], m["partidos"]):
+            for s in bucket.values():
+                d = s.get("date")
+                if not d:
+                    continue
+                for p in s["players"]:
+                    dor = p["dorsal"]
+                    if dor not in first or d < first[dor]:
+                        first[dor] = d
+    return first
 
 
 def compute_dispo(micro_data, ref_players):
@@ -779,6 +809,9 @@ def main():
             tavg[k] = int(tavg[k])
 
     compute_dispo(micro_data, ref_players)
+    primera = compute_primera_fecha(micro_data)
+    for r in ref_players:
+        r["primeraFecha"] = primera.get(r["dorsal"])
 
     # el microciclo más reciente es el "activo"
     n_activo = max(micro_data)

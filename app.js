@@ -213,20 +213,31 @@
 
     // avisos ACWR — Player Load (4 estados) + HSR y Sprints (solo peligro > 1,30)
     var SEVR = { hi: 3, mid: 2, low: 1 };
+    // base fiable = no está de baja/readaptación (ya se avisa en Disponibilidad,
+    // y su ACWR se dispara por falta de carga reciente, no por sobrecarga) y
+    // lleva >=21 días en el equipo (si es un fichaje reciente, aún sin histórico).
+    function baseFiable(dorsal) {
+      var rp = DATA.refPartido.players.find(function (x) { return x.dorsal === dorsal; });
+      if (rp && rp.dispo && rp.dispo !== "ok") return false;
+      var pf = rp && rp.primeraFecha, calc = (m.meta || {}).calculoISO;
+      if (!pf || !calc) return true;
+      return Math.round((new Date(calc) - new Date(pf)) / 86400000) >= 21;
+    }
     function acwrIssues(p) {
       var out = [];
       if (p.acwr === 0) out.push({ sev: "hi", msg: "ACWR PL 0,00 — sin Player Load en 7 días. Revisar reintroducción." });
       else if (p.acwr > 1.50) out.push({ sev: "hi", msg: "ACWR PL " + fmtDec(p.acwr, 2) + " — riesgo de sobrecarga (>1,50)." });
       else if (p.acwr > 1.30) out.push({ sev: "mid", msg: "ACWR PL " + fmtDec(p.acwr, 2) + " — precaución (1,31–1,50)." });
       else if (p.acwr && p.acwr < 0.80) out.push({ sev: "low", msg: "ACWR PL " + fmtDec(p.acwr, 2) + " — infracarga (<0,80)." });
-      [["acwrHsr", "cargaCronicaHsr", "HSR", 30], ["acwrSprint", "cargaCronicaSprint", "Sprints", 1]].forEach(function (x) {
-        var v = p[x[0]];
-        if (v != null && v > 1.30) {
-          var base = (p[x[1]] != null && p[x[1]] < x[3]) ? " · base aún corta" : "";
-          out.push({ sev: v > 1.50 ? "hi" : "mid",
-            msg: "ACWR " + x[2] + " " + fmtDec(v, 2) + " — " + (v > 1.50 ? "muy por encima de 1,50" : "zona de peligro (>1,30)") + base + "." });
-        }
-      });
+      if (baseFiable(p.dorsal)) {
+        [["acwrHsr", "HSR"], ["acwrSprint", "Sprints"]].forEach(function (x) {
+          var v = p[x[0]];
+          if (v != null && v > 1.30) {
+            out.push({ sev: v > 1.50 ? "hi" : "mid",
+              msg: "ACWR " + x[1] + " " + fmtDec(v, 2) + " — " + (v > 1.50 ? "muy por encima de 1,50" : "zona de peligro (>1,30)") + "." });
+          }
+        });
+      }
       return out;
     }
     var avList = m.cargaAC.players.map(function (p) { return { p: p, iss: acwrIssues(p) }; })
