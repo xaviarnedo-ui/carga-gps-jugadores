@@ -759,12 +759,16 @@ def main():
     # nº de partidos que hay DETRÁS de la tabla REF_PARTIDO. Según las notas de la hoja,
     # la referencia vigente es la media de PT1-PT3, PT5-PT9 (PT4 anulado; días "Modified"
     # y la sustitución de GPS de Hernández fuera). Cierre de pretemporada tras PT9.
+    # Desde el 14/09 la pretemporada cuenta como UN solo bloque y cada partido de Liga con
+    # GPS real (J1 excluido, estimado sin GPS) se suma como un dato más — LIGA_REF recoge
+    # esos partidos de Liga para que el contador de "partidos" los refleje.
     REF_MATCHES = {"PT1", "PT2", "PT3", "PT5", "PT6", "PT7", "PT8", "PT9"}
+    LIGA_REF = {"J2"}
     NO_REF = {(17, "PT2"), (24, "PT2"), (24, "PT3"), (23, "PT3"), (14, "PT3")}
     partidos_ref = {}
     for n, m in sorted(micro_data.items()):
         for k, s in m["partidos"].items():
-            if k not in REF_MATCHES:
+            if k not in REF_MATCHES and k not in LIGA_REF:
                 continue
             for p in s["players"]:
                 if (p["dorsal"], k) in NO_REF:
@@ -826,9 +830,10 @@ def main():
             "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-%d)" % max(micro_data),
         },
         "refPartido": {
-            "nota": ("REF_PARTIDO = media de los partidos válidos de cada jugador, cada uno estimado a 95' "
-                     "con fórmula de fatiga (PT1-PT3, PT5-PT9; PT4 anulado; días 'Modified' fuera). "
-                     "Cierre de pretemporada tras PT9 (vs Porreres, 30/08). "
+            "nota": ("REF_PARTIDO = media de dos bloques: la pretemporada completa (PT1-PT3, PT5-PT9; "
+                     "PT4 anulado; días 'Modified' fuera) cuenta como UN solo dato, y cada partido de "
+                     "Liga con GPS real (J1 excluido, sin GPS) entra como otro dato más — cada uno "
+                     "estimado a 95' con fórmula de fatiga (desde 14/09, tras J2 vs Intercity). "
                      "La media del equipo se calcula con toda la plantilla de campo. "
                      "Vel. máx tomada del mejor registro de partido."),
             "players": ref_players,
