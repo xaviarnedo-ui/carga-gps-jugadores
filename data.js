@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-09-15 11:45",
+  "generado": "2026-09-15 11:58",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-10)"
  },
  "refPartido": {
@@ -81603,13 +81603,13 @@ window.GPS_DATA_ALL = {
      "grupo": "D",
      "distancia": {
       "obj": 23713.2,
-      "real": 21138,
-      "dif": -2575.2
+      "real": 24883,
+      "dif": 1169.8
      },
      "hmld": {
       "obj": 3246.4,
-      "real": 3234,
-      "dif": -12.4
+      "real": 3303,
+      "dif": 56.6
      },
      "hsr": {
       "obj": 1079.6,
@@ -81988,27 +81988,27 @@ window.GPS_DATA_ALL = {
      "grupo": "D",
      "distancia": {
       "obj": null,
-      "real": 8095,
+      "real": 10834,
       "dif": null
      },
      "hmld": {
       "obj": null,
-      "real": 1108,
+      "real": 1680,
       "dif": null
      },
      "hsr": {
       "obj": null,
-      "real": 419,
+      "real": 577,
       "dif": null
      },
      "sprint": {
       "obj": null,
-      "real": 2,
+      "real": 3,
       "dif": null
      },
      "acc": {
       "obj": null,
-      "real": 23,
+      "real": 29,
       "dif": null
      },
      "dec": {
@@ -82268,17 +82268,17 @@ window.GPS_DATA_ALL = {
      "grupo": "M",
      "distancia": {
       "obj": null,
-      "real": 9739,
+      "real": 12341,
       "dif": null
      },
      "hmld": {
       "obj": null,
-      "real": 1688,
+      "real": 2329,
       "dif": null
      },
      "hsr": {
       "obj": null,
-      "real": 1045,
+      "real": 1242,
       "dif": null
      },
      "sprint": {
@@ -82288,12 +82288,12 @@ window.GPS_DATA_ALL = {
      },
      "acc": {
       "obj": null,
-      "real": 43,
+      "real": 52,
       "dif": null
      },
      "dec": {
       "obj": null,
-      "real": 36,
+      "real": 43,
       "dif": null
      }
     },
@@ -82336,18 +82336,18 @@ window.GPS_DATA_ALL = {
    "teamAvg": {
     "distancia": {
      "obj": 22297.3,
-     "real": 18197,
-     "dif": -4100
+     "real": 18675,
+     "dif": -3622
     },
     "hmld": {
      "obj": 3006,
-     "real": 2594,
-     "dif": -412
+     "real": 2661,
+     "dif": -345
     },
     "hsr": {
      "obj": 731.3,
-     "real": 754,
-     "dif": 23
+     "real": 773,
+     "dif": 42
     },
     "sprint": {
      "obj": 14.9,
@@ -82356,13 +82356,13 @@ window.GPS_DATA_ALL = {
     },
     "acc": {
      "obj": 62.5,
-     "real": 60,
+     "real": 61,
      "dif": -2
     },
     "dec": {
      "obj": 91.2,
-     "real": 70,
-     "dif": -21
+     "real": 71,
+     "dif": -20
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."
@@ -91764,33 +91764,33 @@ window.GPS_DATA_ALL = {
      "grupo": "D",
      "distancia": {
       "obj": 24794,
-      "real": 4434,
-      "dif": -20360
+      "real": 7925,
+      "dif": -16869
      },
      "hmld": {
       "obj": 3844.7,
-      "real": 570,
-      "dif": -3274.7
+      "real": 1217,
+      "dif": -2627.7
      },
      "hsr": {
       "obj": 1244.3,
-      "real": 343,
-      "dif": -901.3
+      "real": 849,
+      "dif": -395.3
      },
      "sprint": {
       "obj": 30.8,
-      "real": 5,
-      "dif": -25.8
+      "real": 15,
+      "dif": -15.8
      },
      "acc": {
       "obj": 38.1,
-      "real": 4,
-      "dif": -34.1
+      "real": 26,
+      "dif": -12.1
      },
      "dec": {
       "obj": 120.5,
-      "real": 5,
-      "dif": -115.5
+      "real": 25,
+      "dif": -95.5
      }
     },
     {
@@ -92149,32 +92149,32 @@ window.GPS_DATA_ALL = {
      "grupo": "D",
      "distancia": {
       "obj": null,
-      "real": 2619,
+      "real": 6208,
       "dif": null
      },
      "hmld": {
       "obj": null,
-      "real": 326,
+      "real": 987,
       "dif": null
      },
      "hsr": {
       "obj": null,
-      "real": 0,
+      "real": 489,
       "dif": null
      },
      "sprint": {
       "obj": null,
-      "real": 0,
+      "real": 10,
       "dif": null
      },
      "acc": {
       "obj": null,
-      "real": 11,
+      "real": 29,
       "dif": null
      },
      "dec": {
       "obj": null,
-      "real": 3,
+      "real": 15,
       "dif": null
      }
     },
@@ -92429,32 +92429,32 @@ window.GPS_DATA_ALL = {
      "grupo": "M",
      "distancia": {
       "obj": null,
-      "real": 3152,
+      "real": 6745,
       "dif": null
      },
      "hmld": {
       "obj": null,
-      "real": 347,
+      "real": 995,
       "dif": null
      },
      "hsr": {
       "obj": null,
-      "real": 13,
+      "real": 460,
       "dif": null
      },
      "sprint": {
       "obj": null,
-      "real": 0,
+      "real": 10,
       "dif": null
      },
      "acc": {
       "obj": null,
-      "real": 19,
+      "real": 47,
       "dif": null
      },
      "dec": {
       "obj": null,
-      "real": 15,
+      "real": 39,
       "dif": null
      }
     },
@@ -92497,33 +92497,33 @@ window.GPS_DATA_ALL = {
    "teamAvg": {
     "distancia": {
      "obj": 22639.2,
-     "real": 3241,
-     "dif": -19398
+     "real": 3803,
+     "dif": -18836
     },
     "hmld": {
      "obj": 3148.2,
-     "real": 317,
-     "dif": -2831
+     "real": 420,
+     "dif": -2728
     },
     "hsr": {
      "obj": 775.5,
-     "real": 115,
-     "dif": -660
+     "real": 191,
+     "dif": -584
     },
     "sprint": {
      "obj": 15.6,
-     "real": 1,
-     "dif": -15
+     "real": 3,
+     "dif": -13
     },
     "acc": {
      "obj": 67.1,
-     "real": 5,
-     "dif": -62
+     "real": 8,
+     "dif": -59
     },
     "dec": {
      "obj": 100.4,
-     "real": 4,
-     "dif": -96
+     "real": 7,
+     "dif": -93
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."

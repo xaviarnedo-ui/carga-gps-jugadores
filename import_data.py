@@ -499,7 +499,9 @@ def load_microcycle(path):
                 estado="cerrado", completo=completo)
 
     # cargasObjetivo (solo sesiones): obj = del Excel (ya es solo-sesiones), real = Σ sesiones
-    cargas_obj = build_sessions_only(sesiones, ses_keys, acu)
+    # + sesiones "extra" (el Acumulado del propio Excel también las suma al real, aunque no
+    # tengan objetivo propio)
+    cargas_obj = build_sessions_only(sesiones, ses_keys, acu, extras)
 
     return n, dict(
         meta=meta,
@@ -512,7 +514,8 @@ def load_microcycle(path):
     ), cac
 
 
-def build_sessions_only(sesiones, ses_keys, acu):
+def build_sessions_only(sesiones, ses_keys, acu, extras=None):
+    extras = extras or {}
     obj_by = {p["dorsal"]: p for p in acu["players"]}
     players = []
     for dor, ap in obj_by.items():
@@ -524,6 +527,11 @@ def build_sessions_only(sesiones, ses_keys, acu):
             for sk in ses_keys:
                 pr = next((x for x in sesiones[sk]["players"] if x["dorsal"] == dor), None)
                 if pr and pr[k] and pr[k]["real"] is not None:
+                    real += pr[k]["real"]
+                    has = True
+            for ex in extras.values():
+                pr = next((x for x in ex["players"] if x["dorsal"] == dor), None)
+                if pr and pr.get(k) and pr[k]["real"] is not None:
                     real += pr[k]["real"]
                     has = True
             rec[k] = dict(obj=o, real=(round(real, 2) if has else None),
