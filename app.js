@@ -461,21 +461,49 @@
     }).join("") + '</div>';
   }
 
+  function screenExtra(m, key) {
+    var ex = m.extras[key];
+    var rows = ex.players.map(function (p) {
+      var body = METRICS.map(function (mm) {
+        var c = p[mm.key] || {};
+        return mrow(mm.label, mm.unit, c.real, null, null, "", 0);
+      }).join("") + '<div class="info-metrics" style="margin-top:9px">' +
+        kpi(p.velMax != null ? fmtDec(p.velMax, 1) : "—", "Vel. máx km/h") +
+        kpi(fmt(p.playerLoad), "Player Load") +
+        kpi(p.duracion || "—", "Duración") + '</div>' + shareLine(p.dorsal, p.jugador);
+      return playerDetails(p.dorsal, p.jugador, p.grupo, "", body, true);
+    }).join("");
+    return '<div class="card"><div class="card__title">Sesión individual <span class="count">' + esc(fdate(ex.date)) + '</span></div>' +
+      '<div class="alert alert--info">' + iconWarn() +
+      '<div><b>Fuera de la planificación semanal.</b> No cuenta para la media del equipo ni para Disponibilidad.</div></div>' +
+      '</div>' +
+      '<div class="card"><div class="card__title">Jugadores <span class="count">' + ex.players.length + '</span></div>' +
+      '<div class="pdet-list">' + rows + '</div></div>' +
+      (ex.nota ? '<div class="note">' + noteHtml(ex.nota) + '</div>' : '');
+  }
+
   function screenSesion() {
     var m = currentMicro();
     var keys = sessionKeys(m);
-    if (!state.session || keys.indexOf(state.session) < 0) state.session = lastCompletedSessionKey(m);
-    var s = getSession(m, state.session);
-    var match = isMatch(m, state.session);
-    var done = isCompleted(s);
-    var ta = s.teamAvg || {};
+    var extraKeys = Object.keys(m.extras || {});
+    if (!state.session || keys.concat(extraKeys).indexOf(state.session) < 0) state.session = lastCompletedSessionKey(m);
 
     var pills = '<div class="pills">' + keys.map(function (k) {
       var ss = getSession(m, k), mt = isMatch(m, k);
       return '<button class="pill' + (k === state.session ? " is-active" : "") + (isCompleted(ss) ? "" : " is-pending") +
         (mt ? " is-match" : "") + '" data-session="' + k + '">' + k +
         '<small>' + esc(mt ? ("vs " + (ss.rival || "Partido")).slice(0, 15) : roleShort(sessionRole(ss))) + '</small></button>';
+    }).join("") + extraKeys.map(function (k) {
+      return '<button class="pill is-extra' + (k === state.session ? " is-active" : "") + '" data-session="' + k + '">Extra' +
+        '<small>' + esc(fdate(m.extras[k].date)) + '</small></button>';
     }).join("") + '</div>';
+
+    if (extraKeys.indexOf(state.session) >= 0) return pills + screenExtra(m, state.session);
+
+    var s = getSession(m, state.session);
+    var match = isMatch(m, state.session);
+    var done = isCompleted(s);
+    var ta = s.teamAvg || {};
 
     var head = '<div class="card"><div class="card__title">Media del equipo <span class="count">' +
       state.session + ' · ' + esc(match ? ('vs ' + (s.rival || '—')) : roleShort(sessionRole(s))) + ' · ' + esc(fdate(s.date)) + '</span></div>';

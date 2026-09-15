@@ -237,6 +237,10 @@ h1,h2,h3,p{margin:0}
 .pill.is-match small{color:var(--oro)}
 .pill.is-match.is-active{background:var(--oro); color:var(--navy); border-color:var(--oro)}
 .pill.is-match.is-active small{color:var(--navy)}
+.pill.is-extra{border-color:var(--azul)}
+.pill.is-extra small{color:var(--azul)}
+.pill.is-extra.is-active{background:var(--azul); color:#fff; border-color:var(--azul)}
+.pill.is-extra.is-active small{color:#dbe6f8}
 
 /* ---- tabla ---- */
 .tablewrap{

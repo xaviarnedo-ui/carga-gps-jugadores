@@ -331,6 +331,29 @@ def parse_match(ws):
                estimado=estimado, players=players, teamAvg=team)
 
 
+def parse_extra(ws):
+    """Hoja 'Extra_*_GPS': sesión individual/rehab controlado fuera de la
+    planificación semanal, solo para los jugadores que aparecen en la hoja
+    (mismo layout de 12 columnas que un partido, sin objetivo ni media)."""
+    a1 = ws.cell(1, 1).value or ""
+    a2 = ws.cell(2, 1).value or ""
+    date = find_date(a1) or find_date(a2)
+    hi, hdr = header_row(ws)
+    prows, _media = player_rows(ws, hi)
+    players = []
+    for row in prows:
+        rec = dict(dorsal=int(row[0]), jugador=titlecase(row[1]), grupo=(row[2] or "").strip())
+        vals = [num(row[3 + i]) for i in range(6)]
+        for k, v in zip(METRICS, vals):
+            rec[k] = dict(obj=None, real=v, dif=None)
+        rec["velMax"] = num(row[9])
+        rec["playerLoad"] = num(row[10])
+        rec["duracion"] = (str(row[11]).strip() if row[11] not in (None, "·", "") else None)
+        players.append(rec)
+    return dict(date=iso(date), titulo=str(a1).strip(), nota=str(a2).strip(),
+               players=players, soloJugadores=[p["dorsal"] for p in players])
+
+
 def parse_acumulado(ws):
     hi, hdr = header_row(ws)
     prows, media = player_rows(ws, hi)
@@ -417,15 +440,18 @@ def week_label(a3, n):
 def load_microcycle(path):
     n = int(re.search(r"Microciclo (\d+)", path).group(1))
     wb = openpyxl.load_workbook(path, data_only=True)
-    sesiones, partidos, orden = {}, {}, []
+    sesiones, partidos, extras, orden = {}, {}, {}, []
     for name in wb.sheetnames:
         if not name.endswith("_GPS"):
             continue
         key = name[:-4]
-        # solo sesiones (Sxx) y partidos (PTx / Jx). Hojas "Extra_*" (rehab
-        # controlado fuera de la planificación) NO cuentan como sesión: su carga
-        # ya va en CARGA_AC/ACWR de esos jugadores.
+        # sesiones (Sxx) y partidos (PTx / Jx) van a "orden" normal. Las hojas
+        # "Extra_*" (rehab controlado fuera de la planificación semanal) NO
+        # entran en orden/cargasObjetivo/Disponibilidad: son visibles solo
+        # para los jugadores de esa hoja (y el entrenador) — ver "extras".
         if not re.match(r"(S\d+|PT\d+|J\d+)\w*$", key):
+            if key.lower().startswith("extra"):
+                extras[key] = parse_extra(wb[name])
             continue
         a1 = str(wb[name].cell(1, 1).value or "").upper()
         # hoja de partido: PTx_GPS (pretemporada) o Jx_GPS (liga); A1 empieza por "PARTIDO"
@@ -478,7 +504,7 @@ def load_microcycle(path):
     return n, dict(
         meta=meta,
         orden=[dict(tipo=kind, key=k) for kind, k, _ in orden],
-        sesiones=sesiones, partidos=partidos,
+        sesiones=sesiones, partidos=partidos, extras=extras,
         cargasObjetivo=cargas_obj,
         cargasSemana=dict(players=acu["players"], teamAvg=acu["teamAvg"],
                           nota="Acumulado de toda la semana: sesiones de entrenamiento + partido(s). " + acu["nota"]),
@@ -753,6 +779,12 @@ def main():
                     velmax_match[p["dorsal"]] = max(velmax_match.get(p["dorsal"], 0), p["velMax"])
                 if valido_ref and p.get(METRICS[0]) and p[METRICS[0]]["real"] is not None:
                     partidos_jugados[p["dorsal"]] = partidos_jugados.get(p["dorsal"], 0) + 1
+        # sesiones "extra" (fuera de planificación): su PL sí entra en la serie de
+        # 28 días de esos jugadores, igual que ya lo tiene en cuenta el CARGA_AC del Excel
+        for k, s in list(m.get("extras", {}).items()):
+            for p in s["players"]:
+                if s["date"] and p.get("playerLoad") is not None:
+                    all_days.setdefault(s["date"], {})[p["dorsal"]] = p["playerLoad"]
 
     build_series(all_days, micro_data, cac_by_n)
 

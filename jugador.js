@@ -216,24 +216,58 @@
     return "";
   }
 
+  /* ------------------------ sesiones EXTRA (individuales) ------------- */
+  // "Extra_*": rehab controlado fuera de la planificación semanal, visible
+  // solo para los jugadores de esa hoja (y el entrenador en app.js).
+  function myExtraKeys(m) {
+    return Object.keys(m.extras || {}).filter(function (k) {
+      return (m.extras[k].soloJugadores || []).indexOf(DORSAL) >= 0;
+    });
+  }
+  function screenExtra(m, key) {
+    var ex = m.extras[key];
+    var p = ex.players.find(function (x) { return x.dorsal === DORSAL; });
+    if (!p) return '<div class="card"><p class="muted">Sin datos.</p></div>';
+    var rows = METRICS.map(function (mm) { return mrow(mm.label, mm.unit, p[mm.key] ? p[mm.key].real : null, null, null, 0); }).join("");
+    return '<div class="card"><div class="card__title">Sesión individual <span class="count">' + esc(fdate(ex.date)) + '</span></div>' +
+      '<div class="alert alert--info" style="margin-bottom:10px">' + iconWarn() +
+      '<div><b>Fuera de la planificación semanal.</b> Datos informativos: sin objetivo ni comparación con la media del equipo.</div></div>' +
+      rows +
+      '<div class="info-metrics">' +
+      kpi((p.velMax != null ? fmtDec(p.velMax, 1) : "—"), "Vel. máx km/h", "") +
+      kpi(fmt(p.playerLoad), "Player Load", "") +
+      kpi((p.duracion || "—"), "Duración", "") +
+      '</div>' +
+      (ex.nota ? '<div class="note" style="margin-top:12px">' + noteHtml(ex.nota) + '</div>' : '') +
+      '</div>';
+  }
+
   /* ----------------------------- SESIÓN ------------------------------- */
   function screenSesion() {
     var m = DATA[state.micro];
     var keys = sessionKeys(m);
-    if (!state.session || keys.indexOf(state.session) < 0) state.session = lastCompletedKey(m);
-    var s = getSession(m, state.session);
-    var match = isMatch(m, state.session);
-    var p = s.players.find(function (x) { return x.dorsal === DORSAL; });
-    var done = isCompleted(s);
-    var estado = p && p.estado;
-    var teamOf = function (mm) { return done && s.teamAvg && s.teamAvg[mm] ? s.teamAvg[mm].real : null; };
+    var extraKeys = myExtraKeys(m);
+    var allKeys = keys.concat(extraKeys);
+    if (!state.session || allKeys.indexOf(state.session) < 0) state.session = lastCompletedKey(m);
 
     var pills = '<div class="pills">' + keys.map(function (k) {
       var ss = getSession(m, k);
       return '<button class="pill' + (k === state.session ? " is-active" : "") + (isCompleted(ss) ? "" : " is-pending") +
         (isMatch(m, k) ? " is-match" : "") + '" data-session="' + k + '">' + k +
         '<small>' + esc(isMatch(m, k) ? ("vs " + (ss.rival || "Partido")).slice(0, 14) : roleShort(sessionRole(ss))) + '</small></button>';
+    }).join("") + extraKeys.map(function (k) {
+      return '<button class="pill is-extra' + (k === state.session ? " is-active" : "") + '" data-session="' + k + '">Extra' +
+        '<small>' + esc(fdate(m.extras[k].date)) + '</small></button>';
     }).join("") + '</div>';
+
+    if (extraKeys.indexOf(state.session) >= 0) return pills + screenExtra(m, state.session);
+
+    var s = getSession(m, state.session);
+    var match = isMatch(m, state.session);
+    var p = s.players.find(function (x) { return x.dorsal === DORSAL; });
+    var done = isCompleted(s);
+    var estado = p && p.estado;
+    var teamOf = function (mm) { return done && s.teamAvg && s.teamAvg[mm] ? s.teamAvg[mm].real : null; };
 
     var head = '<div class="card"><div class="card__title">' +
       (match ? 'Partido ' + state.session : 'Sesión ' + state.session) +
