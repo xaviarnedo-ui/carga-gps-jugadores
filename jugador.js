@@ -691,6 +691,11 @@
         if (p.estado === "na") nNa++;
         if (p.playerLoad != null) { plTot += p.playerLoad; plAny = true; }
       });
+      // sesiones "extra" del jugador esa semana (fuera de planificación): sí suman al acumulado
+      Object.keys(m.extras || {}).forEach(function (ek) {
+        var ep = (m.extras[ek].players || []).find(function (x) { return x.dorsal === DORSAL; });
+        if (ep && ep.playerLoad != null) { plTot += ep.playerLoad; plAny = true; }
+      });
 
       var acwrBadge = ac.acwr != null
         ? '<span class="acwr ' + acwrClass(ac.acwr) + '">' + fmtDec(ac.acwr, 2) + '</span>'

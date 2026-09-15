@@ -541,7 +541,15 @@ def build_sessions_only(sesiones, ses_keys, acu):
 
 
 # ---------------------------------------------------------------- serie diaria de Player Load
-def build_series(all_days, micro_data, cac_by_n):
+def _rolling_asof(days_dict, dor, asof_date):
+    """aguda(7d)/crónica(28d)/ACWR de una métrica para un jugador, a fecha asof_date."""
+    w = sum(days_dict.get((asof_date - dt.timedelta(days=k)).isoformat(), {}).get(dor, 0) or 0 for k in range(7))
+    mo = sum(days_dict.get((asof_date - dt.timedelta(days=k)).isoformat(), {}).get(dor, 0) or 0 for k in range(28))
+    a, c = w / 7, mo / 28
+    return round(a, 2), round(c, 2), (round(a / c, 2) if c else 0.0)
+
+
+def build_series(all_days, all_days_hsr, all_days_spr, micro_data, cac_by_n):
     """all_days: dict iso_date -> {dorsal: pl}. Rellena cargaAC[i].serie de CADA microciclo
     con fecha de cálculo: ventana de 28 días que acaba en su fecha de cálculo. El activo la usa
     en la pestaña Carga A:C; los cerrados, en Historial."""
@@ -549,7 +557,15 @@ def build_series(all_days, micro_data, cac_by_n):
         calc = m["meta"]["calculoISO"]
         if not calc:
             continue
-        asof = dt.date.fromisoformat(calc)
+        extras = m.get("extras", {})
+        # si una sesión "extra" tiene fecha posterior al cálculo normal del
+        # microciclo, se alarga la ventana hasta ese día: para quien NO tuvo
+        # esa sesión, ese día cuenta como descanso (PL 0) en su ACWR — para
+        # quien sí la tuvo, su ACWR de Excel (CARGA_AC) ya está fechado ahí.
+        extra_dates = [s["date"] for s in extras.values() if s.get("date")]
+        asof_iso = max([calc] + extra_dates)
+        extendido = asof_iso != calc
+        asof = dt.date.fromisoformat(asof_iso)
         dias = [(asof - dt.timedelta(days=k)) for k in range(27, -1, -1)]
         m["cargaAC"]["serieDias"] = [d.isoformat() for d in dias]
         # etiqueta de sesión por día (según ESTE microciclo)
@@ -558,6 +574,15 @@ def build_series(all_days, micro_data, cac_by_n):
             src = m["sesiones"].get(k) or m["partidos"].get(k)
             if src and src["date"]:
                 seslabel[src["date"]] = k
+        for ek, ex in extras.items():
+            if ex.get("date"):
+                seslabel.setdefault(ex["date"], "Extra")
+        # dorsales cuyo ACWR de Excel (CARGA_AC) está fechado exactamente en asof_iso:
+        # todo el equipo si no se alargó la ventana, o solo quien tuvo el extra de ese día.
+        excel_asof = set(p["dorsal"] for p in m["cargaAC"]["players"]) if not extendido else set()
+        for ex in extras.values():
+            if ex.get("date") == asof_iso:
+                excel_asof.update(ex.get("soloJugadores", []))
         for p in m["cargaAC"]["players"]:
             dor = p["dorsal"]
             pl = []
@@ -572,14 +597,24 @@ def build_series(all_days, micro_data, cac_by_n):
                 cron.append(c)
                 acwr.append(round(a / c, 2) if c else 0.0)
                 ses.append(seslabel.get(d.isoformat(), "") if pl[i] else "")
-            # el último punto lo fija el Excel (los microciclos anteriores pueden estar
-            # incompletos en nuestros datos y desviar la crónica reconstruida)
-            if p.get("cargaAguda") is not None:
-                aguda[-1] = round(p["cargaAguda"])
-            if p.get("cargaCronica") is not None:
-                cron[-1] = round(p["cargaCronica"])
-            if p.get("acwr") is not None:
-                acwr[-1] = p["acwr"]
+            # el último punto lo fija el Excel SOLO si su CARGA_AC está fechado justo
+            # ahí (si alargamos la ventana por un extra, el resto se queda con nuestro
+            # recálculo — su último día real de Excel es el anterior, no éste)
+            if dor in excel_asof:
+                if p.get("cargaAguda") is not None:
+                    aguda[-1] = round(p["cargaAguda"])
+                if p.get("cargaCronica") is not None:
+                    cron[-1] = round(p["cargaCronica"])
+                if p.get("acwr") is not None:
+                    acwr[-1] = p["acwr"]
+            elif extendido:
+                # sin extra ese día: se actualiza también el ACWR "de cabecera" (PL, HSR,
+                # Sprint) con nuestro propio recálculo — el de Excel se quedó en el día
+                # anterior y no cuenta el descanso de hoy.
+                p["acwr"], p["cargaAguda"], p["cargaCronica"] = acwr[-1], aguda[-1], cron[-1]
+                for suf, dias_met in (("Hsr", all_days_hsr), ("Sprint", all_days_spr)):
+                    a2, c2, ac2 = _rolling_asof(dias_met, dor, asof)
+                    p["acwr" + suf], p["cargaAguda" + suf], p["cargaCronica" + suf] = ac2, a2, c2
             p["serie"] = dict(pl=pl, aguda=aguda, cronica=cron, acwr=acwr, ses=ses)
 
         # serie de la MEDIA DEL EQUIPO (media diaria de los jugadores de campo con datos)
@@ -593,12 +628,15 @@ def build_series(all_days, micro_data, cac_by_n):
         tac = [round(tag_[i] / tcr[i], 2) if tcr[i] else 0.0 for i in range(28)]
         tse = [seslabel.get(d.isoformat(), "") if tpl[i] else "" for i, d in enumerate(dias)]
         ta = m["cargaAC"].get("teamAvg") or {}
-        if ta.get("cargaAguda") is not None:
-            tag_[-1] = round(ta["cargaAguda"])
-        if ta.get("cargaCronica") is not None:
-            tcr[-1] = round(ta["cargaCronica"])
-        if ta.get("acwr") is not None:
-            tac[-1] = ta["acwr"]
+        # la media de equipo del Excel también queda desfasada un día si alargamos
+        # la ventana por un extra (solo 3 jugadores cambiaron, no todo el equipo)
+        if not extendido:
+            if ta.get("cargaAguda") is not None:
+                tag_[-1] = round(ta["cargaAguda"])
+            if ta.get("cargaCronica") is not None:
+                tcr[-1] = round(ta["cargaCronica"])
+            if ta.get("acwr") is not None:
+                tac[-1] = ta["acwr"]
         m["cargaAC"]["serieTeam"] = dict(pl=tpl, aguda=tag_, cronica=tcr, acwr=tac, ses=tse)
 
 
@@ -754,39 +792,48 @@ def main():
                    key=lambda p: int(re.search(r"(\d+)", os.path.basename(p)).group(1)))
     micro_data = {}
     cac_by_n = {}
-    all_days = {}   # iso -> {dorsal: pl}
+    all_days = {}       # iso -> {dorsal: playerLoad}
+    all_days_hsr = {}   # iso -> {dorsal: hsr real}
+    all_days_spr = {}   # iso -> {dorsal: sprint real}
     velmax_match = {}
     velmax_sess = {}
     partidos_jugados = {}
+
+    def _add_day(dst, date, dor, val):
+        if date and val is not None:
+            dst.setdefault(date, {})[dor] = val
 
     for path in paths:
         n, m, cac = load_microcycle(path)
         micro_data[n] = m
         cac_by_n[n] = cac
-        # recolecta PL diario + velmax + partidos
+        # recolecta PL/HSR/Sprint diario + velmax + partidos
         for k, s in list(m["sesiones"].items()):
             for p in s["players"]:
-                if s["date"] and p.get("playerLoad") is not None:
-                    all_days.setdefault(s["date"], {})[p["dorsal"]] = p["playerLoad"]
+                _add_day(all_days, s["date"], p["dorsal"], p.get("playerLoad"))
+                _add_day(all_days_hsr, s["date"], p["dorsal"], (p.get("hsr") or {}).get("real"))
+                _add_day(all_days_spr, s["date"], p["dorsal"], (p.get("sprint") or {}).get("real"))
                 if p.get("velMax") is not None:
                     velmax_sess[p["dorsal"]] = max(velmax_sess.get(p["dorsal"], 0), p["velMax"])
         for k, s in list(m["partidos"].items()):
             valido_ref = k not in ("PT4",)   # PT4 anulado como referencia de partido
             for p in s["players"]:
-                if s["date"] and p.get("playerLoad") is not None:
-                    all_days.setdefault(s["date"], {})[p["dorsal"]] = p["playerLoad"]
+                _add_day(all_days, s["date"], p["dorsal"], p.get("playerLoad"))
+                _add_day(all_days_hsr, s["date"], p["dorsal"], (p.get("hsr") or {}).get("real"))
+                _add_day(all_days_spr, s["date"], p["dorsal"], (p.get("sprint") or {}).get("real"))
                 if valido_ref and p.get("velMax") is not None:
                     velmax_match[p["dorsal"]] = max(velmax_match.get(p["dorsal"], 0), p["velMax"])
                 if valido_ref and p.get(METRICS[0]) and p[METRICS[0]]["real"] is not None:
                     partidos_jugados[p["dorsal"]] = partidos_jugados.get(p["dorsal"], 0) + 1
-        # sesiones "extra" (fuera de planificación): su PL sí entra en la serie de
+        # sesiones "extra" (fuera de planificación): su carga sí entra en la serie de
         # 28 días de esos jugadores, igual que ya lo tiene en cuenta el CARGA_AC del Excel
         for k, s in list(m.get("extras", {}).items()):
             for p in s["players"]:
-                if s["date"] and p.get("playerLoad") is not None:
-                    all_days.setdefault(s["date"], {})[p["dorsal"]] = p["playerLoad"]
+                _add_day(all_days, s["date"], p["dorsal"], p.get("playerLoad"))
+                _add_day(all_days_hsr, s["date"], p["dorsal"], (p.get("hsr") or {}).get("real"))
+                _add_day(all_days_spr, s["date"], p["dorsal"], (p.get("sprint") or {}).get("real"))
 
-    build_series(all_days, micro_data, cac_by_n)
+    build_series(all_days, all_days_hsr, all_days_spr, micro_data, cac_by_n)
 
     # nº de partidos que hay DETRÁS de la tabla REF_PARTIDO. Según las notas de la hoja,
     # la referencia vigente es la media de PT1-PT3, PT5-PT9 (PT4 anulado; días "Modified"
