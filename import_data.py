@@ -662,8 +662,11 @@ def _load_env():
 
 
 def _first_name(nom):
-    # "Espiñeiro, A." -> "Espiñeiro"
-    return str(nom or "").split(",")[0].strip() or str(nom or "").strip()
+    # "Espiñeiro, A." -> "Espiñeiro A." (con inicial: hay apellidos repetidos, p.ej. dos Catalá)
+    partes = str(nom or "").split(",")
+    ap = partes[0].strip()
+    ini = partes[1].strip() if len(partes) > 1 else ""
+    return (ap + " " + ini).strip() or str(nom or "").strip()
 
 
 def _danger_line(DATA):
