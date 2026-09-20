@@ -327,6 +327,15 @@ def parse_match(ws):
             estimado = True
             nota = c if (not nota or "pendiente" in nota.lower()) else nota + " · " + c
             break
+    # aviso por jugador: línea del pie "Apellido, N.: ... estimado ..." (p.ej. fallo de GPS)
+    for r in range(hi + 1, ws.max_row + 1):
+        c = str(ws.cell(r, 1).value or "").strip()
+        if not c or c[:8].upper() == "ESTIMADO" or "estimad" not in c.lower():
+            continue
+        for p in players:
+            nom = str(p.get("jugador") or "").strip()
+            if nom and c.lower().startswith(nom.lower()):
+                p["estimado"] = True
     return dict(date=iso(date), role="Partido", rival=rival, nota=nota, titulo=a1,
                estimado=estimado, players=players, teamAvg=team)
 
@@ -785,6 +794,11 @@ def compute_dispo(micro_data, ref_players):
     for p in ref_players:
         mine = [(d, c) for (d, dor, c) in ev if dor == p["dorsal"] and d <= cutoff]
         activo = any(c in ("normal", "match") and d >= lim_ok for d, c in mine)
+        # dos eventos seguidos "no participó" (sesión/partido) tras su última actividad = baja ya,
+        # sin esperar a que pasen 6 días (p.ej. lesión con el parte ya en el Excel)
+        ultimos = [c for d, c in sorted(mine, key=lambda x: x[0])][-2:]
+        if activo and len(ultimos) == 2 and all(c == "na" for c in ultimos):
+            activo = False
         if activo:
             p["dispo"] = "ok"
         elif any(c == "rehab" and d >= lim_reh for d, c in mine):
@@ -853,8 +867,8 @@ def main():
     # GPS real (J1 excluido, estimado sin GPS) se suma como un dato más — LIGA_REF recoge
     # esos partidos de Liga para que el contador de "partidos" los refleje.
     REF_MATCHES = {"PT1", "PT2", "PT3", "PT5", "PT6", "PT7", "PT8", "PT9"}
-    LIGA_REF = {"J2"}
-    NO_REF = {(17, "PT2"), (24, "PT2"), (24, "PT3"), (23, "PT3"), (14, "PT3")}
+    LIGA_REF = {"J2", "J3"}
+    NO_REF = {(17, "PT2"), (24, "PT2"), (24, "PT3"), (23, "PT3"), (14, "PT3"), (14, "J3")}
     partidos_ref = {}
     for n, m in sorted(micro_data.items()):
         for k, s in m["partidos"].items():
@@ -923,7 +937,7 @@ def main():
             "nota": ("REF_PARTIDO = media de dos bloques: la pretemporada completa (PT1-PT3, PT5-PT9; "
                      "PT4 anulado; días 'Modified' fuera) cuenta como UN solo dato, y cada partido de "
                      "Liga con GPS real (J1 excluido, sin GPS) entra como otro dato más — cada uno "
-                     "estimado a 95' con fórmula de fatiga (desde 14/09, tras J2 vs Intercity). "
+                     "estimado a 95' con fórmula de fatiga (desde 14/09, tras J2 vs Intercity; actualizada tras J3 vs UCAM el 20/09). "
                      "La media del equipo se calcula con toda la plantilla de campo. "
                      "Vel. máx tomada del mejor registro de partido."),
             "players": ref_players,

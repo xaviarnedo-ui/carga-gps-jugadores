@@ -152,6 +152,7 @@
   }
   function playerDonut(p, match) {
     if (p.estado) return estadoTag(p.estado);
+    if (match && p.estimado) return '<span class="tag tag--parcial">Estimado</span>' + (p.playerLoad != null ? ' <span class="pdet__sum">PL ' + fmt(p.playerLoad) + '</span>' : '');
     if (match) return '<span class="pdet__sum">' + (p.playerLoad != null ? "PL " + fmt(p.playerLoad) : "—") + '</span>';
     var pc = achievedPct(p);
     if (pc == null) return '<span class="pdet__sum">—</span>';
@@ -540,6 +541,8 @@
           kpi(fmt(p.playerLoad), "Player Load") +
           kpi(p.duracion || "—", "Duración") + '</div>';
       }
+      if (match && p.estimado) body = '<div class="alert alert--info" style="margin-bottom:8px">' + iconWarn() +
+        '<div><b>Datos estimados.</b> Fallo de GPS: valores reconstruidos, no son GPS real.</div></div>' + body;
       body += shareLine(p.dorsal, p.jugador);
       return playerDetails(p.dorsal, p.jugador, p.grupo, sm, body);
     }).join("");
