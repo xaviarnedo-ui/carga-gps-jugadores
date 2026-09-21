@@ -794,10 +794,10 @@ def compute_dispo(micro_data, ref_players):
     for p in ref_players:
         mine = [(d, c) for (d, dor, c) in ev if dor == p["dorsal"] and d <= cutoff]
         activo = any(c in ("normal", "match") and d >= lim_ok for d, c in mine)
-        # dos eventos seguidos "no participó" (sesión/partido) tras su última actividad = baja ya,
+        # dos eventos seguidos "no participó"/"rehab" (sesión/partido) tras su última actividad = baja ya,
         # sin esperar a que pasen 6 días (p.ej. lesión con el parte ya en el Excel)
         ultimos = [c for d, c in sorted(mine, key=lambda x: x[0])][-2:]
-        if activo and len(ultimos) == 2 and all(c == "na" for c in ultimos):
+        if activo and len(ultimos) == 2 and all(c in ("na", "rehab") for c in ultimos):
             activo = False
         if activo:
             p["dispo"] = "ok"
