@@ -85,6 +85,8 @@
   .chip{border:1px solid var(--border-strong); background:var(--surface); color:var(--ink-2); border-radius:999px; padding:3px 10px; font-size:12.5px; font-weight:500; line-height:1.4; transition:border-color .1s, color .1s}
   .chip[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--on-accent)}
   .chip:not([aria-pressed="true"]):hover{border-color:var(--accent-2); color:var(--ink)}
+  .chip:disabled{opacity:.4; cursor:not-allowed}
+  .chip:disabled:hover{border-color:var(--border-strong); color:var(--ink-2)}
   .chip.sm{padding:2px 8px; font-size:11.5px}
   select{font-family:inherit; font-size:12.5px; padding:4px 8px; border:1px solid var(--border-strong); border-radius:7px; background:var(--surface); color:var(--ink)}
 
@@ -281,6 +283,7 @@ const state = {
   players:new Set(),          // evolución overlay + comparador
   lens:"evolucion",
   hmPlayer:null,
+  session:null,                // índice (RAW.sessions[i].i) de la sesión elegida en la pestaña Sesión
 };
 
 /* ---------- value helpers ---------- */
@@ -346,6 +349,14 @@ function playerPoint(s, dorsal, metric, kind){
 }
 function activeSessions(){
   return RAW.sessions.filter(s=>state.buckets.has(s.bucket));
+}
+function sessionLabel(s){
+  const tag = s.isMatch ? (isOficial(s)?"Oficial":"Amistoso") : s.bucket;
+  const rival = s.rival? " vs "+s.rival : "";
+  return s.key+rival+" · "+tag+" · M"+s.mc+" ("+s.date.slice(5)+")";
+}
+function sessionHasData(s){
+  return s.players.some(pr=> RADAR_METRICS.some(k=>raw(pr,k).real!=null) || pr.pl!=null || pr.vmax!=null);
 }
 
 /* ---------- formatting ---------- */
@@ -414,7 +425,7 @@ function renderShell(){
 
   // Tabs
   const tabDefs=[
-    ["evolucion","Evolución"],["microciclos","Microciclos"],
+    ["evolucion","Evolución"],["sesion","Sesión"],["microciclos","Microciclos"],
     ["tipo","Tipo de sesión"],["partidos","Partidos"],
     ["jugadores","Jugadores"],["comparador","Comparador"],
   ];
@@ -459,7 +470,7 @@ function fBucketChips(){
 /* ---------- views ---------- */
 function renderView(){
   const v=document.getElementById("view"); v.innerHTML="";
-  ({evolucion:viewEvolucion, microciclos:viewMicrociclos, tipo:viewTipo, partidos:viewPartidos,
+  ({evolucion:viewEvolucion, sesion:viewSesion, microciclos:viewMicrociclos, tipo:viewTipo, partidos:viewPartidos,
     jugadores:viewJugadores, comparador:viewComparador}[state.lens])(v);
 }
 function panel(title, desc){
@@ -631,6 +642,131 @@ function line(pts){
     pen=true;
   });
   return d.trim();
+}
+
+/* ===== 1b · SESIÓN ===== */
+function viewSesion(root){
+  const sessions = activeSessions();
+  const p=panel("Sesión",
+    "Detalle completo de una sesión concreta: objetivo, real y % de cumplimiento de cada jugador, métrica a métrica.");
+  if(!sessions.length){ p.appendChild(el("p",{class:"note"},"Sin sesiones con los filtros actuales.")); root.appendChild(p); return; }
+
+  if(state.session==null || !sessions.some(s=>s.i===state.session)){
+    let def=null;
+    for(let i=sessions.length-1;i>=0;i--) if(sessionHasData(sessions[i])){ def=sessions[i].i; break; }
+    state.session = def!=null? def : sessions[sessions.length-1].i;
+  }
+  const pos = sessions.findIndex(s=>s.i===state.session);
+  const s = sessions[pos];
+
+  // selector + navegación
+  const nav=el("div",{style:"display:flex; align-items:center; gap:8px; padding:0 16px 12px; flex-wrap:wrap"});
+  const prevBtn=el("button",{class:"chip sm","aria-label":"Sesión anterior"},"← Anterior");
+  const nextBtn=el("button",{class:"chip sm","aria-label":"Sesión siguiente"},"Siguiente →");
+  if(pos<=0) prevBtn.setAttribute("disabled","");
+  if(pos>=sessions.length-1) nextBtn.setAttribute("disabled","");
+  prevBtn.onclick=()=>{ if(pos>0){ state.session=sessions[pos-1].i; renderView(); } };
+  nextBtn.onclick=()=>{ if(pos<sessions.length-1){ state.session=sessions[pos+1].i; renderView(); } };
+  const sel=el("select",{style:"flex:1; min-width:240px"});
+  sessions.forEach(ss=>{
+    const o=el("option",{value:ss.i}, sessionLabel(ss)); if(ss.i===s.i) o.selected=true; sel.appendChild(o);
+  });
+  sel.onchange=()=>{ state.session=+sel.value; renderView(); };
+  nav.append(prevBtn, sel, nextBtn);
+  p.appendChild(nav);
+
+  // cabecera
+  const badge = s.isMatch ? (isOficial(s)?"Partido oficial":"Amistoso") : s.bucket;
+  const info=el("p",{class:"note", style:"padding:0 16px 10px; font-size:12.5px"});
+  info.append((s.rival? "vs "+s.rival+" · " : "")+"Microciclo "+s.mc+(s.mcTipo?" (Tipo "+s.mcTipo+")":"")+" · "+s.date+"  ");
+  info.appendChild(el("span",{class:"badge-pend", style:"background:var(--accent); color:var(--on-accent)"}, badge));
+  p.appendChild(info);
+
+  if(!sessionHasData(s)){
+    p.appendChild(el("p",{class:"note"},"Todavía no hay datos cargados para esta sesión."));
+    root.appendChild(p); return;
+  }
+
+  const players = s.players.filter(inGroup).sort((a,b)=>a.d-b.d);
+
+  // agregados de equipo (respetan el filtro de Grupo)
+  let vmaxBest=null, plSum=0, plN=0, durSum=0, durN=0;
+  players.forEach(pr=>{
+    if(pr.vmax!=null && (vmaxBest==null||pr.vmax>vmaxBest)) vmaxBest=pr.vmax;
+    if(pr.pl!=null){ plSum+=pr.pl; plN++; }
+    if(pr.dur!=null){ durSum+=pr.dur; durN++; }
+  });
+  const nConDatos = players.filter(pr=> RADAR_METRICS.some(k=>raw(pr,k).real!=null)).length;
+
+  const miniData=[
+    {n:nConDatos, l:"Jugadores con datos"},
+    {n:vmaxBest!=null?fmtN(vmaxBest,1):"–", sm:" km/h", l:"Vel. máx sesión"},
+    {n:plN?fmtN(plSum/plN,0):"–", l:"Player Load medio"},
+    {n:durN?fmtN(durSum/durN,0):"–", sm:" min", l:"Duración media"},
+  ];
+  const mini=el("div",{class:"mini-kpis"});
+  mini.innerHTML = miniData.map(k=>`<div class="kpi"><div class="n">${k.n}${k.sm?`<small>${k.sm}</small>`:""}</div><div class="l">${k.l}</div></div>`).join("");
+  p.appendChild(mini);
+
+  p.appendChild(legendRow([
+    {c:"var(--sem-corto)",t:"< 90% obj."},{c:"var(--sem-ok)",t:"90–110%"},
+    {c:"var(--sem-pasado)",t:"110–120%"},{c:"var(--sem-alto)",t:"> 120%"},
+  ]));
+
+  // tabla: cada jugador × cada métrica (obj/real/%)
+  const wrap=el("div",{class:"tbl-scroll sticky-col"});
+  const tb=el("table");
+  const head1=['<th rowspan="2">Jugador</th>','<th rowspan="2">Pos</th>']
+    .concat(RADAR_METRICS.map(k=>`<th colspan="3" class="grp-start">${METRICS[k].lab}${METRICS[k].u?` (${METRICS[k].u})`:""}</th>`))
+    .concat(['<th rowspan="2" class="grp-start">Vel. máx<br>(km/h)</th>','<th rowspan="2">Player<br>Load</th>','<th rowspan="2">Duración</th>'])
+    .join("");
+  const head2=RADAR_METRICS.map(()=>'<th class="grp-start">Obj</th><th>Real</th><th>%</th>').join("");
+  tb.innerHTML=`<thead><tr>${head1}</tr><tr>${head2}</tr></thead>`;
+  const body=el("tbody");
+
+  function pctCell(pct){
+    if(pct==null) return `<td class="mono">–</td>`;
+    const col = pct<90?"var(--sem-corto)": pct<=110?"var(--sem-ok)": pct<=120?"var(--sem-pasado)":"var(--sem-alto)";
+    return `<td class="mono" style="color:${col}; font-weight:700">${Math.round(pct)}%</td>`;
+  }
+
+  players.forEach(pr=>{
+    const g=POS[pr.d];
+    const cells=[`<td>#${pr.d} ${NAME[pr.d]||"?"}</td>`, `<td class="pos-${g||""}">${GROUPS[g]||g||"–"}</td>`];
+    let hasAny=false;
+    RADAR_METRICS.forEach(k=>{
+      const c=raw(pr,k);
+      if(c.real!=null) hasAny=true;
+      const pct=(c.obj&&c.real!=null)? c.real/c.obj*100 : null;
+      cells.push(`<td class="mono grp-start">${c.obj!=null?fmtN(c.obj,METRICS[k].dec):"–"}</td>`);
+      cells.push(`<td class="mono">${c.real!=null?fmtN(c.real,METRICS[k].dec):"–"}</td>`);
+      cells.push(pctCell(pct));
+    });
+    if(pr.vmax!=null||pr.pl!=null) hasAny=true;
+    cells.push(`<td class="mono grp-start">${pr.vmax!=null?fmtN(pr.vmax,1):"–"}</td>`);
+    cells.push(`<td class="mono">${pr.pl!=null?fmtN(pr.pl,0):"–"}</td>`);
+    cells.push(`<td class="mono">${pr.dur!=null?fmtN(pr.dur,0)+"′":"–"}</td>`);
+    const tr=el("tr", hasAny?{}:{style:"color:var(--ink-3)"}); tr.innerHTML=cells.join("");
+    body.appendChild(tr);
+  });
+
+  // fila MEDIA EQUIPO
+  const teamCells=['<td>MEDIA EQUIPO</td>','<td></td>'];
+  RADAR_METRICS.forEach(k=>{
+    const teamReal=teamPoint(s,k,"abs"), teamObjV=teamObj(s,k,"abs");
+    const pct=(teamObjV&&teamReal!=null)? teamReal/teamObjV*100 : null;
+    teamCells.push(`<td class="mono grp-start">${teamObjV!=null?fmtN(teamObjV,METRICS[k].dec):"–"}</td>`);
+    teamCells.push(`<td class="mono">${teamReal!=null?fmtN(teamReal,METRICS[k].dec):"–"}</td>`);
+    teamCells.push(pctCell(pct));
+  });
+  teamCells.push(`<td class="mono grp-start">${vmaxBest!=null?fmtN(vmaxBest,1):"–"}</td>`);
+  teamCells.push(`<td class="mono">${plN?fmtN(plSum/plN,0):"–"}</td>`);
+  teamCells.push(`<td class="mono">${durN?fmtN(durSum/durN,0)+"′":"–"}</td>`);
+  const trTeam=el("tr",{class:"total"}); trTeam.innerHTML=teamCells.join(""); body.appendChild(trTeam);
+
+  tb.appendChild(body); wrap.appendChild(tb); p.appendChild(wrap);
+  p.appendChild(el("p",{class:"note"},"Jugadores en gris: no tienen dato real cargado en esta sesión (descanso, lesión o pendiente)."));
+  root.appendChild(p);
 }
 
 /* ===== 2 · MICROCICLOS ===== */
