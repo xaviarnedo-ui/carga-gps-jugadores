@@ -8,6 +8,7 @@ Fuente: ~/Desktop/AT BALEARES 26-27/GPS/
 
 Uso:  python3 import_data.py                (regenera data.js Y avisa a los suscritos)
       python3 import_data.py --sin-avisar   (regenera sin mandar notificación)
+      python3 import_data.py --solo-avisar  (solo manda el aviso con el data.js actual)
 Salida:  data.js  ->  window.GPS_DATA_ALL = { meta, refPartido, coeficientes, microciclos, M1..M8 }
 
 La app SOLO muestra lo que hay en el Excel (obj / real / dif / ACWR / medias ya calculados).
@@ -811,6 +812,13 @@ def compute_dispo(micro_data, ref_players):
 
 # ---------------------------------------------------------------- main
 def main():
+    if "--solo-avisar" in sys.argv:
+        # manda el push con el data.js ya generado (el pipeline lo usa DESPUÉS del git push,
+        # para que el aviso llegue cuando GitHub Pages ya tiene los datos nuevos)
+        with open(OUT, encoding="utf-8") as f:
+            txt = f.read()
+        notificar(json.loads(txt[txt.index("=") + 1:].strip().rstrip(";")))
+        return
     coef, ref, ref_notas = load_tipo()
 
     paths = sorted(glob.glob(os.path.join(MICRO_DIR, "Microciclo *.xlsx")),
@@ -866,9 +874,18 @@ def main():
     # Desde el 14/09 la pretemporada cuenta como UN solo bloque y cada partido de Liga con
     # GPS real (J1 excluido, estimado sin GPS) se suma como un dato más — LIGA_REF recoge
     # esos partidos de Liga para que el contador de "partidos" los refleje.
+    # LIGA_REF y los jugadores estimados de Liga se deducen de los datos (J2 en adelante con
+    # GPS real; quien lleva la marca de "estimado" en el pie de la hoja no cuenta).
     REF_MATCHES = {"PT1", "PT2", "PT3", "PT5", "PT6", "PT7", "PT8", "PT9"}
-    LIGA_REF = {"J2", "J3"}
-    NO_REF = {(17, "PT2"), (24, "PT2"), (24, "PT3"), (23, "PT3"), (14, "PT3"), (14, "J3")}
+    NO_REF = {(17, "PT2"), (24, "PT2"), (24, "PT3"), (23, "PT3"), (14, "PT3")}
+    LIGA_REF = set()
+    for m in micro_data.values():
+        for k, s in m["partidos"].items():
+            mj = re.match(r"J(\d+)$", k)
+            if not mj or int(mj.group(1)) < 2 or s.get("estimado"):
+                continue
+            LIGA_REF.add(k)
+            NO_REF |= {(p["dorsal"], k) for p in s["players"] if p.get("estimado")}
     partidos_ref = {}
     for n, m in sorted(micro_data.items()):
         for k, s in m["partidos"].items():
