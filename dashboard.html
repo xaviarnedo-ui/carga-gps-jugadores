@@ -57,6 +57,8 @@
   }
   h1,h2,h3{font-family:"Barlow Condensed", "Barlow", sans-serif; font-weight:600; margin:0; line-height:1.1; text-wrap:balance}
   .mono{font-family:"IBM Plex Mono", ui-monospace, monospace; font-variant-numeric:tabular-nums}
+  .v-real{font-size:14.5px; font-weight:700; color:var(--ink)}
+  .v-obj{color:var(--ink-3); font-weight:400}
   button{font-family:inherit; cursor:pointer}
   a{color:var(--accent-2)}
   :focus-visible{outline:2px solid var(--accent-2); outline-offset:2px; border-radius:4px}
@@ -738,8 +740,8 @@ function viewSesion(root){
       const c=raw(pr,k);
       if(c.real!=null) hasAny=true;
       const pct=(c.obj&&c.real!=null)? c.real/c.obj*100 : null;
-      cells.push(`<td class="mono grp-start">${c.obj!=null?fmtN(c.obj,METRICS[k].dec):"–"}</td>`);
-      cells.push(`<td class="mono">${c.real!=null?fmtN(c.real,METRICS[k].dec):"–"}</td>`);
+      cells.push(`<td class="mono v-obj grp-start">${c.obj!=null?fmtN(c.obj,METRICS[k].dec):"–"}</td>`);
+      cells.push(`<td class="mono v-real">${c.real!=null?fmtN(c.real,METRICS[k].dec):"–"}</td>`);
       cells.push(pctCell(pct));
     });
     if(pr.vmax!=null||pr.pl!=null) hasAny=true;
@@ -755,8 +757,8 @@ function viewSesion(root){
   RADAR_METRICS.forEach(k=>{
     const teamReal=teamPoint(s,k,"abs"), teamObjV=teamObj(s,k,"abs");
     const pct=(teamObjV&&teamReal!=null)? teamReal/teamObjV*100 : null;
-    teamCells.push(`<td class="mono grp-start">${teamObjV!=null?fmtN(teamObjV,METRICS[k].dec):"–"}</td>`);
-    teamCells.push(`<td class="mono">${teamReal!=null?fmtN(teamReal,METRICS[k].dec):"–"}</td>`);
+    teamCells.push(`<td class="mono v-obj grp-start">${teamObjV!=null?fmtN(teamObjV,METRICS[k].dec):"–"}</td>`);
+    teamCells.push(`<td class="mono v-real">${teamReal!=null?fmtN(teamReal,METRICS[k].dec):"–"}</td>`);
     teamCells.push(pctCell(pct));
   });
   teamCells.push(`<td class="mono grp-start">${vmaxBest!=null?fmtN(vmaxBest,1):"–"}</td>`);
