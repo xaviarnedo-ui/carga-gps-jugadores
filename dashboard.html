@@ -141,6 +141,7 @@
   .tbl-scroll.sticky-col tbody tr.total td:first-child{background:var(--surface-2)}
   .grp-start{border-left:1px solid var(--border)}
   .badge-pend{display:inline-block; padding:2px 8px; border-radius:999px; background:var(--surface-2); color:var(--ink-3); font-size:11px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; vertical-align:1px}
+  .badge-warn{display:inline-block; padding:2px 8px; border-radius:999px; background:var(--sem-pasado); color:#fff; font-size:11px; font-weight:700; letter-spacing:.02em; vertical-align:1px}
 
   .hm-cell{cursor:pointer; transition:transform .08s}
   .hm-cell:hover{transform:scale(1.04)}
@@ -189,7 +190,7 @@
 
 <main class="wrap" id="view"></main>
 
-<script src="data.js"></script>
+<script src="data.js?v=53"></script>
 <script>
 "use strict";
 function buildRAW(d){
@@ -200,6 +201,15 @@ function buildRAW(d){
     if(p.length===3) return Math.round((p[0]*60+p[1]+p[2]/60)*10)/10;
     if(p.length===2) return Math.round((p[0]+p[1]/60)*10)/10;
     return null;
+  }
+  // el club ya calcula su propia fila "MEDIA EQUIPO" (teamAvg) por sesión/partido — la
+  // reempaquetamos con la misma forma que un jugador ({d,dur,vmax,pl,m}) para poder leerla
+  // con las mismas raw()/normalize() y así no reinventar (ni desviarnos de) su cálculo oficial.
+  function teamAvgShape(ta){
+    if(!ta) return null;
+    const mp={};
+    METR.forEach(k=>{ const v=ta[k]; if(v && typeof v==="object") mp[k]=[(v.obj===undefined?null:v.obj), (v.real===undefined?null:v.real)]; });
+    return {d:null, dur:dur2min(ta.duracion), vmax:(ta.velMax===undefined?null:ta.velMax), pl:(ta.playerLoad===undefined?null:ta.playerLoad), m:mp};
   }
   const players={};
   d.refPartido.players.forEach(p=>{ players[p.dorsal]={d:p.dorsal,n:p.jugador,g:p.grupo}; });
@@ -215,7 +225,8 @@ function buildRAW(d){
       const src=isMatch? m.partidos[key] : m.sesiones[key];
       const row={mc:meta.n, mcTipo:meta.tipo, key:key, date:src.date,
         role: src.role || (isMatch?"Partido":null),
-        isMatch:isMatch, rival:(src.rival||null), estado:meta.estado, semana:meta.semana, players:[]};
+        isMatch:isMatch, rival:(src.rival||null), estado:meta.estado, semana:meta.semana,
+        estimado:!!src.estimado, teamAvg:teamAvgShape(src.teamAvg), players:[]};
       src.players.forEach(pl=>{
         const dd=pl.dorsal;
         if(!players[dd]) players[dd]={d:dd,n:(pl.jugador||"?"),g:(pl.grupo||"?")};
@@ -319,8 +330,17 @@ function normalize(val, kind, pr, metric){
 }
 const inGroup = pr => state.group==="all" || pr.g===state.group || POS[pr.d]===state.group;
 
-// mean of a per-session team value (real, normalized)
+// mean of a per-session team value (real, normalized). Cuando se pide el equipo completo
+// (sin filtro de grupo ni subconjunto de jugadores) y la sesión trae su propia fila oficial
+// "MEDIA EQUIPO" (teamAvg, calculada por el club/import_data.py), se usa esa cifra
+// directamente en vez de recalcularla promediando a mano: el club aplica su propia regla
+// de inclusión (p.ej. excluye jugadores en rehabilitación sin objetivo ese día) y un
+// promedio ingenuo sobre real!=null diverge de esa cifra oficial en bastantes sesiones.
 function teamPoint(s, metric, kind, dorsalSet){
+  if(!dorsalSet && state.group==="all" && s.teamAvg && kind!=="pctref"){
+    const v=raw(s.teamAvg,metric).real;
+    if(v!=null) return normalize(v, kind, s.teamAvg, metric);
+  }
   let sum=0,n=0;
   for(const pr of s.players){
     if(dorsalSet){ if(!dorsalSet.has(pr.d)) continue; }
@@ -332,6 +352,14 @@ function teamPoint(s, metric, kind, dorsalSet){
 }
 function teamObj(s, metric, kind){
   if(METRICS[metric].noObj) return null;
+  if(state.group==="all" && s.teamAvg && kind!=="pctref"){
+    const o=raw(s.teamAvg,metric).obj;
+    if(o!=null){
+      if(kind==="abs") return o;
+      if(kind==="permin") return s.teamAvg.dur? o/s.teamAvg.dur : null;
+      if(kind==="pctobj") return 100;
+    }
+  }
   let sum=0,n=0;
   for(const pr of s.players){
     if(!inGroup(pr)) continue;
@@ -683,6 +711,12 @@ function viewSesion(root){
   info.append((s.rival? "vs "+s.rival+" · " : "")+"Microciclo "+s.mc+(s.mcTipo?" (Tipo "+s.mcTipo+")":"")+" · "+s.date+"  ");
   info.appendChild(el("span",{class:"badge-pend", style:"background:var(--accent); color:var(--on-accent)"}, badge));
   p.appendChild(info);
+  if(s.estimado){
+    const w=el("p",{class:"note", style:"padding:0 16px 10px"});
+    w.appendChild(el("span",{class:"badge-warn"},"⚠ Datos estimados"));
+    w.append(" — sin GPS real de este partido; valores reconstruidos a partir de REF_PARTIDO y los minutos jugados.");
+    p.appendChild(w);
+  }
 
   if(!sessionHasData(s)){
     p.appendChild(el("p",{class:"note"},"Todavía no hay datos cargados para esta sesión."));
@@ -690,21 +724,29 @@ function viewSesion(root){
   }
 
   const players = s.players.filter(inGroup).sort((a,b)=>a.d-b.d);
-
-  // agregados de equipo (respetan el filtro de Grupo)
-  let vmaxBest=null, plSum=0, plN=0, durSum=0, durN=0;
-  players.forEach(pr=>{
-    if(pr.vmax!=null && (vmaxBest==null||pr.vmax>vmaxBest)) vmaxBest=pr.vmax;
-    if(pr.pl!=null){ plSum+=pr.pl; plN++; }
-    if(pr.dur!=null){ durSum+=pr.dur; durN++; }
-  });
+  // el resumen de equipo (Vel.máx/PL/Duración) usa la MEDIA EQUIPO oficial (s.teamAvg) cuando
+  // se ve la plantilla completa; si hay un filtro de Grupo activo, no hay cifra oficial para
+  // ese subconjunto y se recalcula a mano sobre los jugadores visibles.
+  let vmaxTeam=null, plTeam=null, durTeam=null;
+  if(state.group==="all" && s.teamAvg){
+    vmaxTeam=s.teamAvg.vmax; plTeam=s.teamAvg.pl; durTeam=s.teamAvg.dur;
+  } else {
+    let plSum=0,plN=0,durSum=0,durN=0;
+    players.forEach(pr=>{
+      if(pr.vmax!=null && (vmaxTeam==null||pr.vmax>vmaxTeam)) vmaxTeam=pr.vmax;
+      if(pr.pl!=null){ plSum+=pr.pl; plN++; }
+      if(pr.dur!=null){ durSum+=pr.dur; durN++; }
+    });
+    plTeam = plN? plSum/plN : null;
+    durTeam = durN? durSum/durN : null;
+  }
   const nConDatos = players.filter(pr=> RADAR_METRICS.some(k=>raw(pr,k).real!=null)).length;
 
   const miniData=[
     {n:nConDatos, l:"Jugadores con datos"},
-    {n:vmaxBest!=null?fmtN(vmaxBest,1):"–", sm:" km/h", l:"Vel. máx sesión"},
-    {n:plN?fmtN(plSum/plN,0):"–", l:"Player Load medio"},
-    {n:durN?fmtN(durSum/durN,0):"–", sm:" min", l:"Duración media"},
+    {n:vmaxTeam!=null?fmtN(vmaxTeam,1):"–", sm:" km/h", l:"Vel. máx equipo"},
+    {n:plTeam!=null?fmtN(plTeam,0):"–", l:"Player Load medio"},
+    {n:durTeam!=null?fmtN(durTeam,0):"–", sm:" min", l:"Duración media"},
   ];
   const mini=el("div",{class:"mini-kpis"});
   mini.innerHTML = miniData.map(k=>`<div class="kpi"><div class="n">${k.n}${k.sm?`<small>${k.sm}</small>`:""}</div><div class="l">${k.l}</div></div>`).join("");
@@ -761,9 +803,9 @@ function viewSesion(root){
     teamCells.push(`<td class="mono v-real">${teamReal!=null?fmtN(teamReal,METRICS[k].dec):"–"}</td>`);
     teamCells.push(pctCell(pct));
   });
-  teamCells.push(`<td class="mono grp-start">${vmaxBest!=null?fmtN(vmaxBest,1):"–"}</td>`);
-  teamCells.push(`<td class="mono">${plN?fmtN(plSum/plN,0):"–"}</td>`);
-  teamCells.push(`<td class="mono">${durN?fmtN(durSum/durN,0)+"′":"–"}</td>`);
+  teamCells.push(`<td class="mono grp-start">${vmaxTeam!=null?fmtN(vmaxTeam,1):"–"}</td>`);
+  teamCells.push(`<td class="mono">${plTeam!=null?fmtN(plTeam,0):"–"}</td>`);
+  teamCells.push(`<td class="mono">${durTeam!=null?fmtN(durTeam,0)+"′":"–"}</td>`);
   const trTeam=el("tr",{class:"total"}); trTeam.innerHTML=teamCells.join(""); body.appendChild(trTeam);
 
   tb.appendChild(body); wrap.appendChild(tb); p.appendChild(wrap);
@@ -951,7 +993,7 @@ function viewPartidos(root){
     const cx=mL+bw*i+bw/2, v=r.stats[state.metric].sum;
     svg.appendChild(el("rect",{x:cx-bw*0.32, y:Y(v), width:bw*0.64, height:mT+ih-Y(v), fill:"var(--s1)", rx:3}));
     svg.appendChild(el("text",{x:cx,y:Y(v)-6,"text-anchor":"middle","font-size":11,"font-weight":700,fill:"var(--ink)"}, fmtN(v,0)));
-    svg.appendChild(el("text",{class:"axis",x:cx,y:H-mB+16,"text-anchor":"middle","font-weight":600,fill:"var(--ink-2)"}, r.s.key));
+    svg.appendChild(el("text",{class:"axis",x:cx,y:H-mB+16,"text-anchor":"middle","font-weight":600,fill:"var(--ink-2)"}, r.s.key+(r.s.estimado?" ⚠":"")));
     svg.appendChild(el("text",{class:"axis",x:cx,y:H-mB+29,"text-anchor":"middle"}, "vs "+(r.s.rival||"?")));
   });
   const box=el("div",{class:"chart-box"}); box.appendChild(svg); p.appendChild(box);
@@ -974,7 +1016,8 @@ function viewPartidos(root){
   tb.innerHTML=`<thead><tr>${head1}</tr><tr>${head2}</tr></thead>`;
   const body=el("tbody");
   rows.forEach(r=>{
-    const cells=[`<td>${r.s.key} <span class="muted">vs ${r.s.rival||"?"}</span><br><span class="muted">${r.s.date.slice(5)}</span></td>`];
+    const estBadge = r.s.estimado? ' <span class="badge-warn" style="font-size:9px; padding:1px 6px">EST.</span>' : '';
+    const cells=[`<td>${r.s.key}${estBadge} <span class="muted">vs ${r.s.rival||"?"}</span><br><span class="muted">${r.s.date.slice(5)}</span></td>`];
     TABLE_METRICS.forEach(k=>{
       const st=r.stats[k];
       cells.push(`<td class="mono grp-start">${st.mean!=null?fmtN(st.mean,METRICS[k].dec):"–"}</td>`);
@@ -996,6 +1039,12 @@ function viewPartidos(root){
   const trTot=el("tr",{class:"total"}); trTot.innerHTML=totCells.join(""); body.appendChild(trTot);
   tb.appendChild(body); wrap.appendChild(tb); p.appendChild(wrap);
   p.appendChild(el("p",{class:"note"},"La media de la fila «Acumulado» pondera por participación: es el sumatorio de la temporada entre el total de jugadores-partido, no la media simple de las medias de cada partido."));
+  if(rows.some(r=>r.s.estimado)){
+    const w=el("p",{class:"note"});
+    w.appendChild(el("span",{class:"badge-warn"},"⚠ EST."));
+    w.append(" = datos estimados: ese partido no tiene GPS real, los valores se reconstruyeron a partir de REF_PARTIDO y los minutos jugados. Cuentan igual en el acumulado de temporada.");
+    p.appendChild(w);
+  }
   root.appendChild(p);
 }
 
