@@ -59,6 +59,7 @@
   .mono{font-family:"IBM Plex Mono", ui-monospace, monospace; font-variant-numeric:tabular-nums}
   button{font-family:inherit; cursor:pointer}
   a{color:var(--accent-2)}
+  :focus-visible{outline:2px solid var(--accent-2); outline-offset:2px; border-radius:4px}
 
   .wrap{max-width:1180px; margin:0 auto; padding:0 20px}
 
@@ -81,14 +82,16 @@
   .fgroup{display:flex; flex-direction:column; gap:4px}
   .fgroup > span{font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3)}
   .chips{display:flex; gap:4px; flex-wrap:wrap}
-  .chip{border:1px solid var(--border-strong); background:var(--surface); color:var(--ink-2); border-radius:999px; padding:3px 10px; font-size:12.5px; font-weight:500; line-height:1.4}
+  .chip{border:1px solid var(--border-strong); background:var(--surface); color:var(--ink-2); border-radius:999px; padding:3px 10px; font-size:12.5px; font-weight:500; line-height:1.4; transition:border-color .1s, color .1s}
   .chip[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--on-accent)}
+  .chip:not([aria-pressed="true"]):hover{border-color:var(--accent-2); color:var(--ink)}
   .chip.sm{padding:2px 8px; font-size:11.5px}
   select{font-family:inherit; font-size:12.5px; padding:4px 8px; border:1px solid var(--border-strong); border-radius:7px; background:var(--surface); color:var(--ink)}
 
   /* ---- tabs ---- */
   .tabs{display:flex; gap:2px; border-bottom:1px solid var(--border); margin:18px 0 0; overflow-x:auto}
-  .tab{border:0; background:transparent; color:var(--ink-2); font-family:"Barlow Condensed",sans-serif; font-weight:600; font-size:15.5px; letter-spacing:.04em; text-transform:uppercase; padding:9px 14px; border-bottom:2.5px solid transparent; white-space:nowrap}
+  .tab{border:0; background:transparent; color:var(--ink-2); font-family:"Barlow Condensed",sans-serif; font-weight:600; font-size:15.5px; letter-spacing:.04em; text-transform:uppercase; padding:9px 14px; border-bottom:2.5px solid transparent; white-space:nowrap; transition:color .1s, border-color .1s}
+  .tab:hover{color:var(--ink)}
   .tab[aria-selected="true"]{color:var(--ink); border-bottom-color:var(--accent-2)}
 
   main{padding:20px 0 60px}
@@ -126,12 +129,22 @@
   th:first-child,td:first-child{text-align:left}
   thead th{font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-3); font-weight:600}
   tbody tr:hover{background:var(--surface-2)}
+  tbody tr.total{font-weight:700}
+  tbody tr.total td{background:var(--surface-2); border-top:2px solid var(--border-strong)}
   .tbl-scroll{overflow-x:auto; padding:2px 16px 16px}
+  .tbl-scroll.sticky-col th:first-child,.tbl-scroll.sticky-col td:first-child{position:sticky; left:0; background:var(--surface); z-index:1}
+  .tbl-scroll.sticky-col tbody tr:hover td:first-child{background:var(--surface-2)}
+  .tbl-scroll.sticky-col tbody tr.total td:first-child{background:var(--surface-2)}
+  .grp-start{border-left:1px solid var(--border)}
+  .badge-pend{display:inline-block; padding:2px 8px; border-radius:999px; background:var(--surface-2); color:var(--ink-3); font-size:11px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; vertical-align:1px}
 
   .hm-cell{cursor:pointer; transition:transform .08s}
   .hm-cell:hover{transform:scale(1.04)}
   .hm-val{font-family:"IBM Plex Mono",monospace; font-size:11px; font-weight:500}
 
+  .mini-kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(112px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:8px; overflow:hidden; margin:0 16px 14px}
+  .mini-kpis .kpi{padding:10px 12px}
+  .mini-kpis .kpi .n{font-size:19px}
   .split{display:grid; grid-template-columns:1.35fr 1fr; gap:16px}
   .sub-h{font-family:"Barlow Condensed",sans-serif; font-weight:600; font-size:14px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-2); margin:0 0 8px}
   .pick{display:flex; flex-wrap:wrap; gap:4px; padding:0 16px 12px}
@@ -276,6 +289,18 @@ function raw(pr, metric){
   if(metric==="vmax") return {real:pr.vmax, obj:null};
   const m=pr.m[metric]; return m? {obj:m[0], real:m[1]} : {obj:null, real:null};
 }
+// partidos OFICIALES = liga (clave "Jx"); los PTx de pretemporada no cuentan aquí
+const isOficial = s => s.isMatch && /^J\d/.test(s.key);
+const officialMatches = () => RAW.sessions.filter(isOficial);
+// suma/media/mejor de un parámetro entre los jugadores que jugaron ese partido
+function matchStat(s, metric){
+  let sum=0, n=0, best=null;
+  s.players.forEach(pr=>{
+    const v=raw(pr,metric).real;
+    if(v!=null && isFinite(v)){ sum+=v; n++; if(best==null||v>best) best=v; }
+  });
+  return n? {sum, mean:sum/n, n, best} : {sum:null, mean:null, n:0, best:null};
+}
 function refVal(dorsal, metric){
   const r=REF[dorsal]; if(!r) return null;
   return r[metric==="vmax"?"velMax":metric] ?? null;
@@ -390,7 +415,8 @@ function renderShell(){
   // Tabs
   const tabDefs=[
     ["evolucion","Evolución"],["microciclos","Microciclos"],
-    ["tipo","Tipo de sesión"],["jugadores","Jugadores"],["comparador","Comparador"],
+    ["tipo","Tipo de sesión"],["partidos","Partidos"],
+    ["jugadores","Jugadores"],["comparador","Comparador"],
   ];
   const t=document.getElementById("tabs"); t.innerHTML="";
   tabDefs.forEach(([k,lab])=>{
@@ -433,7 +459,7 @@ function fBucketChips(){
 /* ---------- views ---------- */
 function renderView(){
   const v=document.getElementById("view"); v.innerHTML="";
-  ({evolucion:viewEvolucion, microciclos:viewMicrociclos, tipo:viewTipo,
+  ({evolucion:viewEvolucion, microciclos:viewMicrociclos, tipo:viewTipo, partidos:viewPartidos,
     jugadores:viewJugadores, comparador:viewComparador}[state.lens])(v);
 }
 function panel(title, desc){
@@ -725,6 +751,113 @@ function viewTipo(root){
   });
   const box=el("div",{class:"chart-box"}); box.appendChild(svg); p.appendChild(box);
   p.appendChild(el("p",{class:"note"},"CV = coeficiente de variación (desviación / media). Cuanto más bajo, más estandarizada está esa tipología de sesión entre microciclos."));
+  root.appendChild(p);
+}
+
+/* ===== 3b · PARTIDOS OFICIALES ===== */
+function viewPartidos(root){
+  const M=METRICS[state.metric];
+  const p=panel("Partidos oficiales",
+    "Liga 2026-27 — acumulado de cada partido oficial (los amistosos de pretemporada no cuentan aquí). Media = por jugador que lo disputó · Suma = total del equipo en ese partido.");
+
+  const all = officialMatches();
+  const rows = all
+    .map(s=>({ s, stats: Object.fromEntries([...RADAR_METRICS,"pl","vmax"].map(k=>[k, matchStat(s,k)])) }))
+    .filter(r=> r.stats.distancia.n>0);
+  const pending = all.filter(s=> matchStat(s,"distancia").n===0);
+
+  if(!rows.length){
+    if(pending.length){
+      const pm=pending[0], note=el("p",{class:"note"});
+      note.append("Aún no hay datos de partidos oficiales. Próximo: "+pm.key+" vs "+(pm.rival||"?")+" ("+pm.date.slice(5)+") — ");
+      note.appendChild(el("span",{class:"badge-pend"},"Pendiente"));
+      p.appendChild(note);
+    } else p.appendChild(el("p",{class:"note"},"Sin partidos oficiales todavía."));
+    root.appendChild(p); return;
+  }
+
+  // mini-KPIs
+  const distTotal = rows.reduce((a,r)=>a+(r.stats.distancia.sum||0),0);
+  const hsrTotal = rows.reduce((a,r)=>a+(r.stats.hsr.sum||0),0);
+  const usados = new Set(); rows.forEach(r=> r.s.players.forEach(pr=>{ if(raw(pr,"distancia").real!=null) usados.add(pr.d); }));
+  const miniData=[
+    {n:rows.length, l:"Partidos oficiales"},
+    {n:fmtN(distTotal,0), sm:" m", l:"Distancia total"},
+    {n:fmtN(hsrTotal,0), sm:" m", l:"HSR total"},
+    {n:usados.size, l:"Jugadores utilizados"},
+  ];
+  const mini=el("div",{class:"mini-kpis"});
+  mini.innerHTML = miniData.map(k=>`<div class="kpi"><div class="n">${k.n}${k.sm?`<small>${k.sm}</small>`:""}</div><div class="l">${k.l}</div></div>`).join("");
+  p.appendChild(mini);
+
+  // gráfica: total (suma) del parámetro elegido, partido a partido
+  const vals = rows.map(r=> r.stats[state.metric].sum);
+  const avg = vals.reduce((a,b)=>a+b,0)/vals.length;
+  const W=980,H=320,mL=58,mR=16,mT=16,mB=46;
+  const iw=W-mL-mR, ih=H-mT-mB;
+  const vmax=Math.max(...vals)*1.18 || 1;
+  const ticks=niceTicks(0,vmax,5);
+  const Y=v=> mT+ih - ih*v/ticks[ticks.length-1];
+  const bw=iw/rows.length;
+  const svg=el("svg",{viewBox:`0 0 ${W} ${H}`, role:"img","aria-label":"Total por partido oficial"});
+  const g=el("g",{class:"grid"});
+  ticks.forEach(tk=>g.appendChild(el("line",{x1:mL,x2:W-mR,y1:Y(tk),y2:Y(tk)})));
+  svg.appendChild(g);
+  const ax=el("g",{class:"axis"});
+  ticks.forEach(tk=>ax.appendChild(el("text",{x:mL-8,y:Y(tk)+3.5,"text-anchor":"end"}, fmtN(tk,0))));
+  ax.appendChild(el("text",{class:"axis-lab",x:mL-44,y:mT-4}, M.u||"u"));
+  svg.appendChild(ax);
+  svg.appendChild(el("line",{class:"band-line", x1:mL, x2:W-mR, y1:Y(avg), y2:Y(avg)}));
+  svg.appendChild(el("text",{x:W-mR,y:Y(avg)-5,"text-anchor":"end","font-size":10,fill:"var(--ink-3)"}, "media temporada · "+fmtN(avg,0)));
+  rows.forEach((r,i)=>{
+    const cx=mL+bw*i+bw/2, v=r.stats[state.metric].sum;
+    svg.appendChild(el("rect",{x:cx-bw*0.32, y:Y(v), width:bw*0.64, height:mT+ih-Y(v), fill:"var(--s1)", rx:3}));
+    svg.appendChild(el("text",{x:cx,y:Y(v)-6,"text-anchor":"middle","font-size":11,"font-weight":700,fill:"var(--ink)"}, fmtN(v,0)));
+    svg.appendChild(el("text",{class:"axis",x:cx,y:H-mB+16,"text-anchor":"middle","font-weight":600,fill:"var(--ink-2)"}, r.s.key));
+    svg.appendChild(el("text",{class:"axis",x:cx,y:H-mB+29,"text-anchor":"middle"}, "vs "+(r.s.rival||"?")));
+  });
+  const box=el("div",{class:"chart-box"}); box.appendChild(svg); p.appendChild(box);
+
+  if(pending.length){
+    const pm=pending[0], note=el("p",{class:"note"});
+    note.append("Próximo: "+pm.key+" vs "+(pm.rival||"?")+" ("+pm.date.slice(5)+") — ");
+    note.appendChild(el("span",{class:"badge-pend"},"Pendiente"));
+    p.appendChild(note);
+  }
+
+  // tabla completa: media + sumatorio de cada parámetro, partido a partido + acumulado
+  const TABLE_METRICS=["distancia","hmld","hsr","sprint","acc","dec","pl"];
+  const wrap=el("div",{class:"tbl-scroll sticky-col"});
+  const tb=el("table");
+  const head1=['<th rowspan="2">Partido</th>']
+    .concat(TABLE_METRICS.map(k=>`<th colspan="2" class="grp-start">${METRICS[k].lab}${METRICS[k].u?` (${METRICS[k].u})`:""}</th>`))
+    .concat(['<th rowspan="2" class="grp-start">Vel. máx<br>mejor</th>']).join("");
+  const head2=TABLE_METRICS.map(()=>'<th class="grp-start">Media</th><th>Suma</th>').join("");
+  tb.innerHTML=`<thead><tr>${head1}</tr><tr>${head2}</tr></thead>`;
+  const body=el("tbody");
+  rows.forEach(r=>{
+    const cells=[`<td>${r.s.key} <span class="muted">vs ${r.s.rival||"?"}</span><br><span class="muted">${r.s.date.slice(5)}</span></td>`];
+    TABLE_METRICS.forEach(k=>{
+      const st=r.stats[k];
+      cells.push(`<td class="mono grp-start">${st.mean!=null?fmtN(st.mean,METRICS[k].dec):"–"}</td>`);
+      cells.push(`<td class="mono">${st.sum!=null?fmtN(st.sum,0):"–"}</td>`);
+    });
+    cells.push(`<td class="mono grp-start">${r.stats.vmax.best!=null?fmtN(r.stats.vmax.best,1):"–"}</td>`);
+    const tr=el("tr"); tr.innerHTML=cells.join(""); body.appendChild(tr);
+  });
+  const totCells=["<td>ACUMULADO TEMPORADA</td>"];
+  TABLE_METRICS.forEach(k=>{
+    const sum=rows.reduce((a,r)=>a+(r.stats[k].sum||0),0);
+    const totalN=rows.reduce((a,r)=>a+r.stats[k].n,0);
+    const mean=totalN? sum/totalN : null;
+    totCells.push(`<td class="mono grp-start">${mean!=null?fmtN(mean,METRICS[k].dec):"–"}</td>`);
+    totCells.push(`<td class="mono">${fmtN(sum,0)}</td>`);
+  });
+  const bestVmax=Math.max(...rows.map(r=>r.stats.vmax.best||0));
+  totCells.push(`<td class="mono grp-start">${bestVmax?fmtN(bestVmax,1):"–"}</td>`);
+  const trTot=el("tr",{class:"total"}); trTot.innerHTML=totCells.join(""); body.appendChild(trTot);
+  tb.appendChild(body); wrap.appendChild(tb); p.appendChild(wrap);
+  p.appendChild(el("p",{class:"note"},"La media de la fila «Acumulado» pondera por participación: es el sumatorio de la temporada entre el total de jugadores-partido, no la media simple de las medias de cada partido."));
   root.appendChild(p);
 }
 
