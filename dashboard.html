@@ -170,15 +170,15 @@
   details.les[open] > summary .nm::before{transform:rotate(90deg)}
   details.les > summary .lb{font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); display:block}
   .les-body{padding:4px 0 10px; background:var(--surface)}
-  .sm-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding:0 16px 12px}
-  .sm-card{border:1px solid var(--border); border-radius:8px; padding:8px 10px 4px}
-  .sm-card h4{margin:0; font-family:"Barlow Condensed",sans-serif; font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-2); display:flex; justify-content:space-between}
-  .sm-card h4 b{color:var(--ink); font-family:"IBM Plex Mono",monospace; font-size:12px; text-transform:none; letter-spacing:0}
+  .les-pick{display:flex; flex-wrap:wrap; gap:10px 22px; padding:4px 16px 10px}
+  .chip .sw{display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:5px; vertical-align:0}
   .ref-line{stroke:var(--ink-3); stroke-dasharray:4 3; stroke-width:1.2}
   .les-h{font-family:"Barlow Condensed",sans-serif; font-weight:600; font-size:15px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-2); padding:14px 16px 6px; margin:0}
 
   @media (max-width:820px){
-    .sm-grid{grid-template-columns:repeat(2,1fr)}
+    .les-pick{display:flex; flex-wrap:wrap; gap:10px 22px; padding:4px 16px 10px}
+  .chip .sw{display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:5px; vertical-align:0}
+  .sm-grid{grid-template-columns:repeat(2,1fr)}
     details.les > summary{grid-template-columns:1fr 1fr; row-gap:4px}
     .kpis{grid-template-columns:repeat(2,1fr)}
     .split{grid-template-columns:1fr}
@@ -1307,38 +1307,151 @@ function tipoPunto(pt, l){
   if(pt.s.date===l.baja && pt.pr.e!=="rehab") return "Día de la lesión";
   return pt.pr.e==="rehab" ? "Readaptación" : "Grupo";
 }
-function miniLesion(pts, k, ref){
-  const W=250, H=118, mL=34, mR=8, mT=10, mB=20, iw=W-mL-mR, ih=H-mT-mB;
-  const ys=pts.map(pt=>raw(pt.pr,k).real);
-  const vals=ys.filter(v=>v!=null).concat(ref!=null?[ref]:[]);
-  const vmax=Math.max(1, ...vals)*1.08;
-  const X=i=> mL + (pts.length<=1? iw/2 : iw*i/(pts.length-1));
-  const Y=v=> mT + ih - ih*v/vmax;
-  const svg=el("svg",{viewBox:`0 0 ${W} ${H}`, role:"img","aria-label":METRICS[k].lab});
-  const g=el("g",{class:"grid"}); const ax=el("g",{class:"axis"});
-  niceTicks(0, vmax, 3).filter(t=>t<=vmax).forEach(t=>{
-    g.appendChild(el("line",{x1:mL, x2:W-mR, y1:Y(t), y2:Y(t)}));
-    ax.appendChild(el("text",{x:mL-5, y:Y(t)+3.5, "text-anchor":"end"}, fmtN(t, METRICS[k].dec>0&&vmax<10?1:0)));
-  });
-  svg.append(g, ax);
-  if(ref!=null) svg.appendChild(el("line",{class:"ref-line", x1:mL, x2:W-mR, y1:Y(ref), y2:Y(ref)}));
-  svg.appendChild(el("path",{class:"serie", stroke:"var(--s2)", d:line(ys.map((v,i)=> v==null?null:[X(i),Y(v)]))}));
-  ys.forEach((v,i)=>{
-    if(v==null) return;
-    const pt=pts[i];
-    const col = pt.alta? "var(--sem-ok)" : pt.s.isExtra? "var(--s1)" : pt.dia0? "var(--sem-alto)" : "var(--s2)";
-    const c=el("circle",{class:"dot", cx:X(i), cy:Y(v), r:pt.alta?4:3, fill:col});
-    c.appendChild(el("title",{}, `${pt.s.key} · ${fDate(pt.s.date)} · ${fmtN(v,METRICS[k].dec)}`));
-    svg.appendChild(c);
-  });
-  const xa=el("g",{class:"axis"});
-  if(pts.length){
-    xa.appendChild(el("text",{x:X(0), y:H-5, "text-anchor":pts.length>1?"start":"middle"}, pts[0].s.date.slice(8,10)+"/"+pts[0].s.date.slice(5,7)));
-    if(pts.length>1) xa.appendChild(el("text",{x:X(pts.length-1), y:H-5, "text-anchor":"end"}, pts[pts.length-1].s.date.slice(8,10)+"/"+pts[pts.length-1].s.date.slice(5,7)));
-  }
-  svg.appendChild(xa);
-  return svg;
+// carga diaria por jugador (sesiones + partidos + Extra) para el ACWR día a día
+const DIA = (()=>{
+  const m={pl:{}, hsr:{}, sprint:{}};
+  RAW.sessions.concat(RAW.extras).forEach(s=> s.players.forEach(pr=>{
+    const k=pr.d+"|"+s.date;
+    const vals={pl:pr.pl, hsr:raw(pr,"hsr").real, sprint:raw(pr,"sprint").real};
+    Object.keys(m).forEach(met=>{ if(vals[met]!=null) m[met][k]=(m[met][k]||0)+vals[met]; });
+  }));
+  return m;
+})();
+const addDias = (iso,n)=> new Date(Date.parse(iso)+n*86400000).toISOString().slice(0,10);
+// misma fórmula que CARGA_AC: aguda Σ7d/7 ÷ crónica Σ28d/28, días sin sesión = 0
+function acwrDia(dorsal, met, iso){
+  let a=0, c=0;
+  for(let i=0;i<28;i++){ const v=DIA[met][dorsal+"|"+addDias(iso,-i)]||0; c+=v; if(i<7) a+=v; }
+  return c? (a/7)/(c/28) : 0;
 }
+const ACWR_SERIES = {acwr_pl:{lab:"ACWR PL", met:"pl"}, acwr_hsr:{lab:"ACWR HSR", met:"hsr"}, acwr_sprint:{lab:"ACWR Sprints", met:"sprint"}};
+const LES_COLORS = {distancia:"var(--s1)", hmld:"var(--s3)", hsr:"var(--s2)", sprint:"var(--s6)", acc:"var(--s4)",
+  dec:"var(--s5)", vmax:"#7a5cc8", pl:"#3c8f9e", acwr_pl:"var(--ink)", acwr_hsr:"#b0543a", acwr_sprint:"#8a6d00"};
+const lesSel = {};   // id de lesión -> {sel:Set, abs:bool}
+
+function chartLesion(l, pts, ref, cfg){
+  const fin = l.alta || HOY;
+  const dias=[]; for(let d=l.baja; d<=fin; d=addDias(d,1)) dias.push(d);
+  const mets=[...cfg.sel].filter(k=>LES_METRICS.includes(k));
+  const acwrs=[...cfg.sel].filter(k=>ACWR_SERIES[k]);
+  const abs = cfg.abs && mets.length===1;
+  // el viewBox sigue al ancho real para que el texto no quede diminuto en el móvil
+  const ancho=(document.getElementById("view").clientWidth||980)-40;
+  const W=Math.max(360, Math.min(980, ancho)), H=W<600? 300 : 360;
+  const mL=W<600?42:54, mR=acwrs.length?(W<600?34:48):12, mT=18, mB=40, iw=W-mL-mR, ih=H-mT-mB;
+  const cadaX = W<600? 14 : 7;
+  const X=d=> mL + (dias.length<=1? iw/2 : iw*diasEntre(l.baja,d)/(dias.length-1));
+  // serie de métricas: valor por sesión (absoluto o % de su media previa)
+  const val=(pt,k)=>{ const v=raw(pt.pr,k).real; if(v==null) return null; return abs? v : (ref[k]? v/ref[k]*100 : null); };
+  const metY = mets.map(k=> pts.map(pt=>val(pt,k)));
+  const acwrY = acwrs.map(k=> dias.map(d=> acwrDia(l.dorsal, ACWR_SERIES[k].met, d)));
+  const lv = metY.flat().filter(v=>v!=null);
+  let lmax = Math.max(abs? 1 : 120, ...lv)*1.06;
+  const lt=niceTicks(0,lmax,5); lmax=lt[lt.length-1];
+  const YL=v=> mT+ih-ih*v/lmax;
+  const rmax0=Math.max(1.6, ...acwrY.flat())*1.05;
+  const rt=niceTicks(0,rmax0,4); const rmax=rt[rt.length-1];
+  const YR=v=> mT+ih-ih*v/rmax;
+
+  const svg=el("svg",{viewBox:`0 0 ${W} ${H}`, role:"img","aria-label":"Evolución durante la lesión"});
+  const g=el("g",{class:"grid"}), ax=el("g",{class:"axis"});
+  if(mets.length){
+    lt.forEach(t=>{ g.appendChild(el("line",{x1:mL,x2:W-mR,y1:YL(t),y2:YL(t)}));
+      ax.appendChild(el("text",{x:mL-8,y:YL(t)+3.5,"text-anchor":"end"}, fmtN(t,0)+(abs?"":"%"))); });
+    ax.appendChild(el("text",{class:"axis-lab",x:4,y:mT-6}, abs? (METRICS[mets[0]].u||METRICS[mets[0]].lab) : "% media previa"));
+  }
+  if(acwrs.length){
+    svg.appendChild(el("rect",{class:"band-fill", x:mL, y:YR(1.3), width:iw, height:YR(0.8)-YR(1.3)}));
+    rt.forEach(t=>{ if(!mets.length) g.appendChild(el("line",{x1:mL,x2:W-mR,y1:YR(t),y2:YR(t)}));
+      ax.appendChild(el("text",{x:W-mR+8,y:YR(t)+3.5,"text-anchor":"start"}, fmtN(t,1))); });
+    ax.appendChild(el("text",{class:"axis-lab",x:W-mR-4,y:mT-6,"text-anchor":"start"},"ACWR"));
+  }
+  svg.append(g, ax);
+  if(mets.length && !abs) svg.appendChild(el("line",{class:"ref-line",x1:mL,x2:W-mR,y1:YL(100),y2:YL(100)}));
+  if(abs && ref[mets[0]]!=null) svg.appendChild(el("line",{class:"ref-line",x1:mL,x2:W-mR,y1:YL(ref[mets[0]]),y2:YL(ref[mets[0]])}));
+  // marcas de baja y alta
+  [[l.baja,"Lesión","var(--sem-alto)"], ...(l.alta?[[l.alta,"Alta","var(--sem-ok)"]]:[])].forEach(([d,t,c])=>{
+    svg.appendChild(el("line",{x1:X(d),x2:X(d),y1:mT,y2:mT+ih,stroke:c,"stroke-width":1.5,"stroke-dasharray":"2 3"}));
+    svg.appendChild(el("text",{x:X(d)+(d===l.baja?4:-4),y:mT+10,"text-anchor":d===l.baja?"start":"end",fill:c,"font-size":"10.5","font-weight":"600"},t));
+  });
+  acwrs.forEach((k,j)=> svg.appendChild(el("path",{class:"serie", stroke:LES_COLORS[k], "stroke-dasharray":"5 3", "stroke-width":1.8,
+    d:line(acwrY[j].map((v,i)=>[X(dias[i]),YR(v)]))})));
+  mets.forEach((k,j)=>{
+    svg.appendChild(el("path",{class:"serie", stroke:LES_COLORS[k], d:line(metY[j].map((v,i)=> v==null?null:[X(pts[i].s.date),YL(v)]))}));
+    metY[j].forEach((v,i)=>{ if(v==null) return;
+      svg.appendChild(el("circle",{class:"dot",cx:X(pts[i].s.date),cy:YL(v),r:pts[i].s.isExtra?4:3.2,fill:LES_COLORS[k]})); });
+  });
+  // eje x: una etiqueta por semana
+  const xa=el("g",{class:"axis"});
+  dias.forEach((d,i)=>{ if(i%cadaX===0 || (i===dias.length-1 && i%cadaX>cadaX/2))
+    xa.appendChild(el("text",{x:X(d),y:H-mB+16,"text-anchor":"middle"}, d.slice(8,10)+"/"+d.slice(5,7))); });
+  svg.appendChild(xa);
+
+  // tooltip por día
+  const box=el("div",{class:"chart-box"}); box.appendChild(svg);
+  const tip=el("div",{class:"tt"}); box.appendChild(tip);
+  const cross=el("line",{class:"crosshair",y1:mT,y2:mT+ih,x1:mL,x2:mL,opacity:0}); svg.appendChild(cross);
+  const hit=el("rect",{x:mL,y:mT,width:iw,height:ih,fill:"transparent"}); svg.appendChild(hit);
+  hit.addEventListener("pointermove", ev=>{
+    const r=svg.getBoundingClientRect(), px=(ev.clientX-r.left)/r.width*W;
+    const i=Math.max(0,Math.min(dias.length-1, Math.round((px-mL)/iw*(dias.length-1))));
+    const d=dias[i], pt=pts.find(p=>p.s.date===d);
+    cross.setAttribute("x1",X(d)); cross.setAttribute("x2",X(d)); cross.setAttribute("opacity",1);
+    const rows=[];
+    mets.forEach(k=>{ if(!pt) return; const v=raw(pt.pr,k).real; if(v==null) return;
+      rows.push(`<div class="row"><span><i style="background:${LES_COLORS[k]}"></i>${METRICS[k].lab}</span><b>${fmtN(v,METRICS[k].dec)}${ref[k]?` · ${Math.round(v/ref[k]*100)}%`:""}</b></div>`); });
+    acwrs.forEach((k,j)=> rows.push(`<div class="row"><span><i style="background:${LES_COLORS[k]}"></i>${ACWR_SERIES[k].lab}</span><b>${fmtN(acwrY[j][i],2)}</b></div>`));
+    tip.innerHTML=`<h4><span>${fDate(d)}</span><span class="muted">día ${i+1}</span></h4>`+
+      `<div class="row" style="margin-bottom:3px"><span>${pt? pt.s.key+" · "+tipoPunto(pt,l) : "Sin sesión"}</span></div>`+rows.join("");
+    tip.style.opacity=1;
+    tip.style.left=Math.min(r.width-190, Math.max(0, X(d)/W*r.width+12))+"px"; tip.style.top="10px";
+  });
+  hit.addEventListener("pointerleave", ()=>{ tip.style.opacity=0; cross.setAttribute("opacity",0); });
+  return box;
+}
+
+function panelGraficoLesion(l, pts, ref){
+  const cfg = lesSel[l.id] || (lesSel[l.id] = {sel:new Set(pts.length?["distancia","hsr","acwr_pl"]:["acwr_pl","acwr_hsr","acwr_sprint"]), abs:false});
+  const cont=el("div");
+  const pintar=()=>{
+    cont.innerHTML="";
+    const bar=el("div",{class:"les-pick"});
+    const grupo=(tit, claves, lab)=>{
+      const gdiv=el("div",{class:"fgroup"}); gdiv.appendChild(el("span",{},tit));
+      const box=el("div",{class:"chips"});
+      claves.forEach(k=>{
+        const on=cfg.sel.has(k);
+        const b=el("button",{class:"chip sm","aria-pressed":on});
+        b.innerHTML=`<i class="sw" style="background:${LES_COLORS[k]}"></i>${lab(k)}`;
+        if(LES_METRICS.includes(k) && !pts.length) b.setAttribute("disabled","");
+        b.onclick=()=>{ on? cfg.sel.delete(k) : cfg.sel.add(k); pintar(); };
+        box.appendChild(b);
+      });
+      gdiv.appendChild(box); return gdiv;
+    };
+    bar.appendChild(grupo("Métricas", LES_METRICS, k=>METRICS[k].lab));
+    bar.appendChild(grupo("ACWR", Object.keys(ACWR_SERIES), k=>ACWR_SERIES[k].lab.replace("ACWR ","")));
+    const nMet=[...cfg.sel].filter(k=>LES_METRICS.includes(k)).length;
+    const esc=el("div",{class:"fgroup"}); esc.appendChild(el("span",{},"Escala"));
+    const ebox=el("div",{class:"chips"});
+    [["pct","% media previa"],["abs","Valor absoluto"]].forEach(([v,t])=>{
+      const b=el("button",{class:"chip sm","aria-pressed":(v==="abs")===(cfg.abs&&nMet===1)},t);
+      if(v==="abs" && nMet!==1){ b.setAttribute("disabled",""); b.title="Elige una sola métrica para verla en valor absoluto"; }
+      b.onclick=()=>{ cfg.abs=(v==="abs"); pintar(); };
+      ebox.appendChild(b);
+    });
+    esc.appendChild(ebox); bar.appendChild(esc);
+    cont.appendChild(bar);
+    if(!cfg.sel.size){ cont.appendChild(el("p",{class:"note"},"Elige al menos una métrica o un ACWR.")); return; }
+    cont.appendChild(chartLesion(l, pts, ref, cfg));
+    cont.appendChild(el("p",{class:"note"},
+      `Puntos = sesiones con GPS (más grandes: Extra). Línea gris discontinua = su media en las 4 semanas previas a la baja (${ref.n} sesiones con el grupo)`+
+      `. ACWR (discontinuo, eje derecho) calculado día a día: carga de 7 días ÷ carga de 28 días; franja verde 0,8–1,3.`));
+  };
+  pintar();
+  return cont;
+}
+
 function fichaLesion(l){
   const d=el("details",{class:"les"});
   const fin = l.alta || HOY;
@@ -1357,30 +1470,16 @@ function fichaLesion(l){
     if(!d.open || d.dataset.ok) return;
     d.dataset.ok="1";
     const body=el("div",{class:"les-body"});
+    const ref=refPrevia(l);
+    body.appendChild(panelGraficoLesion(l, pts, ref));
     if(!pts.length){
-      body.appendChild(el("p",{class:"note"},"Sin sesiones con GPS durante la baja (todavía no ha empezado la readaptación con el grupo ni en sesiones registradas)."));
+      body.appendChild(el("p",{class:"note"},"Sin sesiones con GPS durante la baja: solo se puede seguir la caída de su ACWR."));
     } else {
-      const ref=refPrevia(l);
-      body.appendChild(legendRow([
-        {c:"var(--sem-alto)", t:"Día de la lesión"}, {c:"var(--s2)", t:"Readaptación"}, {c:"var(--s1)", t:"Sesión Extra"},
-        ...(l.alta?[{c:"var(--sem-ok)", t:"Alta (vuelta al grupo)"}]:[]),
-        {c:"var(--ink-3)", t:`Su media previa a la baja (${ref.n} ses.)`, line:true},
-      ]));
-      const grid=el("div",{class:"sm-grid"});
-      LES_METRICS.forEach(k=>{
-        const card=el("div",{class:"sm-card"});
-        const ult=[...pts].reverse().find(pt=>raw(pt.pr,k).real!=null);
-        const pct = (ult && ref[k])? Math.round(raw(ult.pr,k).real/ref[k]*100) : null;
-        const h=el("h4"); h.innerHTML=`<span>${METRICS[k].lab}${METRICS[k].u?` (${METRICS[k].u})`:""}</span>`+
-          (pct!=null?`<b title="Última sesión vs su media previa">${pct}%</b>`:"");
-        card.append(h, miniLesion(pts, k, ref[k]));
-        grid.appendChild(card);
-      });
-      body.appendChild(grid);
       const wrap=el("div",{class:"tbl-scroll sticky-col"});
       const tb=el("table");
       tb.innerHTML=`<thead><tr><th>Fecha</th><th>Sesión</th><th style="text-align:left">Tipo</th><th>Duración</th>`+
-        LES_METRICS.map((k,i)=>`<th${i===0?' class="grp-start"':''}>${METRICS[k].lab}</th>`).join("")+`</tr></thead>`;
+        LES_METRICS.map((k,i)=>`<th${i===0?' class="grp-start"':''}>${METRICS[k].lab}</th>`).join("")+
+        `<th class="grp-start">ACWR PL</th><th>ACWR HSR</th><th>ACWR Spr.</th></tr></thead>`;
       const tbody=el("tbody");
       pts.forEach(pt=>{
         const cells=[`<td class="mono">${fDate(pt.s.date)}</td>`, `<td>${pt.s.key}</td>`,
@@ -1388,10 +1487,12 @@ function fichaLesion(l){
           `<td class="mono">${pt.pr.dur!=null?fmtN(pt.pr.dur,0)+"′":"–"}</td>`];
         LES_METRICS.forEach((k,i)=>{ const v=raw(pt.pr,k).real;
           cells.push(`<td class="mono${i===0?" grp-start":""}">${v!=null?fmtN(v,METRICS[k].dec):"–"}</td>`); });
+        Object.values(ACWR_SERIES).forEach((a,i)=> cells.push(`<td class="mono${i===0?" grp-start":""}">${fmtN(acwrDia(l.dorsal,a.met,pt.s.date),2)}</td>`));
         const tr=el("tr"); tr.innerHTML=cells.join(""); tbody.appendChild(tr);
       });
       const refCells=[`<td>Media previa</td>`,`<td></td>`,`<td style="text-align:left" class="muted">4 semanas antes</td>`,`<td></td>`];
       LES_METRICS.forEach((k,i)=> refCells.push(`<td class="mono${i===0?" grp-start":""}">${ref[k]!=null?fmtN(ref[k],METRICS[k].dec):"–"}</td>`));
+      refCells.push(`<td class="grp-start"></td><td></td><td></td>`);
       const trr=el("tr",{class:"total"}); trr.innerHTML=refCells.join(""); tbody.appendChild(trr);
       tb.appendChild(tbody); wrap.appendChild(tb); body.appendChild(wrap);
     }

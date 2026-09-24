@@ -88,7 +88,7 @@ de fórmulas (fatiga, inversa, ACWR, semáforo, nombres).
   `procesar` la abre al pasar a lesión/rehab (exige `--lesion D="tipo"`) y la cierra al volver
   a full. `import_data.py` la publica en `data.js` como `lesiones` (diagnóstico visible: decisión
   del preparador).
-- Dashboard: pestaña "Lesionados" (abiertas / cerradas, desplegable con mini-gráficas por
+- Dashboard: pestaña "Lesionados" (abiertas / cerradas, desplegable con UN gráfico donde se superponen las métricas elegidas (% de su media previa, o absoluto si es una sola) y el ACWR diario de PL/HSR/Sprint en eje derecho —antes mini-gráficas por
   métrica de las sesiones de la baja + Extra frente a su media de las 4 semanas previas, y
   tabla). En "Sesión", los lesionados y en readaptación salen en una tabla aparte debajo.
 - Carga inicial (confirmada por el preparador): Anglada esguince grave 27/07–21/09; roturas de
