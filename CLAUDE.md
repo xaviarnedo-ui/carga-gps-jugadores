@@ -28,6 +28,12 @@ sesión o partido; Claude actualiza todo con `gps.py`.
 Otros comandos: `abrir --tipo B --partido J5 --rival X --lunes AAAA-MM-DD` (microciclo
 nuevo), `estado [dorsal=estado ...]`, `disponibilidad`, `publicar [--sin-avisar]`.
 
+**Lesiones** (`GPS/lesiones.json`, pestaña "Lesionados" del dashboard): cuando un jugador pasa
+a lesión o rehab sin lesión abierta, `procesar` se para y pide el tipo → pregúntalo y relanza
+con `--lesion 26="Fractura de nariz"` (la baja es ese día). Al volver a full se cierra sola
+(alta = ese día). Corregir fechas/tipos: `gps.py lesiones --abrir/--cerrar`. Descanso o
+gestión de carga NO es lesión. El diagnóstico se publica tal cual (decisión del preparador).
+
 Un rehab en un PDF aparte del mismo día se pasa junto al PDF de la sesión (se fusiona).
 Una sesión fuera de calendario (p. ej. un martes) va con `--extra` → hoja `Extra_dd-mm_GPS`.
 

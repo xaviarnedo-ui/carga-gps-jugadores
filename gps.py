@@ -6,6 +6,7 @@
         --estado 6=descanso --estado 26=rehab    estado del día (full/rehab/lesion/descanso/nc/noconv)
         --fallo-gps 14=50                         partido: GPS roto, 50' jugados → estimado desde REF
         --rol 16=S                                MD+1: titular (T) / suplente (S) si vuelve ese día
+        --lesion 26="Fractura de nariz"           tipo de una lesión NUEVA (abre la baja ese día)
         --alias "NOMBRE APELLIDO=dorsal"          nombre del PDF que no cruza con la plantilla
         --extra                                   sesión fuera de calendario (hoja Extra_dd-mm)
         --nota "texto"                            nota adicional en la hoja
@@ -13,6 +14,7 @@
         --publicar [--sin-avisar]                 import_data + git push (+ aviso a jugadores)
   python3 gps.py abrir --tipo B --partido J5 --rival "Rival" --lunes 2026-09-28
   python3 gps.py estado [4=lesion 10=rehab ...]       ver / fijar estado vigente
+  python3 gps.py lesiones [--abrir D --tipo T --baja F | --cerrar D --alta F]   registro de lesiones
   python3 gps.py disponibilidad                       regenerar Disponibilidad y Minutos.xlsx
   python3 gps.py publicar [--sin-avisar] [-m msg]     import_data + git push (+ aviso)
 """
@@ -24,7 +26,7 @@ import subprocess
 import sys
 
 from pipeline import config as C
-from pipeline import disponibilidad, estados as E, microciclo, procesar as P
+from pipeline import disponibilidad, estados as E, lesiones as L, microciclo, procesar as P
 
 PNG_DIR = os.path.join(C.GPS_DIR, "_prueba", "resumen_png")
 
@@ -56,6 +58,7 @@ def main():
     a.add_argument("--estado", action="append")
     a.add_argument("--fallo-gps", action="append")
     a.add_argument("--rol", action="append")
+    a.add_argument("--lesion", action="append")
     a.add_argument("--alias", action="append")
     a.add_argument("--extra", action="store_true")
     a.add_argument("--nota", default="")
@@ -67,6 +70,12 @@ def main():
     a.add_argument("--partido", required=True)
     a.add_argument("--rival", required=True)
     a.add_argument("--lunes", required=True)
+    a = sub.add_parser("lesiones")
+    a.add_argument("--abrir", type=int)
+    a.add_argument("--cerrar", type=int)
+    a.add_argument("--tipo")
+    a.add_argument("--baja")
+    a.add_argument("--alta")
     a = sub.add_parser("estado")
     a.add_argument("cambios", nargs="*")
     sub.add_parser("disponibilidad")
@@ -88,6 +97,7 @@ def main():
                              fallos_gps={int(k): float(v) for k, v in _pares(args.fallo_gps).items()},
                              rol_md1={int(k): v.upper() for k, v in _pares(args.rol).items()},
                              alias={k: int(v) for k, v in _pares(args.alias).items()},
+                             tipos_lesion={int(k): v.strip('"') for k, v in _pares(args.lesion).items()},
                              nota=args.nota, extra=args.extra, dry_run=args.prueba)
         except P.NecesitaDecision as e:
             print("NECESITO UNA DECISIÓN (no se ha escrito nada):\n" + str(e))
@@ -121,6 +131,17 @@ def main():
             if info["estado"] != C.FULL:
                 print(f"  {d:>3} {info['estado']:7} desde {info['desde']}  {info.get('nota', '')}")
         print("  (el resto: full)")
+
+    elif args.cmd == "lesiones":
+        lst = L.cargar()
+        if args.abrir:
+            L.abrir(lst, args.abrir, args.tipo, args.baja)
+            L.guardar(lst)
+        elif args.cerrar:
+            L.cerrar(lst, args.cerrar, args.alta)
+            L.guardar(lst)
+        for l in lst:
+            print(f"  #{l['dorsal']:<3} {l['tipo']:22} baja {l['baja']}  alta {l['alta'] or 'ABIERTA'}")
 
     elif args.cmd == "disponibilidad":
         print(disponibilidad.generar())

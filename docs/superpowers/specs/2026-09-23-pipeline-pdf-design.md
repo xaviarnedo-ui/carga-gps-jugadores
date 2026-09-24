@@ -80,3 +80,17 @@ GPS/rendimiento" que el preparador pasó el 23/09 (resumen en `CLAUDE.md`).
 `tests/` (unittest, sin dependencias): regresión con el histórico — vaciar S46/S45/S44/J3 de
 una copia, reprocesar su PDF y comparar celda a celda con el Excel original; tests unitarios
 de fórmulas (fatiga, inversa, ACWR, semáforo, nombres).
+
+## Ampliación 2026-09-24: lesiones
+
+- `GPS/lesiones.json` (`pipeline/lesiones.py`): una entrada por lesión (dorsal, tipo, baja, alta).
+  Una lesión va de la baja al primer día de vuelta full; la readaptación va dentro.
+  `procesar` la abre al pasar a lesión/rehab (exige `--lesion D="tipo"`) y la cierra al volver
+  a full. `import_data.py` la publica en `data.js` como `lesiones` (diagnóstico visible: decisión
+  del preparador).
+- Dashboard: pestaña "Lesionados" (abiertas / cerradas, desplegable con mini-gráficas por
+  métrica de las sesiones de la baja + Extra frente a su media de las 4 semanas previas, y
+  tabla). En "Sesión", los lesionados y en readaptación salen en una tabla aparte debajo.
+- Carga inicial (confirmada por el preparador): Anglada esguince grave 27/07–21/09; roturas de
+  isquio de Andone 19/08, Payeras 25/08, Llinares 30/08–19/09, Bejarano 02/09; Fontanet fractura
+  de nariz 17/09. El resto de ausencias largas fueron gestión de cargas.

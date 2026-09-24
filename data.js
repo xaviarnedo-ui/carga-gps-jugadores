@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-09-23 13:47",
+  "generado": "2026-09-24 09:12",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-11)"
  },
  "refPartido": {
@@ -560,6 +560,62 @@ window.GPS_DATA_ALL = {
   "M3",
   "M2",
   "M1"
+ ],
+ "lesiones": [
+  {
+   "id": 1,
+   "dorsal": 16,
+   "tipo": "Esguince grave",
+   "baja": "2026-07-27",
+   "alta": "2026-09-21",
+   "nota": "",
+   "jugador": "Anglada, H."
+  },
+  {
+   "id": 2,
+   "dorsal": 10,
+   "tipo": "Rotura isquiotibial",
+   "baja": "2026-08-19",
+   "alta": null,
+   "nota": "Fecha confirmada por el cuerpo técnico (informe 03/09).",
+   "jugador": "Andone, F."
+  },
+  {
+   "id": 3,
+   "dorsal": 4,
+   "tipo": "Rotura isquiotibial",
+   "baja": "2026-08-25",
+   "alta": null,
+   "nota": "Fecha confirmada por el cuerpo técnico (informe 03/09).",
+   "jugador": "Payeras, M."
+  },
+  {
+   "id": 4,
+   "dorsal": 24,
+   "tipo": "Rotura isquiotibial",
+   "baja": "2026-08-30",
+   "alta": "2026-09-19",
+   "nota": "Fecha confirmada por el cuerpo técnico (informe 03/09).",
+   "jugador": "Llinares, I."
+  },
+  {
+   "id": 5,
+   "dorsal": 20,
+   "tipo": "Rotura isquiotibial",
+   "baja": "2026-09-02",
+   "alta": null,
+   "nota": "Fecha confirmada por el cuerpo técnico (informe 03/09).",
+   "jugador": "Bejarano, A."
+  },
+  {
+   "id": 6,
+   "dorsal": 26,
+   "tipo": "Fractura de nariz",
+   "baja": "2026-09-17",
+   "alta": null,
+   "nota": "",
+   "jugador": "Fontanet, B."
+  }
  ],
  "M1": {
   "meta": {

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Carga GPS · Dashboard</title>
-<meta name="description" content="Dashboard analítico de carga GPS: evolución, microciclos, tipo de sesión, jugadores y comparador.">
+<meta name="description" content="Dashboard analítico de carga GPS: evolución, microciclos, tipo de sesión, jugadores, comparador y lesionados.">
 <meta name="theme-color" content="#16305f">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="icons/icon-192.png?v=53">
@@ -156,8 +156,30 @@
   .muted{color:var(--ink-3); font-size:12px}
   .note{font-size:11.5px; color:var(--ink-3); padding:0 16px 14px}
   .pos-D{color:var(--s1)} .pos-M{color:var(--s3)} .pos-DL{color:var(--s2)}
+  .bajas{border-top:1px dashed var(--border-strong); padding-top:12px; margin-top:2px}
+  .tag-les{display:inline-block; white-space:nowrap; padding:1px 8px; border-radius:999px; font-size:11px; font-weight:700; letter-spacing:.03em}
+  .tag-les.baja{background:color-mix(in srgb, var(--sem-alto) 18%, transparent); color:var(--sem-alto)}
+  .tag-les.rehab{background:color-mix(in srgb, var(--sem-pasado) 20%, transparent); color:var(--sem-pasado)}
+  .tag-les.alta{background:color-mix(in srgb, var(--sem-ok) 18%, transparent); color:var(--sem-ok)}
+  details.les{border-top:1px solid var(--border)}
+  details.les > summary{list-style:none; cursor:pointer; display:grid; grid-template-columns:minmax(150px,1.4fr) minmax(120px,1.2fr) 1fr 1fr auto; gap:10px; align-items:center; padding:11px 16px}
+  details.les > summary::-webkit-details-marker{display:none}
+  details.les > summary:hover{background:var(--surface-2)}
+  details.les > summary .nm{font-weight:600}
+  details.les > summary .nm::before{content:"▸"; display:inline-block; width:14px; color:var(--ink-3); transition:transform .12s}
+  details.les[open] > summary .nm::before{transform:rotate(90deg)}
+  details.les > summary .lb{font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); display:block}
+  .les-body{padding:4px 0 10px; background:var(--surface)}
+  .sm-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding:0 16px 12px}
+  .sm-card{border:1px solid var(--border); border-radius:8px; padding:8px 10px 4px}
+  .sm-card h4{margin:0; font-family:"Barlow Condensed",sans-serif; font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-2); display:flex; justify-content:space-between}
+  .sm-card h4 b{color:var(--ink); font-family:"IBM Plex Mono",monospace; font-size:12px; text-transform:none; letter-spacing:0}
+  .ref-line{stroke:var(--ink-3); stroke-dasharray:4 3; stroke-width:1.2}
+  .les-h{font-family:"Barlow Condensed",sans-serif; font-weight:600; font-size:15px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-2); padding:14px 16px 6px; margin:0}
 
   @media (max-width:820px){
+    .sm-grid{grid-template-columns:repeat(2,1fr)}
+    details.les > summary{grid-template-columns:1fr 1fr; row-gap:4px}
     .kpis{grid-template-columns:repeat(2,1fr)}
     .split{grid-template-columns:1fr}
     .brand h1{font-size:22px}
@@ -196,6 +218,8 @@
 function buildRAW(d){
   const METR=["distancia","hmld","hsr","sprint","acc","dec"];
   function dur2min(t){
+    if(typeof t==="number") return t;          // desde M10 la duración ya va en minutos
+    if(typeof t==="string" && t.indexOf(":")<0 && isFinite(parseFloat(t))) return parseFloat(t);
     if(!t || typeof t!=="string" || t.indexOf(":")<0) return null;
     const p=t.split(":").map(Number);
     if(p.length===3) return Math.round((p[0]*60+p[1]+p[2]/60)*10)/10;
@@ -217,7 +241,7 @@ function buildRAW(d){
   d.refPartido.players.forEach(p=>{
     const o={}; METR.concat(["velMax"]).forEach(k=>{ o[k]=(p[k]===undefined?null:p[k]); }); ref[p.dorsal]=o;
   });
-  const sessions=[];
+  const sessions=[], extras=[];
   d.microciclos.slice().reverse().forEach(mk=>{
     const m=d[mk], meta=m.meta;
     m.orden.forEach(o=>{
@@ -232,9 +256,19 @@ function buildRAW(d){
         if(!players[dd]) players[dd]={d:dd,n:(pl.jugador||"?"),g:(pl.grupo||"?")};
         const mp={};
         METR.forEach(k=>{ const v=pl[k]; if(v && typeof v==="object") mp[k]=[(v.obj===undefined?null:v.obj), (v.real===undefined?null:v.real)]; });
-        row.players.push({d:dd, dur:dur2min(pl.duracion), vmax:(pl.velMax===undefined?null:pl.velMax), pl:(pl.playerLoad===undefined?null:pl.playerLoad), m:mp});
+        row.players.push({d:dd, e:(pl.estado||null), dur:dur2min(pl.duracion), vmax:(pl.velMax===undefined?null:pl.velMax), pl:(pl.playerLoad===undefined?null:pl.playerLoad), m:mp});
       });
       sessions.push(row);
+    });
+    // sesiones Extra (fuera de calendario): solo para la pestaña Lesionados, no entran en el resto
+    Object.entries(m.extras||{}).forEach(([key,src])=>{
+      const row={mc:meta.n, key:key.replace("_"," "), date:src.date, isExtra:true, players:[]};
+      src.players.forEach(pl=>{
+        const mp={};
+        METR.forEach(k=>{ const v=pl[k]; if(v && typeof v==="object") mp[k]=[null, (v.real===undefined?null:v.real)]; });
+        row.players.push({d:pl.dorsal, e:"extra", dur:dur2min(pl.duracion), vmax:(pl.velMax===undefined?null:pl.velMax), pl:(pl.playerLoad===undefined?null:pl.playerLoad), m:mp});
+      });
+      extras.push(row);
     });
   });
   const playerList=Object.keys(players).map(k=>players[k]).sort((a,b)=>a.d-b.d);
@@ -243,6 +277,7 @@ function buildRAW(d){
     players:playerList,
     ref:ref, refTeam:d.refPartido.teamAvg,
     coef:d.coeficientes.tipos, sessions:sessions,
+    extras:extras.sort((a,b)=>a.date<b.date?-1:1), lesiones:(d.lesiones||[]),
   };
 }
 const RAW = buildRAW(window.GPS_DATA_ALL);
@@ -288,6 +323,17 @@ const NAME = Object.fromEntries(PLAYERS.map(p=>[p.d, p.n]));
 const POS = Object.fromEntries(PLAYERS.map(p=>[p.d, p.g]));
 const REF = RAW.ref;
 const MICROS = [...new Set(RAW.sessions.map(s=>s.mc))].sort((a,b)=>a-b);
+
+/* ---------- lesiones ---------- */
+// una lesión va de la baja (incluida) al alta = primer día de vuelta full (excluido)
+const LESIONES = RAW.lesiones;
+const HOY = RAW.meta.generado ? RAW.meta.generado.slice(0,10) : new Date().toISOString().slice(0,10);
+function lesionEn(dorsal, date){
+  return LESIONES.find(l=> l.dorsal===dorsal && l.baja<=date && (!l.alta || date<l.alta)) || null;
+}
+function diasEntre(a,b){ return Math.round((Date.parse(b)-Date.parse(a))/86400000); }
+// fuera de la tabla del equipo en la pestaña Sesión: de baja ese día o en rehab
+const esBaja = (pr, s) => pr.e==="rehab" || !!lesionEn(pr.d, s.date);
 
 /* ---------- state ---------- */
 const state = {
@@ -410,7 +456,7 @@ function niceTicks(min,max,count=5){
 
 /* ---------- element helper (HTML + SVG) ---------- */
 const NS="http://www.w3.org/2000/svg";
-const SVG_TAGS=new Set(["svg","g","path","circle","rect","line","text","polygon"]);
+const SVG_TAGS=new Set(["svg","g","path","circle","rect","line","text","polygon","title"]);
 function el(tag, attrs={}, kids=[]){
   const n=SVG_TAGS.has(tag) ? document.createElementNS(NS,tag) : document.createElement(tag);
   for(const k in attrs) n.setAttribute(k, attrs[k]);
@@ -457,7 +503,7 @@ function renderShell(){
   const tabDefs=[
     ["evolucion","Evolución"],["sesion","Sesión"],["microciclos","Microciclos"],
     ["tipo","Tipo de sesión"],["partidos","Partidos"],
-    ["jugadores","Jugadores"],["comparador","Comparador"],
+    ["jugadores","Jugadores"],["comparador","Comparador"],["lesionados","Lesionados"],
   ];
   const t=document.getElementById("tabs"); t.innerHTML="";
   tabDefs.forEach(([k,lab])=>{
@@ -501,7 +547,7 @@ function fBucketChips(){
 function renderView(){
   const v=document.getElementById("view"); v.innerHTML="";
   ({evolucion:viewEvolucion, sesion:viewSesion, microciclos:viewMicrociclos, tipo:viewTipo, partidos:viewPartidos,
-    jugadores:viewJugadores, comparador:viewComparador}[state.lens])(v);
+    jugadores:viewJugadores, comparador:viewComparador, lesionados:viewLesionados}[state.lens])(v);
 }
 function panel(title, desc){
   const p=el("div",{class:"panel"});
@@ -723,7 +769,10 @@ function viewSesion(root){
     root.appendChild(p); return;
   }
 
-  const players = s.players.filter(inGroup).sort((a,b)=>a.d-b.d);
+  const visibles = s.players.filter(inGroup).sort((a,b)=>a.d-b.d);
+  // lesionados y en readaptación van en su propia tabla, debajo de la del equipo
+  const players = visibles.filter(pr=>!esBaja(pr,s));
+  const bajas = visibles.filter(pr=>esBaja(pr,s));
   // el resumen de equipo (Vel.máx/PL/Duración) usa la MEDIA EQUIPO oficial (s.teamAvg) cuando
   // se ve la plantilla completa; si hay un filtro de Grupo activo, no hay cifra oficial para
   // ese subconjunto y se recalcula a mano sobre los jugadores visibles.
@@ -739,6 +788,10 @@ function viewSesion(root){
     });
     plTeam = plN? plSum/plN : null;
     durTeam = durN? durSum/durN : null;
+  }
+  if(durTeam==null){   // la fila oficial no trae duración: media de los jugadores del grupo con dato
+    const ds=players.map(pr=>pr.dur).filter(v=>v!=null);
+    durTeam = ds.length? ds.reduce((a,b)=>a+b,0)/ds.length : null;
   }
   const nConDatos = players.filter(pr=> RADAR_METRICS.some(k=>raw(pr,k).real!=null)).length;
 
@@ -809,8 +862,41 @@ function viewSesion(root){
   const trTeam=el("tr",{class:"total"}); trTeam.innerHTML=teamCells.join(""); body.appendChild(trTeam);
 
   tb.appendChild(body); wrap.appendChild(tb); p.appendChild(wrap);
-  p.appendChild(el("p",{class:"note"},"Jugadores en gris: no tienen dato real cargado en esta sesión (descanso, lesión o pendiente)."));
+  p.appendChild(el("p",{class:"note"},"Jugadores en gris: no tienen dato real cargado en esta sesión (descanso o gestión de carga). Los lesionados y en readaptación van aparte, debajo."));
+  if(bajas.length) p.appendChild(tablaBajas(s, bajas));
   root.appendChild(p);
+}
+
+// tabla aparte de la pestaña Sesión: lesionados (sin sesión) y readaptación (con su real)
+function tablaBajas(s, bajas){
+  const box=el("div",{class:"bajas"});
+  box.appendChild(el("h3",{class:"sub-h", style:"padding:0 16px"},"Lesionados y readaptación ("+bajas.length+")"));
+  const wrap=el("div",{class:"tbl-scroll sticky-col"});
+  const tb=el("table");
+  tb.innerHTML=`<thead><tr><th>Jugador</th><th>Situación</th><th style="text-align:left">Lesión</th><th>Día</th>`+
+    RADAR_METRICS.map((k,i)=>`<th${i===0?' class="grp-start"':''}>${METRICS[k].lab}</th>`).join("")+
+    `<th class="grp-start">Vel. máx</th><th>Player Load</th><th>Duración</th></tr></thead>`;
+  const body=el("tbody");
+  bajas.forEach(pr=>{
+    const l=lesionEn(pr.d, s.date);
+    const conDatos = RADAR_METRICS.some(k=>raw(pr,k).real!=null) || pr.pl!=null;
+    const sit = conDatos ? "Readaptación" : "Baja";
+    const cells=[`<td>#${pr.d} ${NAME[pr.d]||"?"}</td>`,
+      `<td><span class="tag-les ${conDatos?"rehab":"baja"}">${sit}</span></td>`,
+      `<td style="text-align:left">${l?l.tipo:"–"}</td>`,
+      `<td class="mono">${l?diasEntre(l.baja, s.date)+1:"–"}</td>`];
+    RADAR_METRICS.forEach((k,i)=>{
+      const v=raw(pr,k).real;
+      cells.push(`<td class="mono${i===0?" grp-start":""}">${v!=null?fmtN(v,METRICS[k].dec):"–"}</td>`);
+    });
+    cells.push(`<td class="mono grp-start">${pr.vmax!=null?fmtN(pr.vmax,1):"–"}</td>`);
+    cells.push(`<td class="mono">${pr.pl!=null?fmtN(pr.pl,0):"–"}</td>`);
+    cells.push(`<td class="mono">${pr.dur!=null?fmtN(pr.dur,0)+"′":"–"}</td>`);
+    const tr=el("tr"); tr.innerHTML=cells.join(""); body.appendChild(tr);
+  });
+  tb.appendChild(body); wrap.appendChild(tb); box.appendChild(wrap);
+  box.appendChild(el("p",{class:"note"},"No cuentan para la MEDIA EQUIPO ni tienen objetivo. \"Día\" = día de baja (el de la lesión es el día 1)."));
+  return box;
 }
 
 /* ===== 2 · MICROCICLOS ===== */
@@ -1182,6 +1268,163 @@ function viewComparador(root){
 }
 
 /* ---------- radar ---------- */
+/* ===== LESIONADOS ===== */
+const LES_METRICS = ["distancia","hmld","hsr","sprint","acc","dec","vmax","pl"];
+const fDate = iso => iso ? iso.slice(8,10)+"/"+iso.slice(5,7)+"/"+iso.slice(0,4) : "–";
+
+// sesiones (y Extra) con dato del jugador entre la baja y el alta (el día del alta incluido,
+// para ver la vuelta al grupo)
+function puntosLesion(l){
+  const fin = l.alta || HOY, out=[];
+  RAW.sessions.concat(RAW.extras).forEach(s=>{
+    if(s.date<l.baja || s.date>fin) return;
+    const pr=s.players.find(p=>p.d===l.dorsal);
+    if(!pr || !(RADAR_METRICS.some(k=>raw(pr,k).real!=null) || pr.pl!=null)) return;
+    out.push({s, pr, alta: !!l.alta && s.date===l.alta, dia0: s.date===l.baja && pr.e!=="rehab" && !s.isExtra});
+  });
+  return out.sort((a,b)=> a.s.date<b.s.date?-1 : a.s.date>b.s.date?1 : 0);
+}
+// referencia: su media en sesiones de entrenamiento con el grupo de las 4 semanas previas
+function refPrevia(l){
+  const desde = new Date(Date.parse(l.baja)-28*86400000).toISOString().slice(0,10);
+  const out={n:0};
+  LES_METRICS.forEach(k=>{
+    const vals=[];
+    RAW.sessions.forEach(s=>{
+      if(s.isMatch || s.date<desde || s.date>=l.baja) return;
+      const pr=s.players.find(p=>p.d===l.dorsal);
+      if(!pr || pr.e==="rehab") return;
+      const v=raw(pr,k).real; if(v!=null) vals.push(v);
+    });
+    out[k]= vals.length? vals.reduce((a,b)=>a+b,0)/vals.length : null;
+    out.n=Math.max(out.n, vals.length);
+  });
+  return out;
+}
+function tipoPunto(pt, l){
+  if(pt.s.isExtra) return "Extra";
+  if(pt.alta) return "Alta · grupo";
+  if(pt.s.date===l.baja && pt.pr.e!=="rehab") return "Día de la lesión";
+  return pt.pr.e==="rehab" ? "Readaptación" : "Grupo";
+}
+function miniLesion(pts, k, ref){
+  const W=250, H=118, mL=34, mR=8, mT=10, mB=20, iw=W-mL-mR, ih=H-mT-mB;
+  const ys=pts.map(pt=>raw(pt.pr,k).real);
+  const vals=ys.filter(v=>v!=null).concat(ref!=null?[ref]:[]);
+  const vmax=Math.max(1, ...vals)*1.08;
+  const X=i=> mL + (pts.length<=1? iw/2 : iw*i/(pts.length-1));
+  const Y=v=> mT + ih - ih*v/vmax;
+  const svg=el("svg",{viewBox:`0 0 ${W} ${H}`, role:"img","aria-label":METRICS[k].lab});
+  const g=el("g",{class:"grid"}); const ax=el("g",{class:"axis"});
+  niceTicks(0, vmax, 3).filter(t=>t<=vmax).forEach(t=>{
+    g.appendChild(el("line",{x1:mL, x2:W-mR, y1:Y(t), y2:Y(t)}));
+    ax.appendChild(el("text",{x:mL-5, y:Y(t)+3.5, "text-anchor":"end"}, fmtN(t, METRICS[k].dec>0&&vmax<10?1:0)));
+  });
+  svg.append(g, ax);
+  if(ref!=null) svg.appendChild(el("line",{class:"ref-line", x1:mL, x2:W-mR, y1:Y(ref), y2:Y(ref)}));
+  svg.appendChild(el("path",{class:"serie", stroke:"var(--s2)", d:line(ys.map((v,i)=> v==null?null:[X(i),Y(v)]))}));
+  ys.forEach((v,i)=>{
+    if(v==null) return;
+    const pt=pts[i];
+    const col = pt.alta? "var(--sem-ok)" : pt.s.isExtra? "var(--s1)" : pt.dia0? "var(--sem-alto)" : "var(--s2)";
+    const c=el("circle",{class:"dot", cx:X(i), cy:Y(v), r:pt.alta?4:3, fill:col});
+    c.appendChild(el("title",{}, `${pt.s.key} · ${fDate(pt.s.date)} · ${fmtN(v,METRICS[k].dec)}`));
+    svg.appendChild(c);
+  });
+  const xa=el("g",{class:"axis"});
+  if(pts.length){
+    xa.appendChild(el("text",{x:X(0), y:H-5, "text-anchor":pts.length>1?"start":"middle"}, pts[0].s.date.slice(8,10)+"/"+pts[0].s.date.slice(5,7)));
+    if(pts.length>1) xa.appendChild(el("text",{x:X(pts.length-1), y:H-5, "text-anchor":"end"}, pts[pts.length-1].s.date.slice(8,10)+"/"+pts[pts.length-1].s.date.slice(5,7)));
+  }
+  svg.appendChild(xa);
+  return svg;
+}
+function fichaLesion(l){
+  const d=el("details",{class:"les"});
+  const fin = l.alta || HOY;
+  const dias = diasEntre(l.baja, fin) + (l.alta?0:1);
+  const pts = puntosLesion(l);
+  const nSes = pts.filter(pt=>!pt.alta).length;
+  const sum=el("summary");
+  sum.innerHTML =
+    `<span class="nm">#${l.dorsal} ${NAME[l.dorsal]||l.jugador}</span>`+
+    `<span><span class="lb">Lesión</span>${l.tipo||"–"}</span>`+
+    `<span><span class="lb">Baja</span><span class="mono">${fDate(l.baja)}</span></span>`+
+    `<span><span class="lb">Alta</span>${l.alta?`<span class="mono">${fDate(l.alta)}</span>`:`<span class="tag-les baja">Abierta</span>`}</span>`+
+    `<span style="text-align:right"><span class="lb">${l.alta?"Duración":"Lleva"}</span><b class="mono">${dias} días</b> <span class="muted">· ${nSes} ses. con GPS</span></span>`;
+  d.appendChild(sum);
+  d.addEventListener("toggle", ()=>{
+    if(!d.open || d.dataset.ok) return;
+    d.dataset.ok="1";
+    const body=el("div",{class:"les-body"});
+    if(!pts.length){
+      body.appendChild(el("p",{class:"note"},"Sin sesiones con GPS durante la baja (todavía no ha empezado la readaptación con el grupo ni en sesiones registradas)."));
+    } else {
+      const ref=refPrevia(l);
+      body.appendChild(legendRow([
+        {c:"var(--sem-alto)", t:"Día de la lesión"}, {c:"var(--s2)", t:"Readaptación"}, {c:"var(--s1)", t:"Sesión Extra"},
+        ...(l.alta?[{c:"var(--sem-ok)", t:"Alta (vuelta al grupo)"}]:[]),
+        {c:"var(--ink-3)", t:`Su media previa a la baja (${ref.n} ses.)`, line:true},
+      ]));
+      const grid=el("div",{class:"sm-grid"});
+      LES_METRICS.forEach(k=>{
+        const card=el("div",{class:"sm-card"});
+        const ult=[...pts].reverse().find(pt=>raw(pt.pr,k).real!=null);
+        const pct = (ult && ref[k])? Math.round(raw(ult.pr,k).real/ref[k]*100) : null;
+        const h=el("h4"); h.innerHTML=`<span>${METRICS[k].lab}${METRICS[k].u?` (${METRICS[k].u})`:""}</span>`+
+          (pct!=null?`<b title="Última sesión vs su media previa">${pct}%</b>`:"");
+        card.append(h, miniLesion(pts, k, ref[k]));
+        grid.appendChild(card);
+      });
+      body.appendChild(grid);
+      const wrap=el("div",{class:"tbl-scroll sticky-col"});
+      const tb=el("table");
+      tb.innerHTML=`<thead><tr><th>Fecha</th><th>Sesión</th><th style="text-align:left">Tipo</th><th>Duración</th>`+
+        LES_METRICS.map((k,i)=>`<th${i===0?' class="grp-start"':''}>${METRICS[k].lab}</th>`).join("")+`</tr></thead>`;
+      const tbody=el("tbody");
+      pts.forEach(pt=>{
+        const cells=[`<td class="mono">${fDate(pt.s.date)}</td>`, `<td>${pt.s.key}</td>`,
+          `<td style="text-align:left"><span class="tag-les ${pt.alta?"alta":(tipoPunto(pt,l)==="Día de la lesión"?"baja":"rehab")}">${tipoPunto(pt,l)}</span></td>`,
+          `<td class="mono">${pt.pr.dur!=null?fmtN(pt.pr.dur,0)+"′":"–"}</td>`];
+        LES_METRICS.forEach((k,i)=>{ const v=raw(pt.pr,k).real;
+          cells.push(`<td class="mono${i===0?" grp-start":""}">${v!=null?fmtN(v,METRICS[k].dec):"–"}</td>`); });
+        const tr=el("tr"); tr.innerHTML=cells.join(""); tbody.appendChild(tr);
+      });
+      const refCells=[`<td>Media previa</td>`,`<td></td>`,`<td style="text-align:left" class="muted">4 semanas antes</td>`,`<td></td>`];
+      LES_METRICS.forEach((k,i)=> refCells.push(`<td class="mono${i===0?" grp-start":""}">${ref[k]!=null?fmtN(ref[k],METRICS[k].dec):"–"}</td>`));
+      const trr=el("tr",{class:"total"}); trr.innerHTML=refCells.join(""); tbody.appendChild(trr);
+      tb.appendChild(tbody); wrap.appendChild(tb); body.appendChild(wrap);
+    }
+    if(l.nota) body.appendChild(el("p",{class:"note"}, l.nota));
+    d.appendChild(body);
+  });
+  return d;
+}
+function viewLesionados(root){
+  const p=panel("Lesionados",
+    "Todas las lesiones de la temporada: las abiertas arriba y las cerradas debajo. Despliega cada una para ver la evolución de su carga durante la baja (sesiones de readaptación y Extra) frente a su media antes de lesionarse.");
+  const abiertas=LESIONES.filter(l=>!l.alta).sort((a,b)=> a.baja<b.baja?1:-1);
+  const cerradas=LESIONES.filter(l=>l.alta).sort((a,b)=> a.alta<b.alta?1:-1);
+  const durs=cerradas.map(l=>diasEntre(l.baja,l.alta));
+  const mini=el("div",{class:"mini-kpis"});
+  mini.innerHTML=[
+    {n:abiertas.length, l:"Bajas abiertas"},
+    {n:cerradas.length, l:"Altas"},
+    {n:LESIONES.length, l:"Lesiones temporada"},
+    {n:durs.length?fmtN(durs.reduce((a,b)=>a+b,0)/durs.length,0):"–", sm:" días", l:"Duración media (cerradas)"},
+  ].map(k=>`<div class="kpi"><div class="n">${k.n}${k.sm?`<small>${k.sm}</small>`:""}</div><div class="l">${k.l}</div></div>`).join("");
+  p.appendChild(mini);
+  if(!LESIONES.length){ p.appendChild(el("p",{class:"note"},"No hay lesiones registradas.")); root.appendChild(p); return; }
+  [["Abiertas",abiertas],["Cerradas",cerradas]].forEach(([tit,lst])=>{
+    if(!lst.length) return;
+    p.appendChild(el("h3",{class:"les-h"}, `${tit} (${lst.length})`));
+    lst.forEach(l=> p.appendChild(fichaLesion(l)));
+  });
+  p.appendChild(el("p",{class:"note", style:"padding-top:12px"},
+    "Una lesión va de la baja hasta el primer día que vuelve a entrenar con el grupo (alta); la readaptación va dentro. % en cada gráfica = última sesión frente a su media previa."));
+  root.appendChild(p);
+}
+
 function radarChart(series, labels){
   const N=labels.length, W=440,H=360,cx=W/2,cy=H/2+6,R=118;
   const maxes=labels.map((_,i)=> Math.max(...series.map(s=>s.vals[i]||0))*1.15 || 1);

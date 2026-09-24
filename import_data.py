@@ -811,6 +811,17 @@ def compute_dispo(micro_data, ref_players):
 
 
 # ---------------------------------------------------------------- main
+def load_lesiones(ref_players):
+    """Registro de lesiones (GPS/lesiones.json, lo mantiene gps.py): baja, alta, tipo."""
+    ruta = os.path.join(GPS_DIR, "lesiones.json")
+    if not os.path.exists(ruta):
+        return []
+    with open(ruta, encoding="utf-8") as f:
+        lst = json.load(f)
+    nombres = {r["dorsal"]: r["jugador"] for r in ref_players}
+    return [dict(l, jugador=nombres.get(l["dorsal"], f"#{l['dorsal']}")) for l in lst]
+
+
 def main():
     if "--solo-avisar" in sys.argv:
         # manda el push con el data.js ya generado (el pipeline lo usa DESPUÉS del git push,
@@ -964,6 +975,7 @@ def main():
         "coeficientes": {"nota": "Coeficiente de carga por Tipo de microciclo y día (hoja MICROCICLOS).",
                          "tipos": coef},
         "microciclos": micro_keys,
+        "lesiones": load_lesiones(ref_players),
     }
     for n, m in micro_data.items():
         DATA[f"M{n}"] = m

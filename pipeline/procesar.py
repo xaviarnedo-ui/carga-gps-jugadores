@@ -7,7 +7,7 @@ import subprocess
 
 import openpyxl
 
-from . import acumulado, carga_ac, disponibilidad, estados as E, informe, microciclo
+from . import acumulado, carga_ac, disponibilidad, estados as E, informe, lesiones as L, microciclo
 from . import partido, referencia, sesion
 from . import config as C
 from .xlsx import backup, filas_jugadores, microciclos_existentes, num, plantilla_de
@@ -129,7 +129,7 @@ def decidir_estados(roster, en_pdf, vigentes, override, es_partido):
 
 
 def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run=False,
-             alias=None, rol_md1=None):
+             alias=None, rol_md1=None, tipos_lesion=None):
     """Devuelve un dict-resumen. dry_run: escribe en el scratchpad, no toca nada real."""
     override = override or {}
     fallos_gps = fallos_gps or {}
@@ -169,6 +169,8 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
     vigentes = {d: E.vigente(est, d) for d in nombres}
     en_pdf = set(datos) | set(fallos_gps)
     estados_dia = decidir_estados(sorted(nombres), en_pdf, vigentes, override, es_partido)
+    les = L.cargar()
+    _registro_lesiones(les, estados_dia, nombres, fecha.isoformat(), tipos_lesion or {}, res)
 
     if es_partido:
         ppm = partido.pl_por_metro(datos)
@@ -225,7 +227,24 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
     E.registrar_sesion(est, key, fecha.isoformat(), estados_dia)
     res["estados"] = {nombres[d]: e for d, e in estados_dia.items() if e != C.FULL}
     return _guardar(wb, ruta, n, wt if (es_partido and partido.cuenta_para_ref(key)) else None,
-                    est, ws, res, dry_run)
+                    est, ws, res, dry_run, les)
+
+
+def _registro_lesiones(les, estados_dia, nombres, fecha, tipos, res):
+    """Abre una lesión al pasar a lesión/rehab (hace falta el tipo) y la cierra al volver a full."""
+    faltan = [d for d, e in estados_dia.items()
+              if e in (C.LESION, C.REHAB) and not L.abierta(les, d) and d not in tipos]
+    if faltan:
+        raise NecesitaDecision("Lesión nueva sin tipo: " + ", ".join(
+            f"{nombres[d]} ({estados_dia[d]})" for d in faltan)
+            + " → ¿qué lesión es? (--lesion DORSAL='tipo'; si no es una lesión, usa otro estado)")
+    for d, e in estados_dia.items():
+        if e in (C.LESION, C.REHAB) and not L.abierta(les, d):
+            L.abrir(les, d, tipos[d], fecha)
+            res["avisos"].append(f"Lesión abierta: {nombres[d]} · {tipos[d]} · baja {fecha}")
+        elif e == C.FULL and L.abierta(les, d):
+            l = L.cerrar(les, d, fecha)
+            res["avisos"].append(f"Alta: {nombres[d]} · {l['tipo']} ({l['baja']} → {fecha})")
 
 
 def _notas_partido(nombres, estados_dia, fallos_gps, nota):
@@ -287,7 +306,7 @@ def _procesar_extra(wb, ruta, n, key, fecha, infs, alias, est, res, dry_run, not
     return _guardar(wb, ruta, n, None, est, ws, res, dry_run)
 
 
-def _guardar(wb, ruta, n, wt, est, ws, res, dry_run):
+def _guardar(wb, ruta, n, wt, est, ws, res, dry_run, les=None):
     esperado = {(r[0].row, c.column): c.value for r in ws.iter_rows() for c in r if c.value is not None}
     if dry_run:
         destino = os.path.join(C.GPS_DIR, "_prueba")
@@ -295,7 +314,7 @@ def _guardar(wb, ruta, n, wt, est, ws, res, dry_run):
         ruta = os.path.join(destino, os.path.basename(ruta))
         res["dry_run"] = ruta
     else:
-        res["backup"] = backup([ruta, C.TIPO_XLSX, C.DISPO_XLSX, C.ESTADOS_JSON])
+        res["backup"] = backup([ruta, C.TIPO_XLSX, C.DISPO_XLSX, C.ESTADOS_JSON, L.RUTA])
     wb.save(ruta)
     # verificación: releer y comparar la hoja procesada celda a celda
     ws2 = openpyxl.load_workbook(ruta)[ws.title]
@@ -306,6 +325,8 @@ def _guardar(wb, ruta, n, wt, est, ws, res, dry_run):
         if wt is not None:
             wt.save(C.TIPO_XLSX)
         E.guardar(est)
+        if les is not None:
+            L.guardar(les)
         disponibilidad.generar()
     res["guardado"] = ruta
     return res
