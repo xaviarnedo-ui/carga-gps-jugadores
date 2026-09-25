@@ -343,6 +343,7 @@ const state = {
   lens:"evolucion",
   hmPlayer:null,
   session:null,                // índice (RAW.sessions[i].i) de la sesión elegida en la pestaña Sesión
+  acuMc:null, acuRef:null,     // pestaña Microciclos: microciclo y referencia del "Acumulado de la semana"
 };
 
 /* ---------- value helpers ---------- */
@@ -964,6 +965,149 @@ function viewMicrociclos(root){
   });
   tb.appendChild(body); wrap.appendChild(tb); p.appendChild(wrap);
   root.appendChild(p);
+  root.appendChild(el("div",{style:"height:16px"}));
+  root.appendChild(panelAcumulado());
+}
+
+/* ----- Acumulado de la semana (equivale a la hoja "Acumulado" del Excel) ----- */
+// Obj semana = Σ Obj de las sesiones de entrenamiento · Obj a fecha = Σ Obj de las ya hechas ·
+// Acumulado = Σ real de sesiones + Extra (full o rehab). Media = jugadores con objetivo semanal.
+function acumuladoSemana(mc){
+  const ses = RAW.sessions.filter(s=>s.mc===mc && !s.isMatch);
+  const hechas = ses.filter(sessionHasData);
+  const extras = RAW.extras.filter(s=>s.mc===mc);
+  const filas = {};
+  const f = d => filas[d] || (filas[d] = {d, obj:{}, objF:{}, acum:{}, pl:null, min:null, readapt:false});
+  const suma = (o,k,v)=>{ if(v!=null) o[k]=(o[k]||0)+v; };
+  ses.forEach(s=>{
+    const hecha = hechas.includes(s);
+    s.players.forEach(pr=>{
+      const r=f(pr.d);
+      RADAR_METRICS.forEach(k=>{ const c=raw(pr,k); suma(r.obj,k,c.obj); if(hecha) suma(r.objF,k,c.obj); suma(r.acum,k,c.real); });
+      // carga sin objetivo ese día (readaptación): suma al acumulado, como en el Excel
+      if(RADAR_METRICS.some(k=>raw(pr,k).real!=null) && !RADAR_METRICS.some(k=>raw(pr,k).obj!=null)) r.readapt=true;
+      if(pr.pl!=null) r.pl=(r.pl||0)+pr.pl;
+      if(pr.dur!=null && (pr.pl!=null || RADAR_METRICS.some(k=>raw(pr,k).real!=null))) r.min=(r.min||0)+pr.dur;
+    });
+  });
+  extras.forEach(s=> s.players.forEach(pr=>{
+    const r=f(pr.d); r.readapt=true;
+    RADAR_METRICS.forEach(k=> suma(r.acum,k,raw(pr,k).real));
+    if(pr.pl!=null) r.pl=(r.pl||0)+pr.pl;
+    if(pr.dur!=null) r.min=(r.min||0)+pr.dur;
+  }));
+  return {ses, hechas, filas:Object.values(filas).sort((a,b)=>a.d-b.d)};
+}
+function panelAcumulado(){
+  const conDatos = MICROS.filter(mc=> RAW.sessions.some(s=>s.mc===mc && !s.isMatch && sessionHasData(s)));
+  if(state.acuMc==null || !conDatos.includes(state.acuMc)) state.acuMc = conDatos[conDatos.length-1];
+  const mc = state.acuMc;
+  const A = acumuladoSemana(mc);
+  const completa = A.hechas.length===A.ses.length;
+  if(state.acuRef==null) state.acuRef = "fecha";
+  const refKey = (state.acuRef==="fecha" && !completa) ? "objF" : "obj";
+  const semana = (RAW.sessions.find(s=>s.mc===mc)||{}).semana || ("Microciclo "+mc);
+  const p=panel("Acumulado de la semana",
+    "Suma de las sesiones de entrenamiento de la semana (sin el partido) frente al objetivo semanal de cada jugador, como la hoja Acumulado del Excel. Las sesiones Extra suman al acumulado.");
+
+  const bar=el("div",{class:"les-pick"});
+  const gm=el("div",{class:"fgroup"}); gm.appendChild(el("span",{},"Microciclo"));
+  const sel=el("select");
+  conDatos.slice().reverse().forEach(m=>{ const o=el("option",{value:m},"M"+m); if(m===mc) o.selected=true; sel.appendChild(o); });
+  sel.onchange=()=>{ state.acuMc=+sel.value; renderView(); };
+  gm.appendChild(sel); bar.appendChild(gm);
+  const gr=el("div",{class:"fgroup"}); gr.appendChild(el("span",{},"Comparar con"));
+  const box=el("div",{class:"chips"});
+  [["fecha","Objetivo a fecha"],["semana","Objetivo semana"]].forEach(([v,t])=>{
+    const b=el("button",{class:"chip sm","aria-pressed":state.acuRef===v},t);
+    if(v==="fecha" && completa){ b.setAttribute("disabled",""); b.title="La semana ya está completa: el objetivo a fecha es el de la semana"; }
+    b.onclick=()=>{ state.acuRef=v; renderView(); };
+    box.appendChild(b);
+  });
+  gr.appendChild(box); bar.appendChild(gr);
+  p.appendChild(bar);
+
+  p.appendChild(el("p",{class:"note", style:"padding-bottom:8px"},
+    `${semana} · ${A.hechas.length} de ${A.ses.length} sesiones cargadas (${A.hechas.map(s=>s.key).join(", ")||"ninguna"})`+
+    (completa?" · semana completa":` · % frente al objetivo ${refKey==="objF"?"a fecha (sesiones ya hechas)":"de la semana entera"}`)));
+
+  const visibles = A.filas.filter(r=> inGroup({d:r.d}));
+  const conObj = visibles.filter(r=> RADAR_METRICS.some(k=>r.obj[k]!=null));
+  const sinObj = visibles.filter(r=> !RADAR_METRICS.some(k=>r.obj[k]!=null) && RADAR_METRICS.some(k=>r.acum[k]!=null));
+
+  p.appendChild(legendRow([
+    {c:"var(--sem-corto)",t:"< 90%"},{c:"var(--sem-ok)",t:"90–110%"},
+    {c:"var(--sem-pasado)",t:"110–120%"},{c:"var(--sem-alto)",t:"> 120%"},
+  ]));
+  const pctCell = pct => {
+    if(pct==null) return `<td class="mono">–</td>`;
+    const col = pct<90?"var(--sem-corto)": pct<=110?"var(--sem-ok)": pct<=120?"var(--sem-pasado)":"var(--sem-alto)";
+    return `<td class="mono" style="color:${col}; font-weight:700">${Math.round(pct)}%</td>`;
+  };
+  const wrap=el("div",{class:"tbl-scroll sticky-col"});
+  const tb=el("table");
+  tb.innerHTML=`<thead><tr><th rowspan="2">Jugador</th><th rowspan="2">Pos</th>`+
+    RADAR_METRICS.map(k=>`<th colspan="3" class="grp-start">${METRICS[k].lab}${METRICS[k].u?` (${METRICS[k].u})`:""}</th>`).join("")+
+    `<th rowspan="2" class="grp-start">Player<br>Load</th><th rowspan="2">Minutos</th></tr><tr>`+
+    RADAR_METRICS.map(()=>`<th class="grp-start">${refKey==="objF"?"Obj. fecha":"Obj. sem."}</th><th>Acum.</th><th>%</th>`).join("")+`</tr></thead>`;
+  const body=el("tbody");
+  const fila=(r, conPct)=>{
+    const g=POS[r.d];
+    const cells=[`<td>#${r.d} ${NAME[r.d]||"?"}${conPct&&r.readapt?' <span title="Incluye carga de readaptación o Extra sin objetivo">†</span>':""}</td>`, `<td class="pos-${g||""}">${GROUPS[g]||g||"–"}</td>`];
+    RADAR_METRICS.forEach(k=>{
+      const o=r[refKey][k], a=r.acum[k];
+      cells.push(`<td class="mono v-obj grp-start">${o!=null?fmtN(o,METRICS[k].dec):"–"}</td>`);
+      cells.push(`<td class="mono v-real">${a!=null?fmtN(a,METRICS[k].dec):"–"}</td>`);
+      cells.push(conPct? pctCell(o? (a||0)/o*100 : null) : `<td class="mono">–</td>`);
+    });
+    cells.push(`<td class="mono grp-start">${r.pl!=null?fmtN(r.pl,0):"–"}</td>`);
+    cells.push(`<td class="mono">${r.min!=null?fmtN(r.min,0)+"′":"–"}</td>`);
+    const tr=el("tr", RADAR_METRICS.some(k=>r.acum[k]!=null)?{}:{style:"color:var(--ink-3)"}); tr.innerHTML=cells.join("");
+    return tr;
+  };
+  conObj.forEach(r=> body.appendChild(fila(r,true)));
+  if(conObj.length){
+    const n=conObj.length, med={d:null, obj:{}, objF:{}, acum:{}};
+    RADAR_METRICS.forEach(k=>{
+      med.obj[k]=conObj.reduce((s,r)=>s+(r.obj[k]||0),0)/n;
+      med.objF[k]=conObj.reduce((s,r)=>s+(r.objF[k]||0),0)/n;
+      med.acum[k]=conObj.reduce((s,r)=>s+(r.acum[k]||0),0)/n;
+    });
+    const pls=conObj.map(r=>r.pl).filter(v=>v!=null), mins=conObj.map(r=>r.min).filter(v=>v!=null);
+    const cells=['<td>MEDIA EQUIPO</td>','<td></td>'];
+    RADAR_METRICS.forEach(k=>{
+      const o=med[refKey][k], a=med.acum[k];
+      cells.push(`<td class="mono v-obj grp-start">${fmtN(o,METRICS[k].dec)}</td><td class="mono v-real">${fmtN(a,METRICS[k].dec)}</td>`);
+      cells.push(pctCell(o? a/o*100 : null));
+    });
+    cells.push(`<td class="mono grp-start">${pls.length?fmtN(pls.reduce((a,b)=>a+b,0)/pls.length,0):"–"}</td>`);
+    cells.push(`<td class="mono">${mins.length?fmtN(mins.reduce((a,b)=>a+b,0)/mins.length,0)+"′":"–"}</td>`);
+    const tr=el("tr",{class:"total"}); tr.innerHTML=cells.join(""); body.appendChild(tr);
+  }
+  tb.appendChild(body); wrap.appendChild(tb); p.appendChild(wrap);
+  p.appendChild(el("p",{class:"note"},"MEDIA EQUIPO = jugadores con objetivo semanal (si aún no han sumado nada cuentan 0). Jugadores en gris: sin carga todavía esta semana. † = su acumulado incluye días de readaptación o sesiones Extra sin objetivo (por eso el % puede salir muy alto)."));
+
+  if(sinObj.length){
+    const bx=el("div",{class:"bajas"});
+    bx.appendChild(el("h3",{class:"sub-h", style:"padding:0 16px"},`Sin objetivo semanal: lesionados y readaptación (${sinObj.length})`));
+    const w2=el("div",{class:"tbl-scroll sticky-col"}); const t2=el("table");
+    t2.innerHTML=`<thead><tr><th>Jugador</th><th style="text-align:left">Lesión</th>`+
+      RADAR_METRICS.map((k,i)=>`<th${i===0?' class="grp-start"':''}>${METRICS[k].lab}</th>`).join("")+
+      `<th class="grp-start">Player Load</th><th>Minutos</th></tr></thead>`;
+    const b2=el("tbody");
+    const fin = (A.hechas[A.hechas.length-1]||A.ses[0]||{}).date || HOY;
+    sinObj.forEach(r=>{
+      const l=LESIONES.find(x=>x.dorsal===r.d && x.baja<=fin && (!x.alta || x.alta>((A.ses[0]||{}).date||"")));
+      const cells=[`<td>#${r.d} ${NAME[r.d]||"?"}</td>`, `<td style="text-align:left">${l?l.tipo:"–"}</td>`];
+      RADAR_METRICS.forEach((k,i)=> cells.push(`<td class="mono${i===0?" grp-start":""}">${r.acum[k]!=null?fmtN(r.acum[k],METRICS[k].dec):"–"}</td>`));
+      cells.push(`<td class="mono grp-start">${r.pl!=null?fmtN(r.pl,0):"–"}</td><td class="mono">${r.min!=null?fmtN(r.min,0)+"′":"–"}</td>`);
+      const tr=el("tr"); tr.innerHTML=cells.join(""); b2.appendChild(tr);
+    });
+    t2.appendChild(b2); w2.appendChild(t2); bx.appendChild(w2);
+    bx.appendChild(el("p",{class:"note"},"Su carga suma a su acumulado individual y a su ACWR, pero no tienen objetivo ni cuentan para la media."));
+    p.appendChild(bx);
+  }
+  return p;
 }
 
 /* ===== 3 · TIPO DE SESIÓN ===== */
