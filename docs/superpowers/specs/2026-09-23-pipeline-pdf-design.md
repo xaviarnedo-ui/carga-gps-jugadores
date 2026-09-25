@@ -94,3 +94,12 @@ de fórmulas (fatiga, inversa, ACWR, semáforo, nombres).
 - Carga inicial (confirmada por el preparador): Anglada esguince grave 27/07–21/09; roturas de
   isquio de Andone 19/08, Payeras 25/08, Llinares 30/08–19/09, Bejarano 02/09; Fontanet fractura
   de nariz 17/09. El resto de ausencias largas fueron gestión de cargas.
+
+## Cambio 2026-09-25: extrapolación a la duración real del partido
+
+- La fórmula de fatiga extrapola a T = duración real de cada partido (minutos exactos, con
+  segundos, del jugador que más jugó), no a 95'. Igual para la inversa por fallo de GPS.
+- REF_PARTIDO recalculada con J2 (T = 94,9') y J3 (T = 100,6'). Los valores intermedios de
+  antes de J2/J3 no son recuperables exactamente (redondeos del proceso manual), así que se usó
+  el método de diferencias: REF' = REF + ΔE_J2/4 + ΔE_J3/2 (½ si solo jugó uno). J2/J3 quedan
+  "bloqueados" en `pipeline_ref_log.json`. Afecta a objetivos desde el microciclo siguiente.

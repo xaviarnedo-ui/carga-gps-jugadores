@@ -11,6 +11,11 @@ from pipeline.pdf_catapult import dur_a_min  # noqa: E402
 from pipeline.xlsx import filas_jugadores, plantilla_de, vaciar  # noqa: E402
 
 BASE = os.path.dirname(C.GPS_DIR)
+PARTIDOS = os.path.join(C.GPS_DIR, "Partidos")
+# REF_PARTIDO de Hernández (14) con la que se reconstruyó su J3 (fallo de GPS, 50'), antes del
+# recálculo del 25/09 que pasó a extrapolar a la duración real de cada partido
+REF_ANTES_J3 = {14: {"distancia": 9750.2, "hmld": 1526.7, "hsr": 210.2, "sprint": 2,
+                     "acc": 35.2, "dec": 50.2}}
 
 
 def snapshot(ws, ignorar=()):
@@ -45,9 +50,10 @@ class RegresionPartido(unittest.TestCase):
         nombres, _ = plantilla_de(ws)
         datos, sin = informe.datos_por_dorsal(informe.leer(pdf), nombres)
         self.assertEqual(sin, [])
-        ref = referencia.ref_partido(openpyxl.load_workbook(C.TIPO_XLSX))
+        ref_j3 = REF_ANTES_J3
         for d, mins in (fallos or {}).items():
-            datos[d] = partido.estimar_por_fallo(ref[d], mins, partido.pl_por_metro(datos))
+            # J3 se reconstruyó con el criterio antiguo (extrapolación a 95')
+            datos[d] = partido.estimar_por_fallo(ref_j3[d], mins, 95, partido.pl_por_metro(datos))
         for r in filas.values():
             for c in range(4, 13):
                 vaciar(ws.cell(r, c))
@@ -57,22 +63,26 @@ class RegresionPartido(unittest.TestCase):
         self.assertEqual(difs, [], difs[:10])
 
     def test_j3_con_fallo_gps(self):
-        self.caso(10, "J3", os.path.join(BASE, "J3 UCAM.pdf"), fallos={14: 50})
+        self.caso(10, "J3", os.path.join(PARTIDOS, "J3 UCAM.pdf"), fallos={14: 50})
 
     def test_j2(self):
-        self.caso(9, "J2", os.path.join(C.GPS_DIR, "Partidos", "J2 INTERCITY.pdf"))
+        self.caso(9, "J2", os.path.join(PARTIDOS, "J2 INTERCITY.pdf"))
 
 
 class Formulas(unittest.TestCase):
     def test_fatiga(self):
-        self.assertEqual(referencia.estimar_95(1000, 95), 1000)
-        self.assertEqual(referencia.estimar_95(1000, 100), 1000)
-        self.assertAlmostEqual(referencia.estimar_95(5000, 50), 5000 + 45 * 100 * 0.9)
+        self.assertEqual(referencia.estimar(1000, 95, 95), 1000)
+        self.assertEqual(referencia.estimar(1000, 100.6, 100.6), 1000)
+        self.assertAlmostEqual(referencia.estimar(5000, 50, 95), 5000 + 45 * 100 * 0.9)
+        self.assertAlmostEqual(referencia.estimar(5000, 50, 100.6), 5000 + 50.6 * 100 * 0.9)
 
     def test_inversa_es_inversa(self):
         for mins in (20, 50, 80):
-            est = referencia.estimar_95(4321, mins)
-            self.assertAlmostEqual(referencia.real_desde_ref(est, mins), 4321)
+            est = referencia.estimar(4321, mins, 97.3)
+            self.assertAlmostEqual(referencia.real_desde_ref(est, mins, 97.3), 4321)
+
+    def test_duracion_partido(self):
+        self.assertEqual(referencia.duracion_partido([50.1, 100.6, None, 81]), 100.6)
 
 
 if __name__ == "__main__":

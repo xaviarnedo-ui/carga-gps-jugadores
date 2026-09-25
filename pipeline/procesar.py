@@ -174,10 +174,12 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
 
     if es_partido:
         ppm = partido.pl_por_metro(datos)
+        duracion = referencia.duracion_partido(v.get("min") or v.get("dur") for v in datos.values())
+        res["duracion_partido"] = duracion
         for d, mins in fallos_gps.items():
             if d not in ref:
                 raise NecesitaDecision(f"{d}: fallo de GPS pero no tiene REF_PARTIDO para estimar")
-            datos[d] = partido.estimar_por_fallo(ref[d], mins, ppm)
+            datos[d] = partido.estimar_por_fallo(ref[d], mins, duracion, ppm)
         partido.rellenar(ws, datos)
         partido.marcar_cargado(ws)
         _, media = filas_jugadores(ws)
@@ -189,7 +191,7 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
             reales = {d: v for d, v in datos.items() if d not in fallos_gps}
             nombres_ref = {d: wt["REF_PARTIDO"].cell(r, 2).value
                            for d, r in referencia.filas_ref(wt["REF_PARTIDO"]).items()}
-            act, cameos = partido.actualizar_ref(wt, key, fecha.isoformat(), reales, nombres_ref)
+            act, cameos = partido.actualizar_ref(wt, key, fecha.isoformat(), reales, nombres_ref, duracion)
             res["ref_actualizados"] = len(act)
             if cameos:
                 res["avisos"].append("Cameos cortos en REF_PARTIDO: " + ", ".join(
@@ -258,7 +260,7 @@ def _notas_partido(nombres, estados_dia, fallos_gps, nota):
                          if grupos.get(C.REHAB) else ""))
     for d, mins in fallos_gps.items():
         lineas.append(f"{nombres[d]}: fallo de dispositivo GPS — datos reconstruidos a partir de su "
-                      f"REF_PARTIDO propio escalado a {mins:.0f}' jugados (estimado, no es GPS real). "
+                      f"REF_PARTIDO propio escalado a {mins:.0f}' jugados con la fórmula de fatiga (estimado, no es GPS real). "
                       f"Excluido de la actualización de REF_PARTIDO de este partido.")
     if grupos.get(C.NC):
         lineas.append("Convocado, no jugó: " + " · ".join(grupos[C.NC]))

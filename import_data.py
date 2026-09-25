@@ -964,8 +964,9 @@ def main():
         "refPartido": {
             "nota": ("REF_PARTIDO = media de dos bloques: la pretemporada completa (PT1-PT3, PT5-PT9; "
                      "PT4 anulado; días 'Modified' fuera) cuenta como UN solo dato, y cada partido de "
-                     "Liga con GPS real (J1 excluido, sin GPS) entra como otro dato más — cada uno "
-                     "estimado a 95' con fórmula de fatiga (desde 14/09, tras J2 vs Intercity; actualizada tras J3 vs UCAM el 20/09). "
+                     "Liga con GPS real (J1 excluido, sin GPS) entra como otro dato más (desde 14/09). "
+                     "Cada partido de Liga se extrapola con la fórmula de fatiga a su DURACIÓN REAL "
+                     "(minutos del jugador que más jugó, con descuento), no a 95' (desde 25/09; J2 y J3 recalculados). "
                      "La media del equipo se calcula con toda la plantilla de campo. "
                      "Vel. máx tomada del mejor registro de partido."),
             "players": ref_players,

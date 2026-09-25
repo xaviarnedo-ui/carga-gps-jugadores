@@ -36,6 +36,12 @@ class FilaJugador:
     def minutos(self):
         return dur_a_min(self.duracion)
 
+    @property
+    def minutos_exactos(self):
+        """Con segundos, sin redondear: para la fórmula de fatiga (en un cameo 8:49 ≠ 8,8')."""
+        h, m, s = (int(x) for x in self.duracion.split(":"))
+        return h * 60 + m + s / 60
+
 
 @dataclass
 class Informe:

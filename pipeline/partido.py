@@ -46,10 +46,11 @@ def rellenar(ws, datos):
     return fila_media
 
 
-def estimar_por_fallo(ref_jugador, minutos, pl_por_metro=None):
-    """Fallo de GPS con minutos conocidos: Real = REF / (1 + 0.9·(95−M)/M), redondeado.
+def estimar_por_fallo(ref_jugador, minutos, duracion, pl_por_metro=None):
+    """Fallo de GPS con minutos conocidos: Real = REF / (1 + 0.9·(T−M)/M), redondeado
+    (T = duración real del partido).
     Vel. máx no se estima; PL con el ratio PL/distancia del equipo en ese partido."""
-    out = {m: (round(referencia.real_desde_ref(ref_jugador[m], minutos))
+    out = {m: (round(referencia.real_desde_ref(ref_jugador[m], minutos, duracion))
                if ref_jugador.get(m) is not None else None) for m in C.METRICS}
     out["vmax"] = None
     out["pl"] = round(out["distancia"] * pl_por_metro) if pl_por_metro and out["distancia"] else None
@@ -97,8 +98,9 @@ def cuenta_para_ref(key):
     return bool(m) and int(m.group(1)) >= 2
 
 
-def actualizar_ref(wb_tipo, key, fecha, datos_reales, nombres):
-    """nuevo = round((anterior + estimado_95) / 2, 1) para quien jugó con GPS real.
+def actualizar_ref(wb_tipo, key, fecha, datos_reales, nombres, duracion):
+    """nuevo = round((anterior + estimado_T) / 2, 1) para quien jugó con GPS real, con
+    T = duración real del partido (minutos del que más jugó).
 
     Guarda los valores previos en pipeline_ref_log.json: si el partido ya se había aplicado,
     primero se deshace (reprocesar nunca promedia dos veces).
@@ -107,29 +109,33 @@ def actualizar_ref(wb_tipo, key, fecha, datos_reales, nombres):
     ws = wb_tipo["REF_PARTIDO"]
     filas = referencia.filas_ref(ws)
     log = _cargar_log()
+    if log.get(key, {}).get("bloqueado"):
+        raise ValueError(f"La REF_PARTIDO de {key} se recalculó en bloque el {log[key]['fecha']}: "
+                         f"no se puede volver a aplicar automáticamente")
     if key in log:                                   # deshacer la aplicación anterior
         for dor, prev in log[key]["previos"].items():
             for i, m in enumerate(C.METRICS):
                 ws.cell(filas[int(dor)], 4 + i).value = prev[m]
     previos, actualizados, cameos = {}, [], []
     for dor, d in sorted(datos_reales.items()):
-        if dor not in filas or not d.get("dur"):
+        mins = d.get("min") or d.get("dur")          # minutos exactos del PDF si los hay
+        if dor not in filas or not mins:
             continue
         fila = filas[dor]
         prev = {m: num(ws.cell(fila, 4 + i).value) for i, m in enumerate(C.METRICS)}
         previos[str(dor)] = prev
         for i, m in enumerate(C.METRICS):
-            est = referencia.estimar_95(d[m], d["dur"])
+            est = referencia.estimar(d[m], mins, duracion)
             if prev[m] is None:
                 nuevo = r1(est)
             else:
                 nuevo = r1((prev[m] + est) / 2)
             ws.cell(fila, 4 + i).value = limpio(nuevo)
-        actualizados.append((dor, d["dur"]))
-        if d["dur"] < CAMEO_MIN:
-            cameos.append((dor, d["dur"]))
+        actualizados.append((dor, mins))
+        if mins < CAMEO_MIN:
+            cameos.append((dor, mins))
     log[key] = {"fecha": fecha, "aplicado": dt.datetime.now().isoformat(timespec="seconds"),
-                "previos": previos}
+                "duracion": duracion, "previos": previos}
     _guardar_log(log)
 
     # nota de trazabilidad al final de la hoja (reemplaza la de este partido si ya existía)
@@ -142,7 +148,7 @@ def actualizar_ref(wb_tipo, key, fecha, datos_reales, nombres):
     if fila_nota is None:
         fila_nota = ws.max_row + 2
     txt = (f"{marca} ACTUALIZACIÓN {fecha} ({key}): REF_PARTIDO = media(valor anterior, "
-           f"estimación a 95' con fórmula de fatiga) para {len(actualizados)} jugadores con GPS "
+           f"estimación a la duración real del partido, {duracion:.1f}', con fórmula de fatiga) para {len(actualizados)} jugadores con GPS "
            f"real: " + ", ".join(nombres.get(d, str(d)) for d, _ in actualizados) + ".")
     if cameos:
         txt += (" AVISO cameos cortos (extrapolación agresiva, ya pesan el 50% de su referencia): "

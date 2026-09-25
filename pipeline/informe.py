@@ -5,7 +5,7 @@ from . import pdf_catapult, plantilla
 def valores(fila):
     return {"distancia": fila.distancia, "hmld": fila.hmld, "hsr": fila.hsr,
             "sprint": fila.sprint, "acc": fila.acc, "dec": fila.dec,
-            "vmax": fila.vmax, "pl": fila.pl, "dur": fila.minutos}
+            "vmax": fila.vmax, "pl": fila.pl, "dur": fila.minutos, "min": fila.minutos_exactos}
 
 
 def datos_por_dorsal(inf, nombres_hoja, alias=None):

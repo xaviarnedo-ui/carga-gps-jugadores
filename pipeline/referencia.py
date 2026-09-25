@@ -51,19 +51,26 @@ def objetivo(ref_jugador, coef_dia):
             for m in C.METRICS}
 
 
-def estimar_95(real, minutos):
-    """Estimado_95 = Real + (95 − M) × (Real / M) × 0.90 ; sin extrapolar si M ≥ 95."""
+def duracion_partido(minutos_jugadores):
+    """Duración real del partido (con descuento) = los minutos del jugador que más jugó."""
+    mins = [m for m in minutos_jugadores if m]
+    return max(mins) if mins else None
+
+
+# Desde el 25/09/2026 la extrapolación va a la duración REAL de cada partido (T), no a 95'.
+def estimar(real, minutos, duracion):
+    """Estimado_T = Real + (T − M) × (Real / M) × 0.90 ; sin extrapolar si M ≥ T."""
     if real is None or not minutos:
         return None
-    if minutos >= 95:
+    if minutos >= duracion:
         return real
-    return real + (95 - minutos) * (real / minutos) * FATIGA
+    return real + (duracion - minutos) * (real / minutos) * FATIGA
 
 
-def real_desde_ref(ref_valor, minutos):
-    """Inversa: Real_estimado = REF / (1 + 0.90 × (95 − M) / M)."""
+def real_desde_ref(ref_valor, minutos, duracion):
+    """Inversa: Real_estimado = REF / (1 + 0.90 × (T − M) / M)."""
     if ref_valor is None or not minutos:
         return None
-    if minutos >= 95:
+    if minutos >= duracion:
         return ref_valor
-    return ref_valor / (1 + FATIGA * (95 - minutos) / minutos)
+    return ref_valor / (1 + FATIGA * (duracion - minutos) / minutos)
