@@ -5,6 +5,7 @@
   python3 gps.py procesar S47.pdf [Rehab.pdf] [opciones]
         --estado 6=descanso --estado 26=rehab    estado del día (full/rehab/lesion/descanso/nc/noconv)
         --fallo-gps 14=50                         partido: GPS roto, 50' jugados → estimado desde REF
+        --proxy 19=17                             GPS roto: copia los datos del 17 al 19 (dato proxy)
         --rol 16=S                                MD+1: titular (T) / suplente (S) si vuelve ese día
         --lesion 26="Fractura de nariz"           tipo de una lesión NUEVA (abre la baja ese día)
         --alias "NOMBRE APELLIDO=dorsal"          nombre del PDF que no cruza con la plantilla
@@ -59,6 +60,7 @@ def main():
     a.add_argument("--fallo-gps", action="append")
     a.add_argument("--rol", action="append")
     a.add_argument("--lesion", action="append")
+    a.add_argument("--proxy", action="append")
     a.add_argument("--alias", action="append")
     a.add_argument("--extra", action="store_true")
     a.add_argument("--nota", default="")
@@ -97,6 +99,7 @@ def main():
                              fallos_gps={int(k): float(v) for k, v in _pares(args.fallo_gps).items()},
                              rol_md1={int(k): v.upper() for k, v in _pares(args.rol).items()},
                              alias={k: int(v) for k, v in _pares(args.alias).items()},
+                             proxies={int(k): int(v) for k, v in _pares(args.proxy).items()},
                              tipos_lesion={int(k): v.strip('"') for k, v in _pares(args.lesion).items()},
                              nota=args.nota, extra=args.extra, dry_run=args.prueba)
         except P.NecesitaDecision as e:

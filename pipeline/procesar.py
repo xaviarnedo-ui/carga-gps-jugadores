@@ -129,7 +129,7 @@ def decidir_estados(roster, en_pdf, vigentes, override, es_partido):
 
 
 def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run=False,
-             alias=None, rol_md1=None, tipos_lesion=None):
+             alias=None, rol_md1=None, tipos_lesion=None, proxies=None):
     """Devuelve un dict-resumen. dry_run: escribe en el scratchpad, no toca nada real."""
     override = override or {}
     fallos_gps = fallos_gps or {}
@@ -164,6 +164,22 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
         if dup:
             raise NecesitaDecision(f"Jugadores en más de un PDF: {sorted(dup)}")
         datos.update(dd)
+    # fallo de GPS sin más contexto: se copian los datos de otro jugador de la misma sesión
+    # como aproximación (dato proxy; en partidos, fuera de REF_PARTIDO)
+    proxies = proxies or {}
+    for dest, src in proxies.items():
+        if src not in datos:
+            raise NecesitaDecision(f"Proxy {dest}←{src}: el {src} no está en el PDF")
+        if dest in datos:
+            raise NecesitaDecision(f"Proxy {dest}←{src}: el {dest} ya tiene datos en el PDF")
+        datos[dest] = dict(datos[src])
+        override.setdefault(dest, C.FULL)
+    if proxies:
+        txt_proxy = " ".join(
+            f"{nombres[d]}: fallo de dispositivo GPS — datos de {nombres[s]} (misma sesión) como "
+            f"aproximación (dato proxy estimado, no es GPS real)." for d, s in proxies.items())
+        nota = (txt_proxy + " " + nota).strip()
+        res["avisos"].append("Proxy GPS: " + ", ".join(f"{nombres[d]} ← {nombres[s]}" for d, s in proxies.items()))
     for d in fallos_gps:
         override.setdefault(d, C.FULL)
     vigentes = {d: E.vigente(est, d) for d in nombres}
@@ -188,7 +204,7 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
             if e in E.PERSISTENTES and e != vigentes[d] and d not in datos:
                 E.cambiar(est, d, e, fecha.isoformat(), f"{key}")
         if partido.cuenta_para_ref(key) and not dry_run:
-            reales = {d: v for d, v in datos.items() if d not in fallos_gps}
+            reales = {d: v for d, v in datos.items() if d not in fallos_gps and d not in proxies}
             nombres_ref = {d: wt["REF_PARTIDO"].cell(r, 2).value
                            for d, r in referencia.filas_ref(wt["REF_PARTIDO"]).items()}
             act, cameos = partido.actualizar_ref(wt, key, fecha.isoformat(), reales, nombres_ref, duracion)
