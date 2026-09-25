@@ -1274,15 +1274,19 @@ const fDate = iso => iso ? iso.slice(8,10)+"/"+iso.slice(5,7)+"/"+iso.slice(0,4)
 
 // sesiones (y Extra) con dato del jugador entre la baja y el alta (el día del alta incluido,
 // para ver la vuelta al grupo)
+// sesiones con GPS desde la PRIMERA de readaptación (o Extra) hasta el alta incluida;
+// el día de la lesión y los días de baja sin readaptar no se muestran
 function puntosLesion(l){
   const fin = l.alta || HOY, out=[];
   RAW.sessions.concat(RAW.extras).forEach(s=>{
     if(s.date<l.baja || s.date>fin) return;
     const pr=s.players.find(p=>p.d===l.dorsal);
     if(!pr || !(RADAR_METRICS.some(k=>raw(pr,k).real!=null) || pr.pl!=null)) return;
-    out.push({s, pr, alta: !!l.alta && s.date===l.alta, dia0: s.date===l.baja && pr.e!=="rehab" && !s.isExtra});
+    out.push({s, pr, alta: !!l.alta && s.date===l.alta, readapt: pr.e==="rehab" || !!s.isExtra});
   });
-  return out.sort((a,b)=> a.s.date<b.s.date?-1 : a.s.date>b.s.date?1 : 0);
+  out.sort((a,b)=> a.s.date<b.s.date?-1 : a.s.date>b.s.date?1 : 0);
+  const i0 = out.findIndex(pt=>pt.readapt);
+  return i0<0 ? [] : out.slice(i0);
 }
 // referencia: su media en sesiones de entrenamiento con el grupo de las 4 semanas previas
 function refPrevia(l){
@@ -1304,7 +1308,6 @@ function refPrevia(l){
 function tipoPunto(pt, l){
   if(pt.s.isExtra) return "Extra";
   if(pt.alta) return "Alta · grupo";
-  if(pt.s.date===l.baja && pt.pr.e!=="rehab") return "Día de la lesión";
   return pt.pr.e==="rehab" ? "Readaptación" : "Grupo";
 }
 // carga diaria por jugador (sesiones + partidos + Extra) para el ACWR día a día
@@ -1331,7 +1334,8 @@ const lesSel = {};   // id de lesión -> {sel:Set, abs:bool}
 
 function chartLesion(l, pts, ref, cfg){
   const fin = l.alta || HOY;
-  const dias=[]; for(let d=l.baja; d<=fin; d=addDias(d,1)) dias.push(d);
+  const inicio = pts[0].s.date;
+  const dias=[]; for(let d=inicio; d<=fin; d=addDias(d,1)) dias.push(d);
   const mets=[...cfg.sel].filter(k=>LES_METRICS.includes(k));
   const acwrs=[...cfg.sel].filter(k=>ACWR_SERIES[k]);
   const abs = cfg.abs && mets.length===1;
@@ -1340,7 +1344,7 @@ function chartLesion(l, pts, ref, cfg){
   const W=Math.max(360, Math.min(980, ancho)), H=W<600? 300 : 360;
   const mL=W<600?42:54, mR=acwrs.length?(W<600?34:48):12, mT=18, mB=40, iw=W-mL-mR, ih=H-mT-mB;
   const cadaX = W<600? 14 : 7;
-  const X=d=> mL + (dias.length<=1? iw/2 : iw*diasEntre(l.baja,d)/(dias.length-1));
+  const X=d=> mL + (dias.length<=1? iw/2 : iw*diasEntre(inicio,d)/(dias.length-1));
   // serie de métricas: valor por sesión (absoluto o % de su media previa)
   const val=(pt,k)=>{ const v=raw(pt.pr,k).real; if(v==null) return null; return abs? v : (ref[k]? v/ref[k]*100 : null); };
   const metY = mets.map(k=> pts.map(pt=>val(pt,k)));
@@ -1369,11 +1373,11 @@ function chartLesion(l, pts, ref, cfg){
   svg.append(g, ax);
   if(mets.length && !abs) svg.appendChild(el("line",{class:"ref-line",x1:mL,x2:W-mR,y1:YL(100),y2:YL(100)}));
   if(abs && ref[mets[0]]!=null) svg.appendChild(el("line",{class:"ref-line",x1:mL,x2:W-mR,y1:YL(ref[mets[0]]),y2:YL(ref[mets[0]])}));
-  // marcas de baja y alta
-  [[l.baja,"Lesión","var(--sem-alto)"], ...(l.alta?[[l.alta,"Alta","var(--sem-ok)"]]:[])].forEach(([d,t,c])=>{
-    svg.appendChild(el("line",{x1:X(d),x2:X(d),y1:mT,y2:mT+ih,stroke:c,"stroke-width":1.5,"stroke-dasharray":"2 3"}));
-    svg.appendChild(el("text",{x:X(d)+(d===l.baja?4:-4),y:mT+10,"text-anchor":d===l.baja?"start":"end",fill:c,"font-size":"10.5","font-weight":"600"},t));
-  });
+  // marca de alta
+  if(l.alta){
+    svg.appendChild(el("line",{x1:X(l.alta),x2:X(l.alta),y1:mT,y2:mT+ih,stroke:"var(--sem-ok)","stroke-width":1.5,"stroke-dasharray":"2 3"}));
+    svg.appendChild(el("text",{x:X(l.alta)-4,y:mT+10,"text-anchor":"end",fill:"var(--sem-ok)","font-size":"10.5","font-weight":"600"},"Alta"));
+  }
   acwrs.forEach((k,j)=> svg.appendChild(el("path",{class:"serie", stroke:LES_COLORS[k], "stroke-dasharray":"5 3", "stroke-width":1.8,
     d:line(acwrY[j].map((v,i)=>[X(dias[i]),YR(v)]))})));
   mets.forEach((k,j)=>{
@@ -1401,7 +1405,7 @@ function chartLesion(l, pts, ref, cfg){
     mets.forEach(k=>{ if(!pt) return; const v=raw(pt.pr,k).real; if(v==null) return;
       rows.push(`<div class="row"><span><i style="background:${LES_COLORS[k]}"></i>${METRICS[k].lab}</span><b>${fmtN(v,METRICS[k].dec)}${ref[k]?` · ${Math.round(v/ref[k]*100)}%`:""}</b></div>`); });
     acwrs.forEach((k,j)=> rows.push(`<div class="row"><span><i style="background:${LES_COLORS[k]}"></i>${ACWR_SERIES[k].lab}</span><b>${fmtN(acwrY[j][i],2)}</b></div>`));
-    tip.innerHTML=`<h4><span>${fDate(d)}</span><span class="muted">día ${i+1}</span></h4>`+
+    tip.innerHTML=`<h4><span>${fDate(d)}</span><span class="muted">día ${diasEntre(l.baja,d)+1} de baja</span></h4>`+
       `<div class="row" style="margin-bottom:3px"><span>${pt? pt.s.key+" · "+tipoPunto(pt,l) : "Sin sesión"}</span></div>`+rows.join("");
     tip.style.opacity=1;
     tip.style.left=Math.min(r.width-190, Math.max(0, X(d)/W*r.width+12))+"px"; tip.style.top="10px";
@@ -1411,7 +1415,7 @@ function chartLesion(l, pts, ref, cfg){
 }
 
 function panelGraficoLesion(l, pts, ref){
-  const cfg = lesSel[l.id] || (lesSel[l.id] = {sel:new Set(pts.length?["distancia","hsr","acwr_pl"]:["acwr_pl","acwr_hsr","acwr_sprint"]), abs:false});
+  const cfg = lesSel[l.id] || (lesSel[l.id] = {sel:new Set(["distancia","hsr","acwr_pl"]), abs:false});
   const cont=el("div");
   const pintar=()=>{
     cont.innerHTML="";
@@ -1423,7 +1427,6 @@ function panelGraficoLesion(l, pts, ref){
         const on=cfg.sel.has(k);
         const b=el("button",{class:"chip sm","aria-pressed":on});
         b.innerHTML=`<i class="sw" style="background:${LES_COLORS[k]}"></i>${lab(k)}`;
-        if(LES_METRICS.includes(k) && !pts.length) b.setAttribute("disabled","");
         b.onclick=()=>{ on? cfg.sel.delete(k) : cfg.sel.add(k); pintar(); };
         box.appendChild(b);
       });
@@ -1464,17 +1467,17 @@ function fichaLesion(l){
     `<span><span class="lb">Lesión</span>${l.tipo||"–"}</span>`+
     `<span><span class="lb">Baja</span><span class="mono">${fDate(l.baja)}</span></span>`+
     `<span><span class="lb">Alta</span>${l.alta?`<span class="mono">${fDate(l.alta)}</span>`:`<span class="tag-les baja">Abierta</span>`}</span>`+
-    `<span style="text-align:right"><span class="lb">${l.alta?"Duración":"Lleva"}</span><b class="mono">${dias} días</b> <span class="muted">· ${nSes} ses. con GPS</span></span>`;
+    `<span style="text-align:right"><span class="lb">${l.alta?"Duración":"Lleva"}</span><b class="mono">${dias} días</b> <span class="muted">· ${nSes} ses. readaptación</span></span>`;
   d.appendChild(sum);
   d.addEventListener("toggle", ()=>{
     if(!d.open || d.dataset.ok) return;
     d.dataset.ok="1";
     const body=el("div",{class:"les-body"});
     const ref=refPrevia(l);
-    body.appendChild(panelGraficoLesion(l, pts, ref));
     if(!pts.length){
-      body.appendChild(el("p",{class:"note"},"Sin sesiones con GPS durante la baja: solo se puede seguir la caída de su ACWR."));
+      body.appendChild(el("p",{class:"note", style:"padding-top:10px"},"Todavía no ha empezado la readaptación: no hay sesiones con GPS desde la baja."));
     } else {
+      body.appendChild(panelGraficoLesion(l, pts, ref));
       const wrap=el("div",{class:"tbl-scroll sticky-col"});
       const tb=el("table");
       tb.innerHTML=`<thead><tr><th>Fecha</th><th>Sesión</th><th style="text-align:left">Tipo</th><th>Duración</th>`+
@@ -1483,7 +1486,7 @@ function fichaLesion(l){
       const tbody=el("tbody");
       pts.forEach(pt=>{
         const cells=[`<td class="mono">${fDate(pt.s.date)}</td>`, `<td>${pt.s.key}</td>`,
-          `<td style="text-align:left"><span class="tag-les ${pt.alta?"alta":(tipoPunto(pt,l)==="Día de la lesión"?"baja":"rehab")}">${tipoPunto(pt,l)}</span></td>`,
+          `<td style="text-align:left"><span class="tag-les ${pt.alta?"alta":"rehab"}">${tipoPunto(pt,l)}</span></td>`,
           `<td class="mono">${pt.pr.dur!=null?fmtN(pt.pr.dur,0)+"′":"–"}</td>`];
         LES_METRICS.forEach((k,i)=>{ const v=raw(pt.pr,k).real;
           cells.push(`<td class="mono${i===0?" grp-start":""}">${v!=null?fmtN(v,METRICS[k].dec):"–"}</td>`); });
@@ -1522,7 +1525,7 @@ function viewLesionados(root){
     lst.forEach(l=> p.appendChild(fichaLesion(l)));
   });
   p.appendChild(el("p",{class:"note", style:"padding-top:12px"},
-    "Una lesión va de la baja hasta el primer día que vuelve a entrenar con el grupo (alta); la readaptación va dentro. % en cada gráfica = última sesión frente a su media previa."));
+    "Una lesión va de la baja hasta el primer día que vuelve a entrenar con el grupo (alta). El gráfico y la tabla empiezan en la primera sesión de readaptación."));
   root.appendChild(p);
 }
 
