@@ -48,6 +48,9 @@ Una sesión fuera de calendario (p. ej. un martes) va con `--extra` → hoja `Ex
 - full: Obj/Real/Dif/semáforo, cuenta en la media. rehab: solo Real, no cuenta en la media,
   sí en Acumulado y ACWR. lesión: nada (0 en ACWR). descanso: sin objetivo ese día.
 - Los cambios de estado se aplican desde ese día en adelante, nunca hacia atrás.
+- Acumulado semanal: quien tiene objetivo semanal acumula solo desde su primer día con objetivo
+  (+ Extra desde ese día); su readaptación previa no se compara con el objetivo (sí va al ACWR).
+  Quien no tiene objetivo en toda la semana: acumulado total, informativo (corrección 26/09).
 - ACWR: aguda Σ7d/7, crónica Σ28d/28 en días naturales (sin sesión = 0); media de equipo
   sin los ACWR = 0. Se recalcula siempre desde las hojas *_GPS de todos los microciclos.
 - REF_PARTIDO tras cada partido de Liga J≥2 con GPS real:

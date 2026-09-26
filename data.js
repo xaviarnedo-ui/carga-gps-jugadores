@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-09-25 12:39",
+  "generado": "2026-09-26 09:08",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-11)"
  },
  "refPartido": {
@@ -92606,32 +92606,32 @@ window.GPS_DATA_ALL = {
      "grupo": "M",
      "distancia": {
       "obj": null,
-      "real": 23111,
+      "real": 3228,
       "dif": null
      },
      "hmld": {
       "obj": null,
-      "real": 3773,
+      "real": 372,
       "dif": null
      },
      "hsr": {
       "obj": null,
-      "real": 1328,
+      "real": 23,
       "dif": null
      },
      "sprint": {
       "obj": null,
-      "real": 25,
+      "real": 0,
       "dif": null
      },
      "acc": {
       "obj": null,
-      "real": 163,
+      "real": 21,
       "dif": null
      },
      "dec": {
       "obj": null,
-      "real": 138,
+      "real": 16,
       "dif": null
      }
     },
@@ -92674,33 +92674,33 @@ window.GPS_DATA_ALL = {
    "teamAvg": {
     "distancia": {
      "obj": 22598.9,
-     "real": 20197,
-     "dif": -2402
+     "real": 19151,
+     "dif": -3448
     },
     "hmld": {
      "obj": 3188,
-     "real": 3082,
-     "dif": -106
+     "real": 2903,
+     "dif": -285
     },
     "hsr": {
      "obj": 786,
-     "real": 1115,
-     "dif": 329
+     "real": 1046,
+     "dif": 260
     },
     "sprint": {
      "obj": 15.8,
-     "real": 21,
-     "dif": 5
+     "real": 19,
+     "dif": 3
     },
     "acc": {
      "obj": 68.2,
-     "real": 76,
-     "dif": 8
+     "real": 69,
+     "dif": 1
     },
     "dec": {
      "obj": 101.7,
-     "real": 73,
-     "dif": -29
+     "real": 66,
+     "dif": -36
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."
@@ -102793,66 +102793,66 @@ window.GPS_DATA_ALL = {
      "grupo": "D",
      "distancia": {
       "obj": 6456.8,
-      "real": 13720,
-      "dif": 7263.2
+      "real": 3774,
+      "dif": -2682.8
      },
      "hmld": {
       "obj": 573.7,
-      "real": 2495,
-      "dif": 1921.3
+      "real": 401,
+      "dif": -172.7
      },
      "hsr": {
       "obj": 97.4,
-      "real": 1653,
-      "dif": 1555.6
+      "real": 145,
+      "dif": 47.6
      },
      "sprint": {
       "obj": 2,
-      "real": 27,
-      "dif": 25
+      "real": 2,
+      "dif": 0
      },
      "acc": {
       "obj": 12.1,
-      "real": 47,
-      "dif": 34.9
+      "real": 21,
+      "dif": 8.9
      },
      "dec": {
       "obj": 19.5,
-      "real": 30,
-      "dif": 10.5
+      "real": 6,
+      "dif": -13.5
      }
     }
    ],
    "teamAvg": {
     "distancia": {
      "obj": 21525.9,
-     "real": 17296,
-     "dif": -4230
+     "real": 16743,
+     "dif": -4783
     },
     "hmld": {
      "obj": 3043.4,
-     "real": 2518,
-     "dif": -525
+     "real": 2402,
+     "dif": -641
     },
     "hsr": {
      "obj": 794.6,
-     "real": 966,
-     "dif": 171
+     "real": 882,
+     "dif": 87
     },
     "sprint": {
      "obj": 15.2,
-     "real": 18,
-     "dif": 3
+     "real": 17,
+     "dif": 2
     },
     "acc": {
      "obj": 62.4,
-     "real": 55,
-     "dif": -7
+     "real": 53,
+     "dif": -9
     },
     "dec": {
      "obj": 96,
-     "real": 54,
-     "dif": -42
+     "real": 52,
+     "dif": -44
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."
@@ -103565,66 +103565,66 @@ window.GPS_DATA_ALL = {
      "grupo": "D",
      "distancia": {
       "obj": 6456.8,
-      "real": 13720,
-      "dif": 7263.2
+      "real": 3774,
+      "dif": -2682.8
      },
      "hmld": {
       "obj": 573.7,
-      "real": 2495,
-      "dif": 1921.3
+      "real": 401,
+      "dif": -172.7
      },
      "hsr": {
       "obj": 97.4,
-      "real": 1653,
-      "dif": 1555.6
+      "real": 145,
+      "dif": 47.6
      },
      "sprint": {
       "obj": 2,
-      "real": 27,
-      "dif": 25
+      "real": 2,
+      "dif": 0
      },
      "acc": {
       "obj": 12.1,
-      "real": 47,
-      "dif": 34.9
+      "real": 21,
+      "dif": 8.9
      },
      "dec": {
       "obj": 19.5,
-      "real": 30,
-      "dif": 10.5
+      "real": 6,
+      "dif": -13.5
      }
     }
    ],
    "teamAvg": {
     "distancia": {
      "obj": 21525.9,
-     "real": 16373.8,
-     "dif": -5152.1
+     "real": 15821.3,
+     "dif": -5704.6
     },
     "hmld": {
      "obj": 3043.4,
-     "real": 2382.6,
-     "dif": -660.8
+     "real": 2266.2,
+     "dif": -777.2
     },
     "hsr": {
      "obj": 794.6,
-     "real": 895.1,
-     "dif": 100.5
+     "real": 811.3,
+     "dif": 16.7
     },
     "sprint": {
      "obj": 15.2,
-     "real": 17.4,
-     "dif": 2.2
+     "real": 16,
+     "dif": 0.8
     },
     "acc": {
      "obj": 62.4,
-     "real": 51.9,
-     "dif": -10.5
+     "real": 50.5,
+     "dif": -11.9
     },
     "dec": {
      "obj": 96,
-     "real": 51.7,
-     "dif": -44.3
+     "real": 50.4,
+     "dif": -45.6
     }
    },
    "nota": "Acumulado de toda la semana: sesiones de entrenamiento + partido(s). Objetivo de la semana completa de Microciclo 11 (Lunes MD+1 individual según rol en J3 + Miércoles MD-4 + Jueves MD-3 + Viernes MD-2 + Sábado MD-1, uno de cada uno). Acumulado (Real) pendiente de cargar sesión a sesión."

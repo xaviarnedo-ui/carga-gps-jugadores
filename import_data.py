@@ -530,17 +530,30 @@ def build_sessions_only(sesiones, ses_keys, acu, extras=None):
     players = []
     for dor, ap in obj_by.items():
         rec = dict(dorsal=dor, jugador=ap["jugador"], grupo=ap["grupo"])
+        # quien tiene objetivo semanal acumula solo desde su primer día con objetivo (la
+        # readaptación previa no se compara con el objetivo); sin objetivo: todo, informativo
+        def _pr(s):
+            return next((x for x in s["players"] if x["dorsal"] == dor), None)
+
+        def _con_obj(pr):
+            return pr is not None and any(isinstance(pr.get(m), dict) and pr[m].get("obj") is not None
+                                          for m in METRICS)
+        desde = next((sesiones[sk]["date"] for sk in ses_keys if _con_obj(_pr(sesiones[sk]))), None)
         for k in METRICS:
             o = ap[k]["obj"]
             real = 0
             has = False
             for sk in ses_keys:
-                pr = next((x for x in sesiones[sk]["players"] if x["dorsal"] == dor), None)
+                pr = _pr(sesiones[sk])
+                if desde is not None and not _con_obj(pr):
+                    continue
                 if pr and pr[k] and pr[k]["real"] is not None:
                     real += pr[k]["real"]
                     has = True
             for ex in extras.values():
-                pr = next((x for x in ex["players"] if x["dorsal"] == dor), None)
+                if desde is not None and (ex.get("date") or "") < desde:
+                    continue
+                pr = _pr(ex)
                 if pr and pr.get(k) and pr[k]["real"] is not None:
                     real += pr[k]["real"]
                     has = True
