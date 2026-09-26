@@ -344,6 +344,7 @@ const state = {
   hmPlayer:null,
   session:null,                // índice (RAW.sessions[i].i) de la sesión elegida en la pestaña Sesión
   acuMc:null, acuRef:null,     // pestaña Microciclos: microciclo y referencia del "Acumulado de la semana"
+  acuOrden:"dorsal",           // orden de la tabla: dorsal | desc | asc (por % de cumplimiento medio)
 };
 
 /* ---------- value helpers ---------- */
@@ -1005,6 +1006,12 @@ function acumuladoSemana(mc){
   }));
   return {ses, hechas, filas:Object.values(filas).sort((a,b)=>a.d-b.d)};
 }
+// cumplimiento medio = media de (acumulado / objetivo) en las 6 métricas con objetivo > 0
+function cumplMedio(r, refKey){
+  const ps = RADAR_METRICS.filter(k=> r[refKey][k]).map(k=> (r.acum[k]||0) / r[refKey][k] * 100);
+  return ps.length ? ps.reduce((a,b)=>a+b,0)/ps.length : null;
+}
+const semColor = pct => pct==null? "var(--ink-3)" : pct<90?"var(--sem-corto)": pct<=110?"var(--sem-ok)": pct<=120?"var(--sem-pasado)":"var(--sem-alto)";
 function panelAcumulado(){
   const conDatos = MICROS.filter(mc=> RAW.sessions.some(s=>s.mc===mc && !s.isMatch && sessionHasData(s)));
   if(state.acuMc==null || !conDatos.includes(state.acuMc)) state.acuMc = conDatos[conDatos.length-1];
@@ -1032,6 +1039,14 @@ function panelAcumulado(){
     box.appendChild(b);
   });
   gr.appendChild(box); bar.appendChild(gr);
+  const go=el("div",{class:"fgroup"}); go.appendChild(el("span",{},"Ordenar"));
+  const obox=el("div",{class:"chips"});
+  [["dorsal","Dorsal"],["desc","% cumpl. ↓"],["asc","% cumpl. ↑"]].forEach(([v,t])=>{
+    const b=el("button",{class:"chip sm","aria-pressed":state.acuOrden===v},t);
+    b.onclick=()=>{ state.acuOrden=v; renderView(); };
+    obox.appendChild(b);
+  });
+  go.appendChild(obox); bar.appendChild(go);
   p.appendChild(bar);
 
   p.appendChild(el("p",{class:"note", style:"padding-bottom:8px"},
@@ -1040,8 +1055,23 @@ function panelAcumulado(){
 
   const visibles = A.filas.filter(r=> inGroup({d:r.d}));
   const conObj = visibles.filter(r=> RADAR_METRICS.some(k=>r.obj[k]!=null));
+  conObj.forEach(r=> r.cumpl = cumplMedio(r, refKey));
+  if(state.acuOrden!=="dorsal"){
+    const sg = state.acuOrden==="desc" ? -1 : 1;
+    conObj.sort((a,b)=> (a.cumpl==null)-(b.cumpl==null) || sg*((a.cumpl||0)-(b.cumpl||0)) || a.d-b.d);
+  }
   const sinObj = visibles.filter(r=> !RADAR_METRICS.some(k=>r.obj[k]!=null) && RADAR_METRICS.some(k=>r.acum[k]!=null));
 
+  // media de cumplimiento del equipo, lo primero
+  const cumplEq = (()=>{ const v=conObj.map(r=>r.cumpl).filter(x=>x!=null); return v.length? v.reduce((a,b)=>a+b,0)/v.length : null; })();
+  const mini=el("div",{class:"mini-kpis"});
+  mini.innerHTML=[
+    {n:cumplEq!=null?`<span style="color:${semColor(cumplEq)}">${Math.round(cumplEq)}%</span>`:"–", l:"Cumplimiento medio equipo"},
+    {n:`${A.hechas.length}/${A.ses.length}`, l:"Sesiones cargadas"},
+    {n:conObj.filter(r=>r.cumpl!=null && r.cumpl>=90 && r.cumpl<=110).length, l:"Jugadores en zona (90–110%)"},
+    {n:conObj.filter(r=>r.cumpl!=null && r.cumpl<90).length, l:"Por debajo (< 90%)"},
+  ].map(k=>`<div class="kpi"><div class="n">${k.n}</div><div class="l">${k.l}</div></div>`).join("");
+  p.appendChild(mini);
   p.appendChild(legendRow([
     {c:"var(--sem-corto)",t:"< 90%"},{c:"var(--sem-ok)",t:"90–110%"},
     {c:"var(--sem-pasado)",t:"110–120%"},{c:"var(--sem-alto)",t:"> 120%"},
@@ -1053,14 +1083,15 @@ function panelAcumulado(){
   };
   const wrap=el("div",{class:"tbl-scroll sticky-col"});
   const tb=el("table");
-  tb.innerHTML=`<thead><tr><th rowspan="2">Jugador</th><th rowspan="2">Pos</th>`+
+  tb.innerHTML=`<thead><tr><th rowspan="2">Jugador</th><th rowspan="2">Pos</th><th rowspan="2" class="grp-start">Cumpl.<br>medio</th>`+
     RADAR_METRICS.map(k=>`<th colspan="3" class="grp-start">${METRICS[k].lab}${METRICS[k].u?` (${METRICS[k].u})`:""}</th>`).join("")+
     `<th rowspan="2" class="grp-start">Player<br>Load</th><th rowspan="2">Minutos</th></tr><tr>`+
     RADAR_METRICS.map(()=>`<th class="grp-start">${refKey==="objF"?"Obj. fecha":"Obj. sem."}</th><th>Acum.</th><th>%</th>`).join("")+`</tr></thead>`;
   const body=el("tbody");
   const fila=(r, conPct)=>{
     const g=POS[r.d];
-    const cells=[`<td>#${r.d} ${NAME[r.d]||"?"}${conPct&&r.parcial?` <span title="Acumulado desde su vuelta (${fDate(r.desde)}); su readaptación anterior no cuenta aquí">†</span>`:""}</td>`, `<td class="pos-${g||""}">${GROUPS[g]||g||"–"}</td>`];
+    const cells=[`<td>#${r.d} ${NAME[r.d]||"?"}${conPct&&r.parcial?` <span title="Acumulado desde su vuelta (${fDate(r.desde)}); su readaptación anterior no cuenta aquí">†</span>`:""}</td>`, `<td class="pos-${g||""}">${GROUPS[g]||g||"–"}</td>`,
+      `<td class="mono grp-start" style="font-weight:700; font-size:14px; color:${semColor(r.cumpl)}">${r.cumpl!=null?Math.round(r.cumpl)+"%":"–"}</td>`];
     RADAR_METRICS.forEach(k=>{
       const o=r[refKey][k], a=r.acum[k];
       cells.push(`<td class="mono v-obj grp-start">${o!=null?fmtN(o,METRICS[k].dec):"–"}</td>`);
@@ -1081,7 +1112,8 @@ function panelAcumulado(){
       med.acum[k]=conObj.reduce((s,r)=>s+(r.acum[k]||0),0)/n;
     });
     const pls=conObj.map(r=>r.pl).filter(v=>v!=null), mins=conObj.map(r=>r.min).filter(v=>v!=null);
-    const cells=['<td>MEDIA EQUIPO</td>','<td></td>'];
+    const cells=['<td>MEDIA EQUIPO</td>','<td></td>',
+      `<td class="mono grp-start" style="font-weight:700; font-size:14px; color:${semColor(cumplEq)}">${cumplEq!=null?Math.round(cumplEq)+"%":"–"}</td>`];
     RADAR_METRICS.forEach(k=>{
       const o=med[refKey][k], a=med.acum[k];
       cells.push(`<td class="mono v-obj grp-start">${fmtN(o,METRICS[k].dec)}</td><td class="mono v-real">${fmtN(a,METRICS[k].dec)}</td>`);
@@ -1092,7 +1124,7 @@ function panelAcumulado(){
     const tr=el("tr",{class:"total"}); tr.innerHTML=cells.join(""); body.appendChild(tr);
   }
   tb.appendChild(body); wrap.appendChild(tb); p.appendChild(wrap);
-  p.appendChild(el("p",{class:"note"},"MEDIA EQUIPO = jugadores con objetivo semanal (si aún no han sumado nada cuentan 0). Jugadores en gris: sin carga todavía esta semana. † = vuelve a mitad de semana: su acumulado cuenta desde su primer día con objetivo; la readaptación anterior no se compara con el objetivo (sí cuenta en su ACWR)."));
+  p.appendChild(el("p",{class:"note"},"Cumpl. medio = media del % de las 6 métricas; el del equipo es la media de los jugadores. MEDIA EQUIPO = jugadores con objetivo semanal (si aún no han sumado nada cuentan 0). Jugadores en gris: sin carga todavía esta semana. † = vuelve a mitad de semana: su acumulado cuenta desde su primer día con objetivo; la readaptación anterior no se compara con el objetivo (sí cuenta en su ACWR)."));
 
   if(sinObj.length){
     const bx=el("div",{class:"bajas"});

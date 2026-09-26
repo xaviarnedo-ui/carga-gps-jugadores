@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-09-26 09:08",
+  "generado": "2026-09-26 09:16",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-11)"
  },
  "refPartido": {
@@ -82,7 +82,7 @@ window.GPS_DATA_ALL = {
     "dec": 52.2,
     "velMax": 29.33,
     "partidos": 10,
-    "dispo": "baja",
+    "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
    {

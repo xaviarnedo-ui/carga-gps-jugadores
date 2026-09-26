@@ -783,7 +783,17 @@ def compute_dispo(micro_data, ref_players):
       - ok     : ha entrenado normal o jugado un partido en los últimos ~6 días
       - rehab  : sin entrenar normal, pero con trabajo individual reciente (readaptación)
       - baja   : sin entrenar normal ni jugar (lesión / baja)
+    Si existe GPS/estados_jugadores.json (lo mantiene gps.py) manda su estado vigente: así un
+    descanso o gestión de cargas de varios días no se confunde con una baja.
     """
+    ruta_est = os.path.join(GPS_DIR, "estados_jugadores.json")
+    if os.path.exists(ruta_est):
+        with open(ruta_est, encoding="utf-8") as f:
+            vig = json.load(f).get("vigente", {})
+        for p in ref_players:
+            e = vig.get(str(p["dorsal"]), {}).get("estado", "full")
+            p["dispo"] = {"lesion": "baja", "rehab": "rehab"}.get(e, "ok")
+        return
     ev = []  # (iso, dorsal, clase)  clase: normal | rehab | match | na
     for m in micro_data.values():
         for s in m["sesiones"].values():

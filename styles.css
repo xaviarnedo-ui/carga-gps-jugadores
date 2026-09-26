@@ -736,3 +736,9 @@ table.grid .obj{color:var(--txt-2); font-size:11px}
 }
 .cmp-chip:hover{border-color:var(--azul)}
 .cmp-chip.is-on{font-weight:700}
+
+/* orden de la lista de jugadores (dorsal / % cumplimiento) */
+.sort-seg{display:flex; gap:4px; margin:-2px 0 10px; flex-wrap:wrap}
+.sort-seg button{border:1px solid var(--line); background:var(--surface-2, transparent); color:var(--txt-2);
+  border-radius:999px; padding:4px 11px; font:inherit; font-size:12px; font-weight:600; cursor:pointer}
+.sort-seg button.is-on{background:var(--ink); border-color:var(--ink); color:var(--surface, #fff)}

@@ -25,7 +25,8 @@
   var RADAR = METRICS.concat([{ key: "velMax", label: "Vel. máx", short: "VMÁX", unit: "km/h", dec: 1 }]);
   var CMP_COLORS = ["#2E5BAA", "#2E9E64", "#D6534A", "#8B5CF6", "#E08A2B"];
 
-  var state = { micro: MICROS[0], screen: "inicio", session: null, cmp: [] };
+  var state = { micro: MICROS[0], screen: "inicio", session: null, cmp: [], orden: "dorsal" };
+  try { state.orden = localStorage.getItem("gps-orden") || "dorsal"; } catch (e) {}
 
   /* ----------------------------- utilidades ----------------------------- */
   var nf = new Intl.NumberFormat("es-ES");
@@ -553,6 +554,24 @@
       (s.nota ? '<div class="note">' + noteHtml(s.nota) + '</div>' : '');
   }
 
+  // orden de la lista: por dorsal o por % de cumplimiento medio (sin % al final)
+  function ordenar(players) {
+    var arr = players.slice().sort(sortPlayers);
+    if (state.orden === "dorsal") return arr;
+    var sg = state.orden === "desc" ? -1 : 1;
+    return arr.sort(function (a, b) {
+      var pa = achievedPct(a), pb = achievedPct(b);
+      if ((pa == null) !== (pb == null)) return pa == null ? 1 : -1;
+      return sg * ((pa || 0) - (pb || 0)) || sortPlayers(a, b);
+    });
+  }
+  function sortBar() {
+    return '<div class="sort-seg" role="group" aria-label="Ordenar jugadores">' +
+      [["dorsal", "Dorsal"], ["desc", "% cumpl. ↓"], ["asc", "% cumpl. ↑"]].map(function (o) {
+        return '<button data-orden="' + o[0] + '"' + (state.orden === o[0] ? ' class="is-on"' : '') + '>' + o[1] + '</button>';
+      }).join("") + '</div>';
+  }
+
   function screenMicro() {
     var m = currentMicro();
     var co = m.cargasObjetivo;
@@ -565,7 +584,7 @@
       (pend.length ? ' Faltan: <b>' + esc(pend.join(" · ")) + '</b>.' : ' Sesiones completas.') + '</div>' +
       teamMetricCards(ta);
 
-    var players = co.players.slice().sort(sortPlayers);
+    var players = ordenar(co.players);
     var rows = players.map(function (p) {
       var body = METRICS.map(function (mm) {
         var c = p[mm.key] || {};
@@ -576,6 +595,7 @@
 
     return head + '</div>' +
       '<div class="card"><div class="card__title">Jugadores <span class="count">' + players.length + '</span></div>' +
+      sortBar() +
       '<div class="pdet-list">' + rows + '</div></div>' +
       (co.nota ? '<div class="note">' + noteHtml(co.nota) + '</div>' : '');
   }
@@ -830,6 +850,8 @@
     }
     var goto = e.target.closest("[data-goto]");
     if (goto) { state.screen = goto.dataset.goto; if (goto.dataset.session) state.session = goto.dataset.session; render(); return; }
+    var ord = e.target.closest("[data-orden]");
+    if (ord) { state.orden = ord.dataset.orden; try { localStorage.setItem("gps-orden", state.orden); } catch (err) {} render(); return; }
     var pill = e.target.closest(".pill[data-session]");
     if (pill) { state.session = pill.dataset.session; render(); return; }
     var cmp = e.target.closest("[data-cmp]");
