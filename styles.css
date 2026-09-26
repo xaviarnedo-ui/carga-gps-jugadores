@@ -742,3 +742,6 @@ table.grid .obj{color:var(--txt-2); font-size:11px}
 .sort-seg button{border:1px solid var(--line); background:var(--surface-2, transparent); color:var(--txt-2);
   border-radius:999px; padding:4px 11px; font:inherit; font-size:12px; font-weight:600; cursor:pointer}
 .sort-seg button.is-on{background:var(--ink); border-color:var(--ink); color:var(--surface, #fff)}
+.cumpl-eq{display:flex; align-items:center; gap:12px; margin:2px 0 12px}
+.cumpl-eq .donut__t{font-size:15px; font-weight:800}
+.cumpl-eq__k{font-weight:700; font-size:14px; color:var(--ink)}

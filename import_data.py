@@ -541,6 +541,13 @@ def build_sessions_only(sesiones, ses_keys, acu, extras=None):
         desde = next((sesiones[sk]["date"] for sk in ses_keys if _con_obj(_pr(sesiones[sk]))), None)
         for k in METRICS:
             o = ap[k]["obj"]
+            # objetivo "a fecha" = Σ Obj de las sesiones de la semana que ya se han hecho
+            of, has_of = 0, False
+            for sk in ses_keys:
+                pr = _pr(sesiones[sk])
+                if _hecha(sesiones[sk]["players"]) and pr and pr.get(k) and pr[k].get("obj") is not None:
+                    of += pr[k]["obj"]
+                    has_of = True
             real = 0
             has = False
             for sk in ses_keys:
@@ -558,15 +565,18 @@ def build_sessions_only(sesiones, ses_keys, acu, extras=None):
                     real += pr[k]["real"]
                     has = True
             rec[k] = dict(obj=o, real=(round(real, 2) if has else None),
-                          dif=(round(real - o, 2) if (has and o is not None) else None))
+                          dif=(round(real - o, 2) if (has and o is not None) else None),
+                          objFecha=(round(of, 1) if has_of else None))
         players.append(rec)
-    # team avg
+    # media del equipo = jugadores con objetivo semanal (si aún no tienen real cuentan 0), como el Excel
     team = {}
+    con_obj = [p for p in players if any(p[m]["obj"] is not None for m in METRICS)]
     for k in METRICS:
         o = acu["teamAvg"][k]["obj"] if acu["teamAvg"] else None
-        reals = [p[k]["real"] for p in players if p[k]["real"] is not None and p["grupo"]]
-        r = round(sum(reals) / len(reals)) if reals else None
-        team[k] = dict(obj=o, real=r, dif=(None if (o is None or r is None) else round(r - o)))
+        n = len(con_obj)
+        r = round(sum(p[k]["real"] or 0 for p in con_obj) / n, 1) if n else None
+        of = round(sum(p[k]["objFecha"] or 0 for p in con_obj) / n, 1) if n else None
+        team[k] = dict(obj=o, real=r, dif=(None if (o is None or r is None) else round(r - o, 1)), objFecha=of)
     return dict(players=players, teamAvg=team,
                 nota="Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido).")
 

@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-09-26 09:16",
+  "generado": "2026-09-26 09:22",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-11)"
  },
  "refPartido": {
@@ -2815,32 +2815,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23200,
       "real": 14690,
-      "dif": -8510
+      "dif": -8510,
+      "objFecha": 16500
      },
      "hmld": {
       "obj": 1985,
       "real": 796,
-      "dif": -1189
+      "dif": -1189,
+      "objFecha": 1500
      },
      "hsr": {
       "obj": 825,
       "real": 46,
-      "dif": -779
+      "dif": -779,
+      "objFecha": 675
      },
      "sprint": {
       "obj": 22.8,
       "real": 0,
-      "dif": -22.8
+      "dif": -22.8,
+      "objFecha": 24
      },
      "acc": {
       "obj": 101.2,
       "real": 12,
-      "dif": -89.2
+      "dif": -89.2,
+      "objFecha": 75
      },
      "dec": {
       "obj": 99.6,
       "real": 9,
-      "dif": -90.6
+      "dif": -90.6,
+      "objFecha": 75
      }
     },
     {
@@ -2850,32 +2856,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23200,
       "real": 13934,
-      "dif": -9266
+      "dif": -9266,
+      "objFecha": 16500
      },
      "hmld": {
       "obj": 1985,
       "real": 834,
-      "dif": -1151
+      "dif": -1151,
+      "objFecha": 1500
      },
      "hsr": {
       "obj": 825,
       "real": 73,
-      "dif": -752
+      "dif": -752,
+      "objFecha": 675
      },
      "sprint": {
       "obj": 22.8,
       "real": 0,
-      "dif": -22.8
+      "dif": -22.8,
+      "objFecha": 24
      },
      "acc": {
       "obj": 101.2,
       "real": 21,
-      "dif": -80.2
+      "dif": -80.2,
+      "objFecha": 75
      },
      "dec": {
       "obj": 99.6,
       "real": 13,
-      "dif": -86.6
+      "dif": -86.6,
+      "objFecha": 75
      }
     },
     {
@@ -2885,32 +2897,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23200,
       "real": 14963,
-      "dif": -8237
+      "dif": -8237,
+      "objFecha": 16500
      },
      "hmld": {
       "obj": 1985,
       "real": 1122,
-      "dif": -863
+      "dif": -863,
+      "objFecha": 1500
      },
      "hsr": {
       "obj": 825,
       "real": 133,
-      "dif": -692
+      "dif": -692,
+      "objFecha": 675
      },
      "sprint": {
       "obj": 22.8,
       "real": 4,
-      "dif": -18.8
+      "dif": -18.8,
+      "objFecha": 24
      },
      "acc": {
       "obj": 101.2,
       "real": 25,
-      "dif": -76.2
+      "dif": -76.2,
+      "objFecha": 75
      },
      "dec": {
       "obj": 99.6,
       "real": 24,
-      "dif": -75.6
+      "dif": -75.6,
+      "objFecha": 75
      }
     },
     {
@@ -2920,32 +2938,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23200,
       "real": 16138,
-      "dif": -7062
+      "dif": -7062,
+      "objFecha": 16500
      },
      "hmld": {
       "obj": 1985,
       "real": 1089,
-      "dif": -896
+      "dif": -896,
+      "objFecha": 1500
      },
      "hsr": {
       "obj": 825,
       "real": 69,
-      "dif": -756
+      "dif": -756,
+      "objFecha": 675
      },
      "sprint": {
       "obj": 22.8,
       "real": 0,
-      "dif": -22.8
+      "dif": -22.8,
+      "objFecha": 24
      },
      "acc": {
       "obj": 101.2,
       "real": 11,
-      "dif": -90.2
+      "dif": -90.2,
+      "objFecha": 75
      },
      "dec": {
       "obj": 99.6,
       "real": 23,
-      "dif": -76.6
+      "dif": -76.6,
+      "objFecha": 75
      }
     },
     {
@@ -2955,32 +2979,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23200,
       "real": 8195,
-      "dif": -15005
+      "dif": -15005,
+      "objFecha": 16500
      },
      "hmld": {
       "obj": 1985,
       "real": 414,
-      "dif": -1571
+      "dif": -1571,
+      "objFecha": 1500
      },
      "hsr": {
       "obj": 825,
       "real": 91,
-      "dif": -734
+      "dif": -734,
+      "objFecha": 675
      },
      "sprint": {
       "obj": 22.8,
       "real": 0,
-      "dif": -22.8
+      "dif": -22.8,
+      "objFecha": 24
      },
      "acc": {
       "obj": 101.2,
       "real": 12,
-      "dif": -89.2
+      "dif": -89.2,
+      "objFecha": 75
      },
      "dec": {
       "obj": 99.6,
       "real": 4,
-      "dif": -95.6
+      "dif": -95.6,
+      "objFecha": 75
      }
     },
     {
@@ -2990,32 +3020,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23200,
       "real": 13926,
-      "dif": -9274
+      "dif": -9274,
+      "objFecha": 16500
      },
      "hmld": {
       "obj": 1985,
       "real": 809,
-      "dif": -1176
+      "dif": -1176,
+      "objFecha": 1500
      },
      "hsr": {
       "obj": 825,
       "real": 75,
-      "dif": -750
+      "dif": -750,
+      "objFecha": 675
      },
      "sprint": {
       "obj": 22.8,
       "real": 1,
-      "dif": -21.8
+      "dif": -21.8,
+      "objFecha": 24
      },
      "acc": {
       "obj": 101.2,
       "real": 14,
-      "dif": -87.2
+      "dif": -87.2,
+      "objFecha": 75
      },
      "dec": {
       "obj": 99.6,
       "real": 16,
-      "dif": -83.6
+      "dif": -83.6,
+      "objFecha": 75
      }
     },
     {
@@ -3025,32 +3061,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23200,
       "real": 13348,
-      "dif": -9852
+      "dif": -9852,
+      "objFecha": 16500
      },
      "hmld": {
       "obj": 1985,
       "real": 956,
-      "dif": -1029
+      "dif": -1029,
+      "objFecha": 1500
      },
      "hsr": {
       "obj": 825,
       "real": 110,
-      "dif": -715
+      "dif": -715,
+      "objFecha": 675
      },
      "sprint": {
       "obj": 22.8,
       "real": 0,
-      "dif": -22.8
+      "dif": -22.8,
+      "objFecha": 24
      },
      "acc": {
       "obj": 101.2,
       "real": 14,
-      "dif": -87.2
+      "dif": -87.2,
+      "objFecha": 75
      },
      "dec": {
       "obj": 99.6,
       "real": 32,
-      "dif": -67.6
+      "dif": -67.6,
+      "objFecha": 75
      }
     },
     {
@@ -3060,32 +3102,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23200,
       "real": 14067,
-      "dif": -9133
+      "dif": -9133,
+      "objFecha": 16500
      },
      "hmld": {
       "obj": 1985,
       "real": 873,
-      "dif": -1112
+      "dif": -1112,
+      "objFecha": 1500
      },
      "hsr": {
       "obj": 825,
       "real": 103,
-      "dif": -722
+      "dif": -722,
+      "objFecha": 675
      },
      "sprint": {
       "obj": 22.8,
       "real": 3,
-      "dif": -19.8
+      "dif": -19.8,
+      "objFecha": 24
      },
      "acc": {
       "obj": 101.2,
       "real": 22,
-      "dif": -79.2
+      "dif": -79.2,
+      "objFecha": 75
      },
      "dec": {
       "obj": 99.6,
       "real": 24,
-      "dif": -75.6
+      "dif": -75.6,
+      "objFecha": 75
      }
     },
     {
@@ -3095,32 +3143,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23200,
       "real": 12486,
-      "dif": -10714
+      "dif": -10714,
+      "objFecha": 16500
      },
      "hmld": {
       "obj": 1985,
       "real": 674,
-      "dif": -1311
+      "dif": -1311,
+      "objFecha": 1500
      },
      "hsr": {
       "obj": 825,
       "real": 48,
-      "dif": -777
+      "dif": -777,
+      "objFecha": 675
      },
      "sprint": {
       "obj": 22.8,
       "real": 1,
-      "dif": -21.8
+      "dif": -21.8,
+      "objFecha": 24
      },
      "acc": {
       "obj": 101.2,
       "real": 14,
-      "dif": -87.2
+      "dif": -87.2,
+      "objFecha": 75
      },
      "dec": {
       "obj": 99.6,
       "real": 8,
-      "dif": -91.6
+      "dif": -91.6,
+      "objFecha": 75
      }
     },
     {
@@ -3130,32 +3184,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23200,
       "real": 14221,
-      "dif": -8979
+      "dif": -8979,
+      "objFecha": 16500
      },
      "hmld": {
       "obj": 1985,
       "real": 861,
-      "dif": -1124
+      "dif": -1124,
+      "objFecha": 1500
      },
      "hsr": {
       "obj": 825,
       "real": 39,
-      "dif": -786
+      "dif": -786,
+      "objFecha": 675
      },
      "sprint": {
       "obj": 22.8,
       "real": 1,
-      "dif": -21.8
+      "dif": -21.8,
+      "objFecha": 24
      },
      "acc": {
       "obj": 101.2,
       "real": 16,
-      "dif": -85.2
+      "dif": -85.2,
+      "objFecha": 75
      },
      "dec": {
       "obj": 99.6,
       "real": 24,
-      "dif": -75.6
+      "dif": -75.6,
+      "objFecha": 75
      }
     },
     {
@@ -3165,32 +3225,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23200,
       "real": 14996,
-      "dif": -8204
+      "dif": -8204,
+      "objFecha": 16500
      },
      "hmld": {
       "obj": 1985,
       "real": 1077,
-      "dif": -908
+      "dif": -908,
+      "objFecha": 1500
      },
      "hsr": {
       "obj": 825,
       "real": 54,
-      "dif": -771
+      "dif": -771,
+      "objFecha": 675
      },
      "sprint": {
       "obj": 22.8,
       "real": 1,
-      "dif": -21.8
+      "dif": -21.8,
+      "objFecha": 24
      },
      "acc": {
       "obj": 101.2,
       "real": 16,
-      "dif": -85.2
+      "dif": -85.2,
+      "objFecha": 75
      },
      "dec": {
       "obj": 99.6,
       "real": 19,
-      "dif": -80.6
+      "dif": -80.6,
+      "objFecha": 75
      }
     },
     {
@@ -3200,32 +3266,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23200,
       "real": 13446,
-      "dif": -9754
+      "dif": -9754,
+      "objFecha": 16500
      },
      "hmld": {
       "obj": 1985,
       "real": 832,
-      "dif": -1153
+      "dif": -1153,
+      "objFecha": 1500
      },
      "hsr": {
       "obj": 825,
       "real": 115,
-      "dif": -710
+      "dif": -710,
+      "objFecha": 675
      },
      "sprint": {
       "obj": 22.8,
       "real": 3,
-      "dif": -19.8
+      "dif": -19.8,
+      "objFecha": 24
      },
      "acc": {
       "obj": 101.2,
       "real": 14,
-      "dif": -87.2
+      "dif": -87.2,
+      "objFecha": 75
      },
      "dec": {
       "obj": 99.6,
       "real": 25,
-      "dif": -74.6
+      "dif": -74.6,
+      "objFecha": 75
      }
     },
     {
@@ -3235,32 +3307,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23200,
       "real": 14416,
-      "dif": -8784
+      "dif": -8784,
+      "objFecha": 16500
      },
      "hmld": {
       "obj": 1985,
       "real": 988,
-      "dif": -997
+      "dif": -997,
+      "objFecha": 1500
      },
      "hsr": {
       "obj": 825,
       "real": 161,
-      "dif": -664
+      "dif": -664,
+      "objFecha": 675
      },
      "sprint": {
       "obj": 22.8,
       "real": 3,
-      "dif": -19.8
+      "dif": -19.8,
+      "objFecha": 24
      },
      "acc": {
       "obj": 101.2,
       "real": 25,
-      "dif": -76.2
+      "dif": -76.2,
+      "objFecha": 75
      },
      "dec": {
       "obj": 99.6,
       "real": 30,
-      "dif": -69.6
+      "dif": -69.6,
+      "objFecha": 75
      }
     },
     {
@@ -3270,32 +3348,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23200,
       "real": 14314,
-      "dif": -8886
+      "dif": -8886,
+      "objFecha": 16500
      },
      "hmld": {
       "obj": 1985,
       "real": 830,
-      "dif": -1155
+      "dif": -1155,
+      "objFecha": 1500
      },
      "hsr": {
       "obj": 825,
       "real": 90,
-      "dif": -735
+      "dif": -735,
+      "objFecha": 675
      },
      "sprint": {
       "obj": 22.8,
       "real": 3,
-      "dif": -19.8
+      "dif": -19.8,
+      "objFecha": 24
      },
      "acc": {
       "obj": 101.2,
       "real": 20,
-      "dif": -81.2
+      "dif": -81.2,
+      "objFecha": 75
      },
      "dec": {
       "obj": 99.6,
       "real": 25,
-      "dif": -74.6
+      "dif": -74.6,
+      "objFecha": 75
      }
     },
     {
@@ -3305,32 +3389,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23200,
       "real": 14659,
-      "dif": -8541
+      "dif": -8541,
+      "objFecha": 16500
      },
      "hmld": {
       "obj": 1985,
       "real": 931,
-      "dif": -1054
+      "dif": -1054,
+      "objFecha": 1500
      },
      "hsr": {
       "obj": 825,
       "real": 54,
-      "dif": -771
+      "dif": -771,
+      "objFecha": 675
      },
      "sprint": {
       "obj": 22.8,
       "real": 0,
-      "dif": -22.8
+      "dif": -22.8,
+      "objFecha": 24
      },
      "acc": {
       "obj": 101.2,
       "real": 9,
-      "dif": -92.2
+      "dif": -92.2,
+      "objFecha": 75
      },
      "dec": {
       "obj": 99.6,
       "real": 27,
-      "dif": -72.6
+      "dif": -72.6,
+      "objFecha": 75
      }
     },
     {
@@ -3340,32 +3430,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23200,
       "real": 14012,
-      "dif": -9188
+      "dif": -9188,
+      "objFecha": 16500
      },
      "hmld": {
       "obj": 1985,
       "real": 749,
-      "dif": -1236
+      "dif": -1236,
+      "objFecha": 1500
      },
      "hsr": {
       "obj": 825,
       "real": 94,
-      "dif": -731
+      "dif": -731,
+      "objFecha": 675
      },
      "sprint": {
       "obj": 22.8,
       "real": 1,
-      "dif": -21.8
+      "dif": -21.8,
+      "objFecha": 24
      },
      "acc": {
       "obj": 101.2,
       "real": 12,
-      "dif": -89.2
+      "dif": -89.2,
+      "objFecha": 75
      },
      "dec": {
       "obj": 99.6,
       "real": 16,
-      "dif": -83.6
+      "dif": -83.6,
+      "objFecha": 75
      }
     },
     {
@@ -3375,32 +3471,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23200,
       "real": 14723,
-      "dif": -8477
+      "dif": -8477,
+      "objFecha": 16500
      },
      "hmld": {
       "obj": 1985,
       "real": 1159,
-      "dif": -826
+      "dif": -826,
+      "objFecha": 1500
      },
      "hsr": {
       "obj": 825,
       "real": 64,
-      "dif": -761
+      "dif": -761,
+      "objFecha": 675
      },
      "sprint": {
       "obj": 22.8,
       "real": 0,
-      "dif": -22.8
+      "dif": -22.8,
+      "objFecha": 24
      },
      "acc": {
       "obj": 101.2,
       "real": 36,
-      "dif": -65.2
+      "dif": -65.2,
+      "objFecha": 75
      },
      "dec": {
       "obj": 99.6,
       "real": 35,
-      "dif": -64.6
+      "dif": -64.6,
+      "objFecha": 75
      }
     },
     {
@@ -3410,65 +3512,77 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23200,
       "real": 15481,
-      "dif": -7719
+      "dif": -7719,
+      "objFecha": 16500
      },
      "hmld": {
       "obj": 1985,
       "real": 1063,
-      "dif": -922
+      "dif": -922,
+      "objFecha": 1500
      },
      "hsr": {
       "obj": 825,
       "real": 96,
-      "dif": -729
+      "dif": -729,
+      "objFecha": 675
      },
      "sprint": {
       "obj": 22.8,
       "real": 0,
-      "dif": -22.8
+      "dif": -22.8,
+      "objFecha": 24
      },
      "acc": {
       "obj": 101.2,
       "real": 24,
-      "dif": -77.2
+      "dif": -77.2,
+      "objFecha": 75
      },
      "dec": {
       "obj": 99.6,
       "real": 32,
-      "dif": -67.6
+      "dif": -67.6,
+      "objFecha": 75
      }
     }
    ],
    "teamAvg": {
     "distancia": {
      "obj": 23200,
-     "real": 14001,
-     "dif": -9199
+     "real": 14000.8,
+     "dif": -9199.2,
+     "objFecha": 16500.0
     },
     "hmld": {
      "obj": 1985,
-     "real": 892,
-     "dif": -1093
+     "real": 892.1,
+     "dif": -1092.9,
+     "objFecha": 1500.0
     },
     "hsr": {
      "obj": 825,
-     "real": 84,
-     "dif": -741
+     "real": 84.2,
+     "dif": -740.8,
+     "objFecha": 675.0
     },
     "sprint": {
      "obj": 22.8,
-     "real": 1,
-     "dif": -22
+     "real": 1.2,
+     "dif": -21.6,
+     "objFecha": 24.0
     },
     "acc": {
      "obj": 101.2,
-     "real": 18,
-     "dif": -83
+     "real": 17.6,
+     "dif": -83.6,
+     "objFecha": 75.0
     },
     "dec": {
      "obj": 99.6,
-     "real": 21,
-     "dif": -79
+     "real": 21.4,
+     "dif": -78.2,
+     "objFecha": 75.0
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."
@@ -12426,32 +12540,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 35700,
       "real": 26372,
-      "dif": -9328
+      "dif": -9328,
+      "objFecha": 35700
      },
      "hmld": {
       "obj": 3372,
       "real": 3059,
-      "dif": -313
+      "dif": -313,
+      "objFecha": 3372
      },
      "hsr": {
       "obj": 1590,
       "real": 703,
-      "dif": -887
+      "dif": -887,
+      "objFecha": 1590
      },
      "sprint": {
       "obj": 48,
       "real": 13,
-      "dif": -35
+      "dif": -35,
+      "objFecha": 48
      },
      "acc": {
       "obj": 168,
       "real": 73,
-      "dif": -95
+      "dif": -95,
+      "objFecha": 168
      },
      "dec": {
       "obj": 156,
       "real": 81,
-      "dif": -75
+      "dif": -75,
+      "objFecha": 156
      }
     },
     {
@@ -12461,32 +12581,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 35700,
       "real": 24234,
-      "dif": -11466
+      "dif": -11466,
+      "objFecha": 35700
      },
      "hmld": {
       "obj": 3372,
       "real": 2311,
-      "dif": -1061
+      "dif": -1061,
+      "objFecha": 3372
      },
      "hsr": {
       "obj": 1590,
       "real": 386,
-      "dif": -1204
+      "dif": -1204,
+      "objFecha": 1590
      },
      "sprint": {
       "obj": 48,
       "real": 6,
-      "dif": -42
+      "dif": -42,
+      "objFecha": 48
      },
      "acc": {
       "obj": 168,
       "real": 65,
-      "dif": -103
+      "dif": -103,
+      "objFecha": 168
      },
      "dec": {
       "obj": 156,
       "real": 58,
-      "dif": -98
+      "dif": -98,
+      "objFecha": 156
      }
     },
     {
@@ -12496,32 +12622,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 35700,
       "real": 27468,
-      "dif": -8232
+      "dif": -8232,
+      "objFecha": 35700
      },
      "hmld": {
       "obj": 3372,
       "real": 2895,
-      "dif": -477
+      "dif": -477,
+      "objFecha": 3372
      },
      "hsr": {
       "obj": 1590,
       "real": 646,
-      "dif": -944
+      "dif": -944,
+      "objFecha": 1590
      },
      "sprint": {
       "obj": 48,
       "real": 9,
-      "dif": -39
+      "dif": -39,
+      "objFecha": 48
      },
      "acc": {
       "obj": 168,
       "real": 91,
-      "dif": -77
+      "dif": -77,
+      "objFecha": 168
      },
      "dec": {
       "obj": 156,
       "real": 102,
-      "dif": -54
+      "dif": -54,
+      "objFecha": 156
      }
     },
     {
@@ -12531,32 +12663,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 35700,
       "real": 28853,
-      "dif": -6847
+      "dif": -6847,
+      "objFecha": 35700
      },
      "hmld": {
       "obj": 3372,
       "real": 3243,
-      "dif": -129
+      "dif": -129,
+      "objFecha": 3372
      },
      "hsr": {
       "obj": 1590,
       "real": 405,
-      "dif": -1185
+      "dif": -1185,
+      "objFecha": 1590
      },
      "sprint": {
       "obj": 48,
       "real": 3,
-      "dif": -45
+      "dif": -45,
+      "objFecha": 48
      },
      "acc": {
       "obj": 168,
       "real": 66,
-      "dif": -102
+      "dif": -102,
+      "objFecha": 168
      },
      "dec": {
       "obj": 156,
       "real": 84,
-      "dif": -72
+      "dif": -72,
+      "objFecha": 156
      }
     },
     {
@@ -12566,32 +12704,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 35700,
       "real": 22379,
-      "dif": -13321
+      "dif": -13321,
+      "objFecha": 35700
      },
      "hmld": {
       "obj": 3372,
       "real": 2420,
-      "dif": -952
+      "dif": -952,
+      "objFecha": 3372
      },
      "hsr": {
       "obj": 1590,
       "real": 597,
-      "dif": -993
+      "dif": -993,
+      "objFecha": 1590
      },
      "sprint": {
       "obj": 48,
       "real": 5,
-      "dif": -43
+      "dif": -43,
+      "objFecha": 48
      },
      "acc": {
       "obj": 168,
       "real": 47,
-      "dif": -121
+      "dif": -121,
+      "objFecha": 168
      },
      "dec": {
       "obj": 156,
       "real": 49,
-      "dif": -107
+      "dif": -107,
+      "objFecha": 156
      }
     },
     {
@@ -12601,32 +12745,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 35700,
       "real": 24430,
-      "dif": -11270
+      "dif": -11270,
+      "objFecha": 35700
      },
      "hmld": {
       "obj": 3372,
       "real": 2452,
-      "dif": -920
+      "dif": -920,
+      "objFecha": 3372
      },
      "hsr": {
       "obj": 1590,
       "real": 459,
-      "dif": -1131
+      "dif": -1131,
+      "objFecha": 1590
      },
      "sprint": {
       "obj": 48,
       "real": 4,
-      "dif": -44
+      "dif": -44,
+      "objFecha": 48
      },
      "acc": {
       "obj": 168,
       "real": 44,
-      "dif": -124
+      "dif": -124,
+      "objFecha": 168
      },
      "dec": {
       "obj": 156,
       "real": 52,
-      "dif": -104
+      "dif": -104,
+      "objFecha": 156
      }
     },
     {
@@ -12636,32 +12786,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 35700,
       "real": 23632,
-      "dif": -12068
+      "dif": -12068,
+      "objFecha": 35700
      },
      "hmld": {
       "obj": 3372,
       "real": 2693,
-      "dif": -679
+      "dif": -679,
+      "objFecha": 3372
      },
      "hsr": {
       "obj": 1590,
       "real": 511,
-      "dif": -1079
+      "dif": -1079,
+      "objFecha": 1590
      },
      "sprint": {
       "obj": 48,
       "real": 6,
-      "dif": -42
+      "dif": -42,
+      "objFecha": 48
      },
      "acc": {
       "obj": 168,
       "real": 60,
-      "dif": -108
+      "dif": -108,
+      "objFecha": 168
      },
      "dec": {
       "obj": 156,
       "real": 65,
-      "dif": -91
+      "dif": -91,
+      "objFecha": 156
      }
     },
     {
@@ -12671,32 +12827,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 35700,
       "real": 21347,
-      "dif": -14353
+      "dif": -14353,
+      "objFecha": 35700
      },
      "hmld": {
       "obj": 3372,
       "real": 2650,
-      "dif": -722
+      "dif": -722,
+      "objFecha": 3372
      },
      "hsr": {
       "obj": 1590,
       "real": 521,
-      "dif": -1069
+      "dif": -1069,
+      "objFecha": 1590
      },
      "sprint": {
       "obj": 48,
       "real": 4,
-      "dif": -44
+      "dif": -44,
+      "objFecha": 48
      },
      "acc": {
       "obj": 168,
       "real": 71,
-      "dif": -97
+      "dif": -97,
+      "objFecha": 168
      },
      "dec": {
       "obj": 156,
       "real": 90,
-      "dif": -66
+      "dif": -66,
+      "objFecha": 156
      }
     },
     {
@@ -12706,32 +12868,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 35700,
       "real": 25529,
-      "dif": -10171
+      "dif": -10171,
+      "objFecha": 35700
      },
      "hmld": {
       "obj": 3372,
       "real": 2978,
-      "dif": -394
+      "dif": -394,
+      "objFecha": 3372
      },
      "hsr": {
       "obj": 1590,
       "real": 609,
-      "dif": -981
+      "dif": -981,
+      "objFecha": 1590
      },
      "sprint": {
       "obj": 48,
       "real": 10,
-      "dif": -38
+      "dif": -38,
+      "objFecha": 48
      },
      "acc": {
       "obj": 168,
       "real": 64,
-      "dif": -104
+      "dif": -104,
+      "objFecha": 168
      },
      "dec": {
       "obj": 156,
       "real": 56,
-      "dif": -100
+      "dif": -100,
+      "objFecha": 156
      }
     },
     {
@@ -12741,32 +12909,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 35700,
       "real": 26637,
-      "dif": -9063
+      "dif": -9063,
+      "objFecha": 35700
      },
      "hmld": {
       "obj": 3372,
       "real": 2868,
-      "dif": -504
+      "dif": -504,
+      "objFecha": 3372
      },
      "hsr": {
       "obj": 1590,
       "real": 470,
-      "dif": -1120
+      "dif": -1120,
+      "objFecha": 1590
      },
      "sprint": {
       "obj": 48,
       "real": 3,
-      "dif": -45
+      "dif": -45,
+      "objFecha": 48
      },
      "acc": {
       "obj": 168,
       "real": 91,
-      "dif": -77
+      "dif": -77,
+      "objFecha": 168
      },
      "dec": {
       "obj": 156,
       "real": 74,
-      "dif": -82
+      "dif": -82,
+      "objFecha": 156
      }
     },
     {
@@ -12776,32 +12950,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 35700,
       "real": 26519,
-      "dif": -9181
+      "dif": -9181,
+      "objFecha": 35700
      },
      "hmld": {
       "obj": 3372,
       "real": 2725,
-      "dif": -647
+      "dif": -647,
+      "objFecha": 3372
      },
      "hsr": {
       "obj": 1590,
       "real": 442,
-      "dif": -1148
+      "dif": -1148,
+      "objFecha": 1590
      },
      "sprint": {
       "obj": 48,
       "real": 5,
-      "dif": -43
+      "dif": -43,
+      "objFecha": 48
      },
      "acc": {
       "obj": 168,
       "real": 67,
-      "dif": -101
+      "dif": -101,
+      "objFecha": 168
      },
      "dec": {
       "obj": 156,
       "real": 75,
-      "dif": -81
+      "dif": -81,
+      "objFecha": 156
      }
     },
     {
@@ -12811,32 +12991,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 35700,
       "real": 11416,
-      "dif": -24284
+      "dif": -24284,
+      "objFecha": 35700
      },
      "hmld": {
       "obj": 3372,
       "real": 1375,
-      "dif": -1997
+      "dif": -1997,
+      "objFecha": 3372
      },
      "hsr": {
       "obj": 1590,
       "real": 304,
-      "dif": -1286
+      "dif": -1286,
+      "objFecha": 1590
      },
      "sprint": {
       "obj": 48,
       "real": 7,
-      "dif": -41
+      "dif": -41,
+      "objFecha": 48
      },
      "acc": {
       "obj": 168,
       "real": 39,
-      "dif": -129
+      "dif": -129,
+      "objFecha": 168
      },
      "dec": {
       "obj": 156,
       "real": 41,
-      "dif": -115
+      "dif": -115,
+      "objFecha": 156
      }
     },
     {
@@ -12846,32 +13032,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 35700,
       "real": 27456,
-      "dif": -8244
+      "dif": -8244,
+      "objFecha": 35700
      },
      "hmld": {
       "obj": 3372,
       "real": 3477,
-      "dif": 105
+      "dif": 105,
+      "objFecha": 3372
      },
      "hsr": {
       "obj": 1590,
       "real": 783,
-      "dif": -807
+      "dif": -807,
+      "objFecha": 1590
      },
      "sprint": {
       "obj": 48,
       "real": 8,
-      "dif": -40
+      "dif": -40,
+      "objFecha": 48
      },
      "acc": {
       "obj": 168,
       "real": 95,
-      "dif": -73
+      "dif": -73,
+      "objFecha": 168
      },
      "dec": {
       "obj": 156,
       "real": 147,
-      "dif": -9
+      "dif": -9,
+      "objFecha": 156
      }
     },
     {
@@ -12881,32 +13073,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 35700,
       "real": 13148,
-      "dif": -22552
+      "dif": -22552,
+      "objFecha": 35700
      },
      "hmld": {
       "obj": 3372,
       "real": 1558,
-      "dif": -1814
+      "dif": -1814,
+      "objFecha": 3372
      },
      "hsr": {
       "obj": 1590,
       "real": 219,
-      "dif": -1371
+      "dif": -1371,
+      "objFecha": 1590
      },
      "sprint": {
       "obj": 48,
       "real": 1,
-      "dif": -47
+      "dif": -47,
+      "objFecha": 48
      },
      "acc": {
       "obj": 168,
       "real": 18,
-      "dif": -150
+      "dif": -150,
+      "objFecha": 168
      },
      "dec": {
       "obj": 156,
       "real": 22,
-      "dif": -134
+      "dif": -134,
+      "objFecha": 156
      }
     },
     {
@@ -12916,32 +13114,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 35700,
       "real": 26420,
-      "dif": -9280
+      "dif": -9280,
+      "objFecha": 35700
      },
      "hmld": {
       "obj": 3372,
       "real": 2549,
-      "dif": -823
+      "dif": -823,
+      "objFecha": 3372
      },
      "hsr": {
       "obj": 1590,
       "real": 450,
-      "dif": -1140
+      "dif": -1140,
+      "objFecha": 1590
      },
      "sprint": {
       "obj": 48,
       "real": 3,
-      "dif": -45
+      "dif": -45,
+      "objFecha": 48
      },
      "acc": {
       "obj": 168,
       "real": 34,
-      "dif": -134
+      "dif": -134,
+      "objFecha": 168
      },
      "dec": {
       "obj": 156,
       "real": 49,
-      "dif": -107
+      "dif": -107,
+      "objFecha": 156
      }
     },
     {
@@ -12951,32 +13155,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 35700,
       "real": 26710,
-      "dif": -8990
+      "dif": -8990,
+      "objFecha": 35700
      },
      "hmld": {
       "obj": 3372,
       "real": 2776,
-      "dif": -596
+      "dif": -596,
+      "objFecha": 3372
      },
      "hsr": {
       "obj": 1590,
       "real": 506,
-      "dif": -1084
+      "dif": -1084,
+      "objFecha": 1590
      },
      "sprint": {
       "obj": 48,
       "real": 2,
-      "dif": -46
+      "dif": -46,
+      "objFecha": 48
      },
      "acc": {
       "obj": 168,
       "real": 37,
-      "dif": -131
+      "dif": -131,
+      "objFecha": 168
      },
      "dec": {
       "obj": 156,
       "real": 80,
-      "dif": -76
+      "dif": -76,
+      "objFecha": 156
      }
     },
     {
@@ -12986,32 +13196,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 35700,
       "real": 24925,
-      "dif": -10775
+      "dif": -10775,
+      "objFecha": 35700
      },
      "hmld": {
       "obj": 3372,
       "real": 2856,
-      "dif": -516
+      "dif": -516,
+      "objFecha": 3372
      },
      "hsr": {
       "obj": 1590,
       "real": 546,
-      "dif": -1044
+      "dif": -1044,
+      "objFecha": 1590
      },
      "sprint": {
       "obj": 48,
       "real": 8,
-      "dif": -40
+      "dif": -40,
+      "objFecha": 48
      },
      "acc": {
       "obj": 168,
       "real": 87,
-      "dif": -81
+      "dif": -81,
+      "objFecha": 168
      },
      "dec": {
       "obj": 156,
       "real": 116,
-      "dif": -40
+      "dif": -40,
+      "objFecha": 156
      }
     },
     {
@@ -13021,65 +13237,77 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 35700,
       "real": 27530,
-      "dif": -8170
+      "dif": -8170,
+      "objFecha": 35700
      },
      "hmld": {
       "obj": 3372,
       "real": 2985,
-      "dif": -387
+      "dif": -387,
+      "objFecha": 3372
      },
      "hsr": {
       "obj": 1590,
       "real": 648,
-      "dif": -942
+      "dif": -942,
+      "objFecha": 1590
      },
      "sprint": {
       "obj": 48,
       "real": 5,
-      "dif": -43
+      "dif": -43,
+      "objFecha": 48
      },
      "acc": {
       "obj": 168,
       "real": 103,
-      "dif": -65
+      "dif": -65,
+      "objFecha": 168
      },
      "dec": {
       "obj": 156,
       "real": 80,
-      "dif": -76
+      "dif": -76,
+      "objFecha": 156
      }
     }
    ],
    "teamAvg": {
     "distancia": {
      "obj": 35700,
-     "real": 24167,
-     "dif": -11533
+     "real": 24166.9,
+     "dif": -11533.1,
+     "objFecha": 35700.0
     },
     "hmld": {
      "obj": 3372,
-     "real": 2659,
-     "dif": -713
+     "real": 2659.4,
+     "dif": -712.6,
+     "objFecha": 3372.0
     },
     "hsr": {
      "obj": 1590,
-     "real": 511,
-     "dif": -1079
+     "real": 511.4,
+     "dif": -1078.6,
+     "objFecha": 1590.0
     },
     "sprint": {
      "obj": 48,
-     "real": 6,
-     "dif": -42
+     "real": 5.7,
+     "dif": -42.3,
+     "objFecha": 48.0
     },
     "acc": {
      "obj": 168,
-     "real": 64,
-     "dif": -104
+     "real": 64.0,
+     "dif": -104.0,
+     "objFecha": 168.0
     },
     "dec": {
      "obj": 156,
-     "real": 73,
-     "dif": -83
+     "real": 73.4,
+     "dif": -82.6,
+     "objFecha": 156.0
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."
@@ -21831,32 +22059,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 28446,
       "real": 26789,
-      "dif": -1657
+      "dif": -1657,
+      "objFecha": 28446
      },
      "hmld": {
       "obj": 3838,
       "real": 3205,
-      "dif": -633
+      "dif": -633,
+      "objFecha": 3838
      },
      "hsr": {
       "obj": 1200,
       "real": 684,
-      "dif": -516
+      "dif": -516,
+      "objFecha": 1200
      },
      "sprint": {
       "obj": 38,
       "real": 12,
-      "dif": -26
+      "dif": -26,
+      "objFecha": 38
      },
      "acc": {
       "obj": 35,
       "real": 58,
-      "dif": 23
+      "dif": 23,
+      "objFecha": 35
      },
      "dec": {
       "obj": 99,
       "real": 70,
-      "dif": -29
+      "dif": -29,
+      "objFecha": 99
      }
     },
     {
@@ -21866,32 +22100,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 28569,
       "real": 24303,
-      "dif": -4266
+      "dif": -4266,
+      "objFecha": 28569
      },
      "hmld": {
       "obj": 3183,
       "real": 2074,
-      "dif": -1109
+      "dif": -1109,
+      "objFecha": 3183
      },
      "hsr": {
       "obj": 841,
       "real": 351,
-      "dif": -490
+      "dif": -490,
+      "objFecha": 841
      },
      "sprint": {
       "obj": 12,
       "real": 5,
-      "dif": -7
+      "dif": -7,
+      "objFecha": 12
      },
      "acc": {
       "obj": 40,
       "real": 34,
-      "dif": -6
+      "dif": -6,
+      "objFecha": 40
      },
      "dec": {
       "obj": 52,
       "real": 41,
-      "dif": -11
+      "dif": -11,
+      "objFecha": 52
      }
     },
     {
@@ -21901,32 +22141,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26867,
       "real": 24256,
-      "dif": -2611
+      "dif": -2611,
+      "objFecha": 26867
      },
      "hmld": {
       "obj": 3371,
       "real": 2716,
-      "dif": -655
+      "dif": -655,
+      "objFecha": 3371
      },
      "hsr": {
       "obj": 977,
       "real": 557,
-      "dif": -420
+      "dif": -420,
+      "objFecha": 977
      },
      "sprint": {
       "obj": 19,
       "real": 12,
-      "dif": -7
+      "dif": -7,
+      "objFecha": 19
      },
      "acc": {
       "obj": 74,
       "real": 62,
-      "dif": -12
+      "dif": -12,
+      "objFecha": 74
      },
      "dec": {
       "obj": 111,
       "real": 84,
-      "dif": -27
+      "dif": -27,
+      "objFecha": 111
      }
     },
     {
@@ -21936,32 +22182,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 34211,
       "real": 29203,
-      "dif": -5008
+      "dif": -5008,
+      "objFecha": 34211
      },
      "hmld": {
       "obj": 5104,
       "real": 3795,
-      "dif": -1309
+      "dif": -1309,
+      "objFecha": 5104
      },
      "hsr": {
       "obj": 1152,
       "real": 650,
-      "dif": -502
+      "dif": -502,
+      "objFecha": 1152
      },
      "sprint": {
       "obj": 12,
       "real": 9,
-      "dif": -3
+      "dif": -3,
+      "objFecha": 12
      },
      "acc": {
       "obj": 48,
       "real": 72,
-      "dif": 24
+      "dif": 24,
+      "objFecha": 48
      },
      "dec": {
       "obj": 99,
       "real": 82,
-      "dif": -17
+      "dif": -17,
+      "objFecha": 99
      }
     },
     {
@@ -21971,32 +22223,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 32350,
       "real": 29050,
-      "dif": -3300
+      "dif": -3300,
+      "objFecha": 32350
      },
      "hmld": {
       "obj": 3132,
       "real": 3720,
-      "dif": 588
+      "dif": 588,
+      "objFecha": 3132
      },
      "hsr": {
       "obj": 1515,
       "real": 1118,
-      "dif": -397
+      "dif": -397,
+      "objFecha": 1515
      },
      "sprint": {
       "obj": 50,
       "real": 19,
-      "dif": -31
+      "dif": -31,
+      "objFecha": 50
      },
      "acc": {
       "obj": 145,
       "real": 51,
-      "dif": -94
+      "dif": -94,
+      "objFecha": 145
      },
      "dec": {
       "obj": 142,
       "real": 83,
-      "dif": -59
+      "dif": -59,
+      "objFecha": 142
      }
     },
     {
@@ -22006,32 +22264,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 29899,
       "real": 25098,
-      "dif": -4801
+      "dif": -4801,
+      "objFecha": 29899
      },
      "hmld": {
       "obj": 4171,
       "real": 2751,
-      "dif": -1420
+      "dif": -1420,
+      "objFecha": 4171
      },
      "hsr": {
       "obj": 996,
       "real": 600,
-      "dif": -396
+      "dif": -396,
+      "objFecha": 996
      },
      "sprint": {
       "obj": 23,
       "real": 12,
-      "dif": -11
+      "dif": -11,
+      "objFecha": 23
      },
      "acc": {
       "obj": 66,
       "real": 53,
-      "dif": -13
+      "dif": -13,
+      "objFecha": 66
      },
      "dec": {
       "obj": 133,
       "real": 64,
-      "dif": -69
+      "dif": -69,
+      "objFecha": 133
      }
     },
     {
@@ -22041,32 +22305,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26881,
       "real": 23053,
-      "dif": -3828
+      "dif": -3828,
+      "objFecha": 26881
      },
      "hmld": {
       "obj": 3474,
       "real": 2742,
-      "dif": -732
+      "dif": -732,
+      "objFecha": 3474
      },
      "hsr": {
       "obj": 705,
       "real": 586,
-      "dif": -119
+      "dif": -119,
+      "objFecha": 705
      },
      "sprint": {
       "obj": 19,
       "real": 9,
-      "dif": -10
+      "dif": -10,
+      "objFecha": 19
      },
      "acc": {
       "obj": 53,
       "real": 40,
-      "dif": -13
+      "dif": -13,
+      "objFecha": 53
      },
      "dec": {
       "obj": 65,
       "real": 63,
-      "dif": -2
+      "dif": -2,
+      "objFecha": 65
      }
     },
     {
@@ -22076,32 +22346,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 32350,
       "real": 24503,
-      "dif": -7847
+      "dif": -7847,
+      "objFecha": 32350
      },
      "hmld": {
       "obj": 3132,
       "real": 3427,
-      "dif": 295
+      "dif": 295,
+      "objFecha": 3132
      },
      "hsr": {
       "obj": 1515,
       "real": 1106,
-      "dif": -409
+      "dif": -409,
+      "objFecha": 1515
      },
      "sprint": {
       "obj": 50,
       "real": 15,
-      "dif": -35
+      "dif": -35,
+      "objFecha": 50
      },
      "acc": {
       "obj": 145,
       "real": 55,
-      "dif": -90
+      "dif": -90,
+      "objFecha": 145
      },
      "dec": {
       "obj": 142,
       "real": 109,
-      "dif": -33
+      "dif": -33,
+      "objFecha": 142
      }
     },
     {
@@ -22111,32 +22387,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 27423,
       "real": 27278,
-      "dif": -145
+      "dif": -145,
+      "objFecha": 27423
      },
      "hmld": {
       "obj": 4516,
       "real": 3191,
-      "dif": -1325
+      "dif": -1325,
+      "objFecha": 4516
      },
      "hsr": {
       "obj": 1583,
       "real": 849,
-      "dif": -734
+      "dif": -734,
+      "objFecha": 1583
      },
      "sprint": {
       "obj": 50,
       "real": 21,
-      "dif": -29
+      "dif": -29,
+      "objFecha": 50
      },
      "acc": {
       "obj": 105,
       "real": 59,
-      "dif": -46
+      "dif": -46,
+      "objFecha": 105
      },
      "dec": {
       "obj": 103,
       "real": 63,
-      "dif": -40
+      "dif": -40,
+      "objFecha": 103
      }
     },
     {
@@ -22146,32 +22428,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 30160,
       "real": 26441,
-      "dif": -3719
+      "dif": -3719,
+      "objFecha": 30160
      },
      "hmld": {
       "obj": 3124,
       "real": 2885,
-      "dif": -239
+      "dif": -239,
+      "objFecha": 3124
      },
      "hsr": {
       "obj": 284,
       "real": 473,
-      "dif": 189
+      "dif": 189,
+      "objFecha": 284
      },
      "sprint": {
       "obj": 7,
       "real": 7,
-      "dif": 0
+      "dif": 0,
+      "objFecha": 7
      },
      "acc": {
       "obj": 96,
       "real": 73,
-      "dif": -23
+      "dif": -23,
+      "objFecha": 96
      },
      "dec": {
       "obj": 77,
       "real": 72,
-      "dif": -5
+      "dif": -5,
+      "objFecha": 77
      }
     },
     {
@@ -22181,32 +22469,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 28438,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 28438
      },
      "hmld": {
       "obj": 3077,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 3077
      },
      "hsr": {
       "obj": 714,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 714
      },
      "sprint": {
       "obj": 12,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 12
      },
      "acc": {
       "obj": 57,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 57
      },
      "dec": {
       "obj": 65,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 65
      }
     },
     {
@@ -22216,32 +22510,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19100,
       "real": 17321,
-      "dif": -1779
+      "dif": -1779,
+      "objFecha": 32350
      },
      "hmld": {
       "obj": 1825,
       "real": 2034,
-      "dif": 209
+      "dif": 209,
+      "objFecha": 3132
      },
      "hsr": {
       "obj": 870,
       "real": 645,
-      "dif": -225
+      "dif": -225,
+      "objFecha": 1515
      },
      "sprint": {
       "obj": 29,
       "real": 12,
-      "dif": -17
+      "dif": -17,
+      "objFecha": 50
      },
      "acc": {
       "obj": 84,
       "real": 35,
-      "dif": -49
+      "dif": -49,
+      "objFecha": 145
      },
      "dec": {
       "obj": 83,
       "real": 39,
-      "dif": -44
+      "dif": -44,
+      "objFecha": 142
      }
     },
     {
@@ -22251,32 +22551,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 32350,
       "real": 24688,
-      "dif": -7662
+      "dif": -7662,
+      "objFecha": 32350
      },
      "hmld": {
       "obj": 3132,
       "real": 2651,
-      "dif": -481
+      "dif": -481,
+      "objFecha": 3132
      },
      "hsr": {
       "obj": 1515,
       "real": 713,
-      "dif": -802
+      "dif": -802,
+      "objFecha": 1515
      },
      "sprint": {
       "obj": 50,
       "real": 15,
-      "dif": -35
+      "dif": -35,
+      "objFecha": 50
      },
      "acc": {
       "obj": 145,
       "real": 59,
-      "dif": -86
+      "dif": -86,
+      "objFecha": 145
      },
      "dec": {
       "obj": 142,
       "real": 87,
-      "dif": -55
+      "dif": -55,
+      "objFecha": 142
      }
     },
     {
@@ -22286,32 +22592,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 32833,
       "real": 26592,
-      "dif": -6241
+      "dif": -6241,
+      "objFecha": 32833
      },
      "hmld": {
       "obj": 5306,
       "real": 3466,
-      "dif": -1840
+      "dif": -1840,
+      "objFecha": 5306
      },
      "hsr": {
       "obj": 1618,
       "real": 1121,
-      "dif": -497
+      "dif": -497,
+      "objFecha": 1618
      },
      "sprint": {
       "obj": 35,
       "real": 21,
-      "dif": -14
+      "dif": -14,
+      "objFecha": 35
      },
      "acc": {
       "obj": 114,
       "real": 77,
-      "dif": -37
+      "dif": -37,
+      "objFecha": 114
      },
      "dec": {
       "obj": 175,
       "real": 103,
-      "dif": -72
+      "dif": -72,
+      "objFecha": 175
      }
     },
     {
@@ -22321,32 +22633,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26518,
       "real": 26207,
-      "dif": -311
+      "dif": -311,
+      "objFecha": 26518
      },
      "hmld": {
       "obj": 3671,
       "real": 3352,
-      "dif": -319
+      "dif": -319,
+      "objFecha": 3671
      },
      "hsr": {
       "obj": 992,
       "real": 808,
-      "dif": -184
+      "dif": -184,
+      "objFecha": 992
      },
      "sprint": {
       "obj": 38,
       "real": 13,
-      "dif": -25
+      "dif": -25,
+      "objFecha": 38
      },
      "acc": {
       "obj": 83,
       "real": 53,
-      "dif": -30
+      "dif": -30,
+      "objFecha": 83
      },
      "dec": {
       "obj": 145,
       "real": 104,
-      "dif": -41
+      "dif": -41,
+      "objFecha": 145
      }
     },
     {
@@ -22356,32 +22674,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 29753,
       "real": 26311,
-      "dif": -3442
+      "dif": -3442,
+      "objFecha": 29753
      },
      "hmld": {
       "obj": 3999,
       "real": 2912,
-      "dif": -1087
+      "dif": -1087,
+      "objFecha": 3999
      },
      "hsr": {
       "obj": 953,
       "real": 651,
-      "dif": -302
+      "dif": -302,
+      "objFecha": 953
      },
      "sprint": {
       "obj": 16,
       "real": 11,
-      "dif": -5
+      "dif": -5,
+      "objFecha": 16
      },
      "acc": {
       "obj": 52,
       "real": 39,
-      "dif": -13
+      "dif": -13,
+      "objFecha": 52
      },
      "dec": {
       "obj": 107,
       "real": 45,
-      "dif": -62
+      "dif": -62,
+      "objFecha": 107
      }
     },
     {
@@ -22391,32 +22715,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 31002,
       "real": 27837,
-      "dif": -3165
+      "dif": -3165,
+      "objFecha": 31002
      },
      "hmld": {
       "obj": 4583,
       "real": 3006,
-      "dif": -1577
+      "dif": -1577,
+      "objFecha": 4583
      },
      "hsr": {
       "obj": 888,
       "real": 574,
-      "dif": -314
+      "dif": -314,
+      "objFecha": 888
      },
      "sprint": {
       "obj": 23,
       "real": 14,
-      "dif": -9
+      "dif": -9,
+      "objFecha": 23
      },
      "acc": {
       "obj": 43,
       "real": 38,
-      "dif": -5
+      "dif": -5,
+      "objFecha": 43
      },
      "dec": {
       "obj": 73,
       "real": 68,
-      "dif": -5
+      "dif": -5,
+      "objFecha": 73
      }
     },
     {
@@ -22426,32 +22756,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 27187,
       "real": 8781,
-      "dif": -18406
+      "dif": -18406,
+      "objFecha": 27187
      },
      "hmld": {
       "obj": 3960,
       "real": 1124,
-      "dif": -2836
+      "dif": -2836,
+      "objFecha": 3960
      },
      "hsr": {
       "obj": 1295,
       "real": 185,
-      "dif": -1110
+      "dif": -1110,
+      "objFecha": 1295
      },
      "sprint": {
       "obj": 38,
       "real": 3,
-      "dif": -35
+      "dif": -35,
+      "objFecha": 38
      },
      "acc": {
       "obj": 157,
       "real": 33,
-      "dif": -124
+      "dif": -124,
+      "objFecha": 157
      },
      "dec": {
       "obj": 227,
       "real": 40,
-      "dif": -187
+      "dif": -187,
+      "objFecha": 227
      }
     },
     {
@@ -22461,32 +22797,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 4500,
       "real": 4128,
-      "dif": -372
+      "dif": -372,
+      "objFecha": 32350
      },
      "hmld": {
       "obj": 335,
       "real": 397,
-      "dif": 62
+      "dif": 62,
+      "objFecha": 3132
      },
      "hsr": {
       "obj": 110,
       "real": 152,
-      "dif": 42
+      "dif": 42,
+      "objFecha": 1515
      },
      "sprint": {
       "obj": 3,
       "real": 5,
-      "dif": 2
+      "dif": 2,
+      "objFecha": 50
      },
      "acc": {
       "obj": 18,
       "real": 8,
-      "dif": -10
+      "dif": -10,
+      "objFecha": 145
      },
      "dec": {
       "obj": 17,
       "real": 9,
-      "dif": -8
+      "dif": -8,
+      "objFecha": 142
      }
     },
     {
@@ -22496,65 +22838,77 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 25494,
       "real": 27727,
-      "dif": 2233
+      "dif": 2233,
+      "objFecha": 25494
      },
      "hmld": {
       "obj": 3292,
       "real": 2942,
-      "dif": -350
+      "dif": -350,
+      "objFecha": 3292
      },
      "hsr": {
       "obj": 813,
       "real": 545,
-      "dif": -268
+      "dif": -268,
+      "objFecha": 813
      },
      "sprint": {
       "obj": 12,
       "real": 12,
-      "dif": 0
+      "dif": 0,
+      "objFecha": 12
      },
      "acc": {
       "obj": 70,
       "real": 68,
-      "dif": -2
+      "dif": -2,
+      "objFecha": 70
      },
      "dec": {
       "obj": 89,
       "real": 73,
-      "dif": -16
+      "dif": -16,
+      "objFecha": 89
      }
     }
    ],
    "teamAvg": {
     "distancia": {
      "obj": 27716.5,
-     "real": 23661,
-     "dif": -4056
+     "real": 22478.3,
+     "dif": -5238.2,
+     "objFecha": 29771.5
     },
     "hmld": {
      "obj": 3511.2,
-     "real": 2757,
-     "dif": -754
+     "real": 2619.5,
+     "dif": -891.7,
+     "objFecha": 3716.4
     },
     "hsr": {
      "obj": 1026.8,
-     "real": 651,
-     "dif": -376
+     "real": 618.4,
+     "dif": -408.4,
+     "objFecha": 1129.3
     },
     "sprint": {
      "obj": 26.8,
-     "real": 12,
-     "dif": -15
+     "real": 11.3,
+     "dif": -15.5,
+     "objFecha": 30.2
     },
     "acc": {
      "obj": 81.5,
-     "real": 51,
-     "dif": -30
+     "real": 48.4,
+     "dif": -33.1,
+     "objFecha": 90.9
     },
     "dec": {
      "obj": 107.3,
-     "real": 68,
-     "dif": -39
+     "real": 65.0,
+     "dif": -42.3,
+     "objFecha": 116.5
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."
@@ -31707,32 +32061,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 20926,
       "real": 16785,
-      "dif": -4141
+      "dif": -4141,
+      "objFecha": 20926
      },
      "hmld": {
       "obj": 3196,
       "real": 2185,
-      "dif": -1011
+      "dif": -1011,
+      "objFecha": 2976
      },
      "hsr": {
       "obj": 1252,
       "real": 826,
-      "dif": -426
+      "dif": -426,
+      "objFecha": 1045
      },
      "sprint": {
       "obj": 38,
       "real": 14,
-      "dif": -24
+      "dif": -24,
+      "objFecha": 31
      },
      "acc": {
       "obj": 48,
       "real": 38,
-      "dif": -10
+      "dif": -10,
+      "objFecha": 38
      },
      "dec": {
       "obj": 132,
       "real": 44,
-      "dif": -88
+      "dif": -88,
+      "objFecha": 102
      }
     },
     {
@@ -31742,32 +32102,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21018,
       "real": 16159,
-      "dif": -4859
+      "dif": -4859,
+      "objFecha": 21018
      },
      "hmld": {
       "obj": 2510,
       "real": 1692,
-      "dif": -818
+      "dif": -818,
+      "objFecha": 2398
      },
      "hsr": {
       "obj": 620,
       "real": 398,
-      "dif": -222
+      "dif": -222,
+      "objFecha": 604
      },
      "sprint": {
       "obj": 14,
       "real": 7,
-      "dif": -7
+      "dif": -7,
+      "objFecha": 11
      },
      "acc": {
       "obj": 70,
       "real": 32,
-      "dif": -38
+      "dif": -38,
+      "objFecha": 50
      },
      "dec": {
       "obj": 48,
       "real": 28,
-      "dif": -20
+      "dif": -20,
+      "objFecha": 43
      }
     },
     {
@@ -31777,32 +32143,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21454,
       "real": 16028,
-      "dif": -5426
+      "dif": -5426,
+      "objFecha": 20609
      },
      "hmld": {
       "obj": 2570,
       "real": 1749,
-      "dif": -821
+      "dif": -821,
+      "objFecha": 2495
      },
      "hsr": {
       "obj": 684,
       "real": 484,
-      "dif": -200
+      "dif": -200,
+      "objFecha": 684
      },
      "sprint": {
       "obj": 14,
       "real": 10,
-      "dif": -4
+      "dif": -4,
+      "objFecha": 14
      },
      "acc": {
       "obj": 54,
       "real": 33,
-      "dif": -21
+      "dif": -21,
+      "objFecha": 54
      },
      "dec": {
       "obj": 80,
       "real": 52,
-      "dif": -28
+      "dif": -28,
+      "objFecha": 80
      }
     },
     {
@@ -31812,32 +32184,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 25186,
       "real": 13231,
-      "dif": -11955
+      "dif": -11955,
+      "objFecha": 25178
      },
      "hmld": {
       "obj": 4270,
       "real": 1675,
-      "dif": -2595
+      "dif": -2595,
+      "objFecha": 3968
      },
      "hsr": {
       "obj": 806,
       "real": 330,
-      "dif": -476
+      "dif": -476,
+      "objFecha": 806
      },
      "sprint": {
       "obj": 20,
       "real": 2,
-      "dif": -18
+      "dif": -18,
+      "objFecha": 14
      },
      "acc": {
       "obj": 64,
       "real": 24,
-      "dif": -40
+      "dif": -40,
+      "objFecha": 50
      },
      "dec": {
       "obj": 124,
       "real": 37,
-      "dif": -87
+      "dif": -87,
+      "objFecha": 98
      }
     },
     {
@@ -31847,32 +32225,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 25410,
       "real": 18114,
-      "dif": -7296
+      "dif": -7296,
+      "objFecha": 25410
      },
      "hmld": {
       "obj": 4114,
       "real": 2601,
-      "dif": -1513
+      "dif": -1513,
+      "objFecha": 4114
      },
      "hsr": {
       "obj": 1496,
       "real": 962,
-      "dif": -534
+      "dif": -534,
+      "objFecha": 1496
      },
      "sprint": {
       "obj": 24,
       "real": 17,
-      "dif": -7
+      "dif": -7,
+      "objFecha": 24
      },
      "acc": {
       "obj": 116,
       "real": 46,
-      "dif": -70
+      "dif": -70,
+      "objFecha": 116
      },
      "dec": {
       "obj": 102,
       "real": 51,
-      "dif": -51
+      "dif": -51,
+      "objFecha": 102
      }
     },
     {
@@ -31882,32 +32266,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 22268,
       "real": 16094,
-      "dif": -6174
+      "dif": -6174,
+      "objFecha": 22132
      },
      "hmld": {
       "obj": 2994,
       "real": 1757,
-      "dif": -1237
+      "dif": -1237,
+      "objFecha": 2994
      },
      "hsr": {
       "obj": 816,
       "real": 444,
-      "dif": -372
+      "dif": -372,
+      "objFecha": 757
      },
      "sprint": {
       "obj": 16,
       "real": 10,
-      "dif": -6
+      "dif": -6,
+      "objFecha": 16
      },
      "acc": {
       "obj": 94,
       "real": 19,
-      "dif": -75
+      "dif": -75,
+      "objFecha": 72
      },
      "dec": {
       "obj": 110,
       "real": 38,
-      "dif": -72
+      "dif": -72,
+      "objFecha": 102
      }
     },
     {
@@ -31917,32 +32307,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19774,
       "real": 11605,
-      "dif": -8169
+      "dif": -8169,
+      "objFecha": 19774
      },
      "hmld": {
       "obj": 2990,
       "real": 1460,
-      "dif": -1530
+      "dif": -1530,
+      "objFecha": 2743
      },
      "hsr": {
       "obj": 1164,
       "real": 392,
-      "dif": -772
+      "dif": -772,
+      "objFecha": 829
      },
      "sprint": {
       "obj": 38,
       "real": 5,
-      "dif": -33
+      "dif": -33,
+      "objFecha": 26
      },
      "acc": {
       "obj": 72,
       "real": 32,
-      "dif": -40
+      "dif": -40,
+      "objFecha": 57
      },
      "dec": {
       "obj": 114,
       "real": 27,
-      "dif": -87
+      "dif": -87,
+      "objFecha": 80
      }
     },
     {
@@ -31952,32 +32348,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 20802,
       "real": 16822,
-      "dif": -3980
+      "dif": -3980,
+      "objFecha": 20802
      },
      "hmld": {
       "obj": 3300,
       "real": 2166,
-      "dif": -1134
+      "dif": -1134,
+      "objFecha": 3300
      },
      "hsr": {
       "obj": 1128,
       "real": 575,
-      "dif": -553
+      "dif": -553,
+      "objFecha": 1128
      },
      "sprint": {
       "obj": 32,
       "real": 6,
-      "dif": -26
+      "dif": -26,
+      "objFecha": 32
      },
      "acc": {
       "obj": 64,
       "real": 38,
-      "dif": -26
+      "dif": -26,
+      "objFecha": 64
      },
      "dec": {
       "obj": 114,
       "real": 62,
-      "dif": -52
+      "dif": -52,
+      "objFecha": 114
      }
     },
     {
@@ -31987,32 +32389,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23306,
       "real": 16291,
-      "dif": -7015
+      "dif": -7015,
+      "objFecha": 21740
      },
      "hmld": {
       "obj": 3472,
       "real": 2102,
-      "dif": -1370
+      "dif": -1370,
+      "objFecha": 3358
      },
      "hsr": {
       "obj": 1108,
       "real": 688,
-      "dif": -420
+      "dif": -420,
+      "objFecha": 1108
      },
      "sprint": {
       "obj": 32,
       "real": 15,
-      "dif": -17
+      "dif": -17,
+      "objFecha": 32
      },
      "acc": {
       "obj": 80,
       "real": 35,
-      "dif": -45
+      "dif": -45,
+      "objFecha": 80
      },
      "dec": {
       "obj": 88,
       "real": 35,
-      "dif": -53
+      "dif": -53,
+      "objFecha": 81
      }
     },
     {
@@ -32022,32 +32430,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 22190,
       "real": 15371,
-      "dif": -6819
+      "dif": -6819,
+      "objFecha": 22190
      },
      "hmld": {
       "obj": 2244,
       "real": 1648,
-      "dif": -596
+      "dif": -596,
+      "objFecha": 2244
      },
      "hsr": {
       "obj": 328,
       "real": 378,
-      "dif": 50
+      "dif": 50,
+      "objFecha": 264
      },
      "sprint": {
       "obj": 6,
       "real": 5,
-      "dif": -1
+      "dif": -1,
+      "objFecha": 6
      },
      "acc": {
       "obj": 72,
       "real": 35,
-      "dif": -37
+      "dif": -37,
+      "objFecha": 72
      },
      "dec": {
       "obj": 56,
       "real": 40,
-      "dif": -16
+      "dif": -16,
+      "objFecha": 56
      }
     },
     {
@@ -32057,32 +32471,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 20924,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 20924
      },
      "hmld": {
       "obj": 2210,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 2210
      },
      "hsr": {
       "obj": 500,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 500
      },
      "sprint": {
       "obj": 6,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 6
      },
      "acc": {
       "obj": 44,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 44
      },
      "dec": {
       "obj": 46,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 46
      }
     },
     {
@@ -32092,32 +32512,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23800,
       "real": 17851,
-      "dif": -5949
+      "dif": -5949,
+      "objFecha": 23800
      },
      "hmld": {
       "obj": 2250,
       "real": 2699,
-      "dif": 449
+      "dif": 449,
+      "objFecha": 2250
      },
      "hsr": {
       "obj": 1060,
       "real": 981,
-      "dif": -79
+      "dif": -79,
+      "objFecha": 1060
      },
      "sprint": {
       "obj": 32,
       "real": 16,
-      "dif": -16
+      "dif": -16,
+      "objFecha": 32
      },
      "acc": {
       "obj": 112,
       "real": 51,
-      "dif": -61
+      "dif": -61,
+      "objFecha": 112
      },
      "dec": {
       "obj": 102,
       "real": 49,
-      "dif": -53
+      "dif": -53,
+      "objFecha": 102
      }
     },
     {
@@ -32127,32 +32553,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 20802,
       "real": 14894,
-      "dif": -5908
+      "dif": -5908,
+      "objFecha": 20802
      },
      "hmld": {
       "obj": 2474,
       "real": 1609,
-      "dif": -865
+      "dif": -865,
+      "objFecha": 2474
      },
      "hsr": {
       "obj": 440,
       "real": 609,
-      "dif": 169
+      "dif": 169,
+      "objFecha": 440
      },
      "sprint": {
       "obj": 8,
       "real": 15,
-      "dif": 7
+      "dif": 7,
+      "objFecha": 8
      },
      "acc": {
       "obj": 62,
       "real": 32,
-      "dif": -30
+      "dif": -30,
+      "objFecha": 62
      },
      "dec": {
       "obj": 82,
       "real": 34,
-      "dif": -48
+      "dif": -48,
+      "objFecha": 82
      }
     },
     {
@@ -32162,32 +32594,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 24154,
       "real": 17882,
-      "dif": -6272
+      "dif": -6272,
+      "objFecha": 24154
      },
      "hmld": {
       "obj": 3942,
       "real": 2383,
-      "dif": -1559
+      "dif": -1559,
+      "objFecha": 3876
      },
      "hsr": {
       "obj": 1132,
       "real": 665,
-      "dif": -467
+      "dif": -467,
+      "objFecha": 1132
      },
      "sprint": {
       "obj": 22,
       "real": 13,
-      "dif": -9
+      "dif": -9,
+      "objFecha": 22
      },
      "acc": {
       "obj": 122,
       "real": 48,
-      "dif": -74
+      "dif": -74,
+      "objFecha": 104
      },
      "dec": {
       "obj": 172,
       "real": 69,
-      "dif": -103
+      "dif": -103,
+      "objFecha": 148
      }
     },
     {
@@ -32197,32 +32635,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21134,
       "real": 16067,
-      "dif": -5067
+      "dif": -5067,
+      "objFecha": 20321
      },
      "hmld": {
       "obj": 3398,
       "real": 1954,
-      "dif": -1444
+      "dif": -1444,
+      "objFecha": 3017
      },
      "hsr": {
       "obj": 1150,
       "real": 525,
-      "dif": -625
+      "dif": -625,
+      "objFecha": 922
      },
      "sprint": {
       "obj": 32,
       "real": 9,
-      "dif": -23
+      "dif": -23,
+      "objFecha": 28
      },
      "acc": {
       "obj": 70,
       "real": 29,
-      "dif": -41
+      "dif": -41,
+      "objFecha": 67
      },
      "dec": {
       "obj": 104,
       "real": 46,
-      "dif": -58
+      "dif": -58,
+      "objFecha": 104
      }
     },
     {
@@ -32232,32 +32676,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 22688,
       "real": 12529,
-      "dif": -10159
+      "dif": -10159,
+      "objFecha": 22288
      },
      "hmld": {
       "obj": 3270,
       "real": 1457,
-      "dif": -1813
+      "dif": -1813,
+      "objFecha": 3072
      },
      "hsr": {
       "obj": 668,
       "real": 369,
-      "dif": -299
+      "dif": -299,
+      "objFecha": 668
      },
      "sprint": {
       "obj": 12,
       "real": 3,
-      "dif": -9
+      "dif": -9,
+      "objFecha": 12
      },
      "acc": {
       "obj": 40,
       "real": 9,
-      "dif": -31
+      "dif": -31,
+      "objFecha": 40
      },
      "dec": {
       "obj": 78,
       "real": 23,
-      "dif": -55
+      "dif": -55,
+      "objFecha": 78
      }
     },
     {
@@ -32267,32 +32717,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23722,
       "real": 17448,
-      "dif": -6274
+      "dif": -6274,
+      "objFecha": 23265
      },
      "hmld": {
       "obj": 3292,
       "real": 2156,
-      "dif": -1136
+      "dif": -1136,
+      "objFecha": 3292
      },
      "hsr": {
       "obj": 620,
       "real": 528,
-      "dif": -92
+      "dif": -92,
+      "objFecha": 620
      },
      "sprint": {
       "obj": 16,
       "real": 10,
-      "dif": -6
+      "dif": -6,
+      "objFecha": 16
      },
      "acc": {
       "obj": 32,
       "real": 37,
-      "dif": 5
+      "dif": 5,
+      "objFecha": 32
      },
      "dec": {
       "obj": 82,
       "real": 49,
-      "dif": -33
+      "dif": -33,
+      "objFecha": 68
      }
     },
     {
@@ -32302,32 +32758,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 20002,
       "real": 7447,
-      "dif": -12555
+      "dif": -12555,
+      "objFecha": 20002
      },
      "hmld": {
       "obj": 2844,
       "real": 1104,
-      "dif": -1740
+      "dif": -1740,
+      "objFecha": 2844
      },
      "hsr": {
       "obj": 906,
       "real": 395,
-      "dif": -511
+      "dif": -511,
+      "objFecha": 906
      },
      "sprint": {
       "obj": 24,
       "real": 7,
-      "dif": -17
+      "dif": -17,
+      "objFecha": 24
      },
      "acc": {
       "obj": 120,
       "real": 42,
-      "dif": -78
+      "dif": -78,
+      "objFecha": 120
      },
      "dec": {
       "obj": 164,
       "real": 35,
-      "dif": -129
+      "dif": -129,
+      "objFecha": 164
      }
     },
     {
@@ -32337,32 +32799,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23800,
       "real": 19681,
-      "dif": -4119
+      "dif": -4119,
+      "objFecha": 23800
      },
      "hmld": {
       "obj": 2250,
       "real": 2887,
-      "dif": 637
+      "dif": 637,
+      "objFecha": 2250
      },
      "hsr": {
       "obj": 1060,
       "real": 1118,
-      "dif": 58
+      "dif": 58,
+      "objFecha": 1060
      },
      "sprint": {
       "obj": 32,
       "real": 22,
-      "dif": -10
+      "dif": -10,
+      "objFecha": 32
      },
      "acc": {
       "obj": 112,
       "real": 66,
-      "dif": -46
+      "dif": -46,
+      "objFecha": 112
      },
      "dec": {
       "obj": 102,
       "real": 71,
-      "dif": -31
+      "dif": -31,
+      "objFecha": 102
      }
     },
     {
@@ -32372,65 +32840,77 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21726,
       "real": 17815,
-      "dif": -3911
+      "dif": -3911,
+      "objFecha": 21726
      },
      "hmld": {
       "obj": 2510,
       "real": 1892,
-      "dif": -618
+      "dif": -618,
+      "objFecha": 2510
      },
      "hsr": {
       "obj": 776,
       "real": 479,
-      "dif": -297
+      "dif": -297,
+      "objFecha": 776
      },
      "sprint": {
       "obj": 24,
       "real": 11,
-      "dif": -13
+      "dif": -13,
+      "objFecha": 24
      },
      "acc": {
       "obj": 64,
       "real": 42,
-      "dif": -22
+      "dif": -22,
+      "objFecha": 64
      },
      "dec": {
       "obj": 80,
       "real": 45,
-      "dif": -35
+      "dif": -35,
+      "objFecha": 80
      }
     }
    ],
    "teamAvg": {
     "distancia": {
      "obj": 22254.3,
-     "real": 15690,
-     "dif": -6564
+     "real": 14905.7,
+     "dif": -7348.6,
+     "objFecha": 22043.0
     },
     "hmld": {
      "obj": 3005,
-     "real": 1957,
-     "dif": -1048
+     "real": 1858.8,
+     "dif": -1146.2,
+     "objFecha": 2919.2
     },
     "hsr": {
      "obj": 885.7,
-     "real": 587,
-     "dif": -299
+     "real": 557.3,
+     "dif": -328.4,
+     "objFecha": 840.2
     },
     "sprint": {
      "obj": 22.1,
-     "real": 10,
-     "dif": -12
+     "real": 9.8,
+     "dif": -12.3,
+     "objFecha": 20.5
     },
     "acc": {
      "obj": 75.6,
-     "real": 36,
-     "dif": -40
+     "real": 34.4,
+     "dif": -41.2,
+     "objFecha": 70.5
     },
     "dec": {
      "obj": 99,
-     "real": 44,
-     "dif": -55
+     "real": 41.8,
+     "dif": -57.2,
+     "objFecha": 91.6
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."
@@ -41575,32 +42055,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19311,
       "real": 19056,
-      "dif": -255
+      "dif": -255,
+      "objFecha": 19311
      },
      "hmld": {
       "obj": 2816,
       "real": 2730,
-      "dif": -86
+      "dif": -86,
+      "objFecha": 2816
      },
      "hsr": {
       "obj": 1051,
       "real": 1081,
-      "dif": 30
+      "dif": 30,
+      "objFecha": 1051
      },
      "sprint": {
       "obj": 31,
       "real": 27,
-      "dif": -4
+      "dif": -4,
+      "objFecha": 31
      },
      "acc": {
       "obj": 43,
       "real": 62,
-      "dif": 19
+      "dif": 19,
+      "objFecha": 43
      },
      "dec": {
       "obj": 119,
       "real": 69,
-      "dif": -50
+      "dif": -50,
+      "objFecha": 119
      }
     },
     {
@@ -41610,32 +42096,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19609,
       "real": 17645,
-      "dif": -1964
+      "dif": -1964,
+      "objFecha": 19609
      },
      "hmld": {
       "obj": 2282,
       "real": 2309,
-      "dif": 27
+      "dif": 27,
+      "objFecha": 2282
      },
      "hsr": {
       "obj": 636,
       "real": 777,
-      "dif": 141
+      "dif": 141,
+      "objFecha": 636
      },
      "sprint": {
       "obj": 11,
       "real": 21,
-      "dif": 10
+      "dif": 10,
+      "objFecha": 11
      },
      "acc": {
       "obj": 62,
       "real": 60,
-      "dif": -2
+      "dif": -2,
+      "objFecha": 62
      },
      "dec": {
       "obj": 46,
       "real": 47,
-      "dif": 1
+      "dif": 1,
+      "objFecha": 46
      }
     },
     {
@@ -41645,32 +42137,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19696,
       "real": 17815,
-      "dif": -1881
+      "dif": -1881,
+      "objFecha": 19696
      },
      "hmld": {
       "obj": 2309,
       "real": 2449,
-      "dif": 140
+      "dif": 140,
+      "objFecha": 2309
      },
      "hsr": {
       "obj": 648,
       "real": 810,
-      "dif": 162
+      "dif": 162,
+      "objFecha": 648
      },
      "sprint": {
       "obj": 11,
       "real": 22,
-      "dif": 11
+      "dif": 11,
+      "objFecha": 11
      },
      "acc": {
       "obj": 49,
       "real": 59,
-      "dif": 10
+      "dif": 10,
+      "objFecha": 49
      },
      "dec": {
       "obj": 72,
       "real": 76,
-      "dif": 4
+      "dif": 4,
+      "objFecha": 72
      }
     },
     {
@@ -41680,32 +42178,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23122,
       "real": 20404,
-      "dif": -2718
+      "dif": -2718,
+      "objFecha": 23122
      },
      "hmld": {
       "obj": 3763,
       "real": 3025,
-      "dif": -738
+      "dif": -738,
+      "objFecha": 3763
      },
      "hsr": {
       "obj": 676,
       "real": 893,
-      "dif": 217
+      "dif": 217,
+      "objFecha": 676
      },
      "sprint": {
       "obj": 17,
       "real": 19,
-      "dif": 2
+      "dif": 2,
+      "objFecha": 17
      },
      "acc": {
       "obj": 58,
       "real": 66,
-      "dif": 8
+      "dif": 8,
+      "objFecha": 58
      },
      "dec": {
       "obj": 113,
       "real": 78,
-      "dif": -35
+      "dif": -35,
+      "objFecha": 113
      }
     },
     {
@@ -41715,32 +42219,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23329,
       "real": 20592,
-      "dif": -2737
+      "dif": -2737,
+      "objFecha": 23329
      },
      "hmld": {
       "obj": 3624,
       "real": 3151,
-      "dif": -473
+      "dif": -473,
+      "objFecha": 3624
      },
      "hsr": {
       "obj": 1256,
       "real": 1120,
-      "dif": -136
+      "dif": -136,
+      "objFecha": 1256
      },
      "sprint": {
       "obj": 26,
       "real": 23,
-      "dif": -3
+      "dif": -3,
+      "objFecha": 26
      },
      "acc": {
       "obj": 105,
       "real": 76,
-      "dif": -29
+      "dif": -29,
+      "objFecha": 105
      },
      "dec": {
       "obj": 100,
       "real": 68,
-      "dif": -32
+      "dif": -32,
+      "objFecha": 100
      }
     },
     {
@@ -41750,32 +42260,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21277,
       "real": 18501,
-      "dif": -2776
+      "dif": -2776,
+      "objFecha": 21277
      },
      "hmld": {
       "obj": 3093,
       "real": 2345,
-      "dif": -748
+      "dif": -748,
+      "objFecha": 3093
      },
      "hsr": {
       "obj": 685,
       "real": 731,
-      "dif": 46
+      "dif": 46,
+      "objFecha": 685
      },
      "sprint": {
       "obj": 14,
       "real": 16,
-      "dif": 2
+      "dif": 2,
+      "objFecha": 14
      },
      "acc": {
       "obj": 85,
       "real": 49,
-      "dif": -36
+      "dif": -36,
+      "objFecha": 85
      },
      "dec": {
       "obj": 100,
       "real": 42,
-      "dif": -58
+      "dif": -58,
+      "objFecha": 100
      }
     },
     {
@@ -41785,32 +42301,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 18167,
       "real": 16663,
-      "dif": -1504
+      "dif": -1504,
+      "objFecha": 18167
      },
      "hmld": {
       "obj": 2635,
       "real": 2405,
-      "dif": -230
+      "dif": -230,
+      "objFecha": 2635
      },
      "hsr": {
       "obj": 977,
       "real": 733,
-      "dif": -244
+      "dif": -244,
+      "objFecha": 977
      },
      "sprint": {
       "obj": 31,
       "real": 14,
-      "dif": -17
+      "dif": -17,
+      "objFecha": 31
      },
      "acc": {
       "obj": 65,
       "real": 67,
-      "dif": 2
+      "dif": 2,
+      "objFecha": 65
      },
      "dec": {
       "obj": 104,
       "real": 68,
-      "dif": -36
+      "dif": -36,
+      "objFecha": 104
      }
     },
     {
@@ -41820,32 +42342,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19517,
       "real": 18415,
-      "dif": -1102
+      "dif": -1102,
+      "objFecha": 19517
      },
      "hmld": {
       "obj": 2908,
       "real": 2884,
-      "dif": -24
+      "dif": -24,
+      "objFecha": 2908
      },
      "hsr": {
       "obj": 947,
       "real": 918,
-      "dif": -29
+      "dif": -29,
+      "objFecha": 947
      },
      "sprint": {
       "obj": 27,
       "real": 18,
-      "dif": -9
+      "dif": -9,
+      "objFecha": 27
      },
      "acc": {
       "obj": 58,
       "real": 80,
-      "dif": 22
+      "dif": 22,
+      "objFecha": 58
      },
      "dec": {
       "obj": 130,
       "real": 110,
-      "dif": -20
+      "dif": -20,
+      "objFecha": 130
      }
     },
     {
@@ -41855,32 +42383,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21397,
       "real": 19540,
-      "dif": -1857
+      "dif": -1857,
+      "objFecha": 21397
      },
      "hmld": {
       "obj": 3059,
       "real": 2725,
-      "dif": -334
+      "dif": -334,
+      "objFecha": 3059
      },
      "hsr": {
       "obj": 930,
       "real": 1066,
-      "dif": 136
+      "dif": 136,
+      "objFecha": 930
      },
      "sprint": {
       "obj": 27,
       "real": 27,
-      "dif": 0
+      "dif": 0,
+      "objFecha": 27
      },
      "acc": {
       "obj": 102,
       "real": 54,
-      "dif": -48
+      "dif": -48,
+      "objFecha": 102
      },
      "dec": {
       "obj": 113,
       "real": 66,
-      "dif": -47
+      "dif": -47,
+      "objFecha": 113
      }
     },
     {
@@ -41890,32 +42424,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 20371,
       "real": 16740,
-      "dif": -3631
+      "dif": -3631,
+      "objFecha": 20371
      },
      "hmld": {
       "obj": 1977,
       "real": 1823,
-      "dif": -154
+      "dif": -154,
+      "objFecha": 1977
      },
      "hsr": {
       "obj": 275,
       "real": 597,
-      "dif": 322
+      "dif": 322,
+      "objFecha": 275
      },
      "sprint": {
       "obj": 4,
       "real": 15,
-      "dif": 11
+      "dif": 11,
+      "objFecha": 4
      },
      "acc": {
       "obj": 65,
       "real": 49,
-      "dif": -16
+      "dif": -16,
+      "objFecha": 65
      },
      "dec": {
       "obj": 51,
       "real": 32,
-      "dif": -19
+      "dif": -19,
+      "objFecha": 51
      }
     },
     {
@@ -41925,32 +42465,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19209,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 19209
      },
      "hmld": {
       "obj": 1947,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 1947
      },
      "hsr": {
       "obj": 420,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 420
      },
      "sprint": {
       "obj": 6,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 6
      },
      "acc": {
       "obj": 40,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 40
      },
      "dec": {
       "obj": 42,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 42
      }
     },
     {
@@ -41960,32 +42506,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 20359,
       "real": 18663,
-      "dif": -1696
+      "dif": -1696,
+      "objFecha": 20359
      },
      "hmld": {
       "obj": 3105,
       "real": 2826,
-      "dif": -279
+      "dif": -279,
+      "objFecha": 3105
      },
      "hsr": {
       "obj": 668,
       "real": 1139,
-      "dif": 471
+      "dif": 471,
+      "objFecha": 668
      },
      "sprint": {
       "obj": 7,
       "real": 25,
-      "dif": 18
+      "dif": 18,
+      "objFecha": 7
      },
      "acc": {
       "obj": 102,
       "real": 90,
-      "dif": -12
+      "dif": -12,
+      "objFecha": 102
      },
      "dec": {
       "obj": 68,
       "real": 55,
-      "dif": -13
+      "dif": -13,
+      "objFecha": 68
      }
     },
     {
@@ -41995,32 +42547,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19098,
       "real": 16570,
-      "dif": -2528
+      "dif": -2528,
+      "objFecha": 19098
      },
      "hmld": {
       "obj": 2179,
       "real": 2237,
-      "dif": 58
+      "dif": 58,
+      "objFecha": 2179
      },
      "hsr": {
       "obj": 691,
       "real": 889,
-      "dif": 198
+      "dif": 198,
+      "objFecha": 691
      },
      "sprint": {
       "obj": 14,
       "real": 22,
-      "dif": 8
+      "dif": 8,
+      "objFecha": 14
      },
      "acc": {
       "obj": 55,
       "real": 62,
-      "dif": 7
+      "dif": 7,
+      "objFecha": 55
      },
      "dec": {
       "obj": 91,
       "real": 63,
-      "dif": -28
+      "dif": -28,
+      "objFecha": 91
      }
     },
     {
@@ -42030,32 +42588,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 22176,
       "real": 18985,
-      "dif": -3191
+      "dif": -3191,
+      "objFecha": 22176
      },
      "hmld": {
       "obj": 3474,
       "real": 2845,
-      "dif": -629
+      "dif": -629,
+      "objFecha": 3474
      },
      "hsr": {
       "obj": 950,
       "real": 989,
-      "dif": 39
+      "dif": 39,
+      "objFecha": 950
      },
      "sprint": {
       "obj": 19,
       "real": 23,
-      "dif": 4
+      "dif": 4,
+      "objFecha": 19
      },
      "acc": {
       "obj": 110,
       "real": 87,
-      "dif": -23
+      "dif": -23,
+      "objFecha": 110
      },
      "dec": {
       "obj": 156,
       "real": 97,
-      "dif": -59
+      "dif": -59,
+      "objFecha": 156
      }
     },
     {
@@ -42065,32 +42629,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19403,
       "real": 17438,
-      "dif": -1965
+      "dif": -1965,
+      "objFecha": 19403
      },
      "hmld": {
       "obj": 2993,
       "real": 2497,
-      "dif": -496
+      "dif": -496,
+      "objFecha": 2993
      },
      "hsr": {
       "obj": 965,
       "real": 870,
-      "dif": -95
+      "dif": -95,
+      "objFecha": 965
      },
      "sprint": {
       "obj": 27,
       "real": 20,
-      "dif": -7
+      "dif": -7,
+      "objFecha": 27
      },
      "acc": {
       "obj": 62,
       "real": 44,
-      "dif": -18
+      "dif": -18,
+      "objFecha": 62
      },
      "dec": {
       "obj": 134,
       "real": 69,
-      "dif": -65
+      "dif": -65,
+      "objFecha": 134
      }
     },
     {
@@ -42100,32 +42670,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21360,
       "real": 20643,
-      "dif": -717
+      "dif": -717,
+      "objFecha": 21360
      },
      "hmld": {
       "obj": 3516,
       "real": 2383,
-      "dif": -1133
+      "dif": -1133,
+      "objFecha": 3516
      },
      "hsr": {
       "obj": 871,
       "real": 805,
-      "dif": -66
+      "dif": -66,
+      "objFecha": 871
      },
      "sprint": {
       "obj": 11,
       "real": 16,
-      "dif": 5
+      "dif": 5,
+      "objFecha": 11
      },
      "acc": {
       "obj": 36,
       "real": 36,
-      "dif": 0
+      "dif": 0,
+      "objFecha": 36
      },
      "dec": {
       "obj": 81,
       "real": 36,
-      "dif": -45
+      "dif": -45,
+      "objFecha": 81
      }
     },
     {
@@ -42135,32 +42711,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21778,
       "real": 19374,
-      "dif": -2404
+      "dif": -2404,
+      "objFecha": 21778
      },
      "hmld": {
       "obj": 2901,
       "real": 2461,
-      "dif": -440
+      "dif": -440,
+      "objFecha": 2901
      },
      "hsr": {
       "obj": 521,
       "real": 862,
-      "dif": 341
+      "dif": 341,
+      "objFecha": 521
      },
      "sprint": {
       "obj": 13,
       "real": 17,
-      "dif": 4
+      "dif": 4,
+      "objFecha": 13
      },
      "acc": {
       "obj": 36,
       "real": 39,
-      "dif": 3
+      "dif": 3,
+      "objFecha": 36
      },
      "dec": {
       "obj": 76,
       "real": 64,
-      "dif": -12
+      "dif": -12,
+      "objFecha": 76
      }
     },
     {
@@ -42170,32 +42752,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 18363,
       "real": 19680,
-      "dif": 1317
+      "dif": 1317,
+      "objFecha": 18363
      },
      "hmld": {
       "obj": 2506,
       "real": 2932,
-      "dif": 426
+      "dif": 426,
+      "objFecha": 2506
      },
      "hsr": {
       "obj": 760,
       "real": 1004,
-      "dif": 244
+      "dif": 244,
+      "objFecha": 760
      },
      "sprint": {
       "obj": 20,
       "real": 23,
-      "dif": 3
+      "dif": 3,
+      "objFecha": 20
      },
      "acc": {
       "obj": 108,
       "real": 80,
-      "dif": -28
+      "dif": -28,
+      "objFecha": 108
      },
      "dec": {
       "obj": 149,
       "real": 108,
-      "dif": -41
+      "dif": -41,
+      "objFecha": 149
      }
     },
     {
@@ -42205,32 +42793,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21850,
       "real": 19928,
-      "dif": -1922
+      "dif": -1922,
+      "objFecha": 21850
      },
      "hmld": {
       "obj": 1982,
       "real": 2753,
-      "dif": 771
+      "dif": 771,
+      "objFecha": 1982
      },
      "hsr": {
       "obj": 890,
       "real": 1007,
-      "dif": 117
+      "dif": 117,
+      "objFecha": 890
      },
      "sprint": {
       "obj": 27,
       "real": 23,
-      "dif": -4
+      "dif": -4,
+      "objFecha": 27
      },
      "acc": {
       "obj": 101,
       "real": 76,
-      "dif": -25
+      "dif": -25,
+      "objFecha": 101
      },
      "dec": {
       "obj": 93,
       "real": 74,
-      "dif": -19
+      "dif": -19,
+      "objFecha": 93
      }
     },
     {
@@ -42240,65 +42834,77 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19947,
       "real": 19042,
-      "dif": -905
+      "dif": -905,
+      "objFecha": 19947
      },
      "hmld": {
       "obj": 2211,
       "real": 2379,
-      "dif": 168
+      "dif": 168,
+      "objFecha": 2211
      },
      "hsr": {
       "obj": 652,
       "real": 781,
-      "dif": 129
+      "dif": 129,
+      "objFecha": 652
      },
      "sprint": {
       "obj": 20,
       "real": 16,
-      "dif": -4
+      "dif": -4,
+      "objFecha": 20
      },
      "acc": {
       "obj": 58,
       "real": 70,
-      "dif": 12
+      "dif": 12,
+      "objFecha": 58
      },
      "dec": {
       "obj": 76,
       "real": 61,
-      "dif": -15
+      "dif": -15,
+      "objFecha": 76
      }
     }
    ],
    "teamAvg": {
     "distancia": {
      "obj": 20467,
-     "real": 18721,
-     "dif": -1746
+     "real": 17784.7,
+     "dif": -2682.3,
+     "objFecha": 20467.0
     },
     "hmld": {
      "obj": 2764,
-     "real": 2587,
-     "dif": -177
+     "real": 2457.9,
+     "dif": -306.1,
+     "objFecha": 2764.0
     },
     "hsr": {
      "obj": 773.5,
-     "real": 899,
-     "dif": 126
+     "real": 853.6,
+     "dif": 80.1,
+     "objFecha": 773.5
     },
     "sprint": {
      "obj": 18.1,
-     "real": 20,
-     "dif": 2
+     "real": 19.4,
+     "dif": 1.3,
+     "objFecha": 18.1
     },
     "acc": {
      "obj": 70,
-     "real": 63,
-     "dif": -7
+     "real": 60.3,
+     "dif": -9.7,
+     "objFecha": 70.0
     },
     "dec": {
      "obj": 95.7,
-     "real": 68,
-     "dif": -28
+     "real": 64.2,
+     "dif": -31.5,
+     "objFecha": 95.7
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."
@@ -51453,32 +52059,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19999,
       "real": 17776,
-      "dif": -2223
+      "dif": -2223,
+      "objFecha": 19999
      },
      "hmld": {
       "obj": 2769,
       "real": 2291,
-      "dif": -478
+      "dif": -478,
+      "objFecha": 2769
      },
      "hsr": {
       "obj": 995,
       "real": 897,
-      "dif": -98
+      "dif": -98,
+      "objFecha": 995
      },
      "sprint": {
       "obj": 23,
       "real": 21,
-      "dif": -2
+      "dif": -2,
+      "objFecha": 23
      },
      "acc": {
       "obj": 37,
       "real": 54,
-      "dif": 17
+      "dif": 17,
+      "objFecha": 37
      },
      "dec": {
       "obj": 87,
       "real": 51,
-      "dif": -36
+      "dif": -36,
+      "objFecha": 87
      }
     },
     {
@@ -51488,32 +52100,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19743,
       "real": 16379,
-      "dif": -3364
+      "dif": -3364,
+      "objFecha": 19743
      },
      "hmld": {
       "obj": 2367,
       "real": 1883,
-      "dif": -484
+      "dif": -484,
+      "objFecha": 2367
      },
      "hsr": {
       "obj": 593,
       "real": 520,
-      "dif": -73
+      "dif": -73,
+      "objFecha": 593
      },
      "sprint": {
       "obj": 8,
       "real": 10,
-      "dif": 2
+      "dif": 2,
+      "objFecha": 8
      },
      "acc": {
       "obj": 49,
       "real": 51,
-      "dif": 2
+      "dif": 2,
+      "objFecha": 49
      },
      "dec": {
       "obj": 47,
       "real": 31,
-      "dif": -16
+      "dif": -16,
+      "objFecha": 47
      }
     },
     {
@@ -51523,32 +52141,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 20177,
       "real": 15914,
-      "dif": -4263
+      "dif": -4263,
+      "objFecha": 20177
      },
      "hmld": {
       "obj": 2539,
       "real": 1924,
-      "dif": -615
+      "dif": -615,
+      "objFecha": 2539
      },
      "hsr": {
       "obj": 636,
       "real": 553,
-      "dif": -83
+      "dif": -83,
+      "objFecha": 636
      },
      "sprint": {
       "obj": 9,
       "real": 11,
-      "dif": 2
+      "dif": 2,
+      "objFecha": 9
      },
      "acc": {
       "obj": 56,
       "real": 53,
-      "dif": -3
+      "dif": -3,
+      "objFecha": 56
      },
      "dec": {
       "obj": 58,
       "real": 60,
-      "dif": 2
+      "dif": 2,
+      "objFecha": 58
      }
     },
     {
@@ -51558,32 +52182,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 24427,
       "real": 19269,
-      "dif": -5158
+      "dif": -5158,
+      "objFecha": 24427
      },
      "hmld": {
       "obj": 3856,
       "real": 2935,
-      "dif": -921
+      "dif": -921,
+      "objFecha": 3856
      },
      "hsr": {
       "obj": 730,
       "real": 820,
-      "dif": 90
+      "dif": 90,
+      "objFecha": 730
      },
      "sprint": {
       "obj": 8,
       "real": 13,
-      "dif": 5
+      "dif": 5,
+      "objFecha": 8
      },
      "acc": {
       "obj": 54,
       "real": 63,
-      "dif": 9
+      "dif": 9,
+      "objFecha": 54
      },
      "dec": {
       "obj": 99,
       "real": 70,
-      "dif": -29
+      "dif": -29,
+      "objFecha": 99
      }
     },
     {
@@ -51593,32 +52223,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 22589,
       "real": 18037,
-      "dif": -4552
+      "dif": -4552,
+      "objFecha": 22589
      },
      "hmld": {
       "obj": 3619,
       "real": 2428,
-      "dif": -1191
+      "dif": -1191,
+      "objFecha": 3619
      },
      "hsr": {
       "obj": 1219,
       "real": 837,
-      "dif": -382
+      "dif": -382,
+      "objFecha": 1219
      },
      "sprint": {
       "obj": 22,
       "real": 17,
-      "dif": -5
+      "dif": -5,
+      "objFecha": 22
      },
      "acc": {
       "obj": 67,
       "real": 54,
-      "dif": -13
+      "dif": -13,
+      "objFecha": 67
      },
      "dec": {
       "obj": 91,
       "real": 49,
-      "dif": -42
+      "dif": -42,
+      "objFecha": 91
      }
     },
     {
@@ -51628,32 +52264,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 22149,
       "real": 17102,
-      "dif": -5047
+      "dif": -5047,
+      "objFecha": 22149
      },
      "hmld": {
       "obj": 3073,
       "real": 2084,
-      "dif": -989
+      "dif": -989,
+      "objFecha": 3073
      },
      "hsr": {
       "obj": 733,
       "real": 568,
-      "dif": -165
+      "dif": -165,
+      "objFecha": 733
      },
      "sprint": {
       "obj": 12,
       "real": 9,
-      "dif": -3
+      "dif": -3,
+      "objFecha": 12
      },
      "acc": {
       "obj": 49,
       "real": 49,
-      "dif": 0
+      "dif": 0,
+      "objFecha": 49
      },
      "dec": {
       "obj": 82,
       "real": 35,
-      "dif": -47
+      "dif": -47,
+      "objFecha": 82
      }
     },
     {
@@ -51663,32 +52305,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 18917,
       "real": 16333,
-      "dif": -2584
+      "dif": -2584,
+      "objFecha": 18917
      },
      "hmld": {
       "obj": 2775,
       "real": 2371,
-      "dif": -404
+      "dif": -404,
+      "objFecha": 2775
      },
      "hsr": {
       "obj": 772,
       "real": 744,
-      "dif": -28
+      "dif": -28,
+      "objFecha": 772
      },
      "sprint": {
       "obj": 16,
       "real": 14,
-      "dif": -2
+      "dif": -2,
+      "objFecha": 16
      },
      "acc": {
       "obj": 59,
       "real": 61,
-      "dif": 2
+      "dif": 2,
+      "objFecha": 59
      },
      "dec": {
       "obj": 98,
       "real": 69,
-      "dif": -29
+      "dif": -29,
+      "objFecha": 98
      }
     },
     {
@@ -51698,32 +52346,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19986,
       "real": 13424,
-      "dif": -6562
+      "dif": -6562,
+      "objFecha": 19986
      },
      "hmld": {
       "obj": 3122,
       "real": 2115,
-      "dif": -1007
+      "dif": -1007,
+      "objFecha": 3122
      },
      "hsr": {
       "obj": 1033,
       "real": 839,
-      "dif": -194
+      "dif": -194,
+      "objFecha": 1033
      },
      "sprint": {
       "obj": 27,
       "real": 18,
-      "dif": -9
+      "dif": -9,
+      "objFecha": 27
      },
      "acc": {
       "obj": 73,
       "real": 45,
-      "dif": -28
+      "dif": -28,
+      "objFecha": 73
      },
      "dec": {
       "obj": 132,
       "real": 69,
-      "dif": -63
+      "dif": -63,
+      "objFecha": 132
      }
     },
     {
@@ -51733,32 +52387,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 20978,
       "real": 7010,
-      "dif": -13968
+      "dif": -13968,
+      "objFecha": 20978
      },
      "hmld": {
       "obj": 3250,
       "real": 989,
-      "dif": -2261
+      "dif": -2261,
+      "objFecha": 3250
      },
      "hsr": {
       "obj": 865,
       "real": 540,
-      "dif": -325
+      "dif": -325,
+      "objFecha": 865
      },
      "sprint": {
       "obj": 16,
       "real": 3,
-      "dif": -13
+      "dif": -13,
+      "objFecha": 16
      },
      "acc": {
       "obj": 66,
       "real": 13,
-      "dif": -53
+      "dif": -53,
+      "objFecha": 66
      },
      "dec": {
       "obj": 87,
       "real": 11,
-      "dif": -76
+      "dif": -76,
+      "objFecha": 87
      }
     },
     {
@@ -51768,32 +52428,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21221,
       "real": 16757,
-      "dif": -4464
+      "dif": -4464,
+      "objFecha": 21221
      },
      "hmld": {
       "obj": 2541,
       "real": 1808,
-      "dif": -733
+      "dif": -733,
+      "objFecha": 2541
      },
      "hsr": {
       "obj": 461,
       "real": 436,
-      "dif": -25
+      "dif": -25,
+      "objFecha": 461
      },
      "sprint": {
       "obj": 6,
       "real": 10,
-      "dif": 4
+      "dif": 4,
+      "objFecha": 6
      },
      "acc": {
       "obj": 59,
       "real": 37,
-      "dif": -22
+      "dif": -22,
+      "objFecha": 59
      },
      "dec": {
       "obj": 64,
       "real": 32,
-      "dif": -32
+      "dif": -32,
+      "objFecha": 64
      }
     },
     {
@@ -51803,32 +52469,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19632,
       "real": 872,
-      "dif": -18760
+      "dif": -18760,
+      "objFecha": 19632
      },
      "hmld": {
       "obj": 2019,
       "real": 0,
-      "dif": -2019
+      "dif": -2019,
+      "objFecha": 2019
      },
      "hsr": {
       "obj": 443,
       "real": 0,
-      "dif": -443
+      "dif": -443,
+      "objFecha": 443
      },
      "sprint": {
       "obj": 4,
       "real": 0,
-      "dif": -4
+      "dif": -4,
+      "objFecha": 4
      },
      "acc": {
       "obj": 37,
       "real": 0,
-      "dif": -37
+      "dif": -37,
+      "objFecha": 37
      },
      "dec": {
       "obj": 42,
       "real": 0,
-      "dif": -42
+      "dif": -42,
+      "objFecha": 42
      }
     },
     {
@@ -51838,32 +52510,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21738,
       "real": 17599,
-      "dif": -4139
+      "dif": -4139,
+      "objFecha": 21738
      },
      "hmld": {
       "obj": 3221,
       "real": 2623,
-      "dif": -598
+      "dif": -598,
+      "objFecha": 3221
      },
      "hsr": {
       "obj": 737,
       "real": 920,
-      "dif": 183
+      "dif": 183,
+      "objFecha": 737
      },
      "sprint": {
       "obj": 12,
       "real": 22,
-      "dif": 10
+      "dif": 10,
+      "objFecha": 12
      },
      "acc": {
       "obj": 76,
       "real": 79,
-      "dif": 3
+      "dif": 3,
+      "objFecha": 76
      },
      "dec": {
       "obj": 71,
       "real": 63,
-      "dif": -8
+      "dif": -8,
+      "objFecha": 71
      }
     },
     {
@@ -51873,32 +52551,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19353,
       "real": 14437,
-      "dif": -4916
+      "dif": -4916,
+      "objFecha": 19353
      },
      "hmld": {
       "obj": 2565,
       "real": 1764,
-      "dif": -801
+      "dif": -801,
+      "objFecha": 2565
      },
      "hsr": {
       "obj": 841,
       "real": 735,
-      "dif": -106
+      "dif": -106,
+      "objFecha": 841
      },
      "sprint": {
       "obj": 20,
       "real": 17,
-      "dif": -3
+      "dif": -3,
+      "objFecha": 20
      },
      "acc": {
       "obj": 42,
       "real": 41,
-      "dif": -1
+      "dif": -1,
+      "objFecha": 42
      },
      "dec": {
       "obj": 87,
       "real": 35,
-      "dif": -52
+      "dif": -52,
+      "objFecha": 87
      }
     },
     {
@@ -51908,32 +52592,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 22388,
       "real": 17823,
-      "dif": -4565
+      "dif": -4565,
+      "objFecha": 22388
      },
      "hmld": {
       "obj": 3567,
       "real": 2523,
-      "dif": -1044
+      "dif": -1044,
+      "objFecha": 3567
      },
      "hsr": {
       "obj": 1009,
       "real": 921,
-      "dif": -88
+      "dif": -88,
+      "objFecha": 1009
      },
      "sprint": {
       "obj": 15,
       "real": 18,
-      "dif": 3
+      "dif": 3,
+      "objFecha": 15
      },
      "acc": {
       "obj": 82,
       "real": 67,
-      "dif": -15
+      "dif": -15,
+      "objFecha": 82
      },
      "dec": {
       "obj": 129,
       "real": 83,
-      "dif": -46
+      "dif": -46,
+      "objFecha": 129
      }
     },
     {
@@ -51943,32 +52633,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 20251,
       "real": 16403,
-      "dif": -3848
+      "dif": -3848,
+      "objFecha": 20251
      },
      "hmld": {
       "obj": 2970,
       "real": 2077,
-      "dif": -893
+      "dif": -893,
+      "objFecha": 2970
      },
      "hsr": {
       "obj": 815,
       "real": 600,
-      "dif": -215
+      "dif": -215,
+      "objFecha": 815
      },
      "sprint": {
       "obj": 20,
       "real": 9,
-      "dif": -11
+      "dif": -11,
+      "objFecha": 20
      },
      "acc": {
       "obj": 60,
       "real": 47,
-      "dif": -13
+      "dif": -13,
+      "objFecha": 60
      },
      "dec": {
       "obj": 108,
       "real": 69,
-      "dif": -39
+      "dif": -39,
+      "objFecha": 108
      }
     },
     {
@@ -51978,32 +52674,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 22116,
       "real": 18818,
-      "dif": -3298
+      "dif": -3298,
+      "objFecha": 22116
      },
      "hmld": {
       "obj": 3288,
       "real": 2245,
-      "dif": -1043
+      "dif": -1043,
+      "objFecha": 3288
      },
      "hsr": {
       "obj": 865,
       "real": 707,
-      "dif": -158
+      "dif": -158,
+      "objFecha": 865
      },
      "sprint": {
       "obj": 12,
       "real": 12,
-      "dif": 0
+      "dif": 0,
+      "objFecha": 12
      },
      "acc": {
       "obj": 26,
       "real": 33,
-      "dif": 7
+      "dif": 7,
+      "objFecha": 26
      },
      "dec": {
       "obj": 64,
       "real": 55,
-      "dif": -9
+      "dif": -9,
+      "objFecha": 64
      }
     },
     {
@@ -52013,32 +52715,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21793,
       "real": 17119,
-      "dif": -4674
+      "dif": -4674,
+      "objFecha": 21793
      },
      "hmld": {
       "obj": 2869,
       "real": 1973,
-      "dif": -896
+      "dif": -896,
+      "objFecha": 2869
      },
      "hsr": {
       "obj": 564,
       "real": 617,
-      "dif": 53
+      "dif": 53,
+      "objFecha": 564
      },
      "sprint": {
       "obj": 9,
       "real": 13,
-      "dif": 4
+      "dif": 4,
+      "objFecha": 9
      },
      "acc": {
       "obj": 35,
       "real": 32,
-      "dif": -3
+      "dif": -3,
+      "objFecha": 35
      },
      "dec": {
       "obj": 73,
       "real": 57,
-      "dif": -16
+      "dif": -16,
+      "objFecha": 73
      }
     },
     {
@@ -52048,32 +52756,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21507,
       "real": 17498,
-      "dif": -4009
+      "dif": -4009,
+      "objFecha": 21507
      },
      "hmld": {
       "obj": 3489,
       "real": 2227,
-      "dif": -1262
+      "dif": -1262,
+      "objFecha": 3489
      },
      "hsr": {
       "obj": 1111,
       "real": 796,
-      "dif": -315
+      "dif": -315,
+      "objFecha": 1111
      },
      "sprint": {
       "obj": 20,
       "real": 15,
-      "dif": -5
+      "dif": -5,
+      "objFecha": 20
      },
      "acc": {
       "obj": 90,
       "real": 62,
-      "dif": -28
+      "dif": -28,
+      "objFecha": 90
      },
      "dec": {
       "obj": 132,
       "real": 69,
-      "dif": -63
+      "dif": -63,
+      "objFecha": 132
      }
     },
     {
@@ -52083,32 +52797,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 22859,
       "real": 17752,
-      "dif": -5107
+      "dif": -5107,
+      "objFecha": 22859
      },
      "hmld": {
       "obj": 3818,
       "real": 2518,
-      "dif": -1300
+      "dif": -1300,
+      "objFecha": 3818
      },
      "hsr": {
       "obj": 1322,
       "real": 946,
-      "dif": -376
+      "dif": -376,
+      "objFecha": 1322
      },
      "sprint": {
       "obj": 25,
       "real": 18,
-      "dif": -7
+      "dif": -7,
+      "objFecha": 25
      },
      "acc": {
       "obj": 76,
       "real": 58,
-      "dif": -18
+      "dif": -18,
+      "objFecha": 76
      },
      "dec": {
       "obj": 108,
       "real": 73,
-      "dif": -35
+      "dif": -35,
+      "objFecha": 108
      }
     },
     {
@@ -52118,65 +52838,77 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19473,
       "real": 17662,
-      "dif": -1811
+      "dif": -1811,
+      "objFecha": 19473
      },
      "hmld": {
       "obj": 2232,
       "real": 2134,
-      "dif": -98
+      "dif": -98,
+      "objFecha": 2232
      },
      "hsr": {
       "obj": 668,
       "real": 647,
-      "dif": -21
+      "dif": -21,
+      "objFecha": 668
      },
      "sprint": {
       "obj": 15,
       "real": 15,
-      "dif": 0
+      "dif": 0,
+      "objFecha": 15
      },
      "acc": {
       "obj": 46,
       "real": 64,
-      "dif": 18
+      "dif": 18,
+      "objFecha": 46
      },
      "dec": {
       "obj": 68,
       "real": 47,
-      "dif": -21
+      "dif": -21,
+      "objFecha": 68
      }
     }
    ],
    "teamAvg": {
     "distancia": {
      "obj": 21064.8,
-     "real": 15699,
-     "dif": -5366
+     "real": 15699.2,
+     "dif": -5365.6,
+     "objFecha": 21064.8
     },
     "hmld": {
      "obj": 2997.4,
-     "real": 2046,
-     "dif": -951
+     "real": 2045.6,
+     "dif": -951.8,
+     "objFecha": 2997.4
     },
     "hsr": {
      "obj": 820.6,
-     "real": 682,
-     "dif": -139
+     "real": 682.1,
+     "dif": -138.5,
+     "objFecha": 820.6
     },
     "sprint": {
      "obj": 14.9,
-     "real": 13,
-     "dif": -2
+     "real": 13.2,
+     "dif": -1.7,
+     "objFecha": 14.9
     },
     "acc": {
      "obj": 57,
-     "real": 48,
-     "dif": -9
+     "real": 48.1,
+     "dif": -8.9,
+     "objFecha": 57.0
     },
     "dec": {
      "obj": 86.3,
-     "real": 51,
-     "dif": -35
+     "real": 51.4,
+     "dif": -34.9,
+     "objFecha": 86.3
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."
@@ -61337,32 +62069,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23773,
       "real": 14055,
-      "dif": -9718
+      "dif": -9718,
+      "objFecha": 23773
      },
      "hmld": {
       "obj": 3188,
       "real": 2160,
-      "dif": -1028
+      "dif": -1028,
+      "objFecha": 3188
      },
      "hsr": {
       "obj": 1101,
       "real": 713,
-      "dif": -388
+      "dif": -388,
+      "objFecha": 1101
      },
      "sprint": {
       "obj": 26,
       "real": 10,
-      "dif": -16
+      "dif": -16,
+      "objFecha": 26
      },
      "acc": {
       "obj": 44,
       "real": 50,
-      "dif": 6
+      "dif": 6,
+      "objFecha": 44
      },
      "dec": {
       "obj": 103,
       "real": 47,
-      "dif": -56
+      "dif": -56,
+      "objFecha": 103
      }
     },
     {
@@ -61372,32 +62110,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23619,
       "real": 4620,
-      "dif": -18999
+      "dif": -18999,
+      "objFecha": 23619
      },
      "hmld": {
       "obj": 2664,
       "real": 447,
-      "dif": -2217
+      "dif": -2217,
+      "objFecha": 2664
      },
      "hsr": {
       "obj": 577,
       "real": 72,
-      "dif": -505
+      "dif": -505,
+      "objFecha": 577
      },
      "sprint": {
       "obj": 7,
       "real": 1,
-      "dif": -6
+      "dif": -6,
+      "objFecha": 7
      },
      "acc": {
       "obj": 58,
       "real": 8,
-      "dif": -50
+      "dif": -50,
+      "objFecha": 58
      },
      "dec": {
       "obj": 55,
       "real": 4,
-      "dif": -51
+      "dif": -51,
+      "objFecha": 55
      }
     },
     {
@@ -61407,32 +62151,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 24784,
       "real": 22737,
-      "dif": -2047
+      "dif": -2047,
+      "objFecha": 24784
      },
      "hmld": {
       "obj": 3239,
       "real": 2849,
-      "dif": -390
+      "dif": -390,
+      "objFecha": 3239
      },
      "hsr": {
       "obj": 734,
       "real": 498,
-      "dif": -236
+      "dif": -236,
+      "objFecha": 734
      },
      "sprint": {
       "obj": 13,
       "real": 6,
-      "dif": -7
+      "dif": -7,
+      "objFecha": 13
      },
      "acc": {
       "obj": 66,
       "real": 69,
-      "dif": 3
+      "dif": 3,
+      "objFecha": 66
      },
      "dec": {
       "obj": 86,
       "real": 82,
-      "dif": -4
+      "dif": -4,
+      "objFecha": 86
      }
     },
     {
@@ -61442,32 +62192,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 28821,
       "real": 24979,
-      "dif": -3842
+      "dif": -3842,
+      "objFecha": 28821
      },
      "hmld": {
       "obj": 4556,
       "real": 3552,
-      "dif": -1004
+      "dif": -1004,
+      "objFecha": 4556
      },
      "hsr": {
       "obj": 818,
       "real": 721,
-      "dif": -97
+      "dif": -97,
+      "objFecha": 818
      },
      "sprint": {
       "obj": 9,
       "real": 5,
-      "dif": -4
+      "dif": -4,
+      "objFecha": 9
      },
      "acc": {
       "obj": 86,
       "real": 99,
-      "dif": 13
+      "dif": 13,
+      "objFecha": 86
      },
      "dec": {
       "obj": 131,
       "real": 89,
-      "dif": -42
+      "dif": -42,
+      "objFecha": 131
      }
     },
     {
@@ -61477,32 +62233,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26862,
       "real": 16123,
-      "dif": -10739
+      "dif": -10739,
+      "objFecha": 26862
      },
      "hmld": {
       "obj": 4131,
       "real": 2177,
-      "dif": -1954
+      "dif": -1954,
+      "objFecha": 4131
      },
      "hsr": {
       "obj": 1318,
       "real": 501,
-      "dif": -817
+      "dif": -817,
+      "objFecha": 1318
      },
      "sprint": {
       "obj": 26,
       "real": 10,
-      "dif": -16
+      "dif": -16,
+      "objFecha": 26
      },
      "acc": {
       "obj": 84,
       "real": 48,
-      "dif": -36
+      "dif": -36,
+      "objFecha": 84
      },
      "dec": {
       "obj": 110,
       "real": 60,
-      "dif": -50
+      "dif": -50,
+      "objFecha": 110
      }
     },
     {
@@ -61512,32 +62274,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26416,
       "real": 21662,
-      "dif": -4754
+      "dif": -4754,
+      "objFecha": 26416
      },
      "hmld": {
       "obj": 3552,
       "real": 2346,
-      "dif": -1206
+      "dif": -1206,
+      "objFecha": 3552
      },
      "hsr": {
       "obj": 770,
       "real": 542,
-      "dif": -228
+      "dif": -228,
+      "objFecha": 770
      },
      "sprint": {
       "obj": 14,
       "real": 1,
-      "dif": -13
+      "dif": -13,
+      "objFecha": 14
      },
      "acc": {
       "obj": 64,
       "real": 43,
-      "dif": -21
+      "dif": -21,
+      "objFecha": 64
      },
      "dec": {
       "obj": 101,
       "real": 40,
-      "dif": -61
+      "dif": -61,
+      "objFecha": 101
      }
     },
     {
@@ -61547,32 +62315,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23064,
       "real": 19568,
-      "dif": -3496
+      "dif": -3496,
+      "objFecha": 23064
      },
      "hmld": {
       "obj": 3354,
       "real": 2351,
-      "dif": -1003
+      "dif": -1003,
+      "objFecha": 3354
      },
      "hsr": {
       "obj": 920,
       "real": 438,
-      "dif": -482
+      "dif": -482,
+      "objFecha": 920
      },
      "sprint": {
       "obj": 18,
       "real": 2,
-      "dif": -16
+      "dif": -16,
+      "objFecha": 18
      },
      "acc": {
       "obj": 88,
       "real": 65,
-      "dif": -23
+      "dif": -23,
+      "objFecha": 88
      },
      "dec": {
       "obj": 117,
       "real": 68,
-      "dif": -49
+      "dif": -49,
+      "objFecha": 117
      }
     },
     {
@@ -61582,32 +62356,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23757,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 23757
      },
      "hmld": {
       "obj": 3594,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 3594
      },
      "hsr": {
       "obj": 1143,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 1143
      },
      "sprint": {
       "obj": 30,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 30
      },
      "acc": {
       "obj": 86,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 86
      },
      "dec": {
       "obj": 156,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 156
      }
     },
     {
@@ -61617,32 +62397,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 24546,
       "real": 21119,
-      "dif": -3427
+      "dif": -3427,
+      "objFecha": 24546
      },
      "hmld": {
       "obj": 3594,
       "real": 2398,
-      "dif": -1196
+      "dif": -1196,
+      "objFecha": 3594
      },
      "hsr": {
       "obj": 932,
       "real": 536,
-      "dif": -396
+      "dif": -396,
+      "objFecha": 932
      },
      "sprint": {
       "obj": 18,
       "real": 6,
-      "dif": -12
+      "dif": -12,
+      "objFecha": 18
      },
      "acc": {
       "obj": 71,
       "real": 54,
-      "dif": -17
+      "dif": -17,
+      "objFecha": 71
      },
      "dec": {
       "obj": 97,
       "real": 55,
-      "dif": -42
+      "dif": -42,
+      "objFecha": 97
      }
     },
     {
@@ -61652,32 +62438,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 25218,
       "real": 19378,
-      "dif": -5840
+      "dif": -5840,
+      "objFecha": 25218
      },
      "hmld": {
       "obj": 3031,
       "real": 1970,
-      "dif": -1061
+      "dif": -1061,
+      "objFecha": 3031
      },
      "hsr": {
       "obj": 512,
       "real": 244,
-      "dif": -268
+      "dif": -268,
+      "objFecha": 512
      },
      "sprint": {
       "obj": 9,
       "real": 1,
-      "dif": -8
+      "dif": -8,
+      "objFecha": 9
      },
      "acc": {
       "obj": 79,
       "real": 42,
-      "dif": -37
+      "dif": -37,
+      "objFecha": 79
      },
      "dec": {
       "obj": 94,
       "real": 47,
-      "dif": -47
+      "dif": -47,
+      "objFecha": 94
      }
     },
     {
@@ -61687,32 +62479,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23336,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 23336
      },
      "hmld": {
       "obj": 2324,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 2324
      },
      "hsr": {
       "obj": 490,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 490
      },
      "sprint": {
       "obj": 5,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 5
      },
      "acc": {
       "obj": 44,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 44
      },
      "dec": {
       "obj": 50,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 50
      }
     },
     {
@@ -61722,32 +62520,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 25813,
       "real": 21759,
-      "dif": -4054
+      "dif": -4054,
+      "objFecha": 25813
      },
      "hmld": {
       "obj": 3753,
       "real": 3191,
-      "dif": -562
+      "dif": -562,
+      "objFecha": 3753
      },
      "hsr": {
       "obj": 934,
       "real": 886,
-      "dif": -48
+      "dif": -48,
+      "objFecha": 934
      },
      "sprint": {
       "obj": 17,
       "real": 9,
-      "dif": -8
+      "dif": -8,
+      "objFecha": 17
      },
      "acc": {
       "obj": 99,
       "real": 77,
-      "dif": -22
+      "dif": -22,
+      "objFecha": 99
      },
      "dec": {
       "obj": 82,
       "real": 83,
-      "dif": 1
+      "dif": 1,
+      "objFecha": 82
      }
     },
     {
@@ -61757,32 +62561,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23295,
       "real": 20747,
-      "dif": -2548
+      "dif": -2548,
+      "objFecha": 23295
      },
      "hmld": {
       "obj": 3023,
       "real": 2169,
-      "dif": -854
+      "dif": -854,
+      "objFecha": 3023
      },
      "hsr": {
       "obj": 973,
       "real": 405,
-      "dif": -568
+      "dif": -568,
+      "objFecha": 973
      },
      "sprint": {
       "obj": 22,
       "real": 4,
-      "dif": -18
+      "dif": -18,
+      "objFecha": 22
      },
      "acc": {
       "obj": 54,
       "real": 57,
-      "dif": 3
+      "dif": 3,
+      "objFecha": 54
      },
      "dec": {
       "obj": 101,
       "real": 70,
-      "dif": -31
+      "dif": -31,
+      "objFecha": 101
      }
     },
     {
@@ -61792,32 +62602,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26785,
       "real": 22195,
-      "dif": -4590
+      "dif": -4590,
+      "objFecha": 26785
      },
      "hmld": {
       "obj": 4165,
       "real": 2930,
-      "dif": -1235
+      "dif": -1235,
+      "objFecha": 4165
      },
      "hsr": {
       "obj": 1182,
       "real": 726,
-      "dif": -456
+      "dif": -456,
+      "objFecha": 1182
      },
      "sprint": {
       "obj": 19,
       "real": 10,
-      "dif": -9
+      "dif": -9,
+      "objFecha": 19
      },
      "acc": {
       "obj": 90,
       "real": 74,
-      "dif": -16
+      "dif": -16,
+      "objFecha": 90
      },
      "dec": {
       "obj": 143,
       "real": 104,
-      "dif": -39
+      "dif": -39,
+      "objFecha": 143
      }
     },
     {
@@ -61827,32 +62643,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 24413,
       "real": 20950,
-      "dif": -3463
+      "dif": -3463,
+      "objFecha": 24413
      },
      "hmld": {
       "obj": 3480,
       "real": 2769,
-      "dif": -711
+      "dif": -711,
+      "objFecha": 3480
      },
      "hsr": {
       "obj": 934,
       "real": 582,
-      "dif": -352
+      "dif": -352,
+      "objFecha": 934
      },
      "sprint": {
       "obj": 19,
       "real": 5,
-      "dif": -14
+      "dif": -14,
+      "objFecha": 19
      },
      "acc": {
       "obj": 66,
       "real": 67,
-      "dif": 1
+      "dif": 1,
+      "objFecha": 66
      },
      "dec": {
       "obj": 124,
       "real": 96,
-      "dif": -28
+      "dif": -28,
+      "objFecha": 124
      }
     },
     {
@@ -61862,32 +62684,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26714,
       "real": 22768,
-      "dif": -3946
+      "dif": -3946,
+      "objFecha": 26714
      },
      "hmld": {
       "obj": 3904,
       "real": 2672,
-      "dif": -1232
+      "dif": -1232,
+      "objFecha": 3904
      },
      "hsr": {
       "obj": 1038,
       "real": 537,
-      "dif": -501
+      "dif": -501,
+      "objFecha": 1038
      },
      "sprint": {
       "obj": 17,
       "real": 6,
-      "dif": -11
+      "dif": -11,
+      "objFecha": 17
      },
      "acc": {
       "obj": 31,
       "real": 43,
-      "dif": 12
+      "dif": 12,
+      "objFecha": 31
      },
      "dec": {
       "obj": 84,
       "real": 53,
-      "dif": -31
+      "dif": -31,
+      "objFecha": 84
      }
     },
     {
@@ -61897,32 +62725,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26032,
       "real": 22247,
-      "dif": -3785
+      "dif": -3785,
+      "objFecha": 26032
      },
      "hmld": {
       "obj": 3508,
       "real": 2630,
-      "dif": -878
+      "dif": -878,
+      "objFecha": 3508
      },
      "hsr": {
       "obj": 621,
       "real": 514,
-      "dif": -107
+      "dif": -107,
+      "objFecha": 621
      },
      "sprint": {
       "obj": 9,
       "real": 6,
-      "dif": -3
+      "dif": -3,
+      "objFecha": 9
      },
      "acc": {
       "obj": 47,
       "real": 44,
-      "dif": -3
+      "dif": -3,
+      "objFecha": 47
      },
      "dec": {
       "obj": 101,
       "real": 85,
-      "dif": -16
+      "dif": -16,
+      "objFecha": 101
      }
     },
     {
@@ -61932,32 +62766,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 25936,
       "real": 23217,
-      "dif": -2719
+      "dif": -2719,
+      "objFecha": 25936
      },
      "hmld": {
       "obj": 4019,
       "real": 2985,
-      "dif": -1034
+      "dif": -1034,
+      "objFecha": 4019
      },
      "hsr": {
       "obj": 1117,
       "real": 602,
-      "dif": -515
+      "dif": -515,
+      "objFecha": 1117
      },
      "sprint": {
       "obj": 19,
       "real": 5,
-      "dif": -14
+      "dif": -14,
+      "objFecha": 19
      },
      "acc": {
       "obj": 106,
       "real": 90,
-      "dif": -16
+      "dif": -16,
+      "objFecha": 106
      },
      "dec": {
       "obj": 147,
       "real": 102,
-      "dif": -45
+      "dif": -45,
+      "objFecha": 147
      }
     },
     {
@@ -61967,32 +62807,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26624,
       "real": 8525,
-      "dif": -18099
+      "dif": -18099,
+      "objFecha": 26624
      },
      "hmld": {
       "obj": 4500,
       "real": 1372,
-      "dif": -3128
+      "dif": -3128,
+      "objFecha": 4500
      },
      "hsr": {
       "obj": 1465,
       "real": 470,
-      "dif": -995
+      "dif": -995,
+      "objFecha": 1465
      },
      "sprint": {
       "obj": 28,
       "real": 6,
-      "dif": -22
+      "dif": -22,
+      "objFecha": 28
      },
      "acc": {
       "obj": 86,
       "real": 47,
-      "dif": -39
+      "dif": -39,
+      "objFecha": 86
      },
      "dec": {
       "obj": 126,
       "real": 49,
-      "dif": -77
+      "dif": -77,
+      "objFecha": 126
      }
     },
     {
@@ -62002,65 +62848,77 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23447,
       "real": 22874,
-      "dif": -573
+      "dif": -573,
+      "objFecha": 23447
      },
      "hmld": {
       "obj": 2574,
       "real": 2781,
-      "dif": 207
+      "dif": 207,
+      "objFecha": 2574
      },
      "hsr": {
       "obj": 666,
       "real": 610,
-      "dif": -56
+      "dif": -56,
+      "objFecha": 666
      },
      "sprint": {
       "obj": 14,
       "real": 7,
-      "dif": -7
+      "dif": -7,
+      "objFecha": 14
      },
      "acc": {
       "obj": 53,
       "real": 76,
-      "dif": 23
+      "dif": 23,
+      "objFecha": 53
      },
      "dec": {
       "obj": 76,
       "real": 94,
-      "dif": 18
+      "dif": 18,
+      "objFecha": 76
      }
     }
    ],
    "teamAvg": {
     "distancia": {
      "obj": 25162.8,
-     "real": 19418,
-     "dif": -5745
+     "real": 17476.2,
+     "dif": -7686.6,
+     "objFecha": 25162.8
     },
     "hmld": {
      "obj": 3507.7,
-     "real": 2430,
-     "dif": -1078
+     "real": 2187.4,
+     "dif": -1320.3,
+     "objFecha": 3507.7
     },
     "hsr": {
      "obj": 912.2,
-     "real": 533,
-     "dif": -379
+     "real": 479.9,
+     "dif": -432.3,
+     "objFecha": 912.2
     },
     "sprint": {
      "obj": 16.9,
-     "real": 6,
-     "dif": -11
+     "real": 5.0,
+     "dif": -11.9,
+     "objFecha": 16.9
     },
     "acc": {
      "obj": 70.1,
-     "real": 58,
-     "dif": -12
+     "real": 52.6,
+     "dif": -17.5,
+     "objFecha": 70.1
     },
     "dec": {
      "obj": 104.2,
-     "real": 68,
-     "dif": -36
+     "real": 61.4,
+     "dif": -42.8,
+     "objFecha": 104.2
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."
@@ -71383,32 +72241,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23713.2,
       "real": 15184,
-      "dif": -8529.2
+      "dif": -8529.2,
+      "objFecha": 23713.2
      },
      "hmld": {
       "obj": 3246.3,
       "real": 2156,
-      "dif": -1090.3
+      "dif": -1090.3,
+      "objFecha": 3246.4
      },
      "hsr": {
       "obj": 1079.6,
       "real": 690,
-      "dif": -389.6
+      "dif": -389.6,
+      "objFecha": 1079.6
      },
      "sprint": {
       "obj": 26.7,
       "real": 15,
-      "dif": -11.7
+      "dif": -11.7,
+      "objFecha": 26.7
      },
      "acc": {
       "obj": 46.9,
       "real": 41,
-      "dif": -5.9
+      "dif": -5.9,
+      "objFecha": 46.8
      },
      "dec": {
       "obj": 105.2,
       "real": 47,
-      "dif": -58.2
+      "dif": -58.2,
+      "objFecha": 105.2
      }
     },
     {
@@ -71418,32 +72282,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 24426.6,
       "real": 9686,
-      "dif": -14740.6
+      "dif": -14740.6,
+      "objFecha": 13473.3
      },
      "hmld": {
       "obj": 3215.3,
       "real": 787,
-      "dif": -2428.3
+      "dif": -2428.3,
+      "objFecha": 1690.0
      },
      "hsr": {
       "obj": 874.7,
       "real": 299,
-      "dif": -575.7
+      "dif": -575.7,
+      "objFecha": 430.7
      },
      "sprint": {
       "obj": 17.4,
       "real": 7,
-      "dif": -10.4
+      "dif": -10.4,
+      "objFecha": 10.6
      },
      "acc": {
       "obj": 64.3,
       "real": 10,
-      "dif": -54.3
+      "dif": -54.3,
+      "objFecha": 30.0
      },
      "dec": {
       "obj": 92.8,
       "real": 12,
-      "dif": -80.8
+      "dif": -80.8,
+      "objFecha": 41.3
      }
     },
     {
@@ -71453,32 +72323,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23620,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 23620.0
      },
      "hmld": {
       "obj": 2664.8,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 2664.8
      },
      "hsr": {
       "obj": 577.2,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 577.3
      },
      "sprint": {
       "obj": 7.1,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 7.1
      },
      "acc": {
       "obj": 58,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 57.9
      },
      "dec": {
       "obj": 55.2,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": 55.2
      }
     },
     {
@@ -71488,32 +72364,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 24610.3,
       "real": 18704,
-      "dif": -5906.3
+      "dif": -5906.3,
+      "objFecha": 24610.3
      },
      "hmld": {
       "obj": 3194.6,
       "real": 2543,
-      "dif": -651.6
+      "dif": -651.6,
+      "objFecha": 3194.6
      },
      "hsr": {
       "obj": 697.4,
       "real": 797,
-      "dif": 99.6
+      "dif": 99.6,
+      "objFecha": 697.4
      },
      "sprint": {
       "obj": 12.5,
       "real": 11,
-      "dif": -1.5
+      "dif": -1.5,
+      "objFecha": 12.5
      },
      "acc": {
       "obj": 66.2,
       "real": 76,
-      "dif": 9.8
+      "dif": 9.8,
+      "objFecha": 66.3
      },
      "dec": {
       "obj": 84.2,
       "real": 65,
-      "dif": -19.2
+      "dif": -19.2,
+      "objFecha": 84.1
      }
     },
     {
@@ -71523,32 +72405,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 28612.1,
       "real": 18808,
-      "dif": -9804.1
+      "dif": -9804.1,
+      "objFecha": 28612.1
      },
      "hmld": {
       "obj": 4474.3,
       "real": 2472,
-      "dif": -2002.3
+      "dif": -2002.3,
+      "objFecha": 4474.3
      },
      "hsr": {
       "obj": 795.9,
       "real": 618,
-      "dif": -177.9
+      "dif": -177.9,
+      "objFecha": 795.9
      },
      "sprint": {
       "obj": 8.9,
       "real": 9,
-      "dif": 0.1
+      "dif": 0.1,
+      "objFecha": 8.9
      },
      "acc": {
       "obj": 88.3,
       "real": 55,
-      "dif": -33.3
+      "dif": -33.3,
+      "objFecha": 88.2
      },
      "dec": {
       "obj": 126.2,
       "real": 50,
-      "dif": -76.2
+      "dif": -76.2,
+      "objFecha": 126.3
      }
     },
     {
@@ -71558,32 +72446,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26999.3,
       "real": 18869,
-      "dif": -8130.3
+      "dif": -8130.3,
+      "objFecha": 26999.3
      },
      "hmld": {
       "obj": 4151,
       "real": 2775,
-      "dif": -1376
+      "dif": -1376,
+      "objFecha": 4151.1
      },
      "hsr": {
       "obj": 1339.6,
       "real": 1016,
-      "dif": -323.6
+      "dif": -323.6,
+      "objFecha": 1339.6
      },
      "sprint": {
       "obj": 26.7,
       "real": 14,
-      "dif": -12.7
+      "dif": -12.7,
+      "objFecha": 26.7
      },
      "acc": {
       "obj": 82.8,
       "real": 45,
-      "dif": -37.8
+      "dif": -37.8,
+      "objFecha": 82.8
      },
      "dec": {
       "obj": 110.5,
       "real": 52,
-      "dif": -58.5
+      "dif": -58.5,
+      "objFecha": 110.4
      }
     },
     {
@@ -71593,32 +72487,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26392,
       "real": 18086,
-      "dif": -8306
+      "dif": -8306,
+      "objFecha": 26392.0
      },
      "hmld": {
       "obj": 3621.2,
       "real": 2420,
-      "dif": -1201.2
+      "dif": -1201.2,
+      "objFecha": 3621.2
      },
      "hsr": {
       "obj": 829.4,
       "real": 815,
-      "dif": -14.4
+      "dif": -14.4,
+      "objFecha": 829.4
      },
      "sprint": {
       "obj": 16,
       "real": 14,
-      "dif": -2
+      "dif": -2,
+      "objFecha": 16.0
      },
      "acc": {
       "obj": 60.7,
       "real": 40,
-      "dif": -20.7
+      "dif": -20.7,
+      "objFecha": 60.6
      },
      "dec": {
       "obj": 97.3,
       "real": 39,
-      "dif": -58.3
+      "dif": -58.3,
+      "objFecha": 97.2
      }
     },
     {
@@ -71628,32 +72528,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23060.5,
       "real": 17369,
-      "dif": -5691.5
+      "dif": -5691.5,
+      "objFecha": 23060.5
      },
      "hmld": {
       "obj": 3372,
       "real": 2556,
-      "dif": -816
+      "dif": -816,
+      "objFecha": 3372.0
      },
      "hsr": {
       "obj": 957.4,
       "real": 716,
-      "dif": -241.4
+      "dif": -241.4,
+      "objFecha": 957.4
      },
      "sprint": {
       "obj": 19.6,
       "real": 10,
-      "dif": -9.6
+      "dif": -9.6,
+      "objFecha": 19.6
      },
      "acc": {
       "obj": 91.1,
       "real": 65,
-      "dif": -26.1
+      "dif": -26.1,
+      "objFecha": 91.1
      },
      "dec": {
       "obj": 121,
       "real": 57,
-      "dif": -64
+      "dif": -64,
+      "objFecha": 121.0
      }
     },
     {
@@ -71663,32 +72569,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23753.5,
       "real": 1440,
-      "dif": -22313.5
+      "dif": -22313.5,
+      "objFecha": 23753.5
      },
      "hmld": {
       "obj": 3594.2,
       "real": 246,
-      "dif": -3348.2
+      "dif": -3348.2,
+      "objFecha": 3594.3
      },
      "hsr": {
       "obj": 1142.6,
       "real": 0,
-      "dif": -1142.6
+      "dif": -1142.6,
+      "objFecha": 1142.6
      },
      "sprint": {
       "obj": 30.3,
       "real": 0,
-      "dif": -30.3
+      "dif": -30.3,
+      "objFecha": 30.3
      },
      "acc": {
       "obj": 85.6,
       "real": 0,
-      "dif": -85.6
+      "dif": -85.6,
+      "objFecha": 85.6
      },
      "dec": {
       "obj": 155.2,
       "real": 15,
-      "dif": -140.2
+      "dif": -140.2,
+      "objFecha": 155.2
      }
     },
     {
@@ -71698,32 +72610,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 24786.7,
       "real": 18191,
-      "dif": -6595.7
+      "dif": -6595.7,
+      "objFecha": 24786.7
      },
      "hmld": {
       "obj": 3616.7,
       "real": 2564,
-      "dif": -1052.7
+      "dif": -1052.7,
+      "objFecha": 3616.7
      },
      "hsr": {
       "obj": 967.3,
       "real": 1012,
-      "dif": 44.7
+      "dif": 44.7,
+      "objFecha": 967.3
      },
      "sprint": {
       "obj": 21.4,
       "real": 20,
-      "dif": -1.4
+      "dif": -1.4,
+      "objFecha": 21.4
      },
      "acc": {
       "obj": 74.5,
       "real": 47,
-      "dif": -27.5
+      "dif": -27.5,
+      "objFecha": 74.5
      },
      "dec": {
       "obj": 97.3,
       "real": 48,
-      "dif": -49.3
+      "dif": -49.3,
+      "objFecha": 97.2
      }
     },
     {
@@ -71733,32 +72651,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 25333.6,
       "real": 16901,
-      "dif": -8432.6
+      "dif": -8432.6,
+      "objFecha": 25333.6
      },
      "hmld": {
       "obj": 3082.4,
       "real": 1995,
-      "dif": -1087.4
+      "dif": -1087.4,
+      "objFecha": 3082.4
      },
      "hsr": {
       "obj": 492.5,
       "real": 436,
-      "dif": -56.5
+      "dif": -56.5,
+      "objFecha": 492.5
      },
      "sprint": {
       "obj": 7.1,
       "real": 8,
-      "dif": 0.9
+      "dif": 0.9,
+      "objFecha": 7.1
      },
      "acc": {
       "obj": 80,
       "real": 43,
-      "dif": -37
+      "dif": -37,
+      "objFecha": 80.0
      },
      "dec": {
       "obj": 94.7,
       "real": 52,
-      "dif": -42.7
+      "dif": -42.7,
+      "objFecha": 94.7
      }
     },
     {
@@ -71768,32 +72692,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23335.2,
       "real": 2692,
-      "dif": -20643.2
+      "dif": -20643.2,
+      "objFecha": 23335.2
      },
      "hmld": {
       "obj": 2323.6,
       "real": 56,
-      "dif": -2267.6
+      "dif": -2267.6,
+      "objFecha": 2323.5
      },
      "hsr": {
       "obj": 490.5,
       "real": 0,
-      "dif": -490.5
+      "dif": -490.5,
+      "objFecha": 490.5
      },
      "sprint": {
       "obj": 5.3,
       "real": 0,
-      "dif": -5.3
+      "dif": -5.3,
+      "objFecha": 5.3
      },
      "acc": {
       "obj": 44.2,
       "real": 0,
-      "dif": -44.2
+      "dif": -44.2,
+      "objFecha": 44.1
      },
      "dec": {
       "obj": 50,
       "real": 0,
-      "dif": -50
+      "dif": -50,
+      "objFecha": 50.0
      }
     },
     {
@@ -71803,32 +72733,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 25774.6,
       "real": 12846,
-      "dif": -12928.6
+      "dif": -12928.6,
+      "objFecha": 25774.5
      },
      "hmld": {
       "obj": 3773.8,
       "real": 1787,
-      "dif": -1986.8
+      "dif": -1986.8,
+      "objFecha": 3773.9
      },
      "hsr": {
       "obj": 975.1,
       "real": 578,
-      "dif": -397.1
+      "dif": -397.1,
+      "objFecha": 975.1
      },
      "sprint": {
       "obj": 16,
       "real": 9,
-      "dif": -7
+      "dif": -7,
+      "objFecha": 16.0
      },
      "acc": {
       "obj": 99.4,
       "real": 56,
-      "dif": -43.4
+      "dif": -43.4,
+      "objFecha": 99.3
      },
      "dec": {
       "obj": 89.4,
       "real": 37,
-      "dif": -52.4
+      "dif": -52.4,
+      "objFecha": 89.4
      }
     },
     {
@@ -71838,32 +72774,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23466.2,
       "real": 16351,
-      "dif": -7115.2
+      "dif": -7115.2,
+      "objFecha": 23466.3
      },
      "hmld": {
       "obj": 3030.8,
       "real": 1856,
-      "dif": -1174.8
+      "dif": -1174.8,
+      "objFecha": 3030.7
      },
      "hsr": {
       "obj": 951.5,
       "real": 581,
-      "dif": -370.5
+      "dif": -370.5,
+      "objFecha": 951.6
      },
      "sprint": {
       "obj": 21.4,
       "real": 10,
-      "dif": -11.4
+      "dif": -11.4,
+      "objFecha": 21.4
      },
      "acc": {
       "obj": 55.2,
       "real": 45,
-      "dif": -10.2
+      "dif": -10.2,
+      "objFecha": 55.2
      },
      "dec": {
       "obj": 99.9,
       "real": 45,
-      "dif": -54.9
+      "dif": -54.9,
+      "objFecha": 100.0
      }
     },
     {
@@ -71873,32 +72815,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26767.4,
       "real": 19758,
-      "dif": -7009.4
+      "dif": -7009.4,
+      "objFecha": 26767.5
      },
      "hmld": {
       "obj": 4243.1,
       "real": 2978,
-      "dif": -1265.1
+      "dif": -1265.1,
+      "objFecha": 4243.0
      },
      "hsr": {
       "obj": 1241.1,
       "real": 893,
-      "dif": -348.1
+      "dif": -348.1,
+      "objFecha": 1241.1
      },
      "sprint": {
       "obj": 23.1,
       "real": 16,
-      "dif": -7.1
+      "dif": -7.1,
+      "objFecha": 23.1
      },
      "acc": {
       "obj": 96.6,
       "real": 92,
-      "dif": -4.6
+      "dif": -4.6,
+      "objFecha": 96.6
      },
      "dec": {
       "obj": 149.9,
       "real": 82,
-      "dif": -67.9
+      "dif": -67.9,
+      "objFecha": 149.8
      }
     },
     {
@@ -71908,32 +72856,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 24277.7,
       "real": 4353,
-      "dif": -19924.7
+      "dif": -19924.7,
+      "objFecha": 24277.7
      },
      "hmld": {
       "obj": 3477.5,
       "real": 503,
-      "dif": -2974.5
+      "dif": -2974.5,
+      "objFecha": 3477.6
      },
      "hsr": {
       "obj": 957.4,
       "real": 191,
-      "dif": -766.4
+      "dif": -766.4,
+      "objFecha": 957.4
      },
      "sprint": {
       "obj": 21.4,
       "real": 2,
-      "dif": -19.4
+      "dif": -19.4,
+      "objFecha": 21.4
      },
      "acc": {
       "obj": 69,
       "real": 6,
-      "dif": -63
+      "dif": -63,
+      "objFecha": 68.9
      },
      "dec": {
       "obj": 123.6,
       "real": 10,
-      "dif": -113.6
+      "dif": -113.6,
+      "objFecha": 123.6
      }
     },
     {
@@ -71943,32 +72897,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26696.9,
       "real": 20075,
-      "dif": -6621.9
+      "dif": -6621.9,
+      "objFecha": 26696.9
      },
      "hmld": {
       "obj": 3883.8,
       "real": 2551,
-      "dif": -1332.8
+      "dif": -1332.8,
+      "objFecha": 3883.9
      },
      "hsr": {
       "obj": 998.8,
       "real": 940,
-      "dif": -58.8
+      "dif": -58.8,
+      "objFecha": 998.7
      },
      "sprint": {
       "obj": 16,
       "real": 17,
-      "dif": 1
+      "dif": 1,
+      "objFecha": 16.0
      },
      "acc": {
       "obj": 30.4,
       "real": 20,
-      "dif": -10.4
+      "dif": -10.4,
+      "objFecha": 30.4
      },
      "dec": {
       "obj": 86.8,
       "real": 40,
-      "dif": -46.8
+      "dif": -46.8,
+      "objFecha": 86.8
      }
     },
     {
@@ -71978,32 +72938,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26097.1,
       "real": 19050,
-      "dif": -7047.1
+      "dif": -7047.1,
+      "objFecha": 26097.1
      },
      "hmld": {
       "obj": 3540.4,
       "real": 2364,
-      "dif": -1176.4
+      "dif": -1176.4,
+      "objFecha": 3540.4
      },
      "hsr": {
       "obj": 661.9,
       "real": 830,
-      "dif": 168.1
+      "dif": 168.1,
+      "objFecha": 661.9
      },
      "sprint": {
       "obj": 8.9,
       "real": 19,
-      "dif": 10.1
+      "dif": 10.1,
+      "objFecha": 8.9
      },
      "acc": {
       "obj": 49.7,
       "real": 29,
-      "dif": -20.7
+      "dif": -20.7,
+      "objFecha": 49.8
      },
      "dec": {
       "obj": 102.6,
       "real": 44,
-      "dif": -58.6
+      "dif": -58.6,
+      "objFecha": 102.6
      }
     },
     {
@@ -72013,32 +72979,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26064.4,
       "real": 19510,
-      "dif": -6554.4
+      "dif": -6554.4,
+      "objFecha": 26064.4
      },
      "hmld": {
       "obj": 4160,
       "real": 2844,
-      "dif": -1316
+      "dif": -1316,
+      "objFecha": 4160.0
      },
      "hsr": {
       "obj": 1150.5,
       "real": 916,
-      "dif": -234.5
+      "dif": -234.5,
+      "objFecha": 1150.5
      },
      "sprint": {
       "obj": 23.1,
       "real": 14,
-      "dif": -9.1
+      "dif": -9.1,
+      "objFecha": 23.1
      },
      "acc": {
       "obj": 102.1,
       "real": 58,
-      "dif": -44.1
+      "dif": -44.1,
+      "objFecha": 102.0
      },
      "dec": {
       "obj": 155.2,
       "real": 83,
-      "dif": -72.2
+      "dif": -72.2,
+      "objFecha": 155.2
      }
     },
     {
@@ -72048,32 +73020,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26613.7,
       "real": 4839,
-      "dif": -21774.7
+      "dif": -21774.7,
+      "objFecha": 26613.7
      },
      "hmld": {
       "obj": 4427.1,
       "real": 120,
-      "dif": -4307.1
+      "dif": -4307.1,
+      "objFecha": 4427.1
      },
      "hsr": {
       "obj": 1446,
       "real": 15,
-      "dif": -1431
+      "dif": -1431,
+      "objFecha": 1446.0
      },
      "sprint": {
       "obj": 28.5,
       "real": 0,
-      "dif": -28.5
+      "dif": -28.5,
+      "objFecha": 28.5
      },
      "acc": {
       "obj": 88.3,
       "real": 0,
-      "dif": -88.3
+      "dif": -88.3,
+      "objFecha": 88.2
      },
      "dec": {
       "obj": 134.1,
       "real": 1,
-      "dif": -133.1
+      "dif": -133.1,
+      "objFecha": 134.2
      }
     },
     {
@@ -72083,65 +73061,77 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23244.5,
       "real": 18490,
-      "dif": -4754.5
+      "dif": -4754.5,
+      "objFecha": 23244.5
      },
      "hmld": {
       "obj": 2550.3,
       "real": 2296,
-      "dif": -254.3
+      "dif": -254.3,
+      "objFecha": 2550.3
      },
      "hsr": {
       "obj": 618.6,
       "real": 781,
-      "dif": 162.4
+      "dif": 162.4,
+      "objFecha": 618.6
      },
      "sprint": {
       "obj": 12.5,
       "real": 15,
-      "dif": 2.5
+      "dif": 2.5,
+      "objFecha": 12.5
      },
      "acc": {
       "obj": 49.7,
       "real": 45,
-      "dif": -4.7
+      "dif": -4.7,
+      "objFecha": 49.8
      },
      "dec": {
       "obj": 78.9,
       "real": 47,
-      "dif": -31.9
+      "dif": -31.9,
+      "objFecha": 78.9
      }
     }
    ],
    "teamAvg": {
     "distancia": {
      "obj": 25160.9,
-     "real": 14560,
-     "dif": -10601
+     "real": 13866.8,
+     "dif": -11294.1,
+     "objFecha": 24604.4
     },
     "hmld": {
      "obj": 3521.4,
-     "real": 1893,
-     "dif": -1628
+     "real": 1803.3,
+     "dif": -1718.1,
+     "objFecha": 3434.2
     },
     "hsr": {
      "obj": 918.5,
-     "real": 606,
-     "dif": -312
+     "real": 577.3,
+     "dif": -341.2,
+     "objFecha": 895.3
     },
     "sprint": {
      "obj": 17.6,
-     "real": 10,
-     "dif": -8
+     "real": 10.0,
+     "dif": -7.6,
+     "objFecha": 17.3
     },
     "acc": {
      "obj": 70.9,
-     "real": 39,
-     "dif": -32
+     "real": 36.8,
+     "dif": -34.1,
+     "objFecha": 69.0
     },
     "dec": {
      "obj": 105.9,
-     "real": 41,
-     "dif": -65
+     "real": 39.3,
+     "dif": -66.6,
+     "objFecha": 102.8
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."
@@ -81639,32 +82629,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23713.2,
       "real": 24883,
-      "dif": 1169.8
+      "dif": 1169.8,
+      "objFecha": 23713.2
      },
      "hmld": {
       "obj": 3246.4,
       "real": 3303,
-      "dif": 56.6
+      "dif": 56.6,
+      "objFecha": 3246.4
      },
      "hsr": {
       "obj": 1079.6,
       "real": 1102,
-      "dif": 22.4
+      "dif": 22.4,
+      "objFecha": 1079.6
      },
      "sprint": {
       "obj": 26.7,
       "real": 23,
-      "dif": -3.7
+      "dif": -3.7,
+      "objFecha": 26.7
      },
      "acc": {
       "obj": 48.1,
       "real": 64,
-      "dif": 15.9
+      "dif": 15.9,
+      "objFecha": 48.1
      },
      "dec": {
       "obj": 108.4,
       "real": 92,
-      "dif": -16.4
+      "dif": -16.4,
+      "objFecha": 108.4
      }
     },
     {
@@ -81674,32 +82670,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 24426.6,
       "real": 20560,
-      "dif": -3866.6
+      "dif": -3866.6,
+      "objFecha": 24426.6
      },
      "hmld": {
       "obj": 3215.3,
       "real": 2778,
-      "dif": -437.3
+      "dif": -437.3,
+      "objFecha": 3215.3
      },
      "hsr": {
       "obj": 874.7,
       "real": 653,
-      "dif": -221.7
+      "dif": -221.7,
+      "objFecha": 874.7
      },
      "sprint": {
       "obj": 17.4,
       "real": 6,
-      "dif": -11.4
+      "dif": -11.4,
+      "objFecha": 17.4
      },
      "acc": {
       "obj": 66.1,
       "real": 63,
-      "dif": -3.1
+      "dif": -3.1,
+      "objFecha": 66.1
      },
      "dec": {
       "obj": 95.7,
       "real": 73,
-      "dif": -22.7
+      "dif": -22.7,
+      "objFecha": 95.7
      }
     },
     {
@@ -81709,32 +82711,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hmld": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hsr": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "sprint": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "acc": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "dec": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      }
     },
     {
@@ -81744,32 +82752,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19922.6,
       "real": 19850,
-      "dif": -72.6
+      "dif": -72.6,
+      "objFecha": 19922.6
      },
      "hmld": {
       "obj": 2426.2,
       "real": 2688,
-      "dif": 261.8
+      "dif": 261.8,
+      "objFecha": 2426.2
      },
      "hsr": {
       "obj": 485,
       "real": 670,
-      "dif": 185
+      "dif": 185,
+      "objFecha": 485.0
      },
      "sprint": {
       "obj": 9.7,
       "real": 13,
-      "dif": 3.3
+      "dif": 3.3,
+      "objFecha": 9.7
      },
      "acc": {
       "obj": 52.6,
       "real": 65,
-      "dif": 12.4
+      "dif": 12.4,
+      "objFecha": 52.6
      },
      "dec": {
       "obj": 65.6,
       "real": 81,
-      "dif": 15.4
+      "dif": 15.4,
+      "objFecha": 65.6
      }
     },
     {
@@ -81779,32 +82793,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23162.2,
       "real": 19113,
-      "dif": -4049.2
+      "dif": -4049.2,
+      "objFecha": 23162.2
      },
      "hmld": {
       "obj": 3398.1,
       "real": 2781,
-      "dif": -617.1
+      "dif": -617.1,
+      "objFecha": 3398.1
      },
      "hsr": {
       "obj": 553.5,
       "real": 602,
-      "dif": 48.5
+      "dif": 48.5,
+      "objFecha": 553.5
      },
      "sprint": {
       "obj": 6.9,
       "real": 11,
-      "dif": 4.1
+      "dif": 4.1,
+      "objFecha": 6.9
      },
      "acc": {
       "obj": 70,
       "real": 85,
-      "dif": 15
+      "dif": 15,
+      "objFecha": 70.0
      },
      "dec": {
       "obj": 98.4,
       "real": 74,
-      "dif": -24.4
+      "dif": -24.4,
+      "objFecha": 98.4
      }
     },
     {
@@ -81814,32 +82834,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21856.6,
       "real": 20814,
-      "dif": -1042.6
+      "dif": -1042.6,
+      "objFecha": 21856.6
      },
      "hmld": {
       "obj": 3152.7,
       "real": 3148,
-      "dif": -4.7
+      "dif": -4.7,
+      "objFecha": 3152.7
      },
      "hsr": {
       "obj": 931.6,
       "real": 858,
-      "dif": -73.6
+      "dif": -73.6,
+      "objFecha": 931.6
      },
      "sprint": {
       "obj": 20.7,
       "real": 12,
-      "dif": -8.7
+      "dif": -8.7,
+      "objFecha": 20.7
      },
      "acc": {
       "obj": 65.7,
       "real": 74,
-      "dif": 8.3
+      "dif": 8.3,
+      "objFecha": 65.7
      },
      "dec": {
       "obj": 86.1,
       "real": 91,
-      "dif": 4.9
+      "dif": 4.9,
+      "objFecha": 86.1
      }
     },
     {
@@ -81849,32 +82875,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21365,
       "real": 18824,
-      "dif": -2541
+      "dif": -2541,
+      "objFecha": 21365.0
      },
      "hmld": {
       "obj": 2750.2,
       "real": 2613,
-      "dif": -137.2
+      "dif": -137.2,
+      "objFecha": 2750.2
      },
      "hsr": {
       "obj": 576.8,
       "real": 649,
-      "dif": 72.2
+      "dif": 72.2,
+      "objFecha": 576.8
      },
      "sprint": {
       "obj": 12.4,
       "real": 11,
-      "dif": -1.4
+      "dif": -1.4,
+      "objFecha": 12.4
      },
      "acc": {
       "obj": 48.1,
       "real": 58,
-      "dif": 9.9
+      "dif": 9.9,
+      "objFecha": 48.1
      },
      "dec": {
       "obj": 75.8,
       "real": 68,
-      "dif": -7.8
+      "dif": -7.8,
+      "objFecha": 75.8
      }
     },
     {
@@ -81884,32 +82916,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 18668,
       "real": 17924,
-      "dif": -744
+      "dif": -744,
+      "objFecha": 18668.0
      },
      "hmld": {
       "obj": 2560.9,
       "real": 2512,
-      "dif": -48.9
+      "dif": -48.9,
+      "objFecha": 2560.9
      },
      "hsr": {
       "obj": 665.8,
       "real": 671,
-      "dif": 5.2
+      "dif": 5.2,
+      "objFecha": 665.8
      },
      "sprint": {
       "obj": 15.2,
       "real": 13,
-      "dif": -2.2
+      "dif": -2.2,
+      "objFecha": 15.2
      },
      "acc": {
       "obj": 72.4,
       "real": 49,
-      "dif": -23.4
+      "dif": -23.4,
+      "objFecha": 72.4
      },
      "dec": {
       "obj": 94.2,
       "real": 75,
-      "dif": -19.2
+      "dif": -19.2,
+      "objFecha": 94.2
      }
     },
     {
@@ -81919,32 +82957,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": null,
       "real": 8653,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hmld": {
       "obj": null,
       "real": 1130,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hsr": {
       "obj": null,
       "real": 584,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "sprint": {
       "obj": null,
       "real": 1,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "acc": {
       "obj": null,
       "real": 10,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "dec": {
       "obj": null,
       "real": 11,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      }
     },
     {
@@ -81954,32 +82998,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 24786.7,
       "real": 20371,
-      "dif": -4415.7
+      "dif": -4415.7,
+      "objFecha": 24786.7
      },
      "hmld": {
       "obj": 3616.7,
       "real": 3076,
-      "dif": -540.7
+      "dif": -540.7,
+      "objFecha": 3616.7
      },
      "hsr": {
       "obj": 967.3,
       "real": 997,
-      "dif": 29.7
+      "dif": 29.7,
+      "objFecha": 967.3
      },
      "sprint": {
       "obj": 21.4,
       "real": 20,
-      "dif": -1.4
+      "dif": -1.4,
+      "objFecha": 21.4
      },
      "acc": {
       "obj": 76.6,
       "real": 62,
-      "dif": -14.6
+      "dif": -14.6,
+      "objFecha": 76.6
      },
      "dec": {
       "obj": 100.2,
       "real": 72,
-      "dif": -28.2
+      "dif": -28.2,
+      "objFecha": 100.2
      }
     },
     {
@@ -81989,32 +83039,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 25333.6,
       "real": 19743,
-      "dif": -5590.6
+      "dif": -5590.6,
+      "objFecha": 25333.6
      },
      "hmld": {
       "obj": 3082.4,
       "real": 2590,
-      "dif": -492.4
+      "dif": -492.4,
+      "objFecha": 3082.4
      },
      "hsr": {
       "obj": 492.5,
       "real": 664,
-      "dif": 171.5
+      "dif": 171.5,
+      "objFecha": 492.5
      },
      "sprint": {
       "obj": 7.1,
       "real": 9,
-      "dif": 1.9
+      "dif": 1.9,
+      "objFecha": 7.1
      },
      "acc": {
       "obj": 82.3,
       "real": 59,
-      "dif": -23.3
+      "dif": -23.3,
+      "objFecha": 82.3
      },
      "dec": {
       "obj": 97.5,
       "real": 71,
-      "dif": -26.5
+      "dif": -26.5,
+      "objFecha": 97.5
      }
     },
     {
@@ -82024,32 +83080,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": null,
       "real": 10834,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hmld": {
       "obj": null,
       "real": 1680,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hsr": {
       "obj": null,
       "real": 577,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "sprint": {
       "obj": null,
       "real": 3,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "acc": {
       "obj": null,
       "real": 29,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "dec": {
       "obj": null,
       "real": 8,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      }
     },
     {
@@ -82059,32 +83121,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 25774.5,
       "real": 20754,
-      "dif": -5020.5
+      "dif": -5020.5,
+      "objFecha": 25774.5
      },
      "hmld": {
       "obj": 3773.9,
       "real": 3465,
-      "dif": -308.9
+      "dif": -308.9,
+      "objFecha": 3773.9
      },
      "hsr": {
       "obj": 975.1,
       "real": 1117,
-      "dif": 141.9
+      "dif": 141.9,
+      "objFecha": 975.1
      },
      "sprint": {
       "obj": 16,
       "real": 22,
-      "dif": 6
+      "dif": 6,
+      "objFecha": 16.0
      },
      "acc": {
       "obj": 102.2,
       "real": 95,
-      "dif": -7.2
+      "dif": -7.2,
+      "objFecha": 102.2
      },
      "dec": {
       "obj": 92.2,
       "real": 95,
-      "dif": 2.8
+      "dif": 2.8,
+      "objFecha": 92.2
      }
     },
     {
@@ -82094,32 +83162,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 18996.5,
       "real": 17674,
-      "dif": -1322.5
+      "dif": -1322.5,
+      "objFecha": 18996.5
      },
      "hmld": {
       "obj": 2301.7,
       "real": 1947,
-      "dif": -354.7
+      "dif": -354.7,
+      "objFecha": 2301.7
      },
      "hsr": {
       "obj": 661.8,
       "real": 387,
-      "dif": -274.8
+      "dif": -274.8,
+      "objFecha": 661.8
      },
      "sprint": {
       "obj": 16.6,
       "real": 7,
-      "dif": -9.6
+      "dif": -9.6,
+      "objFecha": 16.6
      },
      "acc": {
       "obj": 43.8,
       "real": 54,
-      "dif": 10.2
+      "dif": 10.2,
+      "objFecha": 43.8
      },
      "dec": {
       "obj": 77.9,
       "real": 50,
-      "dif": -27.9
+      "dif": -27.9,
+      "objFecha": 77.9
      }
     },
     {
@@ -82129,32 +83203,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21668.9,
       "real": 20551,
-      "dif": -1117.9
+      "dif": -1117.9,
+      "objFecha": 21668.9
      },
      "hmld": {
       "obj": 3222.5,
       "real": 3226,
-      "dif": 3.5
+      "dif": 3.5,
+      "objFecha": 3222.5
      },
      "hsr": {
       "obj": 863.1,
       "real": 818,
-      "dif": -45.1
+      "dif": -45.1,
+      "objFecha": 863.1
      },
      "sprint": {
       "obj": 17.9,
       "real": 14,
-      "dif": -3.9
+      "dif": -3.9,
+      "objFecha": 17.9
      },
      "acc": {
       "obj": 76.8,
       "real": 88,
-      "dif": 11.2
+      "dif": 11.2,
+      "objFecha": 76.8
      },
      "dec": {
       "obj": 116.8,
       "real": 114,
-      "dif": -2.8
+      "dif": -2.8,
+      "objFecha": 116.8
      }
     },
     {
@@ -82164,32 +83244,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hmld": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hsr": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "sprint": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "acc": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "dec": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      }
     },
     {
@@ -82199,32 +83285,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21611.8,
       "real": 21801,
-      "dif": 189.2
+      "dif": 189.2,
+      "objFecha": 21611.8
      },
      "hmld": {
       "obj": 2949.7,
       "real": 3012,
-      "dif": 62.3
+      "dif": 62.3,
+      "objFecha": 2949.7
      },
      "hsr": {
       "obj": 694.5,
       "real": 758,
-      "dif": 63.5
+      "dif": 63.5,
+      "objFecha": 694.5
      },
      "sprint": {
       "obj": 12.4,
       "real": 15,
-      "dif": 2.6
+      "dif": 2.6,
+      "objFecha": 12.4
      },
      "acc": {
       "obj": 24.1,
       "real": 52,
-      "dif": 27.9
+      "dif": 27.9,
+      "objFecha": 24.1
      },
      "dec": {
       "obj": 67.6,
       "real": 59,
-      "dif": -8.6
+      "dif": -8.6,
+      "objFecha": 67.6
      }
     },
     {
@@ -82234,32 +83326,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21126.2,
       "real": 19487,
-      "dif": -1639.2
+      "dif": -1639.2,
+      "objFecha": 21126.2
      },
      "hmld": {
       "obj": 2688.8,
       "real": 2358,
-      "dif": -330.8
+      "dif": -330.8,
+      "objFecha": 2688.8
      },
      "hsr": {
       "obj": 460.3,
       "real": 523,
-      "dif": 62.7
+      "dif": 62.7,
+      "objFecha": 460.3
      },
      "sprint": {
       "obj": 6.9,
       "real": 7,
-      "dif": 0.1
+      "dif": 0.1,
+      "objFecha": 6.9
      },
      "acc": {
       "obj": 39.5,
       "real": 38,
-      "dif": -1.5
+      "dif": -1.5,
+      "objFecha": 39.5
      },
      "dec": {
       "obj": 80.1,
       "real": 66,
-      "dif": -14.1
+      "dif": -14.1,
+      "objFecha": 80.1
      }
     },
     {
@@ -82269,32 +83367,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21099.8,
       "real": 19476,
-      "dif": -1623.8
+      "dif": -1623.8,
+      "objFecha": 21099.8
      },
      "hmld": {
       "obj": 3159.4,
       "real": 2894,
-      "dif": -265.4
+      "dif": -265.4,
+      "objFecha": 3159.4
      },
      "hsr": {
       "obj": 800.1,
       "real": 760,
-      "dif": -40.1
+      "dif": -40.1,
+      "objFecha": 800.1
      },
      "sprint": {
       "obj": 17.9,
       "real": 12,
-      "dif": -5.9
+      "dif": -5.9,
+      "objFecha": 17.9
      },
      "acc": {
       "obj": 80.9,
       "real": 77,
-      "dif": -3.9
+      "dif": -3.9,
+      "objFecha": 80.9
      },
      "dec": {
       "obj": 121.1,
       "real": 103,
-      "dif": -18.1
+      "dif": -18.1,
+      "objFecha": 121.1
      }
     },
     {
@@ -82304,32 +83408,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": null,
       "real": 12341,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hmld": {
       "obj": null,
       "real": 2329,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hsr": {
       "obj": null,
       "real": 1242,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "sprint": {
       "obj": null,
       "real": 2,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "acc": {
       "obj": null,
       "real": 52,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "dec": {
       "obj": null,
       "real": 43,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      }
     },
     {
@@ -82339,65 +83449,77 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23244.5,
       "real": 21174,
-      "dif": -2070.5
+      "dif": -2070.5,
+      "objFecha": 24499.6
      },
      "hmld": {
       "obj": 2550.3,
       "real": 3029,
-      "dif": 478.7
+      "dif": 478.7,
+      "objFecha": 3123.2
      },
      "hsr": {
       "obj": 618.6,
       "real": 1048,
-      "dif": 429.4
+      "dif": 429.4,
+      "objFecha": 774.0
      },
      "sprint": {
       "obj": 12.5,
       "real": 21,
-      "dif": 8.5
+      "dif": 8.5,
+      "objFecha": 15.6
      },
      "acc": {
       "obj": 51.2,
       "real": 79,
-      "dif": 27.8
+      "dif": 27.8,
+      "objFecha": 61.8
      },
      "dec": {
       "obj": 81.3,
       "real": 94,
-      "dif": 12.7
+      "dif": 12.7,
+      "objFecha": 94.1
      }
     }
    ],
    "teamAvg": {
     "distancia": {
      "obj": 22297.3,
-     "real": 18675,
-     "dif": -3622
+     "real": 20187.4,
+     "dif": -2109.9,
+     "objFecha": 22375.7
     },
     "hmld": {
      "obj": 3006,
-     "real": 2661,
-     "dif": -345
+     "real": 2838.8,
+     "dif": -167.2,
+     "objFecha": 3041.8
     },
     "hsr": {
      "obj": 731.3,
-     "real": 773,
-     "dif": 42
+     "real": 767.3,
+     "dif": 36.0,
+     "objFecha": 741.0
     },
     "sprint": {
      "obj": 14.9,
-     "real": 12,
-     "dif": -3
+     "real": 13.5,
+     "dif": -1.4,
+     "objFecha": 15.1
     },
     "acc": {
      "obj": 62.5,
-     "real": 61,
-     "dif": -2
+     "real": 66.4,
+     "dif": 3.9,
+     "objFecha": 63.2
     },
     "dec": {
      "obj": 91.2,
-     "real": 71,
-     "dif": -20
+     "real": 79.9,
+     "dif": -11.3,
+     "objFecha": 92.0
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."
@@ -91942,32 +93064,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 24794,
       "real": 26592,
-      "dif": 1798
+      "dif": 1798,
+      "objFecha": 24794.0
      },
      "hmld": {
       "obj": 3844.7,
       "real": 4335,
-      "dif": 490.3
+      "dif": 490.3,
+      "objFecha": 3844.7
      },
      "hsr": {
       "obj": 1244.3,
       "real": 2020,
-      "dif": 775.7
+      "dif": 775.7,
+      "objFecha": 1244.3
      },
      "sprint": {
       "obj": 30.8,
       "real": 39,
-      "dif": 8.2
+      "dif": 8.2,
+      "objFecha": 30.8
      },
      "acc": {
       "obj": 38.1,
       "real": 91,
-      "dif": 52.9
+      "dif": 52.9,
+      "objFecha": 38.1
      },
      "dec": {
       "obj": 120.5,
       "real": 100,
-      "dif": -20.5
+      "dif": -20.5,
+      "objFecha": 120.5
      }
     },
     {
@@ -91977,32 +93105,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 24426.6,
       "real": 21381,
-      "dif": -3045.6
+      "dif": -3045.6,
+      "objFecha": 24426.6
      },
      "hmld": {
       "obj": 3215.3,
       "real": 3344,
-      "dif": 128.7
+      "dif": 128.7,
+      "objFecha": 3215.3
      },
      "hsr": {
       "obj": 874.7,
       "real": 1076,
-      "dif": 201.3
+      "dif": 201.3,
+      "objFecha": 874.7
      },
      "sprint": {
       "obj": 17.4,
       "real": 22,
-      "dif": 4.6
+      "dif": 4.6,
+      "objFecha": 17.4
      },
      "acc": {
       "obj": 66.1,
       "real": 68,
-      "dif": 1.9
+      "dif": 1.9,
+      "objFecha": 66.1
      },
      "dec": {
       "obj": 95.7,
       "real": 68,
-      "dif": -27.7
+      "dif": -27.7,
+      "objFecha": 95.7
      }
     },
     {
@@ -92012,32 +93146,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hmld": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hsr": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "sprint": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "acc": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "dec": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      }
     },
     {
@@ -92047,32 +93187,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 20324.7,
       "real": 20840,
-      "dif": 515.3
+      "dif": 515.3,
+      "objFecha": 20324.7
      },
      "hmld": {
       "obj": 2424.1,
       "real": 3083,
-      "dif": 658.9
+      "dif": 658.9,
+      "objFecha": 2424.1
      },
      "hsr": {
       "obj": 475.8,
       "real": 944,
-      "dif": 468.2
+      "dif": 468.2,
+      "objFecha": 475.8
      },
      "sprint": {
       "obj": 9.7,
       "real": 14,
-      "dif": 4.3
+      "dif": 4.3,
+      "objFecha": 9.7
      },
      "acc": {
       "obj": 56.9,
       "real": 98,
-      "dif": 41.1
+      "dif": 41.1,
+      "objFecha": 56.9
      },
      "dec": {
       "obj": 66.6,
       "real": 78,
-      "dif": 11.4
+      "dif": 11.4,
+      "objFecha": 66.6
      }
     },
     {
@@ -92082,32 +93228,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 22464.3,
       "real": 19970,
-      "dif": -2494.3
+      "dif": -2494.3,
+      "objFecha": 22464.3
      },
      "hmld": {
       "obj": 3149.9,
       "real": 2884,
-      "dif": -265.9
+      "dif": -265.9,
+      "objFecha": 3149.9
      },
      "hsr": {
       "obj": 597,
       "real": 817,
-      "dif": 220
+      "dif": 220,
+      "objFecha": 597.0
      },
      "sprint": {
       "obj": 6.9,
       "real": 17,
-      "dif": 10.1
+      "dif": 10.1,
+      "objFecha": 6.9
      },
      "acc": {
       "obj": 71.1,
       "real": 63,
-      "dif": -8.1
+      "dif": -8.1,
+      "objFecha": 71.1
      },
      "dec": {
       "obj": 100.5,
       "real": 71,
-      "dif": -29.5
+      "dif": -29.5,
+      "objFecha": 100.5
      }
     },
     {
@@ -92117,32 +93269,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 22275,
       "real": 21081,
-      "dif": -1194
+      "dif": -1194,
+      "objFecha": 22275.0
      },
      "hmld": {
       "obj": 3039.9,
       "real": 3333,
-      "dif": 293.1
+      "dif": 293.1,
+      "objFecha": 3039.9
      },
      "hsr": {
       "obj": 731.1,
       "real": 1153,
-      "dif": 421.9
+      "dif": 421.9,
+      "objFecha": 731.1
      },
      "sprint": {
       "obj": 14.4,
       "real": 18,
-      "dif": 3.6
+      "dif": 3.6,
+      "objFecha": 14.4
      },
      "acc": {
       "obj": 60.3,
       "real": 65,
-      "dif": 4.7
+      "dif": 4.7,
+      "objFecha": 60.3
      },
      "dec": {
       "obj": 91.2,
       "real": 64,
-      "dif": -27.2
+      "dif": -27.2,
+      "objFecha": 91.2
      }
     },
     {
@@ -92152,32 +93310,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 22583.3,
       "real": 19726,
-      "dif": -2857.3
+      "dif": -2857.3,
+      "objFecha": 22583.3
      },
      "hmld": {
       "obj": 3003.5,
       "real": 2447,
-      "dif": -556.5
+      "dif": -556.5,
+      "objFecha": 3003.5
      },
      "hsr": {
       "obj": 583.1,
       "real": 658,
-      "dif": 74.9
+      "dif": 74.9,
+      "objFecha": 583.1
      },
      "sprint": {
       "obj": 10.5,
       "real": 14,
-      "dif": 3.5
+      "dif": 3.5,
+      "objFecha": 10.5
      },
      "acc": {
       "obj": 51,
       "real": 42,
-      "dif": -9
+      "dif": -9,
+      "objFecha": 51.0
      },
      "dec": {
       "obj": 75.8,
       "real": 43,
-      "dif": -32.8
+      "dif": -32.8,
+      "objFecha": 75.8
      }
     },
     {
@@ -92187,32 +93351,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 18964.3,
       "real": 18612,
-      "dif": -352.3
+      "dif": -352.3,
+      "objFecha": 18964.3
      },
      "hmld": {
       "obj": 2555.7,
       "real": 2694,
-      "dif": 138.3
+      "dif": 138.3,
+      "objFecha": 2555.7
      },
      "hsr": {
       "obj": 662,
       "real": 703,
-      "dif": 41
+      "dif": 41,
+      "objFecha": 662.0
      },
      "sprint": {
       "obj": 13.3,
       "real": 14,
-      "dif": 0.7
+      "dif": 0.7,
+      "objFecha": 13.3
      },
      "acc": {
       "obj": 85.6,
       "real": 68,
-      "dif": -17.6
+      "dif": -17.6,
+      "objFecha": 85.6
      },
      "dec": {
       "obj": 102,
       "real": 64,
-      "dif": -38
+      "dif": -38,
+      "objFecha": 102.0
      }
     },
     {
@@ -92222,32 +93392,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": null,
       "real": 13823,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hmld": {
       "obj": null,
       "real": 2238,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hsr": {
       "obj": null,
       "real": 1361,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "sprint": {
       "obj": null,
       "real": 26,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "acc": {
       "obj": null,
       "real": 42,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "dec": {
       "obj": null,
       "real": 22,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      }
     },
     {
@@ -92257,32 +93433,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21140,
       "real": 20172,
-      "dif": -968
+      "dif": -968,
+      "objFecha": 21140.0
      },
      "hmld": {
       "obj": 3173.4,
       "real": 3213,
-      "dif": 39.6
+      "dif": 39.6,
+      "objFecha": 3173.4
      },
      "hsr": {
       "obj": 796.6,
       "real": 1175,
-      "dif": 378.4
+      "dif": 378.4,
+      "objFecha": 796.6
      },
      "sprint": {
       "obj": 18.6,
       "real": 17,
-      "dif": -1.6
+      "dif": -1.6,
+      "objFecha": 18.6
      },
      "acc": {
       "obj": 60.9,
       "real": 71,
-      "dif": 10.1
+      "dif": 10.1,
+      "objFecha": 60.9
      },
      "dec": {
       "obj": 78.8,
       "real": 67,
-      "dif": -11.8
+      "dif": -11.8,
+      "objFecha": 78.8
      }
     },
     {
@@ -92292,32 +93474,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 24570.5,
       "real": 21022,
-      "dif": -3548.5
+      "dif": -3548.5,
+      "objFecha": 24570.5
      },
      "hmld": {
       "obj": 3427.4,
       "real": 3027,
-      "dif": -400.4
+      "dif": -400.4,
+      "objFecha": 3427.4
      },
      "hsr": {
       "obj": 414,
       "real": 930,
-      "dif": 516
+      "dif": 516,
+      "objFecha": 414.0
      },
      "sprint": {
       "obj": 3.6,
       "real": 13,
-      "dif": 9.4
+      "dif": 9.4,
+      "objFecha": 3.6
      },
      "acc": {
       "obj": 99.9,
       "real": 84,
-      "dif": -15.9
+      "dif": -15.9,
+      "objFecha": 99.9
      },
      "dec": {
       "obj": 136.1,
       "real": 81,
-      "dif": -55.1
+      "dif": -55.1,
+      "objFecha": 136.1
      }
     },
     {
@@ -92327,32 +93515,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": null,
       "real": 18344,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hmld": {
       "obj": null,
       "real": 3576,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hsr": {
       "obj": null,
       "real": 2056,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "sprint": {
       "obj": null,
       "real": 32,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "acc": {
       "obj": null,
       "real": 102,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "dec": {
       "obj": null,
       "real": 62,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      }
     },
     {
@@ -92362,32 +93556,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 25644.7,
       "real": 22277,
-      "dif": -3367.7
+      "dif": -3367.7,
+      "objFecha": 25644.7
      },
      "hmld": {
       "obj": 4119.4,
       "real": 3663,
-      "dif": -456.4
+      "dif": -456.4,
+      "objFecha": 4119.4
      },
      "hsr": {
       "obj": 1267.9,
       "real": 1117,
-      "dif": -150.9
+      "dif": -150.9,
+      "objFecha": 1267.9
      },
      "sprint": {
       "obj": 28.1,
       "real": 24,
-      "dif": -4.1
+      "dif": -4.1,
+      "objFecha": 28.1
      },
      "acc": {
       "obj": 138.4,
       "real": 100,
-      "dif": -38.4
+      "dif": -38.4,
+      "objFecha": 138.4
      },
      "dec": {
       "obj": 146.9,
       "real": 93,
-      "dif": -53.9
+      "dif": -53.9,
+      "objFecha": 146.9
      }
     },
     {
@@ -92397,32 +93597,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19098,
       "real": 17907,
-      "dif": -1191
+      "dif": -1191,
+      "objFecha": 19098.0
      },
      "hmld": {
       "obj": 2373.8,
       "real": 2467,
-      "dif": 93.2
+      "dif": 93.2,
+      "objFecha": 2373.8
      },
      "hsr": {
       "obj": 734,
       "real": 972,
-      "dif": 238
+      "dif": 238,
+      "objFecha": 734.0
      },
      "sprint": {
       "obj": 17.9,
       "real": 21,
-      "dif": 3.1
+      "dif": 3.1,
+      "objFecha": 17.9
      },
      "acc": {
       "obj": 52.6,
       "real": 61,
-      "dif": 8.4
+      "dif": 8.4,
+      "objFecha": 52.6
      },
      "dec": {
       "obj": 86.1,
       "real": 59,
-      "dif": -27.1
+      "dif": -27.1,
+      "objFecha": 86.1
      }
     },
     {
@@ -92432,32 +93638,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 22169.8,
       "real": 20448,
-      "dif": -1721.8
+      "dif": -1721.8,
+      "objFecha": 22169.8
      },
      "hmld": {
       "obj": 3266.1,
       "real": 3195,
-      "dif": -71.1
+      "dif": -71.1,
+      "objFecha": 3266.1
      },
      "hsr": {
       "obj": 823.1,
       "real": 1039,
-      "dif": 215.9
+      "dif": 215.9,
+      "objFecha": 823.1
      },
      "sprint": {
       "obj": 15.8,
       "real": 26,
-      "dif": 10.2
+      "dif": 10.2,
+      "objFecha": 15.8
      },
      "acc": {
       "obj": 76.8,
       "real": 99,
-      "dif": 22.2
+      "dif": 22.2,
+      "objFecha": 76.8
      },
      "dec": {
       "obj": 114.7,
       "real": 124,
-      "dif": 9.3
+      "dif": 9.3,
+      "objFecha": 114.7
      }
     },
     {
@@ -92467,32 +93679,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hmld": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hsr": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "sprint": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "acc": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "dec": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      }
     },
     {
@@ -92502,32 +93720,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 22140.6,
       "real": 20745,
-      "dif": -1395.6
+      "dif": -1395.6,
+      "objFecha": 22140.6
      },
      "hmld": {
       "obj": 2871.7,
       "real": 2871,
-      "dif": -0.7
+      "dif": -0.7,
+      "objFecha": 2871.7
      },
      "hsr": {
       "obj": 729.2,
       "real": 976,
-      "dif": 246.8
+      "dif": 246.8,
+      "objFecha": 729.2
      },
      "sprint": {
       "obj": 13,
       "real": 17,
-      "dif": 4
+      "dif": 4,
+      "objFecha": 13.0
      },
      "acc": {
       "obj": 22.7,
       "real": 43,
-      "dif": 20.3
+      "dif": 20.3,
+      "objFecha": 22.7
      },
      "dec": {
       "obj": 55.9,
       "real": 56,
-      "dif": 0.1
+      "dif": 0.1,
+      "objFecha": 55.9
      }
     },
     {
@@ -92537,32 +93761,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21861.9,
       "real": 19487,
-      "dif": -2374.9
+      "dif": -2374.9,
+      "objFecha": 21861.9
      },
      "hmld": {
       "obj": 2684.3,
       "real": 2387,
-      "dif": -297.3
+      "dif": -297.3,
+      "objFecha": 2684.3
      },
      "hsr": {
       "obj": 555.9,
       "real": 656,
-      "dif": 100.1
+      "dif": 100.1,
+      "objFecha": 555.9
      },
      "sprint": {
       "obj": 8.9,
       "real": 13,
-      "dif": 4.1
+      "dif": 4.1,
+      "objFecha": 8.9
      },
      "acc": {
       "obj": 30.7,
       "real": 45,
-      "dif": 14.3
+      "dif": 14.3,
+      "objFecha": 30.7
      },
      "dec": {
       "obj": 67.6,
       "real": 55,
-      "dif": -12.6
+      "dif": -12.6,
+      "objFecha": 67.6
      }
     },
     {
@@ -92572,32 +93802,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26525.3,
       "real": 22508,
-      "dif": -4017.3
+      "dif": -4017.3,
+      "objFecha": 26525.3
      },
      "hmld": {
       "obj": 4671.4,
       "real": 3504,
-      "dif": -1167.4
+      "dif": -1167.4,
+      "objFecha": 4671.4
      },
      "hsr": {
       "obj": 1301.2,
       "real": 1157,
-      "dif": -144.2
+      "dif": -144.2,
+      "objFecha": 1301.2
      },
      "sprint": {
       "obj": 28.1,
       "real": 19,
-      "dif": -9.1
+      "dif": -9.1,
+      "objFecha": 28.1
      },
      "acc": {
       "obj": 111.8,
       "real": 95,
-      "dif": -16.8
+      "dif": -16.8,
+      "objFecha": 111.8
      },
      "dec": {
       "obj": 186.7,
       "real": 92,
-      "dif": -94.7
+      "dif": -94.7,
+      "objFecha": 186.7
      }
     },
     {
@@ -92607,32 +93843,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": null,
       "real": 3228,
-      "dif": null
+      "dif": null,
+      "objFecha": 3168.3
      },
      "hmld": {
       "obj": null,
       "real": 372,
-      "dif": null
+      "dif": null,
+      "objFecha": 414.1
      },
      "hsr": {
       "obj": null,
       "real": 23,
-      "dif": null
+      "dif": null,
+      "objFecha": 88.1
      },
      "sprint": {
       "obj": null,
       "real": 0,
-      "dif": null
+      "dif": null,
+      "objFecha": 1.3
      },
      "acc": {
       "obj": null,
       "real": 21,
-      "dif": null
+      "dif": null,
+      "objFecha": 8
      },
      "dec": {
       "obj": null,
       "real": 16,
-      "dif": null
+      "dif": null,
+      "objFecha": 12.8
      }
     },
     {
@@ -92642,65 +93884,77 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": null,
       "real": 15700,
-      "dif": null
+      "dif": null,
+      "objFecha": 16787.7
      },
      "hmld": {
       "obj": null,
       "real": 2527,
-      "dif": null
+      "dif": null,
+      "objFecha": 1976.6
      },
      "hsr": {
       "obj": null,
       "real": 1042,
-      "dif": null
+      "dif": null,
+      "objFecha": 521.2
      },
      "sprint": {
       "obj": null,
       "real": 22,
-      "dif": null
+      "dif": null,
+      "objFecha": 10.5
      },
      "acc": {
       "obj": null,
       "real": 53,
-      "dif": null
+      "dif": null,
+      "objFecha": 39.1
      },
      "dec": {
       "obj": null,
       "real": 46,
-      "dif": null
+      "dif": null,
+      "objFecha": 61.8
      }
     }
    ],
    "teamAvg": {
     "distancia": {
      "obj": 22598.9,
-     "real": 19151,
-     "dif": -3448
+     "real": 20851.2,
+     "dif": -1747.7,
+     "objFecha": 22598.9
     },
     "hmld": {
      "obj": 3188,
-     "real": 2903,
-     "dif": -285
+     "real": 3096.5,
+     "dif": -91.5,
+     "objFecha": 3188.0
     },
     "hsr": {
      "obj": 786,
-     "real": 1046,
-     "dif": 260
+     "real": 1026.2,
+     "dif": 240.2,
+     "objFecha": 786.0
     },
     "sprint": {
      "obj": 15.8,
-     "real": 19,
-     "dif": 3
+     "real": 19.2,
+     "dif": 3.4,
+     "objFecha": 15.8
     },
     "acc": {
      "obj": 68.2,
-     "real": 69,
-     "dif": 1
+     "real": 72.9,
+     "dif": 4.7,
+     "objFecha": 68.2
     },
     "dec": {
      "obj": 101.7,
-     "real": 66,
-     "dif": -36
+     "real": 74.3,
+     "dif": -27.4,
+     "objFecha": 101.7
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."
@@ -102094,32 +103348,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 24794,
       "real": 16650,
-      "dif": -8144
+      "dif": -8144,
+      "objFecha": 21842.3
      },
      "hmld": {
       "obj": 3844.7,
       "real": 2506,
-      "dif": -1338.7
+      "dif": -1338.7,
+      "objFecha": 3485.1
      },
      "hsr": {
       "obj": 1244.3,
       "real": 1232,
-      "dif": -12.3
+      "dif": -12.3,
+      "objFecha": 1168.5
      },
      "sprint": {
       "obj": 30.8,
       "real": 28,
-      "dif": -2.8
+      "dif": -2.8,
+      "objFecha": 29.4
      },
      "acc": {
       "obj": 38.1,
       "real": 43,
-      "dif": 4.9
+      "dif": 4.9,
+      "objFecha": 34.7
      },
      "dec": {
       "obj": 120.5,
       "real": 37,
-      "dif": -83.5
+      "dif": -83.5,
+      "objFecha": 109.4
      }
     },
     {
@@ -102129,32 +103389,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23992.2,
       "real": 20236,
-      "dif": -3756.2
+      "dif": -3756.2,
+      "objFecha": 21136.0
      },
      "hmld": {
       "obj": 3272.7,
       "real": 3255,
-      "dif": -17.7
+      "dif": -17.7,
+      "objFecha": 2966.6
      },
      "hsr": {
       "obj": 931.3,
       "real": 1256,
-      "dif": 324.7
+      "dif": 324.7,
+      "objFecha": 874.6
      },
      "sprint": {
       "obj": 19.5,
       "real": 31,
-      "dif": 11.5
+      "dif": 11.5,
+      "objFecha": 18.6
      },
      "acc": {
       "obj": 67.7,
       "real": 69,
-      "dif": 1.3
+      "dif": 1.3,
+      "objFecha": 61.7
      },
      "dec": {
       "obj": 97,
       "real": 64,
-      "dif": -33
+      "dif": -33,
+      "objFecha": 88.1
      }
     },
     {
@@ -102164,32 +103430,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hmld": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hsr": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "sprint": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "acc": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "dec": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      }
     },
     {
@@ -102199,32 +103471,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 25201.2,
       "real": 18505,
-      "dif": -6696.2
+      "dif": -6696.2,
+      "objFecha": 22201.0
      },
      "hmld": {
       "obj": 3521.9,
       "real": 2469,
-      "dif": -1052.9
+      "dif": -1052.9,
+      "objFecha": 3192.5
      },
      "hsr": {
       "obj": 744.1,
       "real": 896,
-      "dif": 151.9
+      "dif": 151.9,
+      "objFecha": 698.8
      },
      "sprint": {
       "obj": 14.2,
       "real": 16,
-      "dif": 1.8
+      "dif": 1.8,
+      "objFecha": 13.6
      },
      "acc": {
       "obj": 82.9,
       "real": 71,
-      "dif": -11.9
+      "dif": -11.9,
+      "objFecha": 75.6
      },
      "dec": {
       "obj": 102.7,
       "real": 59,
-      "dif": -43.7
+      "dif": -43.7,
+      "objFecha": 93.2
      }
     },
     {
@@ -102234,32 +103512,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 3150,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hmld": {
       "obj": 364.8,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hsr": {
       "obj": 48.5,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "sprint": {
       "obj": 0.4,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "acc": {
       "obj": 8.4,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "dec": {
       "obj": 12.7,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      }
     },
     {
@@ -102269,32 +103553,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 22054.9,
       "real": 17735,
-      "dif": -4319.9
+      "dif": -4319.9,
+      "objFecha": 18811.5
      },
      "hmld": {
       "obj": 3190.4,
       "real": 2600,
-      "dif": -590.4
+      "dif": -590.4,
+      "objFecha": 2797.4
      },
      "hsr": {
       "obj": 821.8,
       "real": 978,
-      "dif": 156.2
+      "dif": 156.2,
+      "objFecha": 749.8
      },
      "sprint": {
       "obj": 16,
       "real": 27,
-      "dif": 11
+      "dif": 11,
+      "objFecha": 15.1
      },
      "acc": {
       "obj": 61.7,
       "real": 66,
-      "dif": 4.3
+      "dif": 4.3,
+      "objFecha": 54.7
      },
      "dec": {
       "obj": 89.3,
       "real": 67,
-      "dif": -22.3
+      "dif": -22.3,
+      "objFecha": 78.4
      }
     },
     {
@@ -102304,32 +103594,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 21889,
       "real": 14809,
-      "dif": -7080
+      "dif": -7080,
+      "objFecha": 18670.0
      },
      "hmld": {
       "obj": 3071.1,
       "real": 1782,
-      "dif": -1289.1
+      "dif": -1289.1,
+      "objFecha": 2692.8
      },
      "hsr": {
       "obj": 699.3,
       "real": 501,
-      "dif": -198.3
+      "dif": -198.3,
+      "objFecha": 638.1
      },
      "sprint": {
       "obj": 16.5,
       "real": 6,
-      "dif": -10.5
+      "dif": -10.5,
+      "objFecha": 15.5
      },
      "acc": {
       "obj": 62.4,
       "real": 32,
-      "dif": -30.4
+      "dif": -30.4,
+      "objFecha": 55.3
      },
      "dec": {
       "obj": 79.6,
       "real": 27,
-      "dif": -52.6
+      "dif": -52.6,
+      "objFecha": 69.9
      }
     },
     {
@@ -102339,32 +103635,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19268,
       "real": 14609,
-      "dif": -4659
+      "dif": -4659,
+      "objFecha": 16434.5
      },
      "hmld": {
       "obj": 2608.7,
       "real": 2073,
-      "dif": -535.7
+      "dif": -535.7,
+      "objFecha": 2287.4
      },
      "hsr": {
       "obj": 791.2,
       "real": 755,
-      "dif": -36.2
+      "dif": -36.2,
+      "objFecha": 721.9
      },
      "sprint": {
       "obj": 18.4,
       "real": 18,
-      "dif": -0.4
+      "dif": -0.4,
+      "objFecha": 17.3
      },
      "acc": {
       "obj": 73.5,
       "real": 31,
-      "dif": -42.5
+      "dif": -42.5,
+      "objFecha": 65.1
      },
      "dec": {
       "obj": 89,
       "real": 45,
-      "dif": -44
+      "dif": -44,
+      "objFecha": 78.2
      }
     },
     {
@@ -102374,32 +103676,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": null,
       "real": 16593,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hmld": {
       "obj": null,
       "real": 2443,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hsr": {
       "obj": null,
       "real": 1277,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "sprint": {
       "obj": null,
       "real": 15,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "acc": {
       "obj": null,
       "real": 49,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "dec": {
       "obj": null,
       "real": 33,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      }
     },
     {
@@ -102409,32 +103717,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 25825.6,
       "real": 18096,
-      "dif": -7729.6
+      "dif": -7729.6,
+      "objFecha": 22751.1
      },
      "hmld": {
       "obj": 4284.8,
       "real": 2871,
-      "dif": -1413.8
+      "dif": -1413.8,
+      "objFecha": 3884.0
      },
      "hsr": {
       "obj": 1321.5,
       "real": 1047,
-      "dif": -274.5
+      "dif": -274.5,
+      "objFecha": 1241.0
      },
      "sprint": {
       "obj": 29.7,
       "real": 22,
-      "dif": -7.7
+      "dif": -7.7,
+      "objFecha": 28.4
      },
      "acc": {
       "obj": 75.6,
       "real": 56,
-      "dif": -19.6
+      "dif": -19.6,
+      "objFecha": 68.9
      },
      "dec": {
       "obj": 113.2,
       "real": 60,
-      "dif": -53.2
+      "dif": -53.2,
+      "objFecha": 102.8
      }
     },
     {
@@ -102444,32 +103758,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 24570.5,
       "real": 17384,
-      "dif": -7186.5
+      "dif": -7186.5,
+      "objFecha": 21645.4
      },
      "hmld": {
       "obj": 3427.4,
       "real": 2300,
-      "dif": -1127.4
+      "dif": -1127.4,
+      "objFecha": 3106.8
      },
      "hsr": {
       "obj": 414,
       "real": 652,
-      "dif": 238
+      "dif": 238,
+      "objFecha": 388.8
      },
      "sprint": {
       "obj": 3.6,
       "real": 8,
-      "dif": 4.4
+      "dif": 4.4,
+      "objFecha": 3.4
      },
      "acc": {
       "obj": 99.9,
       "real": 58,
-      "dif": -41.9
+      "dif": -41.9,
+      "objFecha": 91.1
      },
      "dec": {
       "obj": 136.1,
       "real": 60,
-      "dif": -76.1
+      "dif": -76.1,
+      "objFecha": 123.5
      }
     },
     {
@@ -102479,32 +103799,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 23335.2,
       "real": 18258,
-      "dif": -5077.2
+      "dif": -5077.2,
+      "objFecha": 20557.2
      },
      "hmld": {
       "obj": 2323.5,
       "real": 2585,
-      "dif": 261.5
+      "dif": 261.5,
+      "objFecha": 2106.2
      },
      "hsr": {
       "obj": 490.5,
       "real": 922,
-      "dif": 431.5
+      "dif": 431.5,
+      "objFecha": 460.6
      },
      "sprint": {
       "obj": 5.3,
       "real": 14,
-      "dif": 8.7
+      "dif": 8.7,
+      "objFecha": 5.1
      },
      "acc": {
       "obj": 45.4,
       "real": 45,
-      "dif": -0.4
+      "dif": -0.4,
+      "objFecha": 41.4
      },
      "dec": {
       "obj": 51.6,
       "real": 41,
-      "dif": -10.6
+      "dif": -10.6,
+      "objFecha": 46.8
      }
     },
     {
@@ -102514,32 +103840,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 25101.7,
       "real": 19245,
-      "dif": -5856.7
+      "dif": -5856.7,
+      "objFecha": 22113.4
      },
      "hmld": {
       "obj": 3737.9,
       "real": 3201,
-      "dif": -536.9
+      "dif": -536.9,
+      "objFecha": 3388.3
      },
      "hsr": {
       "obj": 1141.4,
       "real": 1249,
-      "dif": 107.6
+      "dif": 107.6,
+      "objFecha": 1071.9
      },
      "sprint": {
       "obj": 25.3,
       "real": 28,
-      "dif": 2.7
+      "dif": 2.7,
+      "objFecha": 24.2
      },
      "acc": {
       "obj": 110,
       "real": 93,
-      "dif": -17
+      "dif": -17,
+      "objFecha": 100.3
      },
      "dec": {
       "obj": 121.9,
       "real": 69,
-      "dif": -52.9
+      "dif": -52.9,
+      "objFecha": 110.7
      }
     },
     {
@@ -102549,32 +103881,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 19446.2,
       "real": 14506,
-      "dif": -4940.2
+      "dif": -4940.2,
+      "objFecha": 16586.5
      },
      "hmld": {
       "obj": 2368.5,
       "real": 1903,
-      "dif": -465.5
+      "dif": -465.5,
+      "objFecha": 2076.8
      },
      "hsr": {
       "obj": 709.5,
       "real": 593,
-      "dif": -116.5
+      "dif": -116.5,
+      "objFecha": 647.4
      },
      "sprint": {
       "obj": 17.9,
       "real": 10,
-      "dif": -7.9
+      "dif": -7.9,
+      "objFecha": 16.9
      },
      "acc": {
       "obj": 62.4,
       "real": 50,
-      "dif": -12.4
+      "dif": -12.4,
+      "objFecha": 55.3
      },
      "dec": {
       "obj": 83.9,
       "real": 45,
-      "dif": -38.9
+      "dif": -38.9,
+      "objFecha": 73.7
      }
     },
     {
@@ -102584,32 +103922,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 22253.9,
       "real": 16801,
-      "dif": -5452.9
+      "dif": -5452.9,
+      "objFecha": 18981.3
      },
      "hmld": {
       "obj": 3330.4,
       "real": 2611,
-      "dif": -719.4
+      "dif": -719.4,
+      "objFecha": 2920.2
      },
      "hsr": {
       "obj": 948,
       "real": 887,
-      "dif": -61
+      "dif": -61,
+      "objFecha": 865.0
      },
      "sprint": {
       "obj": 17.6,
       "real": 19,
-      "dif": 1.4
+      "dif": 1.4,
+      "objFecha": 16.6
      },
      "acc": {
       "obj": 77.8,
       "real": 74,
-      "dif": -3.8
+      "dif": -3.8,
+      "objFecha": 68.9
      },
      "dec": {
       "obj": 127.1,
       "real": 77,
-      "dif": -50.1
+      "dif": -50.1,
+      "objFecha": 111.6
      }
     },
     {
@@ -102619,32 +103963,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hmld": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "hsr": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "sprint": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "acc": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      },
      "dec": {
       "obj": null,
       "real": null,
-      "dif": null
+      "dif": null,
+      "objFecha": null
      }
     },
     {
@@ -102654,32 +104004,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26370.4,
       "real": 20353,
-      "dif": -6017.4
+      "dif": -6017.4,
+      "objFecha": 23231.1
      },
      "hmld": {
       "obj": 3719.3,
       "real": 2902,
-      "dif": -817.3
+      "dif": -817.3,
+      "objFecha": 3371.4
      },
      "hsr": {
       "obj": 992.1,
       "real": 1005,
-      "dif": 12.9
+      "dif": 12.9,
+      "objFecha": 931.7
      },
      "sprint": {
       "obj": 11.5,
       "real": 17,
-      "dif": 5.5
+      "dif": 5.5,
+      "objFecha": 11.0
      },
      "acc": {
       "obj": 40.3,
       "real": 44,
-      "dif": 3.7
+      "dif": 3.7,
+      "objFecha": 36.8
      },
      "dec": {
       "obj": 100.6,
       "real": 59,
-      "dif": -41.6
+      "dif": -41.6,
+      "objFecha": 91.3
      }
     },
     {
@@ -102689,32 +104045,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 22030.5,
       "real": 17170,
-      "dif": -4860.5
+      "dif": -4860.5,
+      "objFecha": 18790.7
      },
      "hmld": {
       "obj": 2669.5,
       "real": 2129,
-      "dif": -540.5
+      "dif": -540.5,
+      "objFecha": 2340.7
      },
      "hsr": {
       "obj": 488.3,
       "real": 573,
-      "dif": 84.7
+      "dif": 84.7,
+      "objFecha": 445.5
      },
      "sprint": {
       "obj": 8.6,
       "real": 9,
-      "dif": 0.4
+      "dif": 0.4,
+      "objFecha": 8.1
      },
      "acc": {
       "obj": 33,
       "real": 32,
-      "dif": -1
+      "dif": -1,
+      "objFecha": 29.2
      },
      "dec": {
       "obj": 68.6,
       "real": 55,
-      "dif": -13.6
+      "dif": -13.6,
+      "objFecha": 60.2
      }
     },
     {
@@ -102724,32 +104086,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 26455.6,
       "real": 17889,
-      "dif": -8566.6
+      "dif": -8566.6,
+      "objFecha": 23306.1
      },
      "hmld": {
       "obj": 4435.1,
       "real": 2577,
-      "dif": -1858.1
+      "dif": -1858.1,
+      "objFecha": 4020.2
      },
      "hsr": {
       "obj": 1184.3,
       "real": 874,
-      "dif": -310.3
+      "dif": -310.3,
+      "objFecha": 1112.2
      },
      "sprint": {
       "obj": 18.8,
       "real": 15,
-      "dif": -3.8
+      "dif": -3.8,
+      "objFecha": 18.0
      },
      "acc": {
       "obj": 106.8,
       "real": 55,
-      "dif": -51.8
+      "dif": -51.8,
+      "objFecha": 97.4
      },
      "dec": {
       "obj": 168.5,
       "real": 66,
-      "dif": -102.5
+      "dif": -102.5,
+      "objFecha": 152.9
      }
     },
     {
@@ -102759,32 +104127,38 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 25270.8,
       "real": 18763,
-      "dif": -6507.8
+      "dif": -6507.8,
+      "objFecha": 22262.4
      },
      "hmld": {
       "obj": 4036.6,
       "real": 2627,
-      "dif": -1409.6
+      "dif": -1409.6,
+      "objFecha": 3659.0
      },
      "hsr": {
       "obj": 1234.6,
       "real": 1039,
-      "dif": -195.6
+      "dif": -195.6,
+      "objFecha": 1159.4
      },
      "sprint": {
       "obj": 18.3,
       "real": 18,
-      "dif": -0.3
+      "dif": -0.3,
+      "objFecha": 17.5
      },
      "acc": {
       "obj": 65.6,
       "real": 69,
-      "dif": 3.4
+      "dif": 3.4,
+      "objFecha": 59.8
      },
      "dec": {
       "obj": 146.1,
       "real": 70,
-      "dif": -76.1
+      "dif": -76.1,
+      "objFecha": 132.6
      }
     },
     {
@@ -102794,65 +104168,77 @@ window.GPS_DATA_ALL = {
      "distancia": {
       "obj": 6456.8,
       "real": 3774,
-      "dif": -2682.8
+      "dif": -2682.8,
+      "objFecha": 3689.6
      },
      "hmld": {
       "obj": 573.7,
       "real": 401,
-      "dif": -172.7
+      "dif": -172.7,
+      "objFecha": 335.1
      },
      "hsr": {
       "obj": 97.4,
       "real": 145,
-      "dif": 47.6
+      "dif": 47.6,
+      "objFecha": 59.7
      },
      "sprint": {
       "obj": 2,
       "real": 2,
-      "dif": 0
+      "dif": 0,
+      "objFecha": 1.4
      },
      "acc": {
       "obj": 12.1,
       "real": 21,
-      "dif": 8.9
+      "dif": 8.9,
+      "objFecha": 7.6
      },
      "dec": {
       "obj": 19.5,
       "real": 6,
-      "dif": -13.5
+      "dif": -13.5,
+      "objFecha": 12
      }
     }
    ],
    "teamAvg": {
     "distancia": {
      "obj": 21525.9,
-     "real": 16743,
-     "dif": -4783
+     "real": 15821.3,
+     "dif": -5704.6,
+     "objFecha": 18500.6
     },
     "hmld": {
      "obj": 3043.4,
-     "real": 2402,
-     "dif": -641
+     "real": 2266.2,
+     "dif": -777.2,
+     "objFecha": 2701.7
     },
     "hsr": {
      "obj": 794.6,
-     "real": 882,
-     "dif": 87
+     "real": 811.3,
+     "dif": 16.7,
+     "objFecha": 735.3
     },
     "sprint": {
      "obj": 15.2,
-     "real": 17,
-     "dif": 2
+     "real": 16.0,
+     "dif": 0.8,
+     "objFecha": 14.4
     },
     "acc": {
      "obj": 62.4,
-     "real": 53,
-     "dif": -9
+     "real": 50.5,
+     "dif": -11.9,
+     "objFecha": 55.8
     },
     "dec": {
      "obj": 96,
-     "real": 52,
-     "dif": -44
+     "real": 50.4,
+     "dif": -45.6,
+     "objFecha": 85.3
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."

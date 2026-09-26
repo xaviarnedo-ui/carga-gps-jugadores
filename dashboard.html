@@ -345,6 +345,7 @@ const state = {
   session:null,                // índice (RAW.sessions[i].i) de la sesión elegida en la pestaña Sesión
   acuMc:null, acuRef:null,     // pestaña Microciclos: microciclo y referencia del "Acumulado de la semana"
   acuOrden:"dorsal",           // orden de la tabla: dorsal | desc | asc (por % de cumplimiento medio)
+  sesOrden:"dorsal",           // lo mismo en la pestaña Sesión
 };
 
 /* ---------- value helpers ---------- */
@@ -775,6 +776,16 @@ function viewSesion(root){
   // lesionados y en readaptación van en su propia tabla, debajo de la del equipo
   const players = visibles.filter(pr=>!esBaja(pr,s));
   const bajas = visibles.filter(pr=>esBaja(pr,s));
+  // cumplimiento medio de cada jugador = media de real/objetivo en las métricas con objetivo
+  const cumplSes = pr => { const ps=RADAR_METRICS.filter(k=>{const c=raw(pr,k); return c.obj && c.real!=null;}).map(k=>raw(pr,k).real/raw(pr,k).obj*100);
+    return ps.length? ps.reduce((a,b)=>a+b,0)/ps.length : null; };
+  players.forEach(pr=> pr.cumpl = s.isMatch? null : cumplSes(pr));
+  if(!s.isMatch && state.sesOrden!=="dorsal"){
+    const sg = state.sesOrden==="desc" ? -1 : 1;
+    players.sort((a,b)=> (a.cumpl==null)-(b.cumpl==null) || sg*((a.cumpl||0)-(b.cumpl||0)) || a.d-b.d);
+  }
+  const cvals = players.map(pr=>pr.cumpl).filter(v=>v!=null);
+  const cumplEq = cvals.length? cvals.reduce((a,b)=>a+b,0)/cvals.length : null;
   // el resumen de equipo (Vel.máx/PL/Duración) usa la MEDIA EQUIPO oficial (s.teamAvg) cuando
   // se ve la plantilla completa; si hay un filtro de Grupo activo, no hay cifra oficial para
   // ese subconjunto y se recalcula a mano sobre los jugadores visibles.
@@ -798,6 +809,7 @@ function viewSesion(root){
   const nConDatos = players.filter(pr=> RADAR_METRICS.some(k=>raw(pr,k).real!=null)).length;
 
   const miniData=[
+    ...(s.isMatch? [] : [{n: cumplEq!=null? `<span style="color:${semColor(cumplEq)}">${Math.round(cumplEq)}%</span>` : "–", l:"Cumplimiento medio"}]),
     {n:nConDatos, l:"Jugadores con datos"},
     {n:vmaxTeam!=null?fmtN(vmaxTeam,1):"–", sm:" km/h", l:"Vel. máx equipo"},
     {n:plTeam!=null?fmtN(plTeam,0):"–", l:"Player Load medio"},
@@ -807,6 +819,17 @@ function viewSesion(root){
   mini.innerHTML = miniData.map(k=>`<div class="kpi"><div class="n">${k.n}${k.sm?`<small>${k.sm}</small>`:""}</div><div class="l">${k.l}</div></div>`).join("");
   p.appendChild(mini);
 
+  if(!s.isMatch){
+    const bar=el("div",{class:"les-pick"});
+    const go=el("div",{class:"fgroup"}); go.appendChild(el("span",{},"Ordenar"));
+    const ob=el("div",{class:"chips"});
+    [["dorsal","Dorsal"],["desc","% cumpl. ↓"],["asc","% cumpl. ↑"]].forEach(([v,t])=>{
+      const b=el("button",{class:"chip sm","aria-pressed":state.sesOrden===v},t);
+      b.onclick=()=>{ state.sesOrden=v; renderView(); };
+      ob.appendChild(b);
+    });
+    go.appendChild(ob); bar.appendChild(go); p.appendChild(bar);
+  }
   p.appendChild(legendRow([
     {c:"var(--sem-corto)",t:"< 90% obj."},{c:"var(--sem-ok)",t:"90–110%"},
     {c:"var(--sem-pasado)",t:"110–120%"},{c:"var(--sem-alto)",t:"> 120%"},
@@ -816,6 +839,7 @@ function viewSesion(root){
   const wrap=el("div",{class:"tbl-scroll sticky-col"});
   const tb=el("table");
   const head1=['<th rowspan="2">Jugador</th>','<th rowspan="2">Pos</th>']
+    .concat(s.isMatch? [] : ['<th rowspan="2" class="grp-start">Cumpl.<br>medio</th>'])
     .concat(RADAR_METRICS.map(k=>`<th colspan="3" class="grp-start">${METRICS[k].lab}${METRICS[k].u?` (${METRICS[k].u})`:""}</th>`))
     .concat(['<th rowspan="2" class="grp-start">Vel. máx<br>(km/h)</th>','<th rowspan="2">Player<br>Load</th>','<th rowspan="2">Duración</th>'])
     .join("");
@@ -832,6 +856,7 @@ function viewSesion(root){
   players.forEach(pr=>{
     const g=POS[pr.d];
     const cells=[`<td>#${pr.d} ${NAME[pr.d]||"?"}</td>`, `<td class="pos-${g||""}">${GROUPS[g]||g||"–"}</td>`];
+    if(!s.isMatch) cells.push(`<td class="mono grp-start" style="font-weight:700; font-size:14px; color:${semColor(pr.cumpl)}">${pr.cumpl!=null?Math.round(pr.cumpl)+"%":"–"}</td>`);
     let hasAny=false;
     RADAR_METRICS.forEach(k=>{
       const c=raw(pr,k);
@@ -851,6 +876,7 @@ function viewSesion(root){
 
   // fila MEDIA EQUIPO
   const teamCells=['<td>MEDIA EQUIPO</td>','<td></td>'];
+  if(!s.isMatch) teamCells.push(`<td class="mono grp-start" style="font-weight:700; font-size:14px; color:${semColor(cumplEq)}">${cumplEq!=null?Math.round(cumplEq)+"%":"–"}</td>`);
   RADAR_METRICS.forEach(k=>{
     const teamReal=teamPoint(s,k,"abs"), teamObjV=teamObj(s,k,"abs");
     const pct=(teamObjV&&teamReal!=null)? teamReal/teamObjV*100 : null;

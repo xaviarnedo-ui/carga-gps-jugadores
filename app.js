@@ -508,7 +508,8 @@
     var ta = s.teamAvg || {};
 
     var head = '<div class="card"><div class="card__title">Media del equipo <span class="count">' +
-      state.session + ' · ' + esc(match ? ('vs ' + (s.rival || '—')) : roleShort(sessionRole(s))) + ' · ' + esc(fdate(s.date)) + '</span></div>';
+      state.session + ' · ' + esc(match ? ('vs ' + (s.rival || '—')) : roleShort(sessionRole(s))) + ' · ' + esc(fdate(s.date)) + '</span></div>' +
+      (done && !match ? cumplEquipo(s.players) : '');
     if (!done) head += '<div class="muted" style="margin-bottom:10px">' + (match ? 'Partido previsto, sin datos.' : 'Sesión prevista: solo objetivos.') + '</div>';
     else if (match) head += '<div class="muted" style="margin-bottom:10px">Un partido no lleva objetivo.</div>';
     if (match && s.estimado) head += '<div class="alert alert--info" style="margin-bottom:10px">' + iconWarn() +
@@ -523,7 +524,7 @@
       : '<div class="muted">—</div>';
 
     // jugadores
-    var players = s.players.slice().sort(sortPlayers);
+    var players = match ? s.players.slice().sort(sortPlayers) : ordenar(s.players);
     var rows = players.map(function (p) {
       var sm = playerDonut(p, match);
       var body = "";
@@ -550,6 +551,7 @@
 
     return pills + head + teamBody + '</div>' +
       '<div class="card"><div class="card__title">Jugadores <span class="count">' + players.length + '</span></div>' +
+      (match || !done ? '' : sortBar()) +
       '<div class="pdet-list">' + rows + '</div></div>' +
       (s.nota ? '<div class="note">' + noteHtml(s.nota) + '</div>' : '');
   }
@@ -572,6 +574,29 @@
       }).join("") + '</div>';
   }
 
+  // copia con obj = objetivo "a fecha" (Σ Obj de las sesiones ya hechas) para comparar lo que ya
+  // debería llevar, no la semana entera
+  function aFecha(p) {
+    var q = { dorsal: p.dorsal, jugador: p.jugador, grupo: p.grupo, estado: p.estado };
+    METRICS.forEach(function (mm) {
+      var c = p[mm.key] || {};
+      var o = c.objFecha !== undefined ? c.objFecha : c.obj;
+      q[mm.key] = { obj: o, real: c.real, dif: (o != null && c.real != null ? Math.round((c.real - o) * 10) / 10 : null) };
+    });
+    return q;
+  }
+  // cumplimiento medio del equipo = media del % de cada jugador con objetivo
+  function cumplEquipo(players, nota) {
+    var v = players.map(achievedPct).filter(function (x) { return x != null; });
+    if (!v.length) return "";
+    var pc = v.reduce(function (a, b) { return a + b; }, 0) / v.length;
+    var zona = v.filter(function (x) { return x >= 90 && x <= 110; }).length;
+    var bajo = v.filter(function (x) { return x < 90; }).length;
+    return '<div class="cumpl-eq">' + donut(pc, semaphore(pc, 100), { size: 64, sw: 7 }) +
+      '<div><div class="cumpl-eq__k">Cumplimiento medio del equipo</div>' +
+      '<div class="muted">' + zona + ' en zona (90–110%) · ' + bajo + ' por debajo' + (nota ? ' · ' + nota : '') + '</div></div></div>';
+  }
+
   function screenMicro() {
     var m = currentMicro();
     var co = m.cargasObjetivo;
@@ -579,12 +604,19 @@
     var sesK = sessionKeys(m).filter(function (k) { return !isMatch(m, k); });
     var pend = sesK.filter(function (k) { return !isCompleted(getSession(m, k)); });
 
+    // a mitad de semana se compara con el objetivo a fecha (lo que ya se debería llevar)
+    var enCurso = pend.length > 0;
+    var vista = enCurso ? co.players.map(aFecha) : co.players;
+    var taV = enCurso ? aFecha(ta) : ta;
     var head = '<div class="card"><div class="card__title">Media del equipo <span class="count">acumulado · ' + sesK.length + ' sesiones</span></div>' +
-      '<div class="muted" style="margin-bottom:10px">Objetivo acumulado de las sesiones de entrenamiento (sin el partido).' +
-      (pend.length ? ' Faltan: <b>' + esc(pend.join(" · ")) + '</b>.' : ' Sesiones completas.') + '</div>' +
-      teamMetricCards(ta);
+      cumplEquipo(vista, enCurso ? 'a fecha' : '') +
+      '<div class="muted" style="margin-bottom:10px">' +
+      (enCurso ? 'Acumulado frente al <b>objetivo a fecha</b> (suma de los objetivos de las sesiones ya hechas). Faltan: <b>' + esc(pend.join(" · ")) + '</b>.'
+               : 'Objetivo acumulado de las sesiones de entrenamiento (sin el partido). Sesiones completas.') + '</div>' +
+      teamMetricCards(taV);
+    ta = taV;
 
-    var players = ordenar(co.players);
+    var players = ordenar(vista);
     var rows = players.map(function (p) {
       var body = METRICS.map(function (mm) {
         var c = p[mm.key] || {};
