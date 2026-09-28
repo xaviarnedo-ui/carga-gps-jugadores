@@ -169,3 +169,63 @@ def abrir(tipo, partido_key, rival, lunes, estados=None, ref=None, coefs=None,
     carga_ac.rellenar(wb, n, hist, asof=ultimo)
     wb.save(destino)
     return destino, claves, (partido_key, fecha_p), roles
+
+
+def cambiar_tipo(n, tipo, estados=None):
+    """Cambia el Tipo (A/B/C) de un microciclo ya abierto: recalcula los Objetivos de todas sus
+    sesiones (solo a quien ya tenía objetivo ese día) y, en las ya cargadas, Dif/semáforo/media.
+    Devuelve [(sesión, día, nº de objetivos recalculados)]."""
+    from .xlsx import backup
+    ruta = ruta_microciclo(n)
+    wt = openpyxl.load_workbook(C.TIPO_XLSX)
+    ref, coefs = referencia.ref_partido(wt), referencia.coeficientes(wt)
+    if tipo not in coefs:
+        raise ValueError(f"No hay coeficientes para el Tipo {tipo}")
+    estados = estados if estados is not None else E.cargar()
+    backup([ruta])
+    wb = openpyxl.load_workbook(ruta)
+    ses = sesion.hojas_sesion(wb)
+    # rol del lunes MD+1 según el último partido anterior a la semana
+    from . import procesar as P
+    ult = P._ultimo_partido_antes(ses[0][2])
+    roles = roles_md1(ult) if ult is not None else {}
+    hechos = []
+    for key, ws, fecha in ses:
+        viejo, dia = sesion.tipo_y_dia(ws)
+        for r in (1, 2, 3):
+            if ws.cell(r, 1).value:
+                ws.cell(r, 1).value = re.sub(r"(TIPO|Tipo) " + (viejo or "[A-C]"),
+                                             lambda m: m.group(1) + " " + tipo, str(ws.cell(r, 1).value))
+        filas, media = filas_jugadores(ws)
+        for rr in (media + 1,):
+            if ws.cell(rr, 1).value:
+                ws.cell(rr, 1).value = re.sub(r"Tipo [A-C]", "Tipo " + tipo, str(ws.cell(rr, 1).value))
+        cuantos = 0
+        for d, fila in filas.items():
+            if not sesion.tiene_objetivo(ws, fila) or d not in ref:
+                continue
+            clave = dia + roles.get(d, "S") if dia == "MD+1" else dia
+            sesion._escribe_obj(ws, fila, referencia.objetivo(ref[d], coefs[tipo][clave]))
+            cuantos += 1
+        if sesion.hecha(ws):
+            reg = estados.get("sesiones", {}).get(key, {}).get("estados", {})
+            est_dia = {d: reg.get(str(d)) or (C.FULL if sesion.tiene_objetivo(ws, f) else C.LESION)
+                       for d, f in filas.items()}
+            datos = {}
+            for d, f in filas.items():
+                if est_dia[d] in (C.FULL, C.REHAB):
+                    datos[d] = {m: num(ws.cell(f, c + 1).value) for m, c in C.SES_OBJ_COL.items()}
+                    datos[d].update(vmax=ws.cell(f, C.SES_VMAX).value, pl=ws.cell(f, C.SES_PL).value,
+                                    dur=ws.cell(f, C.SES_DUR).value)
+            sesion.rellenar(ws, datos, est_dia)
+        else:   # sesión aún por hacer: solo la fila MEDIA EQUIPO del objetivo
+            sesion.escribir_media(ws, filas, media, {d: C.FULL for d, f in filas.items()
+                                                     if sesion.tiene_objetivo(ws, f)})
+        hechos.append((key, dia, cuantos))
+    wa = wb["Acumulado"]
+    for r in (3, 4):
+        if wa.cell(r, 1).value:
+            wa.cell(r, 1).value = re.sub(r"TIPO [A-C]", "TIPO " + tipo, str(wa.cell(r, 1).value))
+    acumulado.recalcular(wb)
+    wb.save(ruta)
+    return hechos

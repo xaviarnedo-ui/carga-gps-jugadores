@@ -17,6 +17,7 @@
         --prueba                                  escribe en GPS/_prueba/, no toca nada real
         --publicar [--sin-avisar]                 import_data + git push (+ aviso a jugadores)
   python3 gps.py abrir --tipo B --partido J5 --rival "Rival" --lunes 2026-09-28
+  python3 gps.py tipo 12 A                            cambia el Tipo de un microciclo y recalcula objetivos
   python3 gps.py estado [4=lesion 10=rehab ...]       ver / fijar estado vigente
   python3 gps.py lesiones [--abrir D --tipo T --baja F | --cerrar D --alta F]   registro de lesiones
   python3 gps.py disponibilidad                       regenerar Disponibilidad y Minutos.xlsx
@@ -78,6 +79,9 @@ def main():
     a.add_argument("--partido", required=True)
     a.add_argument("--rival", required=True)
     a.add_argument("--lunes", required=True)
+    a = sub.add_parser("tipo")
+    a.add_argument("n", type=int)
+    a.add_argument("tipo")
     a = sub.add_parser("lesiones")
     a.add_argument("--abrir", type=int)
     a.add_argument("--cerrar", type=int)
@@ -141,6 +145,11 @@ def main():
             if info["estado"] != C.FULL:
                 print(f"  {d:>3} {info['estado']:7} desde {info['desde']}  {info.get('nota', '')}")
         print("  (el resto: full)")
+
+    elif args.cmd == "tipo":
+        for key, dia, k in microciclo.cambiar_tipo(args.n, args.tipo.upper()):
+            print(f"  {key} {dia}: {k} objetivos recalculados")
+        print(P.importar(avisar=False).strip().splitlines()[0])
 
     elif args.cmd == "lesiones":
         lst = L.cargar()
