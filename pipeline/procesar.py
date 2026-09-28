@@ -278,9 +278,12 @@ def _notas_partido(nombres, estados_dia, fallos_gps, nota):
         grupos.setdefault(e, []).append(nombres[d])
     lineas = []
     if grupos.get(C.LESION) or grupos.get(C.REHAB):
-        lineas.append("LESIONADOS (pendientes de alta, sin datos): " + " · ".join(grupos.get(C.LESION, []))
-                      + (". Rehab (no disputaron el partido): " + " · ".join(grupos[C.REHAB])
-                         if grupos.get(C.REHAB) else ""))
+        partes = []
+        if grupos.get(C.LESION):
+            partes.append("LESIONADOS (pendientes de alta, sin datos): " + " · ".join(grupos[C.LESION]))
+        if grupos.get(C.REHAB):
+            partes.append("Rehab (no disputaron el partido): " + " · ".join(grupos[C.REHAB]))
+        lineas.append(" ".join(p if p.endswith(".") else p + "." for p in partes))
     for d, mins in fallos_gps.items():
         lineas.append(f"{nombres[d]}: fallo de dispositivo GPS — datos reconstruidos a partir de su "
                       f"REF_PARTIDO propio escalado a {mins:.0f}' jugados con la fórmula de fatiga (estimado, no es GPS real). "
@@ -288,7 +291,7 @@ def _notas_partido(nombres, estados_dia, fallos_gps, nota):
     if grupos.get(C.NC):
         lineas.append("Convocado, no jugó: " + " · ".join(grupos[C.NC]))
     if grupos.get(C.NOCONV):
-        lineas.append("No convocado (decisión técnica): " + " · ".join(grupos[C.NOCONV]))
+        lineas.append("No convocado: " + " · ".join(grupos[C.NOCONV]))
     if nota:
         lineas.append(nota)
     return lineas
