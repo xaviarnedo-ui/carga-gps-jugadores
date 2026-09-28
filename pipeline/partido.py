@@ -99,41 +99,42 @@ def cuenta_para_ref(key):
 
 
 def actualizar_ref(wb_tipo, key, fecha, datos_reales, nombres, duracion):
-    """nuevo = round((anterior + estimado_T) / 2, 1) para quien jugó con GPS real, con
-    T = duración real del partido (minutos del que más jugó).
-
-    Guarda los valores previos en pipeline_ref_log.json: si el partido ya se había aplicado,
-    primero se deshace (reprocesar nunca promedia dos veces).
+    """REF_PARTIDO = media simple de sus componentes (pretemporada como 1 dato + cada partido
+    con GPS real, extrapolado a la duración real T). Guarda el componente de este partido en
+    ref_componentes.json (reprocesar lo sobrescribe: nunca cuenta dos veces) y reescribe la tabla.
+    En el log queda la REF de ANTES de este partido (para su objetivo).
     Devuelve (actualizados [(dorsal, minutos)], cameos [(dorsal, minutos)]).
     """
+    from . import ref_componentes as RC
     ws = wb_tipo["REF_PARTIDO"]
     filas = referencia.filas_ref(ws)
+    comp = RC.cargar()
+    if not comp:
+        raise ValueError("Falta GPS/ref_componentes.json (componentes de la REF_PARTIDO)")
+    for c in comp.values():                          # reproceso: fuera el componente anterior
+        c.get("partidos", {}).pop(key, None)
     log = _cargar_log()
-    if log.get(key, {}).get("bloqueado"):
-        raise ValueError(f"La REF_PARTIDO de {key} se recalculó en bloque el {log[key]['fecha']}: "
-                         f"no se puede volver a aplicar automáticamente")
-    if key in log:                                   # deshacer la aplicación anterior
-        for dor, prev in log[key]["previos"].items():
-            for i, m in enumerate(C.METRICS):
-                ws.cell(filas[int(dor)], 4 + i).value = prev[m]
     previos, actualizados, cameos = {}, [], []
     for dor, d in sorted(datos_reales.items()):
         mins = d.get("min") or d.get("dur")          # minutos exactos del PDF si los hay
         if dor not in filas or not mins:
             continue
-        fila = filas[dor]
-        prev = {m: num(ws.cell(fila, 4 + i).value) for i, m in enumerate(C.METRICS)}
-        previos[str(dor)] = prev
-        for i, m in enumerate(C.METRICS):
-            est = referencia.estimar(d[m], mins, duracion)
-            if prev[m] is None:
-                nuevo = r1(est)
-            else:
-                nuevo = r1((prev[m] + est) / 2)
-            ws.cell(fila, 4 + i).value = limpio(nuevo)
+        c = comp.setdefault(str(dor), {"pretemporada": {m: num(ws.cell(filas[dor], 4 + i).value)
+                                                        for i, m in enumerate(C.METRICS)},
+                                       "partidos": {}})
+        previos[str(dor)] = RC.ref_de(c, antes_de=fecha)
+        c["partidos"][key] = {"fecha": fecha, "minutos": round(mins, 2), "duracion": round(duracion, 2),
+                              "valores": {m: round(referencia.estimar(d[m], mins, duracion), 2)
+                                          for m in C.METRICS}}
         actualizados.append((dor, mins))
         if mins < CAMEO_MIN:
             cameos.append((dor, mins))
+    for dor, c in comp.items():
+        if int(dor) in filas:
+            ref = RC.ref_de(c)
+            for i, m in enumerate(C.METRICS):
+                ws.cell(filas[int(dor)], 4 + i).value = limpio(ref[m])
+    RC.guardar(comp)
     log[key] = {"fecha": fecha, "aplicado": dt.datetime.now().isoformat(timespec="seconds"),
                 "duracion": duracion, "previos": previos}
     _guardar_log(log)
@@ -147,11 +148,12 @@ def actualizar_ref(wb_tipo, key, fecha, datos_reales, nombres, duracion):
             break
     if fila_nota is None:
         fila_nota = ws.max_row + 2
-    txt = (f"{marca} ACTUALIZACIÓN {fecha} ({key}): REF_PARTIDO = media(valor anterior, "
-           f"estimación a la duración real del partido, {duracion:.1f}', con fórmula de fatiga) para {len(actualizados)} jugadores con GPS "
-           f"real: " + ", ".join(nombres.get(d, str(d)) for d, _ in actualizados) + ".")
+    txt = (f"{marca} ACTUALIZACIÓN {fecha} ({key}): REF_PARTIDO = media simple de pretemporada (1 dato) "
+           f"y cada partido de Liga (mismo peso), estimados a la duración real ({duracion:.1f}') con "
+           f"fórmula de fatiga. {len(actualizados)} jugadores con GPS real: "
+           + ", ".join(nombres.get(d, str(d)) for d, _ in actualizados) + ".")
     if cameos:
-        txt += (" AVISO cameos cortos (extrapolación agresiva, ya pesan el 50% de su referencia): "
+        txt += (" AVISO cameos cortos (extrapolación agresiva): "
                 + ", ".join(f"{nombres.get(d, d)} ({mins:.0f}')" for d, mins in cameos) + ".")
     ws.cell(fila_nota, 1).value = txt
     return actualizados, cameos

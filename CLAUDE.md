@@ -53,12 +53,14 @@ Una sesión fuera de calendario (p. ej. un martes) va con `--extra` → hoja `Ex
   Quien no tiene objetivo en toda la semana: acumulado total, informativo (corrección 26/09).
 - ACWR: aguda Σ7d/7, crónica Σ28d/28 en días naturales (sin sesión = 0); media de equipo
   sin los ACWR = 0. Se recalcula siempre desde las hojas *_GPS de todos los microciclos.
-- REF_PARTIDO tras cada partido de Liga J≥2 con GPS real:
-  `nuevo = round((anterior + estimado_T) / 2, 1)`, con
+- REF_PARTIDO = MEDIA SIMPLE (mismo peso) de la pretemporada (1 dato) y de cada partido de Liga
+  J≥2 con GPS real (+ partidos con el filial si el preparador lo pide, `--ref-duracion`). Los
+  componentes viven en `GPS/ref_componentes.json` (desde 28/09; antes cada partido promediaba
+  con el valor anterior). Cada partido entra como `estimado_T`, con
   `estimado_T = Real + (T − M)·(Real/M)·0,90` y **T = duración real de ese partido** (minutos
   EXACTOS del jugador que más jugó, con descuento; desde 25/09/2026, antes era 95'). Sin
-  extrapolar si M ≥ T. J1 excluido. J2 y J3 ya recalculados en bloque (bloqueados en
-  `pipeline_ref_log.json`). Cameos cortos → avisar, no corregir. Fallo de GPS con minutos
+  extrapolar si M ≥ T. J1 excluido. Reprocesar un partido sobrescribe su componente (no cuenta
+  dos veces). Cameos cortos → avisar, no corregir. Fallo de GPS con minutos
   conocidos: `Real = REF / (1 + 0,9·(T − M)/M)`, marcado como estimado y fuera de REF_PARTIDO.
   Los minutos para la fórmula van con segundos (8:49 ≠ 8,8').
 - Partidos de Liga (J2+): objetivo por jugador = su REF_PARTIDO de justo antes de ese partido

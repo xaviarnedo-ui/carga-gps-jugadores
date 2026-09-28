@@ -114,3 +114,11 @@ de fórmulas (fatiga, inversa, ACWR, semáforo, nombres).
   el real. `import_data` lo lee del Excel. J2-J4 rellenados con el mismo cálculo (J4 reprocesado).
 - App (entrenador y jugador) y dashboard muestran obj/real/% y cumplimiento en partidos;
   los jugadores con datos estimados por fallo de GPS no tienen % ni cuentan en la media.
+
+## Cambio 2026-09-28: REF_PARTIDO como media simple
+
+- REF = media (mismo peso) de pretemporada (1 dato) + cada partido de Liga con GPS real (+ los que
+  el preparador pida, p. ej. Juvenil). Componentes en `GPS/ref_componentes.json`; `actualizar_ref`
+  sobrescribe el componente del partido y recalcula la tabla. Pretemporada = REF antes de J2
+  (reconstruida). El log guarda la REF previa de cada partido (para su objetivo).
+- Objetivos de J2-J4 ya escritos se mantienen (no retroactivo); aplica desde el próximo microciclo.
