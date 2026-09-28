@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-09-28 13:18",
+  "generado": "2026-09-28 16:53",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-12)"
  },
  "refPartido": {
@@ -81666,34 +81666,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Montcheu, F.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 961.6,
        "real": 1048,
-       "dif": null
+       "dif": 86.4
       },
       "hmld": {
-       "obj": null,
+       "obj": 147.8,
        "real": 202,
-       "dif": null
+       "dif": 54.2
       },
       "hsr": {
-       "obj": null,
+       "obj": 56.0,
        "real": 73,
-       "dif": null
+       "dif": 17.0
       },
       "sprint": {
-       "obj": null,
+       "obj": 1.5,
        "real": 2,
-       "dif": null
+       "dif": 0.5
       },
       "acc": {
-       "obj": null,
+       "obj": 1.7,
        "real": 1,
-       "dif": null
+       "dif": -0.7
       },
       "dec": {
-       "obj": null,
+       "obj": 4.1,
        "real": 5,
-       "dif": null
+       "dif": 0.9
       },
       "velMax": 27.17,
       "playerLoad": 106,
@@ -81782,34 +81782,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Martín, A.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 9759.4,
        "real": 10149,
-       "dif": null
+       "dif": 389.6
       },
       "hmld": {
-       "obj": null,
+       "obj": 1422.0,
        "real": 1419,
-       "dif": null
+       "dif": -3.0
       },
       "hsr": {
-       "obj": null,
+       "obj": 353.8,
        "real": 340,
-       "dif": null
+       "dif": -13.8
       },
       "sprint": {
-       "obj": null,
+       "obj": 6.8,
        "real": 7,
-       "dif": null
+       "dif": 0.2
       },
       "acc": {
-       "obj": null,
+       "obj": 23.8,
        "real": 28,
-       "dif": null
+       "dif": 4.2
       },
       "dec": {
-       "obj": null,
+       "obj": 31.8,
        "real": 33,
-       "dif": null
+       "dif": 1.2
       },
       "velMax": 29.42,
       "playerLoad": 969,
@@ -81820,34 +81820,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Bonet, G.",
       "grupo": "M",
       "distancia": {
-       "obj": null,
+       "obj": 11358.8,
        "real": 10658,
-       "dif": null
+       "dif": -700.8
       },
       "hmld": {
-       "obj": null,
+       "obj": 1994.0,
        "real": 1700,
-       "dif": null
+       "dif": -294.0
       },
       "hsr": {
-       "obj": null,
+       "obj": 404.2,
        "real": 467,
-       "dif": null
+       "dif": 62.8
       },
       "sprint": {
-       "obj": null,
+       "obj": 4.8,
        "real": 5,
-       "dif": null
+       "dif": 0.2
       },
       "acc": {
-       "obj": null,
+       "obj": 32.0,
        "real": 33,
-       "dif": null
+       "dif": 1.0
       },
       "dec": {
-       "obj": null,
+       "obj": 48.0,
        "real": 50,
-       "dif": null
+       "dif": 2.0
       },
       "velMax": 29.33,
       "playerLoad": 1071,
@@ -81858,34 +81858,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Riera, N.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 10722.4,
        "real": 11112,
-       "dif": null
+       "dif": 389.6
       },
       "hmld": {
-       "obj": null,
+       "obj": 1850.8,
        "real": 1715,
-       "dif": null
+       "dif": -135.8
       },
       "hsr": {
-       "obj": null,
+       "obj": 680.6,
        "real": 387,
-       "dif": null
+       "dif": -293.6
       },
       "sprint": {
-       "obj": null,
+       "obj": 14.8,
        "real": 6,
-       "dif": null
+       "dif": -8.8
       },
       "acc": {
-       "obj": null,
+       "obj": 30.2,
        "real": 25,
-       "dif": null
+       "dif": -5.2
       },
       "dec": {
-       "obj": null,
+       "obj": 41.8,
        "real": 47,
-       "dif": null
+       "dif": 5.2
       },
       "velMax": 30.36,
       "playerLoad": 1105,
@@ -81896,34 +81896,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Cherta, J.",
       "grupo": "M",
       "distancia": {
-       "obj": null,
+       "obj": 8500.6,
        "real": 9467,
-       "dif": null
+       "dif": 966.4
       },
       "hmld": {
-       "obj": null,
+       "obj": 1308.9,
        "real": 1550,
-       "dif": null
+       "dif": 241.1
       },
       "hsr": {
-       "obj": null,
+       "obj": 341.8,
        "real": 349,
-       "dif": null
+       "dif": 7.2
       },
       "sprint": {
-       "obj": null,
+       "obj": 7.1,
        "real": 5,
-       "dif": null
+       "dif": -2.1
       },
       "acc": {
-       "obj": null,
+       "obj": 18.0,
        "real": 20,
-       "dif": null
+       "dif": 2.0
       },
       "dec": {
-       "obj": null,
+       "obj": 30.3,
        "real": 30,
-       "dif": null
+       "dif": -0.3
       },
       "velMax": 28.95,
       "playerLoad": 1183,
@@ -81934,34 +81934,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Caballero, R.",
       "grupo": "DL",
       "distancia": {
-       "obj": null,
+       "obj": 6675.7,
        "real": 6880,
-       "dif": null
+       "dif": 204.3
       },
       "hmld": {
-       "obj": null,
+       "obj": 1096.0,
        "real": 1090,
-       "dif": null
+       "dif": -6.0
       },
       "hsr": {
-       "obj": null,
+       "obj": 354.7,
        "real": 350,
-       "dif": null
+       "dif": -4.7
       },
       "sprint": {
-       "obj": null,
+       "obj": 8.0,
        "real": 6,
-       "dif": null
+       "dif": -2.0
       },
       "acc": {
-       "obj": null,
+       "obj": 23.9,
        "real": 33,
-       "dif": null
+       "dif": 9.1
       },
       "dec": {
-       "obj": null,
+       "obj": 33.6,
        "real": 39,
-       "dif": null
+       "dif": 5.4
       },
       "velMax": 29.52,
       "playerLoad": 691,
@@ -82011,34 +82011,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Martín, M.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 7895.3,
        "real": 8737,
-       "dif": null
+       "dif": 841.7
       },
       "hmld": {
-       "obj": null,
+       "obj": 1293.1,
        "real": 1694,
-       "dif": null
+       "dif": 400.9
       },
       "hsr": {
-       "obj": null,
+       "obj": 393.9,
        "real": 539,
-       "dif": null
+       "dif": 145.1
       },
       "sprint": {
-       "obj": null,
+       "obj": 9.6,
        "real": 12,
-       "dif": null
+       "dif": 2.4
       },
       "acc": {
-       "obj": null,
+       "obj": 21.8,
        "real": 23,
-       "dif": null
+       "dif": 1.2
       },
       "dec": {
-       "obj": null,
+       "obj": 29.6,
        "real": 32,
-       "dif": null
+       "dif": 2.4
       },
       "velMax": 29.24,
       "playerLoad": 970,
@@ -82049,34 +82049,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Hernández, P.",
       "grupo": "M",
       "distancia": {
-       "obj": null,
+       "obj": 2186.2,
        "real": 2052,
-       "dif": null
+       "dif": -134.2
       },
       "hmld": {
-       "obj": null,
+       "obj": 298.6,
        "real": 365,
-       "dif": null
+       "dif": 66.4
       },
       "hsr": {
-       "obj": null,
+       "obj": 54.4,
        "real": 37,
-       "dif": null
+       "dif": -17.4
       },
       "sprint": {
-       "obj": null,
+       "obj": 0.9,
        "real": 0,
-       "dif": null
+       "dif": -0.9
       },
       "acc": {
-       "obj": null,
+       "obj": 6.3,
        "real": 9,
-       "dif": null
+       "dif": 2.7
       },
       "dec": {
-       "obj": null,
+       "obj": 7.8,
        "real": 14,
-       "dif": null
+       "dif": 6.2
       },
       "velMax": 22.54,
       "playerLoad": 211,
@@ -82126,34 +82126,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Catalá, R.",
       "grupo": "DL",
       "distancia": {
-       "obj": null,
+       "obj": 3172.6,
        "real": 3131,
-       "dif": null
+       "dif": -41.6
       },
       "hmld": {
-       "obj": null,
+       "obj": 521.4,
        "real": 615,
-       "dif": null
+       "dif": 93.6
       },
       "hsr": {
-       "obj": null,
+       "obj": 153.6,
        "real": 245,
-       "dif": null
+       "dif": 91.4
       },
       "sprint": {
-       "obj": null,
+       "obj": 2.8,
        "real": 7,
-       "dif": null
+       "dif": 4.2
       },
       "acc": {
-       "obj": null,
+       "obj": 11.1,
        "real": 19,
-       "dif": null
+       "dif": 7.9
       },
       "dec": {
-       "obj": null,
+       "obj": 10.6,
        "real": 23,
-       "dif": null
+       "dif": 12.4
       },
       "velMax": 28.69,
       "playerLoad": 300,
@@ -82164,34 +82164,34 @@ window.GPS_DATA_ALL = {
       "jugador": "López, I.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 9312.2,
        "real": 9401,
-       "dif": null
+       "dif": 88.8
       },
       "hmld": {
-       "obj": null,
+       "obj": 1350.2,
        "real": 1433,
-       "dif": null
+       "dif": 82.8
       },
       "hsr": {
-       "obj": null,
+       "obj": 482.8,
        "real": 588,
-       "dif": null
+       "dif": 105.2
       },
       "sprint": {
-       "obj": null,
+       "obj": 12.0,
        "real": 14,
-       "dif": null
+       "dif": 2.0
       },
       "acc": {
-       "obj": null,
+       "obj": 20.0,
        "real": 28,
-       "dif": null
+       "dif": 8.0
       },
       "dec": {
-       "obj": null,
+       "obj": 38.0,
        "real": 46,
-       "dif": null
+       "dif": 8.0
       },
       "velMax": 31.07,
       "playerLoad": 909,
@@ -82202,34 +82202,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Catalá, A.",
       "grupo": "DL",
       "distancia": {
-       "obj": null,
+       "obj": 10621.8,
        "real": 11101,
-       "dif": null
+       "dif": 479.2
       },
       "hmld": {
-       "obj": null,
+       "obj": 1890.2,
        "real": 1939,
-       "dif": null
+       "dif": 48.8
       },
       "hsr": {
-       "obj": null,
+       "obj": 629.8,
        "real": 571,
-       "dif": null
+       "dif": -58.8
       },
       "sprint": {
-       "obj": null,
+       "obj": 13.2,
        "real": 10,
-       "dif": null
+       "dif": -3.2
       },
       "acc": {
-       "obj": null,
+       "obj": 35.0,
        "real": 35,
-       "dif": null
+       "dif": 0.0
       },
       "dec": {
-       "obj": null,
+       "obj": 57.0,
        "real": 55,
-       "dif": null
+       "dif": -2.0
       },
       "velMax": 32.16,
       "playerLoad": 1044,
@@ -82279,34 +82279,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Bover, R.",
       "grupo": "M",
       "distancia": {
-       "obj": null,
+       "obj": 9773.9,
        "real": 10247,
-       "dif": null
+       "dif": 473.1
       },
       "hmld": {
-       "obj": null,
+       "obj": 1596.1,
        "real": 1511,
-       "dif": null
+       "dif": -85.1
       },
       "hsr": {
-       "obj": null,
+       "obj": 467.9,
        "real": 514,
-       "dif": null
+       "dif": 46.1
       },
       "sprint": {
-       "obj": null,
+       "obj": 8.4,
        "real": 9,
-       "dif": null
+       "dif": 0.6
       },
       "acc": {
-       "obj": null,
+       "obj": 10.1,
        "real": 9,
-       "dif": null
+       "dif": -1.1
       },
       "dec": {
-       "obj": null,
+       "obj": 30.2,
        "real": 20,
-       "dif": null
+       "dif": -10.2
       },
       "velMax": 27.76,
       "playerLoad": 876,
@@ -82317,34 +82317,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Soler, M.",
       "grupo": "M",
       "distancia": {
-       "obj": null,
+       "obj": 10355.8,
        "real": 11065,
-       "dif": null
+       "dif": 709.2
       },
       "hmld": {
-       "obj": null,
+       "obj": 1577.2,
        "real": 1570,
-       "dif": null
+       "dif": -7.2
       },
       "hsr": {
-       "obj": null,
+       "obj": 336.2,
        "real": 475,
-       "dif": null
+       "dif": 138.8
       },
       "sprint": {
-       "obj": null,
+       "obj": 4.8,
        "real": 8,
-       "dif": null
+       "dif": 3.2
       },
       "acc": {
-       "obj": null,
+       "obj": 18.0,
        "real": 10,
-       "dif": null
+       "dif": -8.0
       },
       "dec": {
-       "obj": null,
+       "obj": 39.0,
        "real": 27,
-       "dif": null
+       "dif": -12.0
       },
       "velMax": 27.84,
       "playerLoad": 1126,
@@ -82355,34 +82355,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Bah, A.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 2238.3,
        "real": 2310,
-       "dif": null
+       "dif": 71.7
       },
       "hmld": {
-       "obj": null,
+       "obj": 401.0,
        "real": 498,
-       "dif": null
+       "dif": 97.0
       },
       "hsr": {
-       "obj": null,
+       "obj": 126.3,
        "real": 159,
-       "dif": null
+       "dif": 32.7
       },
       "sprint": {
-       "obj": null,
+       "obj": 2.8,
        "real": 4,
-       "dif": null
+       "dif": 1.2
       },
       "acc": {
-       "obj": null,
+       "obj": 8.0,
        "real": 9,
-       "dif": null
+       "dif": 1.0
       },
       "dec": {
-       "obj": null,
+       "obj": 12.7,
        "real": 17,
-       "dif": null
+       "dif": 4.3
       },
       "velMax": 30.04,
       "playerLoad": 210,
@@ -82469,39 +82469,40 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": null,
+      "obj": 7395.3,
       "real": 7668.43,
-      "dif": null
+      "dif": 273.1
      },
      "hmld": {
-      "obj": null,
+      "obj": 1196.2,
       "real": 1235.79,
-      "dif": null
+      "dif": 39.6
      },
      "hsr": {
-      "obj": null,
+      "obj": 345.4,
       "real": 363.86,
-      "dif": null
+      "dif": 18.5
      },
      "sprint": {
-      "obj": null,
+      "obj": 7.0,
       "real": 6.79,
-      "dif": null
+      "dif": -0.2
      },
      "acc": {
-      "obj": null,
+      "obj": 18.6,
       "real": 20.14,
-      "dif": null
+      "dif": 1.5
      },
      "dec": {
-      "obj": null,
+      "obj": 29.6,
       "real": 31.29,
-      "dif": null
+      "dif": 1.7
      },
      "velMax": 28.86,
      "playerLoad": 769.36,
      "duracion": "1:34:53"
-    }
+    },
+    "objNota": "Objetivo = lo que habría hecho cada jugador con su REF_PARTIDO de antes de este partido en los minutos que jugó (fórmula de fatiga, duración del partido 94.9'). REF previa reconstruida (±0,1)."
    }
   },
   "extras": {
@@ -92141,34 +92142,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Espiñeiro, A.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 3041.9,
        "real": 3094,
-       "dif": null
+       "dif": 52.1
       },
       "hmld": {
-       "obj": null,
+       "obj": 449.5,
        "real": 491,
-       "dif": null
+       "dif": 41.5
       },
       "hsr": {
-       "obj": null,
+       "obj": 139.4,
        "real": 166,
-       "dif": null
+       "dif": 26.6
       },
       "sprint": {
-       "obj": null,
+       "obj": 3.0,
        "real": 4,
-       "dif": null
+       "dif": 1.0
       },
       "acc": {
-       "obj": null,
+       "obj": 7.4,
        "real": 8,
-       "dif": null
+       "dif": 0.6
       },
       "dec": {
-       "obj": null,
+       "obj": 11.1,
        "real": 12,
-       "dif": null
+       "dif": 0.9
       },
       "velMax": 30.38,
       "playerLoad": 321,
@@ -92218,34 +92219,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Martín, A.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 5219.3,
        "real": 5558,
-       "dif": null
+       "dif": 338.7
       },
       "hmld": {
-       "obj": null,
+       "obj": 744.8,
        "real": 950,
-       "dif": null
+       "dif": 205.2
       },
       "hsr": {
-       "obj": null,
+       "obj": 181.9,
        "real": 226,
-       "dif": null
+       "dif": 44.1
       },
       "sprint": {
-       "obj": null,
+       "obj": 3.6,
        "real": 5,
-       "dif": null
+       "dif": 1.4
       },
       "acc": {
-       "obj": null,
+       "obj": 13.6,
        "real": 18,
-       "dif": null
+       "dif": 4.4
       },
       "dec": {
-       "obj": null,
+       "obj": 17.0,
        "real": 24,
-       "dif": null
+       "dif": 7.0
       },
       "velMax": 29.82,
       "playerLoad": 536,
@@ -92256,34 +92257,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Bonet, G.",
       "grupo": "M",
       "distancia": {
-       "obj": null,
+       "obj": 7753.3,
        "real": 7417,
-       "dif": null
+       "dif": -336.3
       },
       "hmld": {
-       "obj": null,
+       "obj": 1300.9,
        "real": 1208,
-       "dif": null
+       "dif": -92.9
       },
       "hsr": {
-       "obj": null,
+       "obj": 306.8,
        "real": 277,
-       "dif": null
+       "dif": -29.8
       },
       "sprint": {
-       "obj": null,
+       "obj": 3.5,
        "real": 4,
-       "dif": null
+       "dif": 0.5
       },
       "acc": {
-       "obj": null,
+       "obj": 22.9,
        "real": 26,
-       "dif": null
+       "dif": 3.1
       },
       "dec": {
-       "obj": null,
+       "obj": 34.5,
        "real": 39,
-       "dif": null
+       "dif": 4.5
       },
       "velMax": 27.92,
       "playerLoad": 716,
@@ -92294,34 +92295,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Riera, N.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 8964.9,
        "real": 9259,
-       "dif": null
+       "dif": 294.1
       },
       "hmld": {
-       "obj": null,
+       "obj": 1464.1,
        "real": 1695,
-       "dif": null
+       "dif": 230.9
       },
       "hsr": {
-       "obj": null,
+       "obj": 438.3,
        "real": 576,
-       "dif": null
+       "dif": 137.7
       },
       "sprint": {
-       "obj": null,
+       "obj": 8.5,
        "real": 11,
-       "dif": null
+       "dif": 2.5
       },
       "acc": {
-       "obj": null,
+       "obj": 22.7,
        "real": 25,
-       "dif": null
+       "dif": 2.3
       },
       "dec": {
-       "obj": null,
+       "obj": 36.5,
        "real": 37,
-       "dif": null
+       "dif": 0.5
       },
       "velMax": 29.88,
       "playerLoad": 878,
@@ -92332,34 +92333,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Cherta, J.",
       "grupo": "M",
       "distancia": {
-       "obj": null,
+       "obj": 9061.2,
        "real": 8974,
-       "dif": null
+       "dif": -87.2
       },
       "hmld": {
-       "obj": null,
+       "obj": 1441.7,
        "real": 1590,
-       "dif": null
+       "dif": 148.3
       },
       "hsr": {
-       "obj": null,
+       "obj": 348.4,
        "real": 514,
-       "dif": null
+       "dif": 165.6
       },
       "sprint": {
-       "obj": null,
+       "obj": 6.1,
        "real": 14,
-       "dif": null
+       "dif": 7.9
       },
       "acc": {
-       "obj": null,
+       "obj": 19.2,
        "real": 29,
-       "dif": null
+       "dif": 9.8
       },
       "dec": {
-       "obj": null,
+       "obj": 30.4,
        "real": 35,
-       "dif": null
+       "dif": 4.6
       },
       "velMax": 30.03,
       "playerLoad": 1054,
@@ -92370,34 +92371,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Caballero, R.",
       "grupo": "DL",
       "distancia": {
-       "obj": null,
+       "obj": 9290.8,
        "real": 9594,
-       "dif": null
+       "dif": 303.2
       },
       "hmld": {
-       "obj": null,
+       "obj": 1498.2,
        "real": 1561,
-       "dif": null
+       "dif": 62.8
       },
       "hsr": {
-       "obj": null,
+       "obj": 483.0,
        "real": 672,
-       "dif": null
+       "dif": 189.0
       },
       "sprint": {
-       "obj": null,
+       "obj": 9.6,
        "real": 17,
-       "dif": null
+       "dif": 7.4
       },
       "acc": {
-       "obj": null,
+       "obj": 39.0,
        "real": 28,
-       "dif": null
+       "dif": -11.0
       },
       "dec": {
-       "obj": null,
+       "obj": 49.8,
        "real": 37,
-       "dif": null
+       "dif": -12.8
       },
       "velMax": 30.3,
       "playerLoad": 920,
@@ -92447,34 +92448,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Martín, M.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 5428.6,
        "real": 5611,
-       "dif": null
+       "dif": 182.4
       },
       "hmld": {
-       "obj": null,
+       "obj": 974.9,
        "real": 1083,
-       "dif": null
+       "dif": 108.1
       },
       "hsr": {
-       "obj": null,
+       "obj": 304.5,
        "real": 421,
-       "dif": null
+       "dif": 116.5
       },
       "sprint": {
-       "obj": null,
+       "obj": 7.0,
        "real": 11,
-       "dif": null
+       "dif": 4.0
       },
       "acc": {
-       "obj": null,
+       "obj": 14.6,
        "real": 14,
-       "dif": null
+       "dif": -0.6
       },
       "dec": {
-       "obj": null,
+       "obj": 20.1,
        "real": 25,
-       "dif": null
+       "dif": 4.9
       },
       "velMax": 31.33,
       "playerLoad": 580,
@@ -92485,34 +92486,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Hernández, P.",
       "grupo": "M",
       "distancia": {
-       "obj": null,
+       "obj": 5099.7,
        "real": 5387,
-       "dif": null
+       "dif": 287.3
       },
       "hmld": {
-       "obj": null,
+       "obj": 798.5,
        "real": 843,
-       "dif": null
+       "dif": 44.5
       },
       "hsr": {
-       "obj": null,
+       "obj": 110.0,
        "real": 116,
-       "dif": null
+       "dif": 6.0
       },
       "sprint": {
-       "obj": null,
+       "obj": 1.0,
        "real": 1,
-       "dif": null
+       "dif": 0.0
       },
       "acc": {
-       "obj": null,
+       "obj": 18.4,
        "real": 19,
-       "dif": null
+       "dif": 0.6
       },
       "dec": {
-       "obj": null,
+       "obj": 26.3,
        "real": 28,
-       "dif": null
+       "dif": 1.7
       },
       "velMax": 30.1,
       "playerLoad": 502,
@@ -92563,34 +92564,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Catalá, R.",
       "grupo": "DL",
       "distancia": {
-       "obj": null,
+       "obj": 5378.1,
        "real": 5430,
-       "dif": null
+       "dif": 51.9
       },
       "hmld": {
-       "obj": null,
+       "obj": 969.6,
        "real": 833,
-       "dif": null
+       "dif": -136.6
       },
       "hsr": {
-       "obj": null,
+       "obj": 340.1,
        "real": 287,
-       "dif": null
+       "dif": -53.1
       },
       "sprint": {
-       "obj": null,
+       "obj": 8.3,
        "real": 7,
-       "dif": null
+       "dif": -1.3
       },
       "acc": {
-       "obj": null,
+       "obj": 25.7,
        "real": 16,
-       "dif": null
+       "dif": -9.7
       },
       "dec": {
-       "obj": null,
+       "obj": 28.6,
        "real": 20,
-       "dif": null
+       "dif": -8.6
       },
       "velMax": 30.93,
       "playerLoad": 531,
@@ -92601,34 +92602,34 @@ window.GPS_DATA_ALL = {
       "jugador": "López, I.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 9356.6,
        "real": 9703,
-       "dif": null
+       "dif": 346.4
       },
       "hmld": {
-       "obj": null,
+       "obj": 1391.6,
        "real": 1386,
-       "dif": null
+       "dif": -5.6
       },
       "hsr": {
-       "obj": null,
+       "obj": 535.4,
        "real": 500,
-       "dif": null
+       "dif": -35.4
       },
       "sprint": {
-       "obj": null,
+       "obj": 13.0,
        "real": 13,
-       "dif": null
+       "dif": 0.0
       },
       "acc": {
-       "obj": null,
+       "obj": 24.0,
        "real": 33,
-       "dif": null
+       "dif": 9.0
       },
       "dec": {
-       "obj": null,
+       "obj": 42.0,
        "real": 40,
-       "dif": null
+       "dif": -2.0
       },
       "velMax": 30.33,
       "playerLoad": 925,
@@ -92639,34 +92640,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Catalá, A.",
       "grupo": "DL",
       "distancia": {
-       "obj": null,
+       "obj": 10861.4,
        "real": 10950,
-       "dif": null
+       "dif": 88.6
       },
       "hmld": {
-       "obj": null,
+       "obj": 1914.6,
        "real": 1991,
-       "dif": null
+       "dif": 76.4
       },
       "hsr": {
-       "obj": null,
+       "obj": 600.4,
        "real": 783,
-       "dif": null
+       "dif": 182.6
       },
       "sprint": {
-       "obj": null,
+       "obj": 11.6,
        "real": 14,
-       "dif": null
+       "dif": 2.4
       },
       "acc": {
-       "obj": null,
+       "obj": 35.0,
        "real": 36,
-       "dif": null
+       "dif": 1.0
       },
       "dec": {
-       "obj": null,
+       "obj": 56.0,
        "real": 68,
-       "dif": null
+       "dif": 12.0
       },
       "velMax": 30.97,
       "playerLoad": 1016,
@@ -92716,34 +92717,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Bover, R.",
       "grupo": "M",
       "distancia": {
-       "obj": null,
+       "obj": 5685.8,
        "real": 5579,
-       "dif": null
+       "dif": -106.8
       },
       "hmld": {
-       "obj": null,
+       "obj": 882.4,
        "real": 902,
-       "dif": null
+       "dif": 19.6
       },
       "hsr": {
-       "obj": null,
+       "obj": 278.8,
        "real": 263,
-       "dif": null
+       "dif": -15.8
       },
       "sprint": {
-       "obj": null,
+       "obj": 4.9,
        "real": 2,
-       "dif": null
+       "dif": -2.9
       },
       "acc": {
-       "obj": null,
+       "obj": 5.4,
        "real": 10,
-       "dif": null
+       "dif": 4.6
       },
       "dec": {
-       "obj": null,
+       "obj": 14.3,
        "real": 26,
-       "dif": null
+       "dif": 11.7
       },
       "velMax": 28.89,
       "playerLoad": 463,
@@ -92754,34 +92755,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Soler, M.",
       "grupo": "M",
       "distancia": {
-       "obj": null,
+       "obj": 10710.4,
        "real": 10882,
-       "dif": null
+       "dif": 171.6
       },
       "hmld": {
-       "obj": null,
+       "obj": 1573.6,
        "real": 1557,
-       "dif": null
+       "dif": -16.6
       },
       "hsr": {
-       "obj": null,
+       "obj": 405.6,
        "real": 307,
-       "dif": null
+       "dif": -98.6
       },
       "sprint": {
-       "obj": null,
+       "obj": 6.4,
        "real": 6,
-       "dif": null
+       "dif": -0.4
       },
       "acc": {
-       "obj": null,
+       "obj": 14.0,
        "real": 16,
-       "dif": null
+       "dif": 2.0
       },
       "dec": {
-       "obj": null,
+       "obj": 33.0,
        "real": 34,
-       "dif": null
+       "dif": 1.0
       },
       "velMax": 28.32,
       "playerLoad": 1109,
@@ -92792,34 +92793,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Bah, A.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 5562.9,
        "real": 5834,
-       "dif": null
+       "dif": 271.1
       },
       "hmld": {
-       "obj": null,
+       "obj": 1099.5,
        "real": 1042,
-       "dif": null
+       "dif": -57.5
       },
       "hsr": {
-       "obj": null,
+       "obj": 348.9,
        "real": 302,
-       "dif": null
+       "dif": -46.9
       },
       "sprint": {
-       "obj": null,
+       "obj": 8.3,
        "real": 3,
-       "dif": null
+       "dif": -5.3
       },
       "acc": {
-       "obj": null,
+       "obj": 20.8,
        "real": 20,
-       "dif": null
+       "dif": -0.8
       },
       "dec": {
-       "obj": null,
+       "obj": 36.3,
        "real": 31,
-       "dif": null
+       "dif": -5.3
       },
       "velMax": 29.65,
       "playerLoad": 498,
@@ -92830,34 +92831,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Llinares, I.",
       "grupo": "M",
       "distancia": {
-       "obj": null,
+       "obj": 2114.7,
        "real": 2011,
-       "dif": null
+       "dif": -103.7
       },
       "hmld": {
-       "obj": null,
+       "obj": 394.9,
        "real": 344,
-       "dif": null
+       "dif": -50.9
       },
       "hsr": {
-       "obj": null,
+       "obj": 147.0,
        "real": 110,
-       "dif": null
+       "dif": -37.0
       },
       "sprint": {
-       "obj": null,
+       "obj": 3.2,
        "real": 1,
-       "dif": null
+       "dif": -2.2
       },
       "acc": {
-       "obj": null,
+       "obj": 6.4,
        "real": 3,
-       "dif": null
+       "dif": -3.4
       },
       "dec": {
-       "obj": null,
+       "obj": 10.2,
        "real": 12,
-       "dif": null
+       "dif": 1.8
       },
       "velMax": 28.96,
       "playerLoad": 222,
@@ -92905,38 +92906,39 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": null,
+      "obj": 6902.0,
       "real": 7018.9,
-      "dif": null
+      "dif": 116.9
      },
      "hmld": {
-      "obj": null,
+      "obj": 1126.6,
       "real": 1165.1,
-      "dif": null
+      "dif": 38.5
      },
      "hsr": {
-      "obj": null,
+      "obj": 331.2,
       "real": 368,
-      "dif": null
+      "dif": 36.8
      },
      "sprint": {
-      "obj": null,
+      "obj": 6.5,
       "real": 7.5,
-      "dif": null
+      "dif": 1.0
      },
      "acc": {
-      "obj": null,
+      "obj": 19.3,
       "real": 20.1,
-      "dif": null
+      "dif": 0.8
      },
      "dec": {
-      "obj": null,
+      "obj": 29.7,
       "real": 31.2,
-      "dif": null
+      "dif": 1.5
      },
      "velMax": 29.85,
      "playerLoad": 684.7
-    }
+    },
+    "objNota": "Objetivo = lo que habría hecho cada jugador con su REF_PARTIDO de antes de este partido en los minutos que jugó (fórmula de fatiga, duración del partido 100.6'). REF previa reconstruida (±0,1)."
    }
   },
   "extras": {
@@ -102576,34 +102578,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Martín, A.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 10275.5,
        "real": 9970,
-       "dif": null
+       "dif": -305.5
       },
       "hmld": {
-       "obj": null,
+       "obj": 1615.9,
        "real": 1222,
-       "dif": null
+       "dif": -393.9
       },
       "hsr": {
-       "obj": null,
+       "obj": 388.9,
        "real": 276,
-       "dif": null
+       "dif": -112.9
       },
       "sprint": {
-       "obj": null,
+       "obj": 8.2,
        "real": 6,
-       "dif": null
+       "dif": -2.2
       },
       "acc": {
-       "obj": null,
+       "obj": 30.1,
        "real": 16,
-       "dif": null
+       "dif": -14.1
       },
       "dec": {
-       "obj": null,
+       "obj": 39.1,
        "real": 29,
-       "dif": null
+       "dif": -10.1
       },
       "velMax": 29.34,
       "playerLoad": 974,
@@ -102653,34 +102655,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Riera, N.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 11094.6,
        "real": 11452,
-       "dif": null
+       "dif": 357.4
       },
       "hmld": {
-       "obj": null,
+       "obj": 1923.2,
        "real": 1895,
-       "dif": null
+       "dif": -28.2
       },
       "hsr": {
-       "obj": null,
+       "obj": 617.5,
        "real": 713,
-       "dif": null
+       "dif": 95.5
       },
       "sprint": {
-       "obj": null,
+       "obj": 11.9,
        "real": 15,
-       "dif": null
+       "dif": 3.1
       },
       "acc": {
-       "obj": null,
+       "obj": 29.0,
        "real": 40,
-       "dif": null
+       "dif": 11.0
       },
       "dec": {
-       "obj": null,
+       "obj": 44.7,
        "real": 33,
-       "dif": null
+       "dif": -11.7
       },
       "velMax": 31.14,
       "playerLoad": 1109,
@@ -102691,34 +102693,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Cherta, J.",
       "grupo": "M",
       "distancia": {
-       "obj": null,
+       "obj": 10048.0,
        "real": 10240,
-       "dif": null
+       "dif": 192.0
       },
       "hmld": {
-       "obj": null,
+       "obj": 1689.1,
        "real": 1513,
-       "dif": null
+       "dif": -176.1
       },
       "hsr": {
-       "obj": null,
+       "obj": 480.5,
        "real": 437,
-       "dif": null
+       "dif": -43.5
       },
       "sprint": {
-       "obj": null,
+       "obj": 11.2,
        "real": 11,
-       "dif": null
+       "dif": -0.2
       },
       "acc": {
-       "obj": null,
+       "obj": 26.8,
        "real": 30,
-       "dif": null
+       "dif": 3.2
       },
       "dec": {
-       "obj": null,
+       "obj": 36.4,
        "real": 37,
-       "dif": null
+       "dif": 0.6
       },
       "velMax": 29.35,
       "playerLoad": 1239,
@@ -102729,34 +102731,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Caballero, R.",
       "grupo": "DL",
       "distancia": {
-       "obj": null,
+       "obj": 9442.4,
        "real": 9785,
-       "dif": null
+       "dif": 342.6
       },
       "hmld": {
-       "obj": null,
+       "obj": 1529.6,
        "real": 1523,
-       "dif": null
+       "dif": -6.6
       },
       "hsr": {
-       "obj": null,
+       "obj": 577.5,
        "real": 583,
-       "dif": null
+       "dif": 5.5
       },
       "sprint": {
-       "obj": null,
+       "obj": 13.3,
        "real": 15,
-       "dif": null
+       "dif": 1.7
       },
       "acc": {
-       "obj": null,
+       "obj": 33.5,
        "real": 28,
-       "dif": null
+       "dif": -5.5
       },
       "dec": {
-       "obj": null,
+       "obj": 43.4,
        "real": 52,
-       "dif": null
+       "dif": 8.6
       },
       "velMax": 31,
       "playerLoad": 934,
@@ -102845,34 +102847,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Hernández, P.",
       "grupo": "M",
       "distancia": {
-       "obj": null,
+       "obj": 971.5,
        "real": 972,
-       "dif": null
+       "dif": 0.5
       },
       "hmld": {
-       "obj": null,
+       "obj": 152.1,
        "real": 152,
-       "dif": null
+       "dif": -0.1
       },
       "hsr": {
-       "obj": null,
+       "obj": 20.9,
        "real": 21,
-       "dif": null
+       "dif": 0.1
       },
       "sprint": {
-       "obj": null,
+       "obj": 0.2,
        "real": 0,
-       "dif": null
+       "dif": -0.2
       },
       "acc": {
-       "obj": null,
+       "obj": 3.5,
        "real": 4,
-       "dif": null
+       "dif": 0.5
       },
       "dec": {
-       "obj": null,
+       "obj": 5.0,
        "real": 5,
-       "dif": null
+       "dif": 0.0
       },
       "velMax": null,
       "playerLoad": 94,
@@ -102884,34 +102886,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Anglada, H.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 3007.5,
        "real": 3008,
-       "dif": null
+       "dif": 0.5
       },
       "hmld": {
-       "obj": null,
+       "obj": 336.1,
        "real": 336,
-       "dif": null
+       "dif": -0.1
       },
       "hsr": {
-       "obj": null,
+       "obj": 80.9,
        "real": 81,
-       "dif": null
+       "dif": 0.1
       },
       "sprint": {
-       "obj": null,
+       "obj": 1.0,
        "real": 1,
-       "dif": null
+       "dif": 0.0
       },
       "acc": {
-       "obj": null,
+       "obj": 5.2,
        "real": 5,
-       "dif": null
+       "dif": -0.2
       },
       "dec": {
-       "obj": null,
+       "obj": 6.2,
        "real": 6,
-       "dif": null
+       "dif": -0.2
       },
       "velMax": null,
       "playerLoad": 290,
@@ -102923,34 +102925,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Catalá, R.",
       "grupo": "DL",
       "distancia": {
-       "obj": null,
+       "obj": 10227.6,
        "real": 10764,
-       "dif": null
+       "dif": 536.4
       },
       "hmld": {
-       "obj": null,
+       "obj": 1705.8,
        "real": 1593,
-       "dif": null
+       "dif": -112.8
       },
       "hsr": {
-       "obj": null,
+       "obj": 593.4,
        "real": 431,
-       "dif": null
+       "dif": -162.4
       },
       "sprint": {
-       "obj": null,
+       "obj": 14.5,
        "real": 9,
-       "dif": null
+       "dif": -5.5
       },
       "acc": {
-       "obj": null,
+       "obj": 39.5,
        "real": 39,
-       "dif": null
+       "dif": -0.5
       },
       "dec": {
-       "obj": null,
+       "obj": 46.0,
        "real": 32,
-       "dif": null
+       "dif": -14.0
       },
       "velMax": 29.89,
       "playerLoad": 969,
@@ -102961,34 +102963,34 @@ window.GPS_DATA_ALL = {
       "jugador": "López, I.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 6322.0,
        "real": 6376,
-       "dif": null
+       "dif": 54.0
       },
       "hmld": {
-       "obj": null,
+       "obj": 921.3,
        "real": 959,
-       "dif": null
+       "dif": 37.7
       },
       "hsr": {
-       "obj": null,
+       "obj": 343.4,
        "real": 333,
-       "dif": null
+       "dif": -10.4
       },
       "sprint": {
-       "obj": null,
+       "obj": 8.6,
        "real": 7,
-       "dif": null
+       "dif": -1.6
       },
       "acc": {
-       "obj": null,
+       "obj": 18.9,
        "real": 16,
-       "dif": null
+       "dif": -2.9
       },
       "dec": {
-       "obj": null,
+       "obj": 27.2,
        "real": 35,
-       "dif": null
+       "dif": 7.8
       },
       "velMax": 30.36,
       "playerLoad": 617,
@@ -102999,34 +103001,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Catalá, A.",
       "grupo": "DL",
       "distancia": {
-       "obj": null,
+       "obj": 7679.6,
        "real": 7948,
-       "dif": null
+       "dif": 268.4
       },
       "hmld": {
-       "obj": null,
+       "obj": 1375.1,
        "real": 1619,
-       "dif": null
+       "dif": 243.9
       },
       "hsr": {
-       "obj": null,
+       "obj": 487.1,
        "real": 545,
-       "dif": null
+       "dif": 57.9
       },
       "sprint": {
-       "obj": null,
+       "obj": 9.0,
        "real": 13,
-       "dif": null
+       "dif": 4.0
       },
       "acc": {
-       "obj": null,
+       "obj": 25.0,
        "real": 37,
-       "dif": null
+       "dif": 12.0
       },
       "dec": {
-       "obj": null,
+       "obj": 43.7,
        "real": 57,
-       "dif": null
+       "dif": 13.3
       },
       "velMax": 31.67,
       "playerLoad": 740,
@@ -103076,34 +103078,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Bover, R.",
       "grupo": "M",
       "distancia": {
-       "obj": null,
+       "obj": 10740.3,
        "real": 10917,
-       "dif": null
+       "dif": 176.7
       },
       "hmld": {
-       "obj": null,
+       "obj": 1701.3,
        "real": 1241,
-       "dif": null
+       "dif": -460.3
       },
       "hsr": {
-       "obj": null,
+       "obj": 516.6,
        "real": 232,
-       "dif": null
+       "dif": -284.6
       },
       "sprint": {
-       "obj": null,
+       "obj": 6.6,
        "real": 4,
-       "dif": null
+       "dif": -2.6
       },
       "acc": {
-       "obj": null,
+       "obj": 14.7,
        "real": 11,
-       "dif": null
+       "dif": -3.7
       },
       "dec": {
-       "obj": null,
+       "obj": 38.4,
        "real": 27,
-       "dif": null
+       "dif": -11.4
       },
       "velMax": 29.58,
       "playerLoad": 897,
@@ -103114,34 +103116,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Soler, M.",
       "grupo": "M",
       "distancia": {
-       "obj": null,
+       "obj": 10796.2,
        "real": 10520,
-       "dif": null
+       "dif": -276.2
       },
       "hmld": {
-       "obj": null,
+       "obj": 1565.3,
        "real": 1480,
-       "dif": null
+       "dif": -85.3
       },
       "hsr": {
-       "obj": null,
+       "obj": 356.3,
        "real": 366,
-       "dif": null
+       "dif": 9.7
       },
       "sprint": {
-       "obj": null,
+       "obj": 6.2,
        "real": 10,
-       "dif": null
+       "dif": 3.8
       },
       "acc": {
-       "obj": null,
+       "obj": 15.0,
        "real": 14,
-       "dif": null
+       "dif": -1.0
       },
       "dec": {
-       "obj": null,
+       "obj": 33.5,
        "real": 39,
-       "dif": null
+       "dif": 5.5
       },
       "velMax": 29.42,
       "playerLoad": 1069,
@@ -103152,34 +103154,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Bah, A.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 10784.7,
        "real": 10618,
-       "dif": null
+       "dif": -166.7
       },
       "hmld": {
-       "obj": null,
+       "obj": 2026.5,
        "real": 1634,
-       "dif": null
+       "dif": -392.5
       },
       "hsr": {
-       "obj": null,
+       "obj": 616.0,
        "real": 340,
-       "dif": null
+       "dif": -276.0
       },
       "sprint": {
-       "obj": null,
+       "obj": 10.7,
        "real": 3,
-       "dif": null
+       "dif": -7.7
       },
       "acc": {
-       "obj": null,
+       "obj": 38.6,
        "real": 35,
-       "dif": null
+       "dif": -3.6
       },
       "dec": {
-       "obj": null,
+       "obj": 63.7,
        "real": 49,
-       "dif": null
+       "dif": -14.7
       },
       "velMax": 27.4,
       "playerLoad": 934,
@@ -103190,34 +103192,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Llinares, I.",
       "grupo": "M",
       "distancia": {
-       "obj": null,
+       "obj": 3549.9,
        "real": 3504,
-       "dif": null
+       "dif": -45.9
       },
       "hmld": {
-       "obj": null,
+       "obj": 635.8,
        "real": 673,
-       "dif": null
+       "dif": 37.2
       },
       "hsr": {
-       "obj": null,
+       "obj": 221.1,
        "real": 239,
-       "dif": null
+       "dif": 17.9
       },
       "sprint": {
-       "obj": null,
+       "obj": 3.6,
        "real": 4,
-       "dif": null
+       "dif": 0.4
       },
       "acc": {
-       "obj": null,
+       "obj": 8.1,
        "real": 17,
-       "dif": null
+       "dif": 8.9
       },
       "dec": {
-       "obj": null,
+       "obj": 19.1,
        "real": 25,
-       "dif": null
+       "dif": 5.9
       },
       "velMax": 29.46,
       "playerLoad": 344,
@@ -103265,38 +103267,39 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": null,
+      "obj": 8072.3,
       "real": 8159.5,
-      "dif": null
+      "dif": 87.2
      },
      "hmld": {
-      "obj": null,
+      "obj": 1321.3,
       "real": 1218.5,
-      "dif": null
+      "dif": -102.8
      },
      "hsr": {
-      "obj": null,
+      "obj": 407.7,
       "real": 353.6,
-      "dif": null
+      "dif": -54.1
      },
      "sprint": {
-      "obj": null,
+      "obj": 8.1,
       "real": 7.5,
-      "dif": null
+      "dif": -0.6
      },
      "acc": {
-      "obj": null,
+      "obj": 22.1,
       "real": 22.5,
-      "dif": null
+      "dif": 0.4
      },
      "dec": {
-      "obj": null,
+      "obj": 34.3,
       "real": 32.8,
-      "dif": null
+      "dif": -1.5
      },
      "velMax": 29.87,
      "playerLoad": 785.4
-    }
+    },
+    "objNota": "Objetivo = lo que habría hecho cada jugador con su REF_PARTIDO de antes de este partido en los minutos que jugó (fórmula de fatiga, duración del partido 99.3')."
    }
   },
   "extras": {

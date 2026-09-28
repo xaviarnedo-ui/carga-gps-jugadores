@@ -844,6 +844,75 @@ def compute_dispo(micro_data, ref_players):
 
 
 # ---------------------------------------------------------------- main
+def _minutos(dur):
+    """'1:39:16' / '0:08:49' / '99.3' -> minutos (float)."""
+    if dur in (None, ""):
+        return None
+    s = str(dur).strip()
+    if ":" in s:
+        p = [int(x) for x in s.split(":")]
+        return p[0] * 60 + p[1] + p[2] / 60 if len(p) == 3 else p[0] + p[1] / 60
+    try:
+        return float(s.replace(",", "."))
+    except ValueError:
+        return None
+
+
+def aplicar_objetivos_partido(micro_data, ref):
+    """Objetivo de cada jugador en los partidos de Liga (J2 en adelante): lo que habría hecho con
+    su REF_PARTIDO de justo antes de ese partido en los minutos que jugó (fórmula de fatiga
+    inversa, T = duración real del partido). J1 y amistosos: sin objetivo (sin historial de REF)."""
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from pipeline import ref_historial
+    ruta_log = os.path.join(GPS_DIR, "pipeline_ref_log.json")
+    log = json.load(open(ruta_log, encoding="utf-8")) if os.path.exists(ruta_log) else {}
+    eventos, partidos = [], []
+    for m in micro_data.values():
+        for k, s in m["partidos"].items():
+            mj = re.match(r"J(\d+)$", k)
+            if not mj or int(mj.group(1)) < 2 or s.get("estimado") or not s.get("date"):
+                continue
+            mins = {p["dorsal"]: _minutos(p.get("duracion")) for p in s["players"]}
+            T = max([v for v in mins.values() if v] or [0]) or None
+            if not T:
+                continue                                  # partido aún sin datos
+            reales = {p["dorsal"]: ({k2: (p.get(k2) or {}).get("real") for k2 in METRICS}, mins[p["dorsal"]])
+                      for p in s["players"] if not p.get("estimado") and mins.get(p["dorsal"])
+                      and (p.get("distancia") or {}).get("real") is not None}
+            eventos.append((s["date"], k, reales, T))
+            partidos.append((k, s, mins, T))
+        for k, s in m.get("extras", {}).items():
+            if k in log and s.get("date"):
+                reales = {p["dorsal"]: ({k2: (p.get(k2) or {}).get("real") for k2 in METRICS},
+                                        _minutos(p.get("duracion"))) for p in s["players"]}
+                eventos.append((s["date"], k, reales, log[k].get("duracion")))
+    antes = ref_historial.ref_antes(ref, eventos, log)
+    for k, s, mins, T in partidos:
+        r_ant = antes.get(k, {})
+        con_obj = []
+        for p in s["players"]:
+            if (p.get("distancia") or {}).get("real") is None or not mins.get(p["dorsal"]):
+                continue
+            obj = ref_historial.objetivo_partido(r_ant.get(p["dorsal"]), mins[p["dorsal"]], T)
+            if not obj:
+                continue
+            for m in METRICS:
+                c = p.get(m) or {}
+                c["obj"] = obj[m]
+                c["dif"] = round(c["real"] - obj[m], 1) if c.get("real") is not None and obj[m] is not None else None
+                p[m] = c
+            con_obj.append(p)
+        ta = s.get("teamAvg") or {}
+        for m in METRICS:
+            vals = [p[m]["obj"] for p in con_obj if p[m].get("obj") is not None]
+            if isinstance(ta.get(m), dict) and vals:
+                ta[m]["obj"] = round(sum(vals) / len(vals), 1)
+                ta[m]["dif"] = round(ta[m]["real"] - ta[m]["obj"], 1) if ta[m].get("real") is not None else None
+        s["objNota"] = (f"Objetivo = lo que habría hecho cada jugador con su REF_PARTIDO de antes de este partido "
+                        f"en los minutos que jugó (fórmula de fatiga, duración del partido {T:.1f}')."
+                        + (" REF previa reconstruida (±0,1)." if log.get(k, {}).get("bloqueado") else ""))
+
+
 def load_lesiones(ref_players):
     """Registro de lesiones (GPS/lesiones.json, lo mantiene gps.py): baja, alta, tipo."""
     ruta = os.path.join(GPS_DIR, "lesiones.json")
@@ -911,6 +980,7 @@ def main():
                 _add_day(all_days_spr, s["date"], p["dorsal"], (p.get("sprint") or {}).get("real"))
 
     build_series(all_days, all_days_hsr, all_days_spr, micro_data, cac_by_n)
+    aplicar_objetivos_partido(micro_data, ref)
 
     # nº de partidos que hay DETRÁS de la tabla REF_PARTIDO. Según las notas de la hoja,
     # la referencia vigente es la media de PT1-PT3, PT5-PT9 (PT4 anulado; días "Modified"

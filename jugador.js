@@ -275,7 +275,9 @@
 
     if (!done) head += '<div class="muted" style="margin-bottom:10px">' +
       (match ? 'Partido previsto. Aún sin datos.' : 'Sesión prevista. Aún sin datos: se muestran solo tus objetivos.') + '</div>';
-    else if (match) head += '<div class="muted" style="margin-bottom:10px">Un partido no lleva objetivo: se compara tu dato con la media del equipo.</div>';
+    else if (match) head += '<div class="muted" style="margin-bottom:10px">' + (s.objNota
+      ? 'Objetivo del partido: lo que te correspondía según tu referencia de partido y los minutos que jugaste.'
+      : 'Este partido no tiene objetivo: se compara tu dato con la media del equipo.') + '</div>';
     if (match && s.estimado) head += '<div class="alert alert--info" style="margin-bottom:10px">' + iconWarn() +
       '<div><b>Datos estimados.</b> No hay GPS real de este partido; los valores son una estimación.</div></div>';
     if (match && p && p.estimado) head += '<div class="alert alert--info" style="margin-bottom:10px">' + iconWarn() +
@@ -289,7 +291,7 @@
       rows = METRICS.map(function (mm) {
         var c = p ? p[mm.key] : null;
         var me = c ? c.real : null;
-        var obj = (match || estado === "rehab") ? null : (c ? c.obj : null);
+        var obj = estado === "rehab" ? null : (c ? c.obj : null);   // partidos de Liga: objetivo por minutos
         return mrow(mm.label, mm.unit, me, obj, estado === "rehab" ? null : teamOf(mm.key), 0);
       }).join("");
     }

@@ -61,7 +61,10 @@ Una sesión fuera de calendario (p. ej. un martes) va con `--extra` → hoja `Ex
   `pipeline_ref_log.json`). Cameos cortos → avisar, no corregir. Fallo de GPS con minutos
   conocidos: `Real = REF / (1 + 0,9·(T − M)/M)`, marcado como estimado y fuera de REF_PARTIDO.
   Los minutos para la fórmula van con segundos (8:49 ≠ 8,8').
-- Partidos: sin objetivo ni semáforo. Tipo A/C, microciclos sin partido o dobles jornadas
+- Partidos de Liga (J2+): objetivo por jugador = su REF_PARTIDO de justo antes de ese partido
+  escalada a sus minutos con la fórmula de fatiga inversa (T = duración real). Lo calcula
+  `import_data.py` (`pipeline/ref_historial.py`, deshaciendo el log de REF); no va al Excel.
+  Estimados por fallo de GPS: sin %; J1 y amistosos: sin objetivo. Tipo A/C, microciclos sin partido o dobles jornadas
   no están especificados: preguntar antes.
 - Toda decisión, estimación o cambio de estado queda escrito en las notas del propio Excel.
 

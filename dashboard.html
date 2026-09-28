@@ -250,13 +250,13 @@ function buildRAW(d){
       const row={mc:meta.n, mcTipo:meta.tipo, key:key, date:src.date,
         role: src.role || (isMatch?"Partido":null),
         isMatch:isMatch, rival:(src.rival||null), estado:meta.estado, semana:meta.semana,
-        estimado:!!src.estimado, teamAvg:teamAvgShape(src.teamAvg), players:[]};
+        estimado:!!src.estimado, objNota:(src.objNota||null), teamAvg:teamAvgShape(src.teamAvg), players:[]};
       src.players.forEach(pl=>{
         const dd=pl.dorsal;
         if(!players[dd]) players[dd]={d:dd,n:(pl.jugador||"?"),g:(pl.grupo||"?")};
         const mp={};
         METR.forEach(k=>{ const v=pl[k]; if(v && typeof v==="object") mp[k]=[(v.obj===undefined?null:v.obj), (v.real===undefined?null:v.real)]; });
-        row.players.push({d:dd, e:(pl.estado||null), dur:dur2min(pl.duracion), vmax:(pl.velMax===undefined?null:pl.velMax), pl:(pl.playerLoad===undefined?null:pl.playerLoad), m:mp});
+        row.players.push({d:dd, e:(pl.estado||null), est:!!pl.estimado, dur:dur2min(pl.duracion), vmax:(pl.velMax===undefined?null:pl.velMax), pl:(pl.playerLoad===undefined?null:pl.playerLoad), m:mp});
       });
       sessions.push(row);
     });
@@ -760,6 +760,7 @@ function viewSesion(root){
   info.append((s.rival? "vs "+s.rival+" · " : "")+"Microciclo "+s.mc+(s.mcTipo?" (Tipo "+s.mcTipo+")":"")+" · "+s.date+"  ");
   info.appendChild(el("span",{class:"badge-pend", style:"background:var(--accent); color:var(--on-accent)"}, badge));
   p.appendChild(info);
+  if(s.objNota) p.appendChild(el("p",{class:"note", style:"padding:0 16px 10px"}, s.objNota));
   if(s.estimado){
     const w=el("p",{class:"note", style:"padding:0 16px 10px"});
     w.appendChild(el("span",{class:"badge-warn"},"⚠ Datos estimados"));
@@ -777,10 +778,11 @@ function viewSesion(root){
   const players = visibles.filter(pr=>!esBaja(pr,s));
   const bajas = visibles.filter(pr=>esBaja(pr,s));
   // cumplimiento medio de cada jugador = media de real/objetivo en las métricas con objetivo
-  const cumplSes = pr => { const ps=RADAR_METRICS.filter(k=>{const c=raw(pr,k); return c.obj && c.real!=null;}).map(k=>raw(pr,k).real/raw(pr,k).obj*100);
+  const conObj = !s.isMatch || !!s.objNota;   // partidos de Liga: objetivo por minutos jugados
+  const cumplSes = pr => { if(pr.est) return null; const ps=RADAR_METRICS.filter(k=>{const c=raw(pr,k); return c.obj && c.real!=null;}).map(k=>raw(pr,k).real/raw(pr,k).obj*100);
     return ps.length? ps.reduce((a,b)=>a+b,0)/ps.length : null; };
-  players.forEach(pr=> pr.cumpl = s.isMatch? null : cumplSes(pr));
-  if(!s.isMatch && state.sesOrden!=="dorsal"){
+  players.forEach(pr=> pr.cumpl = conObj? cumplSes(pr) : null);
+  if(conObj && state.sesOrden!=="dorsal"){
     const sg = state.sesOrden==="desc" ? -1 : 1;
     players.sort((a,b)=> (a.cumpl==null)-(b.cumpl==null) || sg*((a.cumpl||0)-(b.cumpl||0)) || a.d-b.d);
   }
@@ -809,7 +811,7 @@ function viewSesion(root){
   const nConDatos = players.filter(pr=> RADAR_METRICS.some(k=>raw(pr,k).real!=null)).length;
 
   const miniData=[
-    ...(s.isMatch? [] : [{n: cumplEq!=null? `<span style="color:${semColor(cumplEq)}">${Math.round(cumplEq)}%</span>` : "–", l:"Cumplimiento medio"}]),
+    ...(!conObj? [] : [{n: cumplEq!=null? `<span style="color:${semColor(cumplEq)}">${Math.round(cumplEq)}%</span>` : "–", l:"Cumplimiento medio"}]),
     {n:nConDatos, l:"Jugadores con datos"},
     {n:vmaxTeam!=null?fmtN(vmaxTeam,1):"–", sm:" km/h", l:"Vel. máx equipo"},
     {n:plTeam!=null?fmtN(plTeam,0):"–", l:"Player Load medio"},
@@ -819,7 +821,7 @@ function viewSesion(root){
   mini.innerHTML = miniData.map(k=>`<div class="kpi"><div class="n">${k.n}${k.sm?`<small>${k.sm}</small>`:""}</div><div class="l">${k.l}</div></div>`).join("");
   p.appendChild(mini);
 
-  if(!s.isMatch){
+  if(conObj){
     const bar=el("div",{class:"les-pick"});
     const go=el("div",{class:"fgroup"}); go.appendChild(el("span",{},"Ordenar"));
     const ob=el("div",{class:"chips"});
@@ -839,7 +841,7 @@ function viewSesion(root){
   const wrap=el("div",{class:"tbl-scroll sticky-col"});
   const tb=el("table");
   const head1=['<th rowspan="2">Jugador</th>','<th rowspan="2">Pos</th>']
-    .concat(s.isMatch? [] : ['<th rowspan="2" class="grp-start">Cumpl.<br>medio</th>'])
+    .concat(!conObj? [] : ['<th rowspan="2" class="grp-start">Cumpl.<br>medio</th>'])
     .concat(RADAR_METRICS.map(k=>`<th colspan="3" class="grp-start">${METRICS[k].lab}${METRICS[k].u?` (${METRICS[k].u})`:""}</th>`))
     .concat(['<th rowspan="2" class="grp-start">Vel. máx<br>(km/h)</th>','<th rowspan="2">Player<br>Load</th>','<th rowspan="2">Duración</th>'])
     .join("");
@@ -856,7 +858,7 @@ function viewSesion(root){
   players.forEach(pr=>{
     const g=POS[pr.d];
     const cells=[`<td>#${pr.d} ${NAME[pr.d]||"?"}</td>`, `<td class="pos-${g||""}">${GROUPS[g]||g||"–"}</td>`];
-    if(!s.isMatch) cells.push(`<td class="mono grp-start" style="font-weight:700; font-size:14px; color:${semColor(pr.cumpl)}">${pr.cumpl!=null?Math.round(pr.cumpl)+"%":"–"}</td>`);
+    if(conObj) cells.push(`<td class="mono grp-start" style="font-weight:700; font-size:14px; color:${semColor(pr.cumpl)}">${pr.cumpl!=null?Math.round(pr.cumpl)+"%":(pr.est?'<span title="Datos estimados por fallo de GPS">est.</span>':"–")}</td>`);
     let hasAny=false;
     RADAR_METRICS.forEach(k=>{
       const c=raw(pr,k);
@@ -876,7 +878,7 @@ function viewSesion(root){
 
   // fila MEDIA EQUIPO
   const teamCells=['<td>MEDIA EQUIPO</td>','<td></td>'];
-  if(!s.isMatch) teamCells.push(`<td class="mono grp-start" style="font-weight:700; font-size:14px; color:${semColor(cumplEq)}">${cumplEq!=null?Math.round(cumplEq)+"%":"–"}</td>`);
+  if(conObj) teamCells.push(`<td class="mono grp-start" style="font-weight:700; font-size:14px; color:${semColor(cumplEq)}">${cumplEq!=null?Math.round(cumplEq)+"%":"–"}</td>`);
   RADAR_METRICS.forEach(k=>{
     const teamReal=teamPoint(s,k,"abs"), teamObjV=teamObj(s,k,"abs");
     const pct=(teamObjV&&teamReal!=null)? teamReal/teamObjV*100 : null;

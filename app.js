@@ -144,6 +144,7 @@
   }
   // % medio de consecución sobre todos los parámetros con objetivo (real/obj)
   function achievedPct(p) {
+    if (p.estimado) return null;            // datos reconstruidos (fallo de GPS): no se valora
     var acc = 0, n = 0;
     METRICS.forEach(function (mm) {
       var c = p[mm.key];
@@ -154,8 +155,8 @@
   function playerDonut(p, match) {
     if (p.estado) return estadoTag(p.estado);
     if (match && p.estimado) return '<span class="tag tag--parcial">Estimado</span>' + (p.playerLoad != null ? ' <span class="pdet__sum">PL ' + fmt(p.playerLoad) + '</span>' : '');
-    if (match) return '<span class="pdet__sum">' + (p.playerLoad != null ? "PL " + fmt(p.playerLoad) : "—") + '</span>';
     var pc = achievedPct(p);
+    if (match && pc == null) return '<span class="pdet__sum">' + (p.playerLoad != null ? "PL " + fmt(p.playerLoad) : "—") + '</span>';
     if (pc == null) return '<span class="pdet__sum">—</span>';
     return donut(pc, semaphore(pc, 100));
   }
@@ -509,9 +510,11 @@
 
     var head = '<div class="card"><div class="card__title">Media del equipo <span class="count">' +
       state.session + ' · ' + esc(match ? ('vs ' + (s.rival || '—')) : roleShort(sessionRole(s))) + ' · ' + esc(fdate(s.date)) + '</span></div>' +
-      (done && !match ? cumplEquipo(s.players) : '');
+      (done && (!match || s.objNota) ? cumplEquipo(s.players) : '');
     if (!done) head += '<div class="muted" style="margin-bottom:10px">' + (match ? 'Partido previsto, sin datos.' : 'Sesión prevista: solo objetivos.') + '</div>';
-    else if (match) head += '<div class="muted" style="margin-bottom:10px">Un partido no lleva objetivo.</div>';
+    else if (match) head += '<div class="muted" style="margin-bottom:10px">' + (s.objNota
+      ? 'Objetivo de partido = lo que habría hecho cada jugador con su referencia de partido de antes de este partido en los minutos que jugó (fórmula de fatiga).'
+      : 'Este partido no tiene objetivo (sin historial de referencia).') + '</div>';
     if (match && s.estimado) head += '<div class="alert alert--info" style="margin-bottom:10px">' + iconWarn() +
       '<div><b>Datos estimados</b> — sin GPS real de este partido (ver nota al pie).</div></div>';
 
@@ -524,7 +527,8 @@
       : '<div class="muted">—</div>';
 
     // jugadores
-    var players = match ? s.players.slice().sort(sortPlayers) : ordenar(s.players);
+    var conObj = !match || !!s.objNota;
+    var players = conObj ? ordenar(s.players) : s.players.slice().sort(sortPlayers);
     var rows = players.map(function (p) {
       var sm = playerDonut(p, match);
       var body = "";
@@ -536,7 +540,7 @@
         body += METRICS.map(function (mm) {
           var c = p[mm.key] || {};
           var tr = (ta[mm.key] || {}).real;
-          return mrow(mm.label, mm.unit, c.real, (match || reh ? null : c.obj), reh ? null : tr, "media equipo", 0);
+          return mrow(mm.label, mm.unit, c.real, (reh ? null : c.obj), reh ? null : tr, "media equipo", 0);
         }).join("");
         body += '<div class="info-metrics" style="margin-top:9px">' +
           kpi(p.velMax != null ? fmtDec(p.velMax, 1) : "—", "Vel. máx km/h") +
@@ -551,7 +555,7 @@
 
     return pills + head + teamBody + '</div>' +
       '<div class="card"><div class="card__title">Jugadores <span class="count">' + players.length + '</span></div>' +
-      (match || !done ? '' : sortBar()) +
+      (!conObj || !done ? '' : sortBar()) +
       '<div class="pdet-list">' + rows + '</div></div>' +
       (s.nota ? '<div class="note">' + noteHtml(s.nota) + '</div>' : '');
   }
