@@ -129,7 +129,8 @@ def decidir_estados(roster, en_pdf, vigentes, override, es_partido):
 
 
 def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run=False,
-             alias=None, rol_md1=None, tipos_lesion=None, proxies=None):
+             alias=None, rol_md1=None, tipos_lesion=None, proxies=None, descartar=None,
+             solo=None, ref_duracion=None):
     """Devuelve un dict-resumen. dry_run: escribe en el scratchpad, no toca nada real."""
     override = override or {}
     fallos_gps = fallos_gps or {}
@@ -149,7 +150,8 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
     res = {"key": key, "microciclo": n, "fecha": fecha.isoformat(), "avisos": []}
 
     if extra:
-        return _procesar_extra(wb, ruta, n, key, fecha, infs, alias, est, res, dry_run, nota)
+        return _procesar_extra(wb, ruta, n, key, fecha, infs, alias, est, res, dry_run, nota,
+                               solo=solo, ref_duracion=ref_duracion, wt=wt)
 
     ws = wb[f"{key}_GPS"]
     es_partido = C.is_match_key(key)
@@ -164,6 +166,11 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
         if dup:
             raise NecesitaDecision(f"Jugadores en más de un PDF: {sorted(dup)}")
         datos.update(dd)
+    # filas del PDF que no son carga real del jugador (p. ej. GPS encendido en el banquillo)
+    for d in (descartar or []):
+        if datos.pop(d, None) is not None:
+            nota = (f"{nombres[d]}: datos del GPS descartados (no corresponden a minutos jugados). " + nota).strip()
+            res["avisos"].append(f"Descartados los datos de {nombres[d]}")
     # fallo de GPS sin más contexto: se copian los datos de otro jugador de la misma sesión
     # como aproximación (dato proxy; en partidos, fuera de REF_PARTIDO)
     proxies = proxies or {}
@@ -287,23 +294,35 @@ def _notas_partido(nombres, estados_dia, fallos_gps, nota):
     return lineas
 
 
-def _procesar_extra(wb, ruta, n, key, fecha, infs, alias, est, res, dry_run, nota):
-    """Sesión fuera de calendario: hoja Extra_dd-mm_GPS (no cuenta para media ni Disponibilidad)."""
+def _procesar_extra(wb, ruta, n, key, fecha, infs, alias, est, res, dry_run, nota,
+                    solo=None, ref_duracion=None, wt=None):
+    """Sesión fuera de calendario: hoja Extra_dd-mm_GPS (no cuenta para media ni Disponibilidad).
+
+    solo: dorsales a tomar del PDF (p. ej. un jugador que juega con el filial: el resto del PDF
+    son jugadores de otro equipo). ref_duracion: si es un partido que debe contar para su
+    REF_PARTIDO, duración real de ese partido (T) para la fórmula de fatiga.
+    """
     base = next(wb[x] for x in wb.sheetnames if C.SHEET_KEY_RE.match(x) and C.is_match_key(x[:-4]))
     nombres, grupos = plantilla_de(base)
     datos = {}
     for inf in infs:
         dd, sin = informe.datos_por_dorsal(inf, nombres, alias)
-        if sin:
+        if sin and not solo:
             raise NecesitaDecision(f"Nombres del PDF que no cruzan con la plantilla: {sin}")
         datos.update(dd)
+    if solo:
+        falta = [d for d in solo if d not in datos]
+        if falta:
+            raise NecesitaDecision(f"Los dorsales {falta} no están en el PDF")
+        datos = {d: v for d, v in datos.items() if d in solo}
     nombre = f"{key}_GPS"
     if nombre in wb.sheetnames:
         del wb[nombre]
     ws = wb.create_sheet(nombre, index=wb.sheetnames.index("Acumulado"))
     dia = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"][fecha.weekday()]
     quien = ", ".join(nombres[d] for d in sorted(datos))
-    ws.cell(1, 1, f"SESIÓN EXTRA · {dia} {fecha:%d/%m/%Y} — fuera de la planificación semanal")
+    ws.cell(1, 1, f"SESIÓN EXTRA · {dia} {fecha:%d/%m/%Y} — " +
+            (infs[0].titulo if solo or ref_duracion else "fuera de la planificación semanal"))
     ws.cell(2, 1, f"Sesión adicional para {quien}. NO cuenta para la media del equipo, NO se compara "
                   "contra objetivo y NO entra en Disponibilidad y Minutos. SÍ se suma al Acumulado "
                   f"individual y al ACWR (PL, HSR y Sprint) de estos jugadores. {nota}".strip())
@@ -321,7 +340,15 @@ def _procesar_extra(wb, ruta, n, key, fecha, infs, alias, est, res, dry_run, not
     asof, _ = carga_ac.rellenar(wb, n, hist)
     res["acwr_fecha"] = asof.isoformat() if asof else None
     res["estados"] = {}
-    return _guardar(wb, ruta, n, None, est, ws, res, dry_run)
+    if ref_duracion and not dry_run:
+        nombres_ref = {d: wt["REF_PARTIDO"].cell(r, 2).value
+                       for d, r in referencia.filas_ref(wt["REF_PARTIDO"]).items()}
+        act, cameos = partido.actualizar_ref(wt, key, fecha.isoformat(), datos, nombres_ref, ref_duracion)
+        res["ref_actualizados"] = [(nombres.get(d, d), round(m, 1)) for d, m in act]
+        if cameos:
+            res["avisos"].append("Cameos cortos en REF_PARTIDO: " + ", ".join(
+                f"{nombres.get(d, d)} ({m:.0f}')" for d, m in cameos))
+    return _guardar(wb, ruta, n, wt if (ref_duracion and not dry_run) else None, est, ws, res, dry_run)
 
 
 def _guardar(wb, ruta, n, wt, est, ws, res, dry_run, les=None):
