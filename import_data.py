@@ -303,6 +303,13 @@ def parse_match(ws):
         rec["duracion"] = (str(row[11]).strip() if row[11] not in (None, "·", "") else None)
         if all(v is None for v in vals) and rec["playerLoad"] is None:
             rec["estado"] = "na"
+        # bloque OBJETIVO (col N en adelante) que escribe el pipeline en los partidos de Liga
+        if len(row) > 18 and str(hdr[13] or "").startswith("Obj"):
+            for k, i in zip(METRICS, range(13, 19)):
+                o = num(row[i])
+                if o is not None and rec[k]["real"] is not None:
+                    rec[k]["obj"] = o
+                    rec[k]["dif"] = round(rec[k]["real"] - o, 1)
         players.append(rec)
     team = None
     if media:
@@ -312,6 +319,12 @@ def parse_match(ws):
             team[k] = dict(obj=None, real=v, dif=None)
         team["velMax"] = num(media[9])
         team["playerLoad"] = num(media[10])
+        if len(media) > 18 and str(hdr[13] or "").startswith("Obj"):
+            for k, i in zip(METRICS, range(13, 19)):
+                o = num(media[i])
+                if o is not None:
+                    team[k]["obj"] = o
+                    team[k]["dif"] = round(team[k]["real"] - o, 1) if team[k]["real"] is not None else None
     team = team_extras(team, players)
     if team and not _hecha(players):
         for k in METRICS:
@@ -337,8 +350,12 @@ def parse_match(ws):
             nom = str(p.get("jugador") or "").strip()
             if nom and c.lower().startswith(nom.lower()):
                 p["estimado"] = True
-    return dict(date=iso(date), role="Partido", rival=rival, nota=nota, titulo=a1,
+    obj_nota = ws.cell(hi - 1, 14).value if str(ws.cell(hi, 14).value or "").startswith("Obj") else None
+    out = dict(date=iso(date), role="Partido", rival=rival, nota=nota, titulo=a1,
                estimado=estimado, players=players, teamAvg=team)
+    if obj_nota:
+        out["objNota"] = str(obj_nota)
+    return out
 
 
 def parse_extra(ws):
@@ -888,6 +905,8 @@ def aplicar_objetivos_partido(micro_data, ref):
                 eventos.append((s["date"], k, reales, log[k].get("duracion")))
     antes = ref_historial.ref_antes(ref, eventos, log)
     for k, s, mins, T in partidos:
+        if s.get("objNota"):
+            continue          # el Excel ya trae el objetivo (lo escribe el pipeline): manda el Excel
         r_ant = antes.get(k, {})
         con_obj = []
         for p in s["players"]:

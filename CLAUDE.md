@@ -62,9 +62,11 @@ Una sesión fuera de calendario (p. ej. un martes) va con `--extra` → hoja `Ex
   conocidos: `Real = REF / (1 + 0,9·(T − M)/M)`, marcado como estimado y fuera de REF_PARTIDO.
   Los minutos para la fórmula van con segundos (8:49 ≠ 8,8').
 - Partidos de Liga (J2+): objetivo por jugador = su REF_PARTIDO de justo antes de ese partido
-  escalada a sus minutos con la fórmula de fatiga inversa (T = duración real). Lo calcula
-  `import_data.py` (`pipeline/ref_historial.py`, deshaciendo el log de REF); no va al Excel.
-  Estimados por fallo de GPS: sin %; J1 y amistosos: sin objetivo. Tipo A/C, microciclos sin partido o dobles jornadas
+  escalada a sus minutos (exactos) con la fórmula de fatiga inversa (T = duración real). Lo
+  escribe `procesar` en la hoja J#_GPS, bloque N-T ("Obj …" + "Cumpl. medio"; A-L intactas) y
+  colorea el real con el semáforo; `import_data.py` lo lee de ahí (si falta, lo calcula con
+  `pipeline/ref_historial.py`). Estimados por fallo de GPS: con objetivo (para la media) pero
+  sin semáforo ni %. J1 y amistosos: sin objetivo. Tipo A/C, microciclos sin partido o dobles jornadas
   no están especificados: preguntar antes.
 - Toda decisión, estimación o cambio de estado queda escrito en las notas del propio Excel.
 

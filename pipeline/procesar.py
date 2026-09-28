@@ -207,6 +207,19 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
         partido.marcar_cargado(ws)
         _, media = filas_jugadores(ws)
         partido.escribir_notas(ws, media, _notas_partido(nombres, estados_dia, fallos_gps, nota))
+        if partido.cuenta_para_ref(key):
+            # objetivo = REF de ANTES de este partido (aún sin actualizar) escalada a los minutos
+            # si el partido ya se había aplicado a la REF (reproceso), su REF previa está en el log
+            ref_antes = {d: dict(v) for d, v in ref.items()}
+            for d, prev in partido._cargar_log().get(key, {}).get("previos", {}).items():
+                ref_antes[int(d)] = prev
+            objs = partido.objetivos_por_minutos(ref_antes, datos, duracion)
+            cumpl = partido.escribir_objetivos(ws, objs, (
+                f"OBJETIVO = REF_PARTIDO previa al partido escalada a los minutos jugados "
+                f"(fórmula de fatiga, duración {duracion:.1f}'). Estimados por fallo de GPS: sin cumplimiento."),
+                sin_valorar=set(fallos_gps) | set(proxies))
+            if cumpl:
+                res["cumplimiento_medio"] = round(sum(cumpl) / len(cumpl))
         for d, e in estados_dia.items():
             if e in E.PERSISTENTES and e != vigentes[d] and d not in datos:
                 E.cambiar(est, d, e, fecha.isoformat(), f"{key}")

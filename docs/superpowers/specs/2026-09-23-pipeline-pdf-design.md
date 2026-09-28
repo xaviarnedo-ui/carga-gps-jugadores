@@ -109,6 +109,8 @@ de fórmulas (fatiga, inversa, ACWR, semáforo, nombres).
 - Partidos de Liga J2+: objetivo = REF_PARTIDO de justo antes del partido × minutos jugados con la
   fórmula de fatiga inversa (T = duración real). `pipeline/ref_historial.py` reconstruye la REF
   previa deshaciendo `pipeline_ref_log.json` desde la actual (exacto para J4+; J2/J3 ±0,1).
-- Se calcula en `import_data.py` (data.js), no se escribe en las hojas J#_GPS del Excel.
+- 28/09 (tarde): también en el Excel. `procesar` escribe el bloque N-T de la hoja J#_GPS (Obj por
+  métrica + Cumpl. medio) con la REF previa (del log si es un reproceso) y minutos exactos, y colorea
+  el real. `import_data` lo lee del Excel. J2-J4 rellenados con el mismo cálculo (J4 reprocesado).
 - App (entrenador y jugador) y dashboard muestran obj/real/% y cumplimiento en partidos;
   los jugadores con datos estimados por fallo de GPS no tienen % ni cuentan en la media.

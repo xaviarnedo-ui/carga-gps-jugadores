@@ -155,3 +155,74 @@ def actualizar_ref(wb_tipo, key, fecha, datos_reales, nombres, duracion):
                 + ", ".join(f"{nombres.get(d, d)} ({mins:.0f}')" for d, mins in cameos) + ".")
     ws.cell(fila_nota, 1).value = txt
     return actualizados, cameos
+
+
+# ------------------------------------------------------------- objetivo de partido
+OBJ_COL0 = 14            # N: bloque "OBJETIVO" a la derecha de los datos (A-L no se tocan)
+OBJ_CUMPL = OBJ_COL0 + len(C.METRICS)
+
+
+def escribir_objetivos(ws, objetivos, nota, sin_valorar=()):
+    """objetivos: {dorsal: {métrica: valor}}. sin_valorar: dorsales con datos estimados (fallo
+    de GPS): tienen objetivo (para que la media compare el mismo grupo que la MEDIA EQUIPO real)
+    pero sin semáforo ni cumplimiento. Escribe el bloque N-T y la media. Idempotente."""
+    from .xlsx import pinta, semaforo
+    filas, fila_media = filas_jugadores(ws)
+    hdr = fila_cabecera_partido(ws)
+    ws.cell(hdr - 1, OBJ_COL0).value = nota
+    for i, m in enumerate(C.METRICS):
+        ws.cell(hdr, OBJ_COL0 + i).value = f"Obj {C.METRIC_LABEL[m]}"
+    ws.cell(hdr, OBJ_CUMPL).value = "Cumpl.\nmedio"
+    cumpls = []
+    for d, fila in filas.items():
+        obj = objetivos.get(d)
+        pcts = []
+        for i, m in enumerate(C.METRICS):
+            cell_o, cell_r = ws.cell(fila, OBJ_COL0 + i), ws.cell(fila, C.MAT_COL[m])
+            real = num(cell_r.value)
+            if obj and obj.get(m) is not None and real is not None:
+                cell_o.value = limpio(obj[m])
+                if d in sin_valorar:
+                    pinta(cell_r, None)
+                    continue
+                pinta(cell_r, semaforo(real, obj[m]))
+                if obj[m]:
+                    pcts.append(real / obj[m] * 100)
+            else:
+                vaciar(cell_o)
+                pinta(cell_r, None)
+        c = ws.cell(fila, OBJ_CUMPL)
+        if pcts:
+            c.value = round(sum(pcts) / len(pcts))
+            c.number_format = '0"%"'
+            cumpls.append(sum(pcts) / len(pcts))
+        else:
+            vaciar(c)
+    if fila_media:
+        con = [filas[d] for d in objetivos if d in filas]
+        for i, m in enumerate(C.METRICS):
+            vals = [num(ws.cell(r, OBJ_COL0 + i).value) for r in con]
+            vals = [v for v in vals if v is not None]
+            ws.cell(fila_media, OBJ_COL0 + i).value = limpio(r1(sum(vals) / len(vals))) if vals else None
+        c = ws.cell(fila_media, OBJ_CUMPL)
+        c.value = round(sum(cumpls) / len(cumpls)) if cumpls else None
+        c.number_format = '0"%"'
+    return cumpls
+
+
+def fila_cabecera_partido(ws):
+    for r in range(1, 10):
+        if ws.cell(r, 1).value == "Dorsal":
+            return r
+    raise ValueError(f"{ws.title}: sin cabecera")
+
+
+def objetivos_por_minutos(ref_antes, datos, duracion):
+    """{dorsal: objetivo} = REF previa al partido escalada a los minutos jugados."""
+    from . import ref_historial
+    out = {}
+    for d, v in datos.items():
+        o = ref_historial.objetivo_partido(ref_antes.get(d), v.get("min") or v.get("dur"), duracion)
+        if o:
+            out[d] = o
+    return out
