@@ -339,7 +339,7 @@ def _procesar_extra(wb, ruta, n, key, fecha, infs, alias, est, res, dry_run, not
     quien = ", ".join(nombres[d] for d in sorted(datos))
     ws.cell(1, 1, f"SESIÓN EXTRA · {dia} {fecha:%d/%m/%Y} — " +
             (infs[0].titulo if solo or ref_duracion else "fuera de la planificación semanal"))
-    ws.cell(2, 1, f"Sesión adicional para {quien}. NO cuenta para la media del equipo, NO se compara "
+    ws.cell(2, 1, f"Sesión adicional para {quien.rstrip('.')}. NO cuenta para la media del equipo, NO se compara "
                   "contra objetivo y NO entra en Disponibilidad y Minutos. SÍ se suma al Acumulado "
                   f"individual y al ACWR (PL, HSR y Sprint) de estos jugadores. {nota}".strip())
     for j, h in enumerate(["Dorsal", "Jugador", "Grupo", "Distancia (m)", "HMLD (m)", "HSR (m)",
