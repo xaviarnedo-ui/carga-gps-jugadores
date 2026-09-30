@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-09-30 09:59",
+  "generado": "2026-09-30 10:03",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-12)"
  },
  "refPartido": {
@@ -610,7 +610,7 @@ window.GPS_DATA_ALL = {
    "id": 9,
    "dorsal": 7,
    "tipo": "Lesión muscular cuádriceps",
-   "baja": "2026-09-28",
+   "baja": "2026-09-27",
    "alta": null,
    "nota": "",
    "jugador": "Riera, N."
@@ -619,7 +619,7 @@ window.GPS_DATA_ALL = {
    "id": 8,
    "dorsal": 18,
    "tipo": "Esguince acromioclavicular grado I",
-   "baja": "2026-09-28",
+   "baja": "2026-09-27",
    "alta": null,
    "nota": "",
    "jugador": "Lopez, I."
