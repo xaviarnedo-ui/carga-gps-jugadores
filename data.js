@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-09-30 10:03",
+  "generado": "2026-09-30 12:22",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-12)"
  },
  "refPartido": {
@@ -82,7 +82,7 @@ window.GPS_DATA_ALL = {
     "dec": 51.1,
     "velMax": 29.33,
     "partidos": 10,
-    "dispo": "ok",
+    "dispo": "baja",
     "primeraFecha": "2026-07-16"
    },
    {
@@ -596,6 +596,15 @@ window.GPS_DATA_ALL = {
    "alta": "2026-09-25",
    "nota": "",
    "jugador": "Fontanet, B."
+  },
+  {
+   "id": 10,
+   "dorsal": 6,
+   "tipo": "Pendiente de confirmación",
+   "baja": "2026-09-20",
+   "alta": null,
+   "nota": "",
+   "jugador": "Bonet, G."
   },
   {
    "id": 7,
@@ -109774,36 +109783,12 @@ window.GPS_DATA_ALL = {
       "dorsal": 6,
       "jugador": "Bonet, G.",
       "grupo": "M",
-      "distancia": {
-       "obj": 4881.3,
-       "real": null,
-       "dif": null
-      },
-      "hmld": {
-       "obj": 676,
-       "real": null,
-       "dif": null
-      },
-      "hsr": {
-       "obj": 126.4,
-       "real": null,
-       "dif": null
-      },
-      "sprint": {
-       "obj": 1.3,
-       "real": null,
-       "dif": null
-      },
-      "acc": {
-       "obj": 26.9,
-       "real": null,
-       "dif": null
-      },
-      "dec": {
-       "obj": 39.9,
-       "real": null,
-       "dif": null
-      },
+      "distancia": null,
+      "hmld": null,
+      "hsr": null,
+      "sprint": null,
+      "acc": null,
+      "dec": null,
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
@@ -110340,32 +110325,32 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 4610,
+      "obj": 4590.6,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 611.1,
+      "obj": 606.5,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 141.8,
+      "obj": 142.9,
       "real": null,
       "dif": null
      },
      "sprint": {
-      "obj": 2.4,
+      "obj": 2.5,
       "real": null,
       "dif": null
      },
      "acc": {
-      "obj": 21.7,
+      "obj": 21.4,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 33.8,
+      "obj": 33.4,
       "real": null,
       "dif": null
      },
@@ -110492,36 +110477,12 @@ window.GPS_DATA_ALL = {
       "dorsal": 6,
       "jugador": "Bonet, G.",
       "grupo": "M",
-      "distancia": {
-       "obj": 7050.7,
-       "real": null,
-       "dif": null
-      },
-      "hmld": {
-       "obj": 1126.7,
-       "real": null,
-       "dif": null
-      },
-      "hsr": {
-       "obj": 252.8,
-       "real": null,
-       "dif": null
-      },
-      "sprint": {
-       "obj": 3.9,
-       "real": null,
-       "dif": null
-      },
-      "acc": {
-       "obj": 18,
-       "real": null,
-       "dif": null
-      },
-      "dec": {
-       "obj": 26.6,
-       "real": null,
-       "dif": null
-      },
+      "distancia": null,
+      "hmld": null,
+      "hsr": null,
+      "sprint": null,
+      "acc": null,
+      "dec": null,
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
@@ -111058,32 +111019,32 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 6658.9,
+      "obj": 6630.9,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 1018.6,
+      "obj": 1010.8,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 283.7,
+      "obj": 285.9,
       "real": null,
       "dif": null
      },
      "sprint": {
-      "obj": 7.1,
+      "obj": 7.3,
       "real": null,
       "dif": null
      },
      "acc": {
-      "obj": 14.6,
+      "obj": 14.4,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 22.6,
+      "obj": 22.3,
       "real": null,
       "dif": null
      },
@@ -111210,36 +111171,12 @@ window.GPS_DATA_ALL = {
       "dorsal": 6,
       "jugador": "Bonet, G.",
       "grupo": "M",
-      "distancia": {
-       "obj": 3796.6,
-       "real": null,
-       "dif": null
-      },
-      "hmld": {
-       "obj": 450.7,
-       "real": null,
-       "dif": null
-      },
-      "hsr": {
-       "obj": 63.2,
-       "real": null,
-       "dif": null
-      },
-      "sprint": {
-       "obj": 0.9,
-       "real": null,
-       "dif": null
-      },
-      "acc": {
-       "obj": 12.9,
-       "real": null,
-       "dif": null
-      },
-      "dec": {
-       "obj": 18.4,
-       "real": null,
-       "dif": null
-      },
+      "distancia": null,
+      "hmld": null,
+      "hsr": null,
+      "sprint": null,
+      "acc": null,
+      "dec": null,
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
@@ -111776,17 +111713,17 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 3585.6,
+      "obj": 3570.5,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 407.4,
+      "obj": 404.3,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 70.9,
+      "obj": 71.5,
       "real": null,
       "dif": null
      },
@@ -111796,12 +111733,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "acc": {
-      "obj": 10.4,
+      "obj": 10.3,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 15.6,
+      "obj": 15.4,
       "real": null,
       "dif": null
      },
@@ -111928,36 +111865,12 @@ window.GPS_DATA_ALL = {
       "dorsal": 6,
       "jugador": "Bonet, G.",
       "grupo": "M",
-      "distancia": {
-       "obj": 2386.4,
-       "real": null,
-       "dif": null
-      },
-      "hmld": {
-       "obj": 288.4,
-       "real": null,
-       "dif": null
-      },
-      "hsr": {
-       "obj": 42.1,
-       "real": null,
-       "dif": null
-      },
-      "sprint": {
-       "obj": 0.3,
-       "real": null,
-       "dif": null
-      },
-      "acc": {
-       "obj": 6.8,
-       "real": null,
-       "dif": null
-      },
-      "dec": {
-       "obj": 10.7,
-       "real": null,
-       "dif": null
-      },
+      "distancia": null,
+      "hmld": null,
+      "hsr": null,
+      "sprint": null,
+      "acc": null,
+      "dec": null,
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
@@ -112494,17 +112407,17 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 2253.8,
+      "obj": 2244.3,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 260.7,
+      "obj": 258.8,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 47.3,
+      "obj": 47.6,
       "real": null,
       "dif": null
      },
@@ -112514,12 +112427,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "acc": {
-      "obj": 5.5,
+      "obj": 5.4,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 9.1,
+      "obj": 9,
       "real": null,
       "dif": null
      },
@@ -113653,37 +113566,37 @@ window.GPS_DATA_ALL = {
      "jugador": "Bonet, G.",
      "grupo": "M",
      "distancia": {
-      "obj": 18115,
+      "obj": null,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "hmld": {
-      "obj": 2541.8,
+      "obj": null,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "hsr": {
-      "obj": 484.5,
+      "obj": null,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "sprint": {
-      "obj": 6.4,
+      "obj": null,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "acc": {
-      "obj": 64.6,
+      "obj": null,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "dec": {
-      "obj": 95.6,
+      "obj": null,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -114348,40 +114261,40 @@ window.GPS_DATA_ALL = {
    ],
    "teamAvg": {
     "distancia": {
-     "obj": 19904.1,
-     "real": 2855.5,
-     "dif": -17048.6,
-     "objFecha": 2795.8
+     "obj": 20031.9,
+     "real": 3059.4,
+     "dif": -16972.5,
+     "objFecha": 2995.5
     },
     "hmld": {
-     "obj": 2668,
-     "real": 273.1,
-     "dif": -2394.9,
-     "objFecha": 370.1
+     "obj": 2677,
+     "real": 292.6,
+     "dif": -2384.4,
+     "objFecha": 396.5
     },
     "hsr": {
-     "obj": 631.8,
-     "real": 111.8,
-     "dif": -520.0,
-     "objFecha": 88.1
+     "obj": 642.3,
+     "real": 119.8,
+     "dif": -522.5,
+     "objFecha": 94.4
     },
     "sprint": {
-     "obj": 12.6,
+     "obj": 13.1,
      "real": 1.1,
-     "dif": -11.5,
-     "objFecha": 1.1
+     "dif": -12.0,
+     "objFecha": 1.2
     },
     "acc": {
-     "obj": 59.3,
-     "real": 3.6,
-     "dif": -55.7,
-     "objFecha": 7.1
+     "obj": 59,
+     "real": 3.9,
+     "dif": -55.1,
+     "objFecha": 7.6
     },
     "dec": {
-     "obj": 92.5,
-     "real": 5.1,
-     "dif": -87.4,
-     "objFecha": 11.4
+     "obj": 92.3,
+     "real": 5.5,
+     "dif": -86.8,
+     "objFecha": 12.2
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."
@@ -114533,32 +114446,32 @@ window.GPS_DATA_ALL = {
      "jugador": "Bonet, G.",
      "grupo": "M",
      "distancia": {
-      "obj": 18115,
+      "obj": null,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 2541.8,
+      "obj": null,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 484.5,
+      "obj": null,
       "real": null,
       "dif": null
      },
      "sprint": {
-      "obj": 6.4,
+      "obj": null,
       "real": null,
       "dif": null
      },
      "acc": {
-      "obj": 64.6,
+      "obj": null,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 95.6,
+      "obj": null,
       "real": null,
       "dif": null
      }
@@ -115126,34 +115039,34 @@ window.GPS_DATA_ALL = {
    ],
    "teamAvg": {
     "distancia": {
-     "obj": 19904.1,
-     "real": 2855.5,
-     "dif": -17048.6
+     "obj": 20031.9,
+     "real": 3059.4,
+     "dif": -16972.5
     },
     "hmld": {
-     "obj": 2668,
-     "real": 273.1,
-     "dif": -2394.9
+     "obj": 2677,
+     "real": 292.6,
+     "dif": -2384.4
     },
     "hsr": {
-     "obj": 631.8,
-     "real": 111.8,
-     "dif": -520
+     "obj": 642.3,
+     "real": 119.8,
+     "dif": -522.5
     },
     "sprint": {
-     "obj": 12.6,
+     "obj": 13.1,
      "real": 1.1,
-     "dif": -11.5
+     "dif": -12
     },
     "acc": {
-     "obj": 59.3,
-     "real": 3.6,
-     "dif": -55.7
+     "obj": 59,
+     "real": 3.9,
+     "dif": -55.1
     },
     "dec": {
-     "obj": 92.5,
-     "real": 5.1,
-     "dif": -87.4
+     "obj": 92.3,
+     "real": 5.5,
+     "dif": -86.8
     }
    },
    "nota": "Acumulado de toda la semana: sesiones de entrenamiento + partido(s). Objetivo de la semana completa de Microciclo 12 (Lunes MD+1 individual según rol en J4 + Miércoles MD-4 + Jueves MD-3 + Viernes MD-2 + Sábado MD-1). Acumulado (Real) pendiente de cargar sesión a sesión."
