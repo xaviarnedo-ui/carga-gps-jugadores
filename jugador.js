@@ -282,6 +282,9 @@
       '<div><b>Datos estimados.</b> No hay GPS real de este partido; los valores son una estimación.</div></div>';
     if (match && p && p.estimado) head += '<div class="alert alert--info" style="margin-bottom:10px">' + iconWarn() +
       '<div><b>Datos estimados.</b> Falló tu GPS en este partido; los valores están reconstruidos a partir de tu referencia, no son GPS real.</div></div>';
+    if (p && p.proxyDe) head += '<div class="alert alert--info" style="margin-bottom:10px">' + iconWarn() +
+      '<div><b>Tu GPS no funcionó.</b> Se te han asignado los datos de ' + esc(p.proxyDe) +
+      ' como aproximación: no son tus datos reales.</div></div>';
     if (estado === "na") head += estadoBanner(match ? "na-match" : "na") + '<div style="height:10px"></div>';
     else if (estado === "rehab") head += estadoBanner("rehab") + '<div style="height:10px"></div>';
     else if (estado === "parcial") head += estadoBanner("parcial") + '<div style="height:10px"></div>';

@@ -209,6 +209,17 @@ def titlecase(name):
 
 
 # ---------------------------------------------------------------- sesiones / partidos
+def marcar_proxies(ws, players):
+    """Fallo de GPS cubierto con los datos de un compañero ("X: fallo de dispositivo GPS — datos
+    de Y (...)" en las notas de la hoja): marca al jugador con proxyDe=Y para avisarle en su app."""
+    txt = " ".join(c.value for c in ws["A"] if isinstance(c.value, str))
+    for m in re.finditer(r"([^.·:()]+?, [^\W\d_]\.)\s*: fallo de dispositivo GPS — datos de ([^()]+?) \(", txt):
+        dest, src = titlecase(m.group(1).strip()), titlecase(m.group(2).strip())
+        for p in players:
+            if p["jugador"] == dest:
+                p["proxyDe"] = src
+
+
 def parse_session(ws):
     a1 = ws.cell(1, 1).value or ""
     a2 = ws.cell(2, 1).value or ""
@@ -271,6 +282,7 @@ def parse_session(ws):
         team["velMax"] = team["playerLoad"] = None
         team.pop("duracion", None)
 
+    marcar_proxies(ws, players)
     return dict(date=iso(date), role=role, tipo=tipo, nota=a2, titulo=a1,
                 players=players, teamAvg=team)
 
@@ -350,6 +362,7 @@ def parse_match(ws):
             nom = str(p.get("jugador") or "").strip()
             if nom and c.lower().startswith(nom.lower()):
                 p["estimado"] = True
+    marcar_proxies(ws, players)
     obj_nota = ws.cell(hi - 1, 14).value if str(ws.cell(hi, 14).value or "").startswith("Obj") else None
     out = dict(date=iso(date), role="Partido", rival=rival, nota=nota, titulo=a1,
                estimado=estimado, players=players, teamAvg=team)
