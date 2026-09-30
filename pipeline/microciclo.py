@@ -229,3 +229,31 @@ def cambiar_tipo(n, tipo, estados=None):
     acumulado.recalcular(wb)
     wb.save(ruta)
     return hechos
+
+
+def propagar_estados(n, dorsales, estados=None):
+    """Cambio de estado confirmado fuera de un PDF (p. ej. diagnóstico de lesión): lo aplica a
+    las sesiones AÚN NO CARGADAS del microciclo `n` (las cargadas no se tocan). Rehab/lesión
+    quitan el Objetivo; se reescriben la MEDIA EQUIPO, la nota de estados y el Acumulado.
+    Devuelve [sesiones tocadas]."""
+    from .xlsx import backup
+    ruta = ruta_microciclo(n)
+    estados = estados if estados is not None else E.cargar()
+    backup([ruta])
+    wb = openpyxl.load_workbook(ruta)
+    tocadas = []
+    for key, ws, _ in sesion.hojas_sesion(wb):
+        if sesion.hecha(ws):
+            continue
+        filas, media = filas_jugadores(ws)
+        for d in dorsales:
+            if d in filas and E.vigente(estados, d) in (C.REHAB, C.LESION):
+                sesion._escribe_obj(ws, filas[d], None)
+        sesion.escribir_media(ws, filas, media, {d: C.FULL for d, r in filas.items()
+                                                 if sesion.tiene_objetivo(ws, r)})
+        nombres = {d: ws.cell(r, 2).value for d, r in filas.items()}
+        ws.cell(media + 2, 1).value = sesion.nota_estados(nombres, {d: E.vigente(estados, d) for d in filas})
+        tocadas.append(key)
+    acumulado.recalcular(wb)
+    wb.save(ruta)
+    return tocadas

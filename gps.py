@@ -18,7 +18,7 @@
         --publicar [--sin-avisar]                 import_data + git push (+ aviso a jugadores)
   python3 gps.py abrir --tipo B --partido J5 --rival "Rival" --lunes 2026-09-28
   python3 gps.py tipo 12 A                            cambia el Tipo de un microciclo y recalcula objetivos
-  python3 gps.py estado [4=lesion 10=rehab ...]       ver / fijar estado vigente
+  python3 gps.py estado [4=lesion ...] [--desde F --nota T]  ver / fijar estado vigente (+ ajusta objetivos pendientes)
   python3 gps.py lesiones [--abrir D --tipo T --baja F | --cerrar D --alta F]   registro de lesiones
   python3 gps.py disponibilidad                       regenerar Disponibilidad y Minutos.xlsx
   python3 gps.py publicar [--sin-avisar] [-m msg]     import_data + git push (+ aviso)
@@ -90,6 +90,8 @@ def main():
     a.add_argument("--alta")
     a = sub.add_parser("estado")
     a.add_argument("cambios", nargs="*")
+    a.add_argument("--desde", help="fecha AAAA-MM-DD del cambio (por defecto hoy)")
+    a.add_argument("--nota", default="fijado a mano")
     sub.add_parser("disponibilidad")
     a = sub.add_parser("publicar")
     a.add_argument("--sin-avisar", action="store_true")
@@ -134,13 +136,17 @@ def main():
 
     elif args.cmd == "estado":
         data = E.cargar()
-        hoy = dt.date.today().isoformat()
-        for k, v in _pares(args.cambios).items():
+        desde = args.desde or dt.date.today().isoformat()
+        cambios = _pares(args.cambios)
+        for k, v in cambios.items():
             if v not in E.PERSISTENTES:
                 sys.exit(f"Estado vigente solo puede ser {E.PERSISTENTES}")
-            E.cambiar(data, int(k), v, hoy, "fijado a mano")
-        if args.cambios:
+            E.cambiar(data, int(k), v, desde, args.nota)
+        if cambios:
             E.guardar(data)
+            n, _ = P.localizar_por_fecha(dt.date.today())
+            tocadas = microciclo.propagar_estados(n, [int(k) for k in cambios], data)
+            print(f"  Microciclo {n}: objetivos ajustados en {', '.join(tocadas) or 'ninguna sesión'}")
         for d, info in sorted(data["vigente"].items(), key=lambda t: int(t[0])):
             if info["estado"] != C.FULL:
                 print(f"  {d:>3} {info['estado']:7} desde {info['desde']}  {info.get('nota', '')}")

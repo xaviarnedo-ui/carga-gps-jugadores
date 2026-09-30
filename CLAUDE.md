@@ -32,7 +32,9 @@ nuevo), `estado [dorsal=estado ...]`, `disponibilidad`, `publicar [--sin-avisar]
 a lesión o rehab sin lesión abierta, `procesar` se para y pide el tipo → pregúntalo y relanza
 con `--lesion 26="Fractura de nariz"` (la baja es ese día). Al volver a full se cierra sola
 (alta = ese día). Corregir fechas/tipos: `gps.py lesiones --abrir/--cerrar`. Descanso o
-gestión de carga NO es lesión. El diagnóstico se publica tal cual (decisión del preparador).
+gestión de carga NO es lesión. Si una lesión se confirma sin PDF (diagnóstico posterior):
+`lesiones --abrir D --tipo T --baja F` + `estado D=lesion --desde F --nota T`, que quita el objetivo
+en las sesiones aún no cargadas del microciclo activo (las cargadas no se tocan). El diagnóstico se publica tal cual (decisión del preparador).
 
 Fallo de GPS: en partidos con minutos conocidos `--fallo-gps D=min` (estimado desde su REF);
 si el preparador dice "ponle los datos de X", `--proxy D=X` (copia, nota de dato proxy, fuera de REF).
