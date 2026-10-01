@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-10-01 12:34",
+  "generado": "2026-10-01 13:06",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-12)"
  },
  "refPartido": {
@@ -632,6 +632,46 @@ window.GPS_DATA_ALL = {
    "alta": null,
    "nota": "",
    "jugador": "Lopez, I."
+  }
+ ],
+ "whoop": [
+  {
+   "dorsal": 4,
+   "fecha": "2026-09-30",
+   "sesion": "S52",
+   "actividad": "Correr (detectada automáticamente)",
+   "inicio": "11:31",
+   "fin": "12:05",
+   "duracion_min": 34.97,
+   "duracion_media30_min": 47.12,
+   "esfuerzo": 7.2,
+   "esfuerzo_media30": 8.8,
+   "fc_media": 105,
+   "fc_max": 155,
+   "fc_max_media30": 153,
+   "kcal": 191,
+   "pasos": 2752,
+   "pasos_media30": 3601,
+   "zonas_min": {
+    "z0": 16.68,
+    "z1": 8.68,
+    "z2": 3.9,
+    "z3": 5.7,
+    "z4": 0,
+    "z5": 0
+   },
+   "zonas_bpm": {
+    "z0": "<100",
+    "z1": "100-130",
+    "z2": "131-144",
+    "z3": "145-159",
+    "z4": "160-173",
+    "z5": "174+"
+   },
+   "gps_ventana": "11:40-11:58",
+   "tramos": "2 tramos de carrera continua: ~11:42-11:48 (hasta ~153 lpm) y ~11:49-11:56 (hasta ~152 lpm), con ~2' de recuperación",
+   "fuente": "Vídeo de la app Whoop (enviado el 01/10)",
+   "nota": "El pulso sube a las 11:41-11:42, con el inicio del bloque GPS (11:40): relojes sincronizados. Whoop incluye ~9' antes y ~7' después del trabajo, por eso la FC media (105) y el 49% en Z0 no reflejan el trabajo: dentro del bloque GPS, ~9,5 de sus 18' fueron por encima de 130 lpm. Carrera aeróbica lineal (~9 km/h, Vmax 17,3, sin HSR ni ACC/DEC) que llega a Z3 sin pasar a Z4; esfuerzo por debajo de su media de 30 días con FC máx igual que en sus últimas carreras: sesión controlada."
   }
  ],
  "M1": {
