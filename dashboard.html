@@ -170,6 +170,12 @@
   details.les[open] > summary .nm::before{transform:rotate(90deg)}
   details.les > summary .lb{font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); display:block}
   .les-body{padding:4px 0 10px; background:var(--surface)}
+  .whoop{margin:14px 16px 4px; padding:12px 14px; border:1px solid var(--border); border-radius:8px; background:var(--surface)}
+  .whoop h4{margin:0 0 2px; font-size:14px} .whoop .sub{font-size:12px; color:var(--ink-2); margin-bottom:10px}
+  .wz{display:flex; height:14px; border-radius:4px; overflow:hidden; gap:2px; background:var(--surface)}
+  .wz span{display:block; height:100%}
+  .wz-leg{display:flex; flex-wrap:wrap; gap:4px 12px; font-size:11.5px; color:var(--ink-2); margin:6px 0 10px}
+  .wz-leg i{display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:4px; vertical-align:-1px}
   .les-pick{display:flex; flex-wrap:wrap; gap:10px 22px; padding:4px 16px 10px}
   .chip .sw{display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:5px; vertical-align:0}
   .ref-line{stroke:var(--ink-3); stroke-dasharray:4 3; stroke-width:1.2}
@@ -277,7 +283,7 @@ function buildRAW(d){
     players:playerList,
     ref:ref, refTeam:d.refPartido.teamAvg,
     coef:d.coeficientes.tipos, sessions:sessions,
-    extras:extras.sort((a,b)=>a.date<b.date?-1:1), lesiones:(d.lesiones||[]),
+    extras:extras.sort((a,b)=>a.date<b.date?-1:1), lesiones:(d.lesiones||[]), whoop:(d.whoop||[]),
   };
 }
 const RAW = buildRAW(window.GPS_DATA_ALL);
@@ -1666,6 +1672,60 @@ function panelGraficoLesion(l, pts, ref){
   return cont;
 }
 
+/* ---------- Whoop (prueba: carga interna en readaptación) ---------- */
+const WZ_COL={z0:"var(--surface-3)", z1:"color-mix(in srgb, var(--s1) 28%, var(--surface))",
+  z2:"color-mix(in srgb, var(--s1) 55%, var(--surface))", z3:"var(--s1)",
+  z4:"color-mix(in srgb, var(--s1) 70%, #000)", z5:"color-mix(in srgb, var(--s1) 45%, #000)"};
+function panelWhoop(l){
+  const fin=l.alta||HOY;
+  const recs=RAW.whoop.filter(w=>w.dorsal===l.dorsal && w.fecha>=l.baja && w.fecha<=fin)
+    .sort((a,b)=>a.fecha<b.fecha?-1:1);
+  if(!recs.length) return null;
+  const box=el("div",{class:"whoop"});
+  box.appendChild(el("h4",{},"Whoop · carga interna"));
+  box.appendChild(el("div",{class:"sub"},"Frecuencia cardiaca de Whoop cruzada con el GPS del mismo día. TRIMP por zonas = Z1×1 + Z2×2 + Z3×3 + Z4×4 + Z5×5 (minutos)."));
+  const wrap=el("div",{class:"tbl-scroll"}); const tb=el("table");
+  tb.innerHTML=`<thead><tr><th>Fecha</th><th>Sesión</th><th>Whoop</th><th>GPS</th><th class="grp-start">Esfuerzo</th><th>FC media</th><th>FC máx</th><th>Min &gt;130</th><th>TRIMP</th>`+
+    `<th class="grp-start">Player Load</th><th>Distancia</th><th>PL / esfuerzo</th></tr></thead>`;
+  const tbody=el("tbody");
+  recs.forEach(w=>{
+    const s=RAW.sessions.concat(RAW.extras).find(x=>x.date===w.fecha && x.players.some(p=>p.d===w.dorsal && p.pl!=null));
+    const pr=s? s.players.find(p=>p.d===w.dorsal) : null;
+    const z=w.zonas_min||{};
+    const trimp=["z1","z2","z3","z4","z5"].reduce((a,k,i)=>a+(z[k]||0)*(i+1),0);
+    const alta=(z.z2||0)+(z.z3||0)+(z.z4||0)+(z.z5||0);
+    const dist=pr? raw(pr,"distancia").real : null;
+    const tr=el("tr");
+    tr.innerHTML=[`<td class="mono">${fDate(w.fecha)}</td>`, `<td>${s?s.key:(w.sesion||"–")}</td>`,
+      `<td class="mono">${w.inicio}–${w.fin} · ${fmtN(w.duracion_min,0)}′</td>`,
+      `<td class="mono">${w.gps_ventana||"–"}${pr&&pr.dur!=null?" · "+fmtN(pr.dur,0)+"′":""}</td>`,
+      `<td class="mono grp-start"><b>${fmtN(w.esfuerzo,1)}</b>${w.esfuerzo_media30!=null?` <span class="muted">(media ${fmtN(w.esfuerzo_media30,1)})</span>`:""}</td>`,
+      `<td class="mono">${w.fc_media??"–"}</td>`,
+      `<td class="mono">${w.fc_max??"–"}${w.fc_max_media30!=null?` <span class="muted">(${w.fc_max_media30})</span>`:""}</td>`,
+      `<td class="mono">${fmtN(alta,1)}′</td>`, `<td class="mono">${fmtN(trimp,0)}</td>`,
+      `<td class="mono grp-start">${pr&&pr.pl!=null?fmtN(pr.pl,0):"–"}</td>`,
+      `<td class="mono">${dist!=null?fmtN(dist,0)+" m":"–"}</td>`,
+      `<td class="mono">${pr&&pr.pl!=null&&w.esfuerzo?fmtN(pr.pl/w.esfuerzo,1):"–"}</td>`].join("");
+    tbody.appendChild(tr);
+  });
+  tb.appendChild(tbody); wrap.appendChild(tb); box.appendChild(wrap);
+  recs.forEach(w=>{
+    const z=w.zonas_min||{}, tot=Object.values(z).reduce((a,b)=>a+b,0)||1, zb=w.zonas_bpm||{};
+    box.appendChild(el("div",{class:"sub", style:"margin:12px 0 4px"}, `Tiempo en zonas · ${fDate(w.fecha)}${w.tramos?" — "+w.tramos:""}`));
+    const bar=el("div",{class:"wz", role:"img", "aria-label":"Tiempo en zonas de frecuencia cardiaca"});
+    const leg=el("div",{class:"wz-leg"});
+    ["z0","z1","z2","z3","z4","z5"].forEach(k=>{
+      const v=z[k]||0; const mm=Math.floor(v), ss=Math.round((v-mm)*60);
+      const lab=`${k.toUpperCase()} ${zb[k]||""} · ${mm}:${String(ss).padStart(2,"0")} (${fmtN(v/tot*100,0)}%)`;
+      if(v>0){ const sp=el("span",{title:lab}); sp.style.width=(v/tot*100)+"%"; sp.style.background=WZ_COL[k]; bar.appendChild(sp); }
+      const li=el("span"); li.innerHTML=`<i style="background:${WZ_COL[k]}"></i>${lab}`; leg.appendChild(li);
+    });
+    box.appendChild(bar); box.appendChild(leg);
+    if(w.nota) box.appendChild(el("p",{class:"note", style:"margin:0"}, w.nota));
+    if(w.fuente) box.appendChild(el("p",{class:"note muted", style:"margin:4px 0 0; font-size:11px"}, "Fuente: "+w.fuente+"."));
+  });
+  return box;
+}
 function fichaLesion(l){
   const d=el("details",{class:"les"});
   const fin = l.alta || HOY;
@@ -1710,6 +1770,7 @@ function fichaLesion(l){
       const trr=el("tr",{class:"total"}); trr.innerHTML=refCells.join(""); tbody.appendChild(trr);
       tb.appendChild(tbody); wrap.appendChild(tb); body.appendChild(wrap);
     }
+    const wh=panelWhoop(l); if(wh) body.appendChild(wh);
     if(l.nota) body.appendChild(el("p",{class:"note"}, l.nota));
     d.appendChild(body);
   });

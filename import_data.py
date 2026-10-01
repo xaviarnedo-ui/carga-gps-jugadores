@@ -956,6 +956,15 @@ def load_lesiones(ref_players):
     return [dict(l, jugador=nombres.get(l["dorsal"], f"#{l['dorsal']}")) for l in lst]
 
 
+def load_whoop():
+    """Datos de Whoop por sesión (GPS/whoop.json, prueba con jugadores en readaptación)."""
+    ruta = os.path.join(GPS_DIR, "whoop.json")
+    if not os.path.exists(ruta):
+        return []
+    with open(ruta, encoding="utf-8") as f:
+        return json.load(f)
+
+
 def main():
     if "--solo-avisar" in sys.argv:
         # manda el push con el data.js ya generado (el pipeline lo usa DESPUÉS del git push,
@@ -1112,6 +1121,7 @@ def main():
                          "tipos": coef},
         "microciclos": micro_keys,
         "lesiones": load_lesiones(ref_players),
+        "whoop": load_whoop(),
     }
     for n, m in micro_data.items():
         DATA[f"M{n}"] = m
