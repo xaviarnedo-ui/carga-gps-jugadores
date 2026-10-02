@@ -168,7 +168,7 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
         datos.update(dd)
     # filas del PDF que no son carga real del jugador (p. ej. GPS encendido en el banquillo)
     for d in (descartar or []):
-        if datos.pop(d, None) is not None:
+        if datos.pop(d, None) is not None and d not in (proxies or {}):   # con proxy: lo explica su nota
             nota = (f"{nombres[d]}: datos del GPS descartados (no corresponden a minutos jugados). " + nota).strip()
             res["avisos"].append(f"Descartados los datos de {nombres[d]}")
     # fallo de GPS sin más contexto: se copian los datos de otro jugador de la misma sesión
