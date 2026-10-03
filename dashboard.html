@@ -170,6 +170,13 @@
   details.les[open] > summary .nm::before{transform:rotate(90deg)}
   details.les > summary .lb{font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); display:block}
   .les-body{padding:4px 0 10px; background:var(--surface)}
+  .ref-tbl td.dat{white-space:nowrap; text-align:left}
+  .ref-tbl .chipd{display:inline-block; padding:0 6px; margin-right:3px; border-radius:999px; font-size:11px; font-weight:600; background:var(--surface-2); color:var(--ink-2)}
+  .ref-tbl tr.pl{cursor:pointer} .ref-tbl tr.pl:hover td{background:var(--surface-2)}
+  .ref-tbl tr.det td{background:var(--surface-2); font-size:12px}
+  .ref-tbl tr.det td.lbl{color:var(--ink-2); text-align:left}
+  .ref-tbl .hi{font-weight:700} .ref-tbl .lo{color:var(--ink-3)}
+  .ref-tbl tr.grp td{font-family:"Barlow Condensed",sans-serif; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-2); background:var(--surface); text-align:left; padding-top:12px}
   .whoop{margin:14px 16px 4px; padding:12px 14px; border:1px solid var(--border); border-radius:8px; background:var(--surface)}
   .whoop h4{margin:0 0 2px; font-size:14px} .whoop .sub{font-size:12px; color:var(--ink-2); margin-bottom:10px}
   .wz{display:flex; height:14px; border-radius:4px; overflow:hidden; gap:2px; background:var(--surface)}
@@ -284,6 +291,7 @@ function buildRAW(d){
     ref:ref, refTeam:d.refPartido.teamAvg,
     coef:d.coeficientes.tipos, sessions:sessions,
     extras:extras.sort((a,b)=>a.date<b.date?-1:1), lesiones:(d.lesiones||[]), whoop:(d.whoop||[]),
+    refPartido:d.refPartido,
   };
 }
 const RAW = buildRAW(window.GPS_DATA_ALL);
@@ -512,7 +520,7 @@ function renderShell(){
   const tabDefs=[
     ["evolucion","Evolución"],["sesion","Sesión"],["microciclos","Microciclos"],
     ["tipo","Tipo de sesión"],["partidos","Partidos"],
-    ["jugadores","Jugadores"],["comparador","Comparador"],["lesionados","Lesionados"],
+    ["jugadores","Jugadores"],["comparador","Comparador"],["lesionados","Lesionados"],["referencias","Referencias"],
   ];
   const t=document.getElementById("tabs"); t.innerHTML="";
   tabDefs.forEach(([k,lab])=>{
@@ -556,7 +564,7 @@ function fBucketChips(){
 function renderView(){
   const v=document.getElementById("view"); v.innerHTML="";
   ({evolucion:viewEvolucion, sesion:viewSesion, microciclos:viewMicrociclos, tipo:viewTipo, partidos:viewPartidos,
-    jugadores:viewJugadores, comparador:viewComparador, lesionados:viewLesionados}[state.lens])(v);
+    jugadores:viewJugadores, comparador:viewComparador, lesionados:viewLesionados, referencias:viewReferencias}[state.lens])(v);
 }
 function panel(title, desc){
   const p=el("div",{class:"panel"});
@@ -1798,6 +1806,71 @@ function viewLesionados(root){
   });
   p.appendChild(el("p",{class:"note", style:"padding-top:12px"},
     "Una lesión va de la baja hasta el primer día que vuelve a entrenar con el grupo (alta). El gráfico y la tabla empiezan en la primera sesión de readaptación."));
+  root.appendChild(p);
+}
+
+/* ---------- Referencias de partido (REF_PARTIDO) ---------- */
+function viewReferencias(root){
+  const rp=RAW.refPartido, ta=rp.teamAvg||{};
+  const p=panel("Referencias de partido",
+    "REF_PARTIDO de cada jugador: media, con el mismo peso, de su pretemporada (1 dato) y de cada partido de Liga con GPS real, extrapolado a la duración real de ese partido. Es la base de todos los objetivos. Toca un jugador para ver de qué datos sale.");
+  const cols=RADAR_METRICS.concat(["velMax"]);
+  const lab=k=> k==="velMax"?"Vel. máx":METRICS[k].lab;
+  const dec=k=> k==="velMax"?1:METRICS[k].dec;
+  const players=rp.players.filter(pl=> state.group==="all" || pl.grupo===state.group);
+  const conLiga=pl=> (pl.datosRef||[]).filter(x=>x.key!=="Pret").length;
+  const mini=el("div",{class:"mini-kpis"});
+  mini.innerHTML=[
+    {n:rp.players.length, l:"Jugadores"},
+    {n:rp.players.filter(pl=>conLiga(pl)>=3).length, l:"Con 3+ partidos"},
+    {n:rp.players.filter(pl=>conLiga(pl)===0).length, l:"Solo pretemporada"},
+    {n:fmtN(ta.distancia,0), sm:" m", l:"Distancia media"},
+    {n:fmtN(ta.hsr,0), sm:" m", l:"HSR medio"},
+  ].map(k=>`<div class="kpi"><div class="n">${k.n}${k.sm?`<small>${k.sm}</small>`:""}</div><div class="l">${k.l}</div></div>`).join("");
+  p.appendChild(mini);
+  const wrap=el("div",{class:"tbl-scroll sticky-col"}); const tb=el("table",{class:"ref-tbl"});
+  tb.innerHTML=`<thead><tr><th>#</th><th style="text-align:left">Jugador</th>`+
+    cols.map((k,i)=>`<th${i===0?' class="grp-start"':''}>${lab(k)}</th>`).join("")+
+    `<th class="grp-start" style="text-align:left">Datos</th></tr></thead>`;
+  const tbody=el("tbody");
+  // marca suave: ≥10% por encima / por debajo de la media del equipo
+  const cls=(k,v)=> v==null||!ta[k] ? "" : v>=ta[k]*1.10 ? "hi" : v<=ta[k]*0.90 ? "lo" : "";
+  Object.entries(GROUPS).forEach(([g,gl])=>{
+    const lst=players.filter(pl=>pl.grupo===g).sort((a,b)=>a.dorsal-b.dorsal);
+    if(!lst.length) return;
+    const trg=el("tr",{class:"grp"}); trg.innerHTML=`<td colspan="${cols.length+3}">${{D:"Defensas",M:"Medios",DL:"Delanteros"}[g]||gl} (${lst.length})</td>`;
+    tbody.appendChild(trg);
+    lst.forEach(pl=>{
+      const tr=el("tr",{class:"pl", title:"Ver de qué datos sale su referencia"});
+      tr.innerHTML=`<td class="mono">${pl.dorsal}</td><td style="text-align:left">${NAME[pl.dorsal]||pl.jugador}</td>`+
+        cols.map((k,i)=>`<td class="mono${i===0?" grp-start":""} ${cls(k,pl[k])}">${fmtN(pl[k],dec(k))}</td>`).join("")+
+        `<td class="dat grp-start">${(pl.datosRef||[]).map(x=>`<span class="chipd">${x.key}</span>`).join("")}</td>`;
+      let abierto=false, filas=[];
+      tr.onclick=()=>{
+        if(abierto){ filas.forEach(f=>f.remove()); filas=[]; abierto=false; return; }
+        abierto=true;
+        let ant=tr;
+        (pl.datosRef||[]).forEach(x=>{
+          const f=el("tr",{class:"det"});
+          const desc = x.key==="Pret" ? "Pretemporada (media)" :
+            `${x.key}${x.fecha?" · "+fDate(x.fecha):""}${x.min!=null?` · ${fmtN(x.min,0)}′ → ${fmtN(x.T,0)}′`:""}`;
+          f.innerHTML=`<td></td><td class="lbl">${desc}</td>`+
+            cols.map((k,i)=>`<td class="mono${i===0?" grp-start":""}">${k==="velMax"?"":fmtN((x.valores||{})[k],dec(k))}</td>`).join("")+`<td class="grp-start"></td>`;
+          ant.after(f); ant=f; filas.push(f);
+        });
+      };
+      tbody.appendChild(tr);
+    });
+  });
+  const trt=el("tr",{class:"total"});
+  trt.innerHTML=`<td></td><td style="text-align:left">Media equipo</td>`+
+    cols.map((k,i)=>`<td class="mono${i===0?" grp-start":""}">${fmtN(ta[k],dec(k))}</td>`).join("")+`<td class="grp-start"></td>`;
+  tbody.appendChild(trt);
+  tb.appendChild(tbody); wrap.appendChild(tb); p.appendChild(wrap);
+  p.appendChild(el("p",{class:"note", style:"padding-top:10px"},
+    "Negrita: ≥10% por encima de la media del equipo · gris: ≥10% por debajo. En el detalle, cada partido aparece ya extrapolado (minutos jugados → duración real del partido). "+
+    "Fuera de la referencia: J1 (sin GPS), datos estimados por fallo de GPS y datos proxy. Vel. máx: mejor registro de partido. "+
+    "Se actualiza sola tras cada partido de Liga."));
   root.appendChild(p);
 }
 

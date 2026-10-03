@@ -1088,6 +1088,20 @@ def main():
         if k != "velMax":
             tavg[k] = int(tavg[k])
 
+    # de qué datos sale cada REF (GPS/ref_componentes.json): pretemporada + cada partido
+    ruta_comp = os.path.join(GPS_DIR, "ref_componentes.json")
+    comp = json.load(open(ruta_comp, encoding="utf-8")) if os.path.exists(ruta_comp) else {}
+    for r in ref_players:
+        c = comp.get(str(r["dorsal"]), {})
+        datos = []
+        if c.get("pretemporada"):
+            datos.append({"key": "Pret", "valores": c["pretemporada"]})
+        for k, v in sorted((c.get("partidos") or {}).items(), key=lambda t: t[1].get("fecha", "")):
+            datos.append({"key": "Juvenil" if k.startswith("Extra") else k, "fecha": v.get("fecha"),
+                          "min": v.get("minutos"), "T": v.get("duracion"),
+                          "valores": {m: round(x, 1) for m, x in v["valores"].items()}})
+        r["datosRef"] = datos
+
     compute_dispo(micro_data, ref_players)
     primera = compute_primera_fecha(micro_data)
     for r in ref_players:
