@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-10-02 12:15",
+  "generado": "2026-10-03 09:29",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-12)"
  },
  "refPartido": {
@@ -22,6 +22,33 @@ window.GPS_DATA_ALL = {
     "dec": 44.5,
     "velMax": 29.26,
     "partidos": 7,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 9410.1,
+       "hmld": 1446.1,
+       "hsr": 548.0,
+       "sprint": 15.0,
+       "acc": 17.0,
+       "dec": 40.1
+      }
+     },
+     {
+      "key": "J2",
+      "fecha": "2026-09-13",
+      "min": 8.82,
+      "T": 94.88,
+      "valores": {
+       "distancia": 10255.3,
+       "hmld": 1976.7,
+       "hsr": 714.4,
+       "sprint": 19.6,
+       "acc": 9.8,
+       "dec": 48.9
+      }
+     }
+    ],
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -37,6 +64,33 @@ window.GPS_DATA_ALL = {
     "dec": 36.8,
     "velMax": 30.38,
     "partidos": 1,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 9693.1,
+       "hmld": 1432.0,
+       "hsr": 444.0,
+       "sprint": 9.6,
+       "acc": 23.5,
+       "dec": 35.3
+      }
+     },
+     {
+      "key": "J3",
+      "fecha": "2026-09-20",
+      "min": 29.27,
+      "T": 100.57,
+      "valores": {
+       "distancia": 9877.9,
+       "hmld": 1567.6,
+       "hsr": 530.0,
+       "sprint": 12.8,
+       "acc": 25.5,
+       "dec": 38.3
+      }
+     }
+    ],
     "dispo": "baja",
     "primeraFecha": "2026-09-03"
    },
@@ -52,6 +106,19 @@ window.GPS_DATA_ALL = {
     "dec": 21,
     "velMax": 32.07,
     "partidos": 6,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 9373,
+       "hmld": 1187,
+       "hsr": 293,
+       "sprint": 4,
+       "acc": 21,
+       "dec": 21
+      }
+     }
+    ],
     "dispo": "rehab",
     "primeraFecha": "2026-07-16"
    },
@@ -67,6 +134,61 @@ window.GPS_DATA_ALL = {
     "dec": 34.9,
     "velMax": 30.84,
     "partidos": 11,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 9766.0,
+       "hmld": 1423.2,
+       "hsr": 354.0,
+       "sprint": 6.8,
+       "acc": 23.8,
+       "dec": 32.0
+      }
+     },
+     {
+      "key": "J2",
+      "fecha": "2026-09-13",
+      "min": 94.88,
+      "T": 94.88,
+      "valores": {
+       "distancia": 10149,
+       "hmld": 1419,
+       "hsr": 340,
+       "sprint": 7,
+       "acc": 28,
+       "dec": 33
+      }
+     },
+     {
+      "key": "J3",
+      "fecha": "2026-09-20",
+      "min": 50.12,
+      "T": 100.57,
+      "valores": {
+       "distancia": 10593.5,
+       "hmld": 1810.7,
+       "hsr": 430.8,
+       "sprint": 9.5,
+       "acc": 34.3,
+       "dec": 45.7
+      }
+     },
+     {
+      "key": "J4",
+      "fecha": "2026-09-27",
+      "min": 99.27,
+      "T": 99.27,
+      "valores": {
+       "distancia": 9970,
+       "hmld": 1222,
+       "hsr": 276,
+       "sprint": 6,
+       "acc": 16,
+       "dec": 29
+      }
+     }
+    ],
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -82,6 +204,47 @@ window.GPS_DATA_ALL = {
     "dec": 51.1,
     "velMax": 29.33,
     "partidos": 10,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 11354.0,
+       "hmld": 1993.2,
+       "hsr": 404.0,
+       "sprint": 4.8,
+       "acc": 32.0,
+       "dec": 48.0
+      }
+     },
+     {
+      "key": "J2",
+      "fecha": "2026-09-13",
+      "min": 94.88,
+      "T": 94.88,
+      "valores": {
+       "distancia": 10658,
+       "hmld": 1700,
+       "hsr": 467,
+       "sprint": 5,
+       "acc": 33,
+       "dec": 50
+      }
+     },
+     {
+      "key": "J3",
+      "fecha": "2026-09-20",
+      "min": 68.58,
+      "T": 100.57,
+      "valores": {
+       "distancia": 10530.0,
+       "hmld": 1715.0,
+       "hsr": 393.3,
+       "sprint": 5.7,
+       "acc": 36.9,
+       "dec": 55.4
+      }
+     }
+    ],
     "dispo": "rehab",
     "primeraFecha": "2026-07-16"
    },
@@ -97,6 +260,61 @@ window.GPS_DATA_ALL = {
     "dec": 41.7,
     "velMax": 32.52,
     "partidos": 10,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 10714.0,
+       "hmld": 1849.2,
+       "hsr": 680.0,
+       "sprint": 14.8,
+       "acc": 30.2,
+       "dec": 41.6
+      }
+     },
+     {
+      "key": "J2",
+      "fecha": "2026-09-13",
+      "min": 94.88,
+      "T": 94.88,
+      "valores": {
+       "distancia": 11112,
+       "hmld": 1715,
+       "hsr": 387,
+       "sprint": 6,
+       "acc": 25,
+       "dec": 47
+      }
+     },
+     {
+      "key": "J3",
+      "fecha": "2026-09-20",
+      "min": 80.97,
+      "T": 100.57,
+      "valores": {
+       "distancia": 11276.2,
+       "hmld": 2064.3,
+       "hsr": 701.5,
+       "sprint": 13.4,
+       "acc": 30.4,
+       "dec": 45.1
+      }
+     },
+     {
+      "key": "J4",
+      "fecha": "2026-09-27",
+      "min": 99.27,
+      "T": 99.27,
+      "valores": {
+       "distancia": 11452,
+       "hmld": 1895,
+       "hsr": 713,
+       "sprint": 15,
+       "acc": 40,
+       "dec": 33
+      }
+     }
+    ],
     "dispo": "rehab",
     "primeraFecha": "2026-07-16"
    },
@@ -112,6 +330,61 @@ window.GPS_DATA_ALL = {
     "dec": 39.4,
     "velMax": 30.15,
     "partidos": 11,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 10473.0,
+       "hmld": 1612.9,
+       "hsr": 421.4,
+       "sprint": 8.8,
+       "acc": 22.2,
+       "dec": 37.3
+      }
+     },
+     {
+      "key": "J2",
+      "fecha": "2026-09-13",
+      "min": 75.5,
+      "T": 94.88,
+      "valores": {
+       "distancia": 11654.4,
+       "hmld": 1908.1,
+       "hsr": 429.6,
+       "sprint": 6.2,
+       "acc": 24.6,
+       "dec": 36.9
+      }
+     },
+     {
+      "key": "J3",
+      "fecha": "2026-09-20",
+      "min": 80.83,
+      "T": 100.57,
+      "valores": {
+       "distancia": 10945.7,
+       "hmld": 1939.3,
+       "hsr": 626.9,
+       "sprint": 17.1,
+       "acc": 35.4,
+       "dec": 42.7
+      }
+     },
+     {
+      "key": "J4",
+      "fecha": "2026-09-27",
+      "min": 89.85,
+      "T": 99.27,
+      "valores": {
+       "distancia": 11205.9,
+       "hmld": 1655.7,
+       "hsr": 478.2,
+       "sprint": 12.0,
+       "acc": 32.8,
+       "dec": 40.5
+      }
+     }
+    ],
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -127,6 +400,61 @@ window.GPS_DATA_ALL = {
     "dec": 47.1,
     "velMax": 31,
     "partidos": 11,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 9150.8,
+       "hmld": 1502.3,
+       "hsr": 486.2,
+       "sprint": 11.0,
+       "acc": 32.8,
+       "dec": 46.1
+      }
+     },
+     {
+      "key": "J2",
+      "fecha": "2026-09-13",
+      "min": 67.2,
+      "T": 94.88,
+      "valores": {
+       "distancia": 9430.8,
+       "hmld": 1494.1,
+       "hsr": 479.8,
+       "sprint": 8.2,
+       "acc": 45.2,
+       "dec": 53.5
+      }
+     },
+     {
+      "key": "J3",
+      "fecha": "2026-09-20",
+      "min": 100.57,
+      "T": 100.57,
+      "valores": {
+       "distancia": 9594,
+       "hmld": 1561,
+       "hsr": 672,
+       "sprint": 17,
+       "acc": 28,
+       "dec": 37
+      }
+     },
+     {
+      "key": "J4",
+      "fecha": "2026-09-27",
+      "min": 99.27,
+      "T": 99.27,
+      "valores": {
+       "distancia": 9785,
+       "hmld": 1523,
+       "hsr": 583,
+       "sprint": 15,
+       "acc": 28,
+       "dec": 52
+      }
+     }
+    ],
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -142,6 +470,19 @@ window.GPS_DATA_ALL = {
     "dec": 59,
     "velMax": 30.25,
     "partidos": 4,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 9426,
+       "hmld": 1601,
+       "hsr": 580,
+       "sprint": 17,
+       "acc": 31,
+       "dec": 59
+      }
+     }
+    ],
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -157,6 +498,47 @@ window.GPS_DATA_ALL = {
     "dec": 41.5,
     "velMax": 32.63,
     "partidos": 10,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 9836.2,
+       "hmld": 1611.0,
+       "hsr": 491.0,
+       "sprint": 11.9,
+       "acc": 27.2,
+       "dec": 37.0
+      }
+     },
+     {
+      "key": "J2",
+      "fecha": "2026-09-13",
+      "min": 74.58,
+      "T": 94.88,
+      "valores": {
+       "distancia": 10877.2,
+       "hmld": 2109.0,
+       "hsr": 671.0,
+       "sprint": 14.9,
+       "acc": 28.6,
+       "dec": 39.8
+      }
+     },
+     {
+      "key": "J3",
+      "fecha": "2026-09-20",
+      "min": 50.12,
+      "T": 100.57,
+      "valores": {
+       "distancia": 10694.5,
+       "hmld": 2064.2,
+       "hsr": 802.4,
+       "sprint": 21.0,
+       "acc": 26.7,
+       "dec": 47.6
+      }
+     }
+    ],
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -172,6 +554,33 @@ window.GPS_DATA_ALL = {
     "dec": 50.2,
     "velMax": 30.1,
     "partidos": 7,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 10053.0,
+       "hmld": 1373.0,
+       "hsr": 250.1,
+       "sprint": 4.0,
+       "acc": 29.0,
+       "dec": 36.0
+      }
+     },
+     {
+      "key": "J2",
+      "fecha": "2026-09-13",
+      "min": 18.98,
+      "T": 94.88,
+      "valores": {
+       "distancia": 9436.0,
+       "hmld": 1678.4,
+       "hsr": 170.1,
+       "sprint": 0.0,
+       "acc": 41.4,
+       "dec": 64.4
+      }
+     }
+    ],
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -187,6 +596,19 @@ window.GPS_DATA_ALL = {
     "dec": 19,
     "velMax": 26.09,
     "partidos": 1,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 9260,
+       "hmld": 1035,
+       "hsr": 249,
+       "sprint": 3,
+       "acc": 16,
+       "dec": 19
+      }
+     }
+    ],
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -202,6 +624,61 @@ window.GPS_DATA_ALL = {
     "dec": 44.5,
     "velMax": 32.61,
     "partidos": 9,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 10228.1,
+       "hmld": 1681.4,
+       "hsr": 495.1,
+       "sprint": 8.8,
+       "acc": 36.0,
+       "dec": 33.9
+      }
+     },
+     {
+      "key": "J2",
+      "fecha": "2026-09-13",
+      "min": 27.28,
+      "T": 94.88,
+      "valores": {
+       "distancia": 10112.9,
+       "hmld": 1986.4,
+       "hsr": 791.3,
+       "sprint": 22.6,
+       "acc": 61.4,
+       "dec": 74.3
+      }
+     },
+     {
+      "key": "J3",
+      "fecha": "2026-09-20",
+      "min": 50.45,
+      "T": 100.57,
+      "valores": {
+       "distancia": 10284.7,
+       "hmld": 1577.8,
+       "hsr": 543.6,
+       "sprint": 13.3,
+       "acc": 30.3,
+       "dec": 37.9
+      }
+     },
+     {
+      "key": "J4",
+      "fecha": "2026-09-27",
+      "min": 99.27,
+      "T": 99.27,
+      "valores": {
+       "distancia": 10764,
+       "hmld": 1593,
+       "hsr": 431,
+       "sprint": 9,
+       "acc": 39,
+       "dec": 32
+      }
+     }
+    ],
     "dispo": "ok",
     "primeraFecha": "2026-07-27"
    },
@@ -217,6 +694,61 @@ window.GPS_DATA_ALL = {
     "dec": 44.2,
     "velMax": 33.71,
     "partidos": 10,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 9312.2,
+       "hmld": 1350.2,
+       "hsr": 482.8,
+       "sprint": 12.0,
+       "acc": 20.0,
+       "dec": 38.0
+      }
+     },
+     {
+      "key": "J2",
+      "fecha": "2026-09-13",
+      "min": 94.88,
+      "T": 94.88,
+      "valores": {
+       "distancia": 9401,
+       "hmld": 1433,
+       "hsr": 588,
+       "sprint": 14,
+       "acc": 28,
+       "dec": 46
+      }
+     },
+     {
+      "key": "J3",
+      "fecha": "2026-09-20",
+      "min": 100.57,
+      "T": 100.57,
+      "valores": {
+       "distancia": 9703,
+       "hmld": 1386,
+       "hsr": 500,
+       "sprint": 13,
+       "acc": 33,
+       "dec": 40
+      }
+     },
+     {
+      "key": "J4",
+      "fecha": "2026-09-27",
+      "min": 63.48,
+      "T": 99.27,
+      "valores": {
+       "distancia": 9610.5,
+       "hmld": 1445.5,
+       "hsr": 501.9,
+       "sprint": 10.6,
+       "acc": 24.1,
+       "dec": 52.8
+      }
+     }
+    ],
     "dispo": "rehab",
     "primeraFecha": "2026-07-16"
    },
@@ -232,6 +764,61 @@ window.GPS_DATA_ALL = {
     "dec": 65.2,
     "velMax": 32.16,
     "partidos": 11,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 10621.8,
+       "hmld": 1890.2,
+       "hsr": 629.8,
+       "sprint": 13.2,
+       "acc": 35.0,
+       "dec": 57.0
+      }
+     },
+     {
+      "key": "J2",
+      "fecha": "2026-09-13",
+      "min": 94.88,
+      "T": 94.88,
+      "valores": {
+       "distancia": 11101,
+       "hmld": 1939,
+       "hsr": 571,
+       "sprint": 10,
+       "acc": 35,
+       "dec": 55
+      }
+     },
+     {
+      "key": "J3",
+      "fecha": "2026-09-20",
+      "min": 100.57,
+      "T": 100.57,
+      "valores": {
+       "distancia": 10950,
+       "hmld": 1991,
+       "hsr": 783,
+       "sprint": 14,
+       "acc": 36,
+       "dec": 68
+      }
+     },
+     {
+      "key": "J4",
+      "fecha": "2026-09-27",
+      "min": 67.72,
+      "T": 99.27,
+      "valores": {
+       "distancia": 11280.8,
+       "hmld": 2297.9,
+       "hsr": 773.5,
+       "sprint": 18.4,
+       "acc": 52.5,
+       "dec": 80.9
+      }
+     }
+    ],
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -247,6 +834,19 @@ window.GPS_DATA_ALL = {
     "dec": 47,
     "velMax": 30.24,
     "partidos": 8,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 9634,
+       "hmld": 1549,
+       "hsr": 486,
+       "sprint": 12,
+       "acc": 25,
+       "dec": 47
+      }
+     }
+    ],
     "dispo": "rehab",
     "primeraFecha": "2026-07-16"
    },
@@ -262,6 +862,61 @@ window.GPS_DATA_ALL = {
     "dec": 32.7,
     "velMax": 30.05,
     "partidos": 11,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 10594.2,
+       "hmld": 1730.0,
+       "hsr": 507.0,
+       "sprint": 9.1,
+       "acc": 10.9,
+       "dec": 32.7
+      }
+     },
+     {
+      "key": "J2",
+      "fecha": "2026-09-13",
+      "min": 86.85,
+      "T": 94.88,
+      "valores": {
+       "distancia": 11100.0,
+       "hmld": 1636.8,
+       "hsr": 556.8,
+       "sprint": 9.8,
+       "acc": 9.8,
+       "dec": 21.7
+      }
+     },
+     {
+      "key": "J3",
+      "fecha": "2026-09-20",
+      "min": 50.12,
+      "T": 100.57,
+      "valores": {
+       "distancia": 10633.5,
+       "hmld": 1719.2,
+       "hsr": 501.3,
+       "sprint": 3.8,
+       "acc": 19.1,
+       "dec": 49.6
+      }
+     },
+     {
+      "key": "J4",
+      "fecha": "2026-09-27",
+      "min": 99.27,
+      "T": 99.27,
+      "valores": {
+       "distancia": 10917,
+       "hmld": 1241,
+       "hsr": 232,
+       "sprint": 4,
+       "acc": 11,
+       "dec": 27
+      }
+     }
+    ],
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -277,6 +932,61 @@ window.GPS_DATA_ALL = {
     "dec": 34.8,
     "velMax": 31.88,
     "partidos": 11,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 10355.8,
+       "hmld": 1577.2,
+       "hsr": 336.2,
+       "sprint": 4.8,
+       "acc": 18.0,
+       "dec": 39.0
+      }
+     },
+     {
+      "key": "J2",
+      "fecha": "2026-09-13",
+      "min": 94.88,
+      "T": 94.88,
+      "valores": {
+       "distancia": 11065,
+       "hmld": 1570,
+       "hsr": 475,
+       "sprint": 8,
+       "acc": 10,
+       "dec": 27
+      }
+     },
+     {
+      "key": "J3",
+      "fecha": "2026-09-20",
+      "min": 100.57,
+      "T": 100.57,
+      "valores": {
+       "distancia": 10882,
+       "hmld": 1557,
+       "hsr": 307,
+       "sprint": 6,
+       "acc": 16,
+       "dec": 34
+      }
+     },
+     {
+      "key": "J4",
+      "fecha": "2026-09-27",
+      "min": 99.27,
+      "T": 99.27,
+      "valores": {
+       "distancia": 10520,
+       "hmld": 1480,
+       "hsr": 366,
+       "sprint": 10,
+       "acc": 14,
+       "dec": 39
+      }
+     }
+    ],
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -292,6 +1002,61 @@ window.GPS_DATA_ALL = {
     "dec": 61.3,
     "velMax": 31.17,
     "partidos": 8,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 10343.1,
+       "hmld": 1852.9,
+       "hsr": 583.8,
+       "sprint": 12.9,
+       "acc": 36.9,
+       "dec": 58.7
+      }
+     },
+     {
+      "key": "J2",
+      "fecha": "2026-09-13",
+      "min": 18.85,
+      "T": 94.88,
+      "valores": {
+       "distancia": 10695.9,
+       "hmld": 2305.9,
+       "hsr": 736.2,
+       "sprint": 18.5,
+       "acc": 41.7,
+       "dec": 78.7
+      }
+     },
+     {
+      "key": "J3",
+      "fecha": "2026-09-20",
+      "min": 50.45,
+      "T": 100.57,
+      "valores": {
+       "distancia": 11049.9,
+       "hmld": 1973.6,
+       "hsr": 572.0,
+       "sprint": 5.7,
+       "acc": 37.9,
+       "dec": 58.7
+      }
+     },
+     {
+      "key": "J4",
+      "fecha": "2026-09-27",
+      "min": 99.27,
+      "T": 99.27,
+      "valores": {
+       "distancia": 10618,
+       "hmld": 1634,
+       "hsr": 340,
+       "sprint": 3,
+       "acc": 35,
+       "dec": 49
+      }
+     }
+    ],
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -307,6 +1072,47 @@ window.GPS_DATA_ALL = {
     "dec": 61.1,
     "velMax": 30.46,
     "partidos": 7,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 10561.0,
+       "hmld": 1972.0,
+       "hsr": 734.0,
+       "sprint": 15.8,
+       "acc": 32.0,
+       "dec": 51.1
+      }
+     },
+     {
+      "key": "J3",
+      "fecha": "2026-09-20",
+      "min": 18.5,
+      "T": 100.57,
+      "valores": {
+       "distancia": 10039.8,
+       "hmld": 1717.4,
+       "hsr": 549.2,
+       "sprint": 5.0,
+       "acc": 15.0,
+       "dec": 59.9
+      }
+     },
+     {
+      "key": "J4",
+      "fecha": "2026-09-27",
+      "min": 31.95,
+      "T": 99.27,
+      "valores": {
+       "distancia": 10148.4,
+       "hmld": 1949.2,
+       "hsr": 692.2,
+       "sprint": 11.6,
+       "acc": 49.2,
+       "dec": 72.4
+      }
+     }
+    ],
     "dispo": "ok",
     "primeraFecha": "2026-07-27"
    },
@@ -322,6 +1128,33 @@ window.GPS_DATA_ALL = {
     "dec": 23.6,
     "velMax": 30.91,
     "partidos": 8,
+    "datosRef": [
+     {
+      "key": "Pret",
+      "valores": {
+       "distancia": 9224,
+       "hmld": 1136,
+       "hsr": 314,
+       "sprint": 7,
+       "acc": 18,
+       "dec": 30
+      }
+     },
+     {
+      "key": "Juvenil",
+      "fecha": "2026-09-26",
+      "min": 47.27,
+      "T": 95.0,
+      "valores": {
+       "distancia": 8885.9,
+       "hmld": 838.0,
+       "hsr": 164.2,
+       "sprint": 3.8,
+       "acc": 22.9,
+       "dec": 17.2
+      }
+     }
+    ],
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    }
