@@ -38,6 +38,7 @@ class Reproceso(unittest.TestCase):
 
     def test_reprocesar_no_cuenta_dos_veces(self):
         wt = openpyxl.load_workbook(C.TIPO_XLSX)       # en memoria: no se guarda
+        antes = RC.n_datos(RC.cargar()["7"])
         datos = {7: {"distancia": 11000, "hmld": 1800, "hsr": 600, "sprint": 12, "acc": 30, "dec": 40,
                      "min": 95.0}}
         partido.actualizar_ref(wt, "J99", "2026-12-01", datos, {7: "Riera"}, 95.0)
@@ -46,7 +47,7 @@ class Reproceso(unittest.TestCase):
         dos = referencia.ref_partido(wt)[7]
         self.assertEqual(una, dos)
         comp = RC.cargar()["7"]
-        self.assertEqual(RC.n_datos(comp), 5)            # pretemporada + J2, J3, J4 + J99
+        self.assertEqual(RC.n_datos(comp), antes + 1)    # los que ya tenía + J99 (una sola vez)
 
 
 if __name__ == "__main__":
