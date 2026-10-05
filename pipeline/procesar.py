@@ -221,7 +221,9 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
             if cumpl:
                 res["cumplimiento_medio"] = round(sum(cumpl) / len(cumpl))
         for d, e in estados_dia.items():
-            if e in E.PERSISTENTES and e != vigentes[d] and d not in datos:
+            # quien juega cuenta como full ese día sin cambiar su estado vigente, salvo que el
+            # preparador lo indique (--estado D=full: alta en el partido)
+            if e in E.PERSISTENTES and e != vigentes[d] and (d not in datos or d in override):
                 E.cambiar(est, d, e, fecha.isoformat(), f"{key}")
         if partido.cuenta_para_ref(key) and not dry_run:
             reales = {d: v for d, v in datos.items() if d not in fallos_gps and d not in proxies}

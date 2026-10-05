@@ -232,23 +232,36 @@ def cambiar_tipo(n, tipo, estados=None):
 
 
 def propagar_estados(n, dorsales, estados=None):
-    """Cambio de estado confirmado fuera de un PDF (p. ej. diagnóstico de lesión): lo aplica a
-    las sesiones AÚN NO CARGADAS del microciclo `n` (las cargadas no se tocan). Rehab/lesión
-    quitan el Objetivo; se reescriben la MEDIA EQUIPO, la nota de estados y el Acumulado.
+    """Cambio de estado confirmado fuera de un PDF (p. ej. diagnóstico de lesión o alta): lo
+    aplica a las sesiones AÚN NO CARGADAS del microciclo `n` (las cargadas no se tocan).
+    Rehab/lesión quitan el Objetivo; full lo pone (REF × coeficiente; MD+1 según el último
+    partido). Se reescriben la MEDIA EQUIPO, la nota de estados y el Acumulado.
     Devuelve [sesiones tocadas]."""
     from .xlsx import backup
     ruta = ruta_microciclo(n)
     estados = estados if estados is not None else E.cargar()
     backup([ruta])
     wb = openpyxl.load_workbook(ruta)
+    wt = openpyxl.load_workbook(C.TIPO_XLSX)
+    ref, coefs = referencia.ref_partido(wt), referencia.coeficientes(wt)
+    ses = sesion.hojas_sesion(wb)
+    from . import procesar as P
+    ult = P._ultimo_partido_antes(ses[0][2])
+    roles = roles_md1(ult) if ult is not None else {}
     tocadas = []
-    for key, ws, _ in sesion.hojas_sesion(wb):
+    for key, ws, _ in ses:
         if sesion.hecha(ws):
             continue
         filas, media = filas_jugadores(ws)
+        tipo, dia = sesion.tipo_y_dia(ws)
         for d in dorsales:
-            if d in filas and E.vigente(estados, d) in (C.REHAB, C.LESION):
+            if d not in filas:
+                continue
+            if E.vigente(estados, d) in (C.REHAB, C.LESION):
                 sesion._escribe_obj(ws, filas[d], None)
+            elif E.vigente(estados, d) == C.FULL and d in ref:     # alta: objetivo del día
+                clave = dia + roles.get(d, "S") if dia == "MD+1" else dia
+                sesion._escribe_obj(ws, filas[d], referencia.objetivo(ref[d], coefs[tipo][clave]))
         sesion.escribir_media(ws, filas, media, {d: C.FULL for d, r in filas.items()
                                                  if sesion.tiene_objetivo(ws, r)})
         nombres = {d: ws.cell(r, 2).value for d, r in filas.items()}
