@@ -1,13 +1,13 @@
 /* Service worker — cache básico para uso offline en el campo + notificaciones push. */
-var CACHE = "carga-gps-v68";
+var CACHE = "carga-gps-v70";
 var ASSETS = [
   "./",
   "./index.html",
   "./jugador.html",
   "./dashboard.html",
   "./styles.css?v=55",
-  "./app.js?v=59",
-  "./jugador.js?v=55",
+  "./app.js?v=60",
+  "./jugador.js?v=56",
   "./data.js?v=53",
   "./manifest.json",
   "./manifest.jugador.json",
@@ -18,7 +18,8 @@ var ASSETS = [
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) {
-    return Promise.all(ASSETS.map(function (u) { return c.add(u).catch(function () {}); }));
+    // cache:"reload": salta la caché HTTP (GitHub Pages da max-age=600) para no precachear una versión vieja
+    return Promise.all(ASSETS.map(function (u) { return c.add(new Request(u, { cache: "reload" })).catch(function () {}); }));
   }).then(function () { return self.skipWaiting(); }));
 });
 
@@ -48,6 +49,18 @@ self.addEventListener("fetch", function (e) {
     );
     return;
   }
+  // páginas (index/jugador/dashboard): red primero para ver siempre la última versión; caché sin red
+  if (e.request.mode === "navigate" || url.pathname.endsWith(".html") || url.pathname.endsWith("/")) {
+    e.respondWith(
+      fetch(e.request, { cache: "no-store" }).then(function (r) {
+        var copy = r.clone();
+        caches.open(CACHE).then(function (c) { c.put(e.request, copy); });
+        return r;
+      }).catch(function () { return caches.match(e.request).then(function (r) { return r || caches.match("./index.html"); }); })
+    );
+    return;
+  }
+  // resto (JS/CSS versionados con ?v=, iconos): caché primero
   e.respondWith(caches.match(e.request).then(function (r) { return r || fetch(e.request); }));
 });
 

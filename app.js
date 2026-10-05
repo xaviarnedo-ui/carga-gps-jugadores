@@ -1054,7 +1054,14 @@
   render();
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register("sw.js").catch(function () {}).then(refreshBell);
+      // versión nueva publicada: el SW nuevo toma el control y se recarga una vez sola
+      var habia = !!navigator.serviceWorker.controller, recargado = false;
+      navigator.serviceWorker.addEventListener("controllerchange", function () {
+        if (habia && !recargado) { recargado = true; location.reload(); }
+      });
+      navigator.serviceWorker.register("sw.js", { updateViaCache: "none" })
+        .then(function (reg) { if (reg && reg.update) reg.update().catch(function () {}); return reg; })
+        .catch(function () {}).then(refreshBell);
     });
   }
 })();
