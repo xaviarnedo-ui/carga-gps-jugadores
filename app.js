@@ -468,6 +468,28 @@
     }).join("") + '</div>';
   }
 
+  // sesión aún por hacer: objetivo medio del equipo y objetivo de cada jugador
+  function teamObjCards(ta) {
+    return '<div class="tm-grid">' + METRICS.map(function (mm) {
+      var c = ta[mm.key] || {};
+      return '<div class="tm"><div class="tm__k">' + esc(mm.label) + ' <span class="mrow__unit">' + (mm.unit || "") + '</span></div>' +
+        '<div class="tm__v"><span class="tm__real">' + fmt(c.obj) + '</span><span class="tm__obj">objetivo medio</span></div></div>';
+    }).join("") + '</div>';
+  }
+  function pendingPlayer(p) {
+    var conObj = METRICS.some(function (mm) { return p[mm.key] && p[mm.key].obj != null; });
+    var d = (p.distancia || {}).obj;
+    var sm = conObj ? '<span class="pdet__sum">obj ' + fmt(d) + ' m</span>' : '<span class="pdet__sum muted">Sin objetivo</span>';
+    if (p.fueraMedia) sm = '<span class="tag tag--parcial" title="Objetivo individual; no cuenta para la media del equipo">Fuera de media</span> ' + sm;
+    var body = conObj
+      ? METRICS.map(function (mm) {
+          var c = p[mm.key] || {};
+          return mrow(mm.label, mm.unit, null, c.obj, null, "", 0);
+        }).join("")
+      : '<div class="muted">Sin objetivo para esta sesión (lesión, readaptación o descanso).</div>';
+    return playerDetails(p.dorsal, p.jugador, p.grupo, sm, body + shareLine(p.dorsal, p.jugador));
+  }
+
   function screenExtra(m, key) {
     var ex = m.extras[key];
     var rows = ex.players.map(function (p) {
@@ -528,12 +550,13 @@
         kpi(ta.velMax != null ? fmtDec(ta.velMax, 1) : "—", "Vel. máx km/h") +
         kpi(fmt(ta.playerLoad), "Player Load") +
         kpi(ta.duracion || "—", "Duración") + '</div>'
-      : '<div class="muted">—</div>';
+      : (match ? '<div class="muted">—</div>' : teamObjCards(ta));
 
     // jugadores
     var conObj = !match || !!s.objNota;
     var players = conObj ? ordenar(s.players) : s.players.slice().sort(sortPlayers);
     var rows = players.map(function (p) {
+      if (!done && !match) return pendingPlayer(p);
       var sm = playerDonut(p, match);
       var body = "";
       if (p.estado === "na") body = '<div class="muted">Sin datos en esta sesión.</div>';
