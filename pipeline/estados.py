@@ -5,6 +5,8 @@ Vive en GPS/estados_jugadores.json (fuera del repo: es dato médico del club).
   sesiones: {"S47": {"fecha": "2026-09-23", "estados": {"2": "full", "6": "descanso", ...}}}
   historial: [{"fecha", "dorsal", "de", "a", "nota"}]
 "descanso" y "nc" (convocado, no jugó) son de un solo día: no cambian el vigente.
+  fuera_media: [{"dorsal", "desde", "hasta", "nota"}] jugadores con objetivo individual que NO
+  cuentan para la MEDIA EQUIPO de las sesiones de esos días (p. ej. gestión de cargas tras un alta).
 """
 import json
 import os
@@ -26,6 +28,14 @@ def guardar(data, ruta=None):
     ruta = ruta or C.ESTADOS_JSON
     with open(ruta, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)
+
+
+def fuera_media(fecha, data=None):
+    """{dorsal: nota} de quien no cuenta para la MEDIA EQUIPO ese día (fecha: date o ISO)."""
+    data = data if data is not None else cargar()
+    iso = fecha.isoformat() if hasattr(fecha, "isoformat") else str(fecha)
+    return {int(x["dorsal"]): x.get("nota", "") for x in data.get("fuera_media", [])
+            if x["desde"] <= iso <= x["hasta"]}
 
 
 def vigente(data, dorsal):

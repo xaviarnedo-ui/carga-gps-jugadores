@@ -269,7 +269,7 @@ function buildRAW(d){
         if(!players[dd]) players[dd]={d:dd,n:(pl.jugador||"?"),g:(pl.grupo||"?")};
         const mp={};
         METR.forEach(k=>{ const v=pl[k]; if(v && typeof v==="object") mp[k]=[(v.obj===undefined?null:v.obj), (v.real===undefined?null:v.real)]; });
-        row.players.push({d:dd, e:(pl.estado||null), est:!!pl.estimado, dur:dur2min(pl.duracion), vmax:(pl.velMax===undefined?null:pl.velMax), pl:(pl.playerLoad===undefined?null:pl.playerLoad), m:mp});
+        row.players.push({d:dd, e:(pl.estado||null), est:!!pl.estimado, fm:!!pl.fueraMedia, dur:dur2min(pl.duracion), vmax:(pl.velMax===undefined?null:pl.velMax), pl:(pl.playerLoad===undefined?null:pl.playerLoad), m:mp});
       });
       sessions.push(row);
     });
@@ -800,7 +800,7 @@ function viewSesion(root){
     const sg = state.sesOrden==="desc" ? -1 : 1;
     players.sort((a,b)=> (a.cumpl==null)-(b.cumpl==null) || sg*((a.cumpl||0)-(b.cumpl||0)) || a.d-b.d);
   }
-  const cvals = players.map(pr=>pr.cumpl).filter(v=>v!=null);
+  const cvals = players.filter(pr=>!pr.fm).map(pr=>pr.cumpl).filter(v=>v!=null);   // fuera de media: no cuenta
   const cumplEq = cvals.length? cvals.reduce((a,b)=>a+b,0)/cvals.length : null;
   // el resumen de equipo (Vel.máx/PL/Duración) usa la MEDIA EQUIPO oficial (s.teamAvg) cuando
   // se ve la plantilla completa; si hay un filtro de Grupo activo, no hay cifra oficial para
@@ -871,7 +871,7 @@ function viewSesion(root){
 
   players.forEach(pr=>{
     const g=POS[pr.d];
-    const cells=[`<td>#${pr.d} ${NAME[pr.d]||"?"}</td>`, `<td class="pos-${g||""}">${GROUPS[g]||g||"–"}</td>`];
+    const cells=[`<td>#${pr.d} ${NAME[pr.d]||"?"}${pr.fm?` <span class="muted" title="Objetivo individual; no cuenta para la media del equipo">· fuera de media</span>`:""}</td>`, `<td class="pos-${g||""}">${GROUPS[g]||g||"–"}</td>`];
     if(conObj) cells.push(`<td class="mono grp-start" style="font-weight:700; font-size:14px; color:${semColor(pr.cumpl)}">${pr.cumpl!=null?Math.round(pr.cumpl)+"%":(pr.est?'<span title="Datos estimados por fallo de GPS">est.</span>':"–")}</td>`);
     let hasAny=false;
     RADAR_METRICS.forEach(k=>{
@@ -1031,7 +1031,7 @@ function acumuladoSemana(mc){
   ses.forEach(s=>{
     const hecha = hechas.includes(s);
     s.players.forEach(pr=>{
-      const r=f(pr.d); r.desde=desde[pr.d]||null;
+      const r=f(pr.d); r.desde=desde[pr.d]||null; if(pr.fm) r.fm=true;
       RADAR_METRICS.forEach(k=>{ const c=raw(pr,k); suma(r.obj,k,c.obj); if(hecha) suma(r.objF,k,c.obj); });
       if(r.desde && !conObj(pr)){ if(conReal(pr)) r.parcial=true; return; }   // readaptación antes de volver
       RADAR_METRICS.forEach(k=> suma(r.acum,k,raw(pr,k).real));
@@ -1105,7 +1105,7 @@ function panelAcumulado(){
   const sinObj = visibles.filter(r=> !RADAR_METRICS.some(k=>r.obj[k]!=null) && RADAR_METRICS.some(k=>r.acum[k]!=null));
 
   // media de cumplimiento del equipo, lo primero
-  const cumplEq = (()=>{ const v=conObj.map(r=>r.cumpl).filter(x=>x!=null); return v.length? v.reduce((a,b)=>a+b,0)/v.length : null; })();
+  const cumplEq = (()=>{ const v=conObj.filter(r=>!r.fm).map(r=>r.cumpl).filter(x=>x!=null); return v.length? v.reduce((a,b)=>a+b,0)/v.length : null; })();
   const mini=el("div",{class:"mini-kpis"});
   mini.innerHTML=[
     {n:cumplEq!=null?`<span style="color:${semColor(cumplEq)}">${Math.round(cumplEq)}%</span>`:"–", l:"Cumplimiento medio equipo"},
@@ -1132,7 +1132,7 @@ function panelAcumulado(){
   const body=el("tbody");
   const fila=(r, conPct)=>{
     const g=POS[r.d];
-    const cells=[`<td>#${r.d} ${NAME[r.d]||"?"}${conPct&&r.parcial?` <span title="Acumulado desde su vuelta (${fDate(r.desde)}); su readaptación anterior no cuenta aquí">†</span>`:""}</td>`, `<td class="pos-${g||""}">${GROUPS[g]||g||"–"}</td>`,
+    const cells=[`<td>#${r.d} ${NAME[r.d]||"?"}${r.fm?` <span class="muted" title="Objetivo individual; no cuenta para la media del equipo">· fuera de media</span>`:""}${conPct&&r.parcial?` <span title="Acumulado desde su vuelta (${fDate(r.desde)}); su readaptación anterior no cuenta aquí">†</span>`:""}</td>`, `<td class="pos-${g||""}">${GROUPS[g]||g||"–"}</td>`,
       `<td class="mono grp-start" style="font-weight:700; font-size:14px; color:${semColor(r.cumpl)}">${r.cumpl!=null?Math.round(r.cumpl)+"%":"–"}</td>`];
     RADAR_METRICS.forEach(k=>{
       const o=r[refKey][k], a=r.acum[k];

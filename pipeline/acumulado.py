@@ -71,7 +71,13 @@ def recalcular(wb):
             ws.cell(fila, c + 2).value = limpio(r1(a - o)) if o is not None and a is not None else None
             pinta(ws.cell(fila, c + 1), semaforo(a, obj_fecha[m]) if obj_fecha[m] else None)
 
-    con_obj = [d for d, (o, _, _) in resumen.items() if any(v is not None for v in o.values())]
+    from . import estados as E
+    fuera = {}
+    for _, s, _, _ in ses:
+        if fecha_hoja(s):
+            fuera.update(E.fuera_media(fecha_hoja(s)))
+    con_obj = [d for d, (o, _, _) in resumen.items() if any(v is not None for v in o.values())
+               and d not in fuera]
     for m, c in C.SES_OBJ_COL.items():
         if not con_obj:
             for k in range(3):
@@ -88,9 +94,13 @@ def recalcular(wb):
 
     # nota de quien vuelve a mitad de semana (fila media+3, se reescribe siempre)
     nota = ws.cell(fila_media + 3, 1)
-    nota.value = (" ".join(f"{n}: acumulado desde su primer día con objetivo ({d:%d/%m}); su carga de "
-                           f"readaptación anterior no se compara con el objetivo (sí cuenta en su ACWR)."
-                           for n, d in parciales) or None)
+    txt = " ".join(f"{n}: acumulado desde su primer día con objetivo ({d:%d/%m}); su carga de "
+                   f"readaptación anterior no se compara con el objetivo (sí cuenta en su ACWR)."
+                   for n, d in parciales)
+    if fuera:
+        txt += (" " if txt else "") + ("Fuera de la MEDIA EQUIPO (objetivo individual): " + " · ".join(
+            str(ws.cell(filas[d], 2).value).rstrip(".") for d in sorted(fuera) if d in filas) + ".")
+    nota.value = txt or None
 
     # cabecera: "... · S46, S47 CARGADAS"
     a3 = ws.cell(3, 1)

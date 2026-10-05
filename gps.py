@@ -91,6 +91,9 @@ def main():
     a = sub.add_parser("estado")
     a.add_argument("cambios", nargs="*")
     a.add_argument("--desde", help="fecha AAAA-MM-DD del cambio (por defecto hoy)")
+    a.add_argument("--fuera-media", help="dorsales (7,18) con objetivo individual que no cuentan "
+                                         "para la MEDIA EQUIPO entre --desde y --hasta")
+    a.add_argument("--hasta", help="fecha AAAA-MM-DD (con --fuera-media)")
     a.add_argument("--nota", default="fijado a mano")
     sub.add_parser("disponibilidad")
     a = sub.add_parser("publicar")
@@ -137,6 +140,17 @@ def main():
     elif args.cmd == "estado":
         data = E.cargar()
         desde = args.desde or dt.date.today().isoformat()
+        if args.fuera_media:
+            if not args.hasta:
+                sys.exit("--fuera-media necesita --hasta")
+            dors = [int(x) for x in args.fuera_media.split(",")]
+            fm = data.setdefault("fuera_media", [])
+            fm[:] = [x for x in fm if not (x["dorsal"] in dors and x["desde"] == desde)]
+            fm.extend({"dorsal": d, "desde": desde, "hasta": args.hasta, "nota": args.nota} for d in dors)
+            E.guardar(data)
+            n, _ = P.localizar_por_fecha(dt.date.fromisoformat(desde))
+            tocadas = microciclo.propagar_estados(n, dors, data)
+            print(f"  Fuera de la media {desde}→{args.hasta}: {dors} · Microciclo {n}: {', '.join(tocadas)}")
         cambios = _pares(args.cambios)
         for k, v in cambios.items():
             if v not in E.PERSISTENTES:

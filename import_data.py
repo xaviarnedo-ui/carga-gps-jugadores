@@ -554,8 +554,28 @@ def load_microcycle(path):
     ), cac
 
 
+def _fuera_media():
+    """[(dorsal, desde, hasta)] de GPS/estados_jugadores.json: objetivo individual, fuera de la media."""
+    ruta = os.path.join(GPS_DIR, "estados_jugadores.json")
+    if not os.path.exists(ruta):
+        return []
+    with open(ruta, encoding="utf-8") as f:
+        return [(int(x["dorsal"]), x["desde"], x["hasta"]) for x in json.load(f).get("fuera_media", [])]
+
+
+FUERA_MEDIA = _fuera_media()
+
+
+def es_fuera_media(dorsal, iso):
+    return bool(iso) and any(d == dorsal and a <= iso <= b for d, a, b in FUERA_MEDIA)
+
+
 def build_sessions_only(sesiones, ses_keys, acu, extras=None):
     extras = extras or {}
+    for sk in ses_keys:                       # marca por sesión (app y dashboard lo excluyen de la media)
+        for x in sesiones[sk]["players"]:
+            if es_fuera_media(x["dorsal"], sesiones[sk].get("date")):
+                x["fueraMedia"] = True
     obj_by = {p["dorsal"]: p for p in acu["players"]}
     players = []
     for dor, ap in obj_by.items():
@@ -600,7 +620,10 @@ def build_sessions_only(sesiones, ses_keys, acu, extras=None):
         players.append(rec)
     # media del equipo = jugadores con objetivo semanal (si aún no tienen real cuentan 0), como el Excel
     team = {}
-    con_obj = [p for p in players if any(p[m]["obj"] is not None for m in METRICS)]
+    for p in players:
+        if any(es_fuera_media(p["dorsal"], sesiones[sk].get("date")) for sk in ses_keys):
+            p["fueraMedia"] = True
+    con_obj = [p for p in players if any(p[m]["obj"] is not None for m in METRICS) and not p.get("fueraMedia")]
     for k in METRICS:
         o = acu["teamAvg"][k]["obj"] if acu["teamAvg"] else None
         n = len(con_obj)

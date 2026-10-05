@@ -250,7 +250,11 @@ def propagar_estados(n, dorsales, estados=None):
     roles = roles_md1(ult) if ult is not None else {}
     tocadas = []
     for key, ws, _ in ses:
-        if sesion.hecha(ws):
+        if sesion.hecha(ws):           # cargada: solo se rehace su MEDIA EQUIPO (p. ej. fuera de media)
+            filas, media = filas_jugadores(ws)
+            reg = estados.get("sesiones", {}).get(key, {}).get("estados", {})
+            sesion.escribir_media(ws, filas, media, {d: reg.get(str(d)) or (
+                C.FULL if sesion.tiene_objetivo(ws, f) else C.LESION) for d, f in filas.items()})
             continue
         filas, media = filas_jugadores(ws)
         tipo, dia = sesion.tipo_y_dia(ws)
@@ -265,7 +269,7 @@ def propagar_estados(n, dorsales, estados=None):
         sesion.escribir_media(ws, filas, media, {d: C.FULL for d, r in filas.items()
                                                  if sesion.tiene_objetivo(ws, r)})
         nombres = {d: ws.cell(r, 2).value for d, r in filas.items()}
-        ws.cell(media + 2, 1).value = sesion.nota_estados(nombres, {d: E.vigente(estados, d) for d in filas})
+        sesion.escribir_notas(ws, media, sesion.nota_estados(nombres, {d: E.vigente(estados, d) for d in filas}))
         tocadas.append(key)
     acumulado.recalcular(wb)
     wb.save(ruta)

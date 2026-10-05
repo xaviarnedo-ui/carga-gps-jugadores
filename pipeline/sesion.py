@@ -138,8 +138,10 @@ def rellenar(ws, datos, estados_dia):
 
 
 def escribir_media(ws, filas, fila_media, estados_dia):
-    """MEDIA EQUIPO solo sobre los jugadores full del día."""
-    full = [filas[d] for d, e in estados_dia.items() if e == C.FULL and d in filas]
+    """MEDIA EQUIPO solo sobre los jugadores full del día (sin los marcados fuera de la media)."""
+    from . import estados as E
+    fuera = E.fuera_media(fecha_hoja(ws)) if fecha_hoja(ws) else {}
+    full = [filas[d] for d, e in estados_dia.items() if e == C.FULL and d in filas and d not in fuera]
 
     def media(col, dec):
         vals = [num(ws.cell(r, col).value) for r in full]
@@ -177,7 +179,21 @@ def nota_estados(nombres, estados_dia, extra=""):
     return (txt + " " + extra).strip() or None
 
 
+def texto_fuera_media(ws):
+    """Frase para la nota del día con quien tiene objetivo pero no cuenta para la media."""
+    from . import estados as E
+    fuera = E.fuera_media(fecha_hoja(ws)) if fecha_hoja(ws) else {}
+    filas, _ = filas_jugadores(ws)
+    nom = [ws.cell(filas[d], 2).value for d in sorted(fuera) if d in filas]
+    if not nom:
+        return ""
+    notas = sorted({n for n in fuera.values() if n})
+    return (f"Fuera de la MEDIA EQUIPO (objetivo y semáforo individual): {' · '.join(nom)}"
+            + (f" — {'; '.join(notas)}" if notas else "") + ".")
+
+
 def escribir_notas(ws, fila_media, texto):
     """Fila media+2 = estados del día (la media+1 describe el objetivo y no se toca)."""
     cell = ws.cell(fila_media + 2, 1)
-    cell.value = texto
+    extra = texto_fuera_media(ws)
+    cell.value = (" ".join(t for t in (texto, extra) if t)) or None

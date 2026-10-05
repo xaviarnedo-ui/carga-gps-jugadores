@@ -153,6 +153,10 @@
     return n ? acc / n * 100 : null;
   }
   function playerDonut(p, match) {
+    if (p.fueraMedia && !p.estado) return '<span class="tag tag--parcial" title="Objetivo individual; no cuenta para la media del equipo">Fuera de media</span> ' + playerDonutBase(p, match);
+    return playerDonutBase(p, match);
+  }
+  function playerDonutBase(p, match) {
     if (p.estado) return estadoTag(p.estado);
     if (match && p.estimado) return '<span class="tag tag--parcial">Estimado</span>' + (p.playerLoad != null ? ' <span class="pdet__sum">PL ' + fmt(p.playerLoad) + '</span>' : '');
     var pc = achievedPct(p);
@@ -581,7 +585,7 @@
   // copia con obj = objetivo "a fecha" (Σ Obj de las sesiones ya hechas) para comparar lo que ya
   // debería llevar, no la semana entera
   function aFecha(p) {
-    var q = { dorsal: p.dorsal, jugador: p.jugador, grupo: p.grupo, estado: p.estado };
+    var q = { dorsal: p.dorsal, jugador: p.jugador, grupo: p.grupo, estado: p.estado, fueraMedia: p.fueraMedia };
     METRICS.forEach(function (mm) {
       var c = p[mm.key] || {};
       var o = c.objFecha !== undefined ? c.objFecha : c.obj;
@@ -591,7 +595,8 @@
   }
   // cumplimiento medio del equipo = media del % de cada jugador con objetivo
   function cumplEquipo(players, nota) {
-    var v = players.map(achievedPct).filter(function (x) { return x != null; });
+    var v = players.filter(function (p) { return !p.fueraMedia; })    // gestión de cargas: fuera de la media
+      .map(achievedPct).filter(function (x) { return x != null; });
     if (!v.length) return "";
     var pc = v.reduce(function (a, b) { return a + b; }, 0) / v.length;
     var zona = v.filter(function (x) { return x >= 90 && x <= 110; }).length;
