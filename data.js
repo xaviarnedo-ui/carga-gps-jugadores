@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-10-05 09:26",
+  "generado": "2026-10-05 09:35",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-13)"
  },
  "refPartido": {
@@ -120472,7 +120472,8 @@ window.GPS_DATA_ALL = {
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true
      },
      {
       "dorsal": 8,
@@ -120784,7 +120785,8 @@ window.GPS_DATA_ALL = {
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true
      },
      {
       "dorsal": 19,
@@ -121038,32 +121040,32 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 3474.6,
+      "obj": 3732.5,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 475.2,
+      "obj": 522.4,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 137.5,
+      "obj": 155.9,
       "real": null,
       "dif": null
      },
      "sprint": {
-      "obj": 2,
+      "obj": 2.3,
       "real": null,
       "dif": null
      },
      "acc": {
-      "obj": 8.3,
+      "obj": 9.2,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 12.6,
+      "obj": 14.1,
       "real": null,
       "dif": null
      },
@@ -121238,7 +121240,8 @@ window.GPS_DATA_ALL = {
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true
      },
      {
       "dorsal": 8,
@@ -121550,7 +121553,8 @@ window.GPS_DATA_ALL = {
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true
      },
      {
       "dorsal": 19,
@@ -121804,17 +121808,17 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 5043.4,
+      "obj": 5031.2,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 711.8,
+      "obj": 709.6,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 200.8,
+      "obj": 196.6,
       "real": null,
       "dif": null
      },
@@ -121824,12 +121828,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "acc": {
-      "obj": 22.8,
+      "obj": 22.7,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 35,
+      "obj": 35.1,
       "real": null,
       "dif": null
      },
@@ -122004,7 +122008,8 @@ window.GPS_DATA_ALL = {
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true
      },
      {
       "dorsal": 8,
@@ -122316,7 +122321,8 @@ window.GPS_DATA_ALL = {
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true
      },
      {
       "dorsal": 19,
@@ -122570,32 +122576,32 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 6959.9,
+      "obj": 6943.1,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 1067.6,
+      "obj": 1064.5,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 331.3,
+      "obj": 324.5,
       "real": null,
       "dif": null
      },
      "sprint": {
-      "obj": 8.4,
+      "obj": 8.2,
       "real": null,
       "dif": null
      },
      "acc": {
-      "obj": 16.6,
+      "obj": 16.5,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 21.7,
+      "obj": 21.8,
       "real": null,
       "dif": null
      },
@@ -122770,7 +122776,8 @@ window.GPS_DATA_ALL = {
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true
      },
      {
       "dorsal": 8,
@@ -123082,7 +123089,8 @@ window.GPS_DATA_ALL = {
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true
      },
      {
       "dorsal": 19,
@@ -123336,17 +123344,17 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 4034.7,
+      "obj": 4025,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 466.6,
+      "obj": 465.2,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 95.4,
+      "obj": 93.4,
       "real": null,
       "dif": null
      },
@@ -123356,7 +123364,7 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "acc": {
-      "obj": 11.3,
+      "obj": 11.2,
       "real": null,
       "dif": null
      },
@@ -123536,7 +123544,8 @@ window.GPS_DATA_ALL = {
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true
      },
      {
       "dorsal": 8,
@@ -123848,7 +123857,8 @@ window.GPS_DATA_ALL = {
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true
      },
      {
       "dorsal": 19,
@@ -124102,17 +124112,17 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 3026.1,
+      "obj": 3018.7,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 332.1,
+      "obj": 331.2,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 60.2,
+      "obj": 59,
       "real": null,
       "dif": null
      },
@@ -124127,7 +124137,7 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "dec": {
-      "obj": 10.4,
+      "obj": 10.5,
       "real": null,
       "dif": null
      },
@@ -125249,7 +125259,8 @@ window.GPS_DATA_ALL = {
       "real": null,
       "dif": null,
       "objFecha": null
-     }
+     },
+     "fueraMedia": true
     },
     {
      "dorsal": 8,
@@ -125577,7 +125588,8 @@ window.GPS_DATA_ALL = {
       "real": null,
       "dif": null,
       "objFecha": null
-     }
+     },
+     "fueraMedia": true
     },
     {
      "dorsal": 19,
@@ -125869,21 +125881,21 @@ window.GPS_DATA_ALL = {
    ],
    "teamAvg": {
     "distancia": {
-     "obj": 22538.8,
+     "obj": 22750.6,
      "real": 0.0,
-     "dif": -22538.8,
+     "dif": -22750.6,
      "objFecha": 0.0
     },
     "hmld": {
-     "obj": 3053.3,
+     "obj": 3092.8,
      "real": 0.0,
-     "dif": -3053.3,
+     "dif": -3092.8,
      "objFecha": 0.0
     },
     "hsr": {
-     "obj": 825.3,
+     "obj": 829.4,
      "real": 0.0,
-     "dif": -825.3,
+     "dif": -829.4,
      "objFecha": 0.0
     },
     "sprint": {
@@ -125893,15 +125905,15 @@ window.GPS_DATA_ALL = {
      "objFecha": 0.0
     },
     "acc": {
-     "obj": 65.7,
+     "obj": 66.3,
      "real": 0.0,
-     "dif": -65.7,
+     "dif": -66.3,
      "objFecha": 0.0
     },
     "dec": {
-     "obj": 96.4,
+     "obj": 98.1,
      "real": 0.0,
-     "dif": -96.4,
+     "dif": -98.1,
      "objFecha": 0.0
     }
    },
@@ -126647,19 +126659,19 @@ window.GPS_DATA_ALL = {
    ],
    "teamAvg": {
     "distancia": {
-     "obj": 22538.8,
+     "obj": 22750.6,
      "real": 0,
-     "dif": -22538.8
+     "dif": -22750.6
     },
     "hmld": {
-     "obj": 3053.3,
+     "obj": 3092.8,
      "real": 0,
-     "dif": -3053.3
+     "dif": -3092.8
     },
     "hsr": {
-     "obj": 825.3,
+     "obj": 829.4,
      "real": 0,
-     "dif": -825.3
+     "dif": -829.4
     },
     "sprint": {
      "obj": 16.5,
@@ -126667,14 +126679,14 @@ window.GPS_DATA_ALL = {
      "dif": -16.5
     },
     "acc": {
-     "obj": 65.7,
+     "obj": 66.3,
      "real": 0,
-     "dif": -65.7
+     "dif": -66.3
     },
     "dec": {
-     "obj": 96.4,
+     "obj": 98.1,
      "real": 0,
-     "dif": -96.4
+     "dif": -98.1
     }
    },
    "nota": "Acumulado de toda la semana: sesiones de entrenamiento + partido(s). Objetivo de la semana completa de Microciclo 13 (Lunes MD+1 individual según rol en J5 + Miércoles MD-4 + Jueves MD-3 + Viernes MD-2 + Sábado MD-1). Acumulado (Real) pendiente de cargar sesión a sesión."
