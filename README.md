@@ -38,7 +38,7 @@ Los datos **NO se editan a mano**. Se importan de los Excel reales:
 ```
 
 ```bash
-cd ~/Desktop/NEXO/Otros-proyectos/carga-gps && python3 import_data.py
+cd ~/Desktop/"AT BALEARES 26-27"/carga-gps && python3 import_data.py
 ```
 
 `import_data.py` lee esos Excel y regenera `data.js`. **La app solo muestra lo
@@ -52,7 +52,7 @@ alto es siempre el "activo"; el resto, historial. 20 jugadores, grupos DEF/MED/D
 ## Publicar (una vez)
 
 ```bash
-cd ~/Desktop/NEXO/Otros-proyectos/carga-gps
+cd ~/Desktop/"AT BALEARES 26-27"/carga-gps
 gh repo create carga-gps-jugadores --public --source=. --remote=origin --push
 gh api -X POST repos/xaviarnedo-ui/carga-gps-jugadores/pages -f build_type=legacy -f 'source[branch]=main' -f 'source[path]=/'
 ```
@@ -64,7 +64,7 @@ URL: `https://xaviarnedo-ui.github.io/carga-gps-jugadores/`
 ## Actualizar (cada Excel nuevo)
 
 ```bash
-cd ~/Desktop/NEXO/Otros-proyectos/carga-gps && python3 import_data.py && git commit -am "datos" && git push
+cd ~/Desktop/"AT BALEARES 26-27"/carga-gps && python3 import_data.py && git commit -am "datos" && git push
 ```
 
 `import_data.py` **siempre** manda la notificación push a los suscritos. Para
@@ -94,7 +94,7 @@ No hay cron: la función se dispara desde `import_data.py`.
 ## Previsualizar en local
 
 ```bash
-cd ~/Desktop/NEXO/Otros-proyectos/carga-gps && python3 -m http.server 4599
+cd ~/Desktop/"AT BALEARES 26-27"/carga-gps && python3 -m http.server 4599
 ```
 
 - Entrenador → `http://localhost:4599/index.html`
