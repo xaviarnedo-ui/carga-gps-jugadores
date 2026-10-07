@@ -21,6 +21,7 @@
   python3 gps.py estado [4=lesion ...] [--desde F --nota T]  ver / fijar estado vigente (+ ajusta objetivos pendientes)
   python3 gps.py lesiones [--abrir D --tipo T --baja F | --cerrar D --alta F]   registro de lesiones
   python3 gps.py disponibilidad                       regenerar Disponibilidad y Minutos.xlsx
+  python3 gps.py objetivos S57                        PDF con los objetivos de la sesión (para el campo)
   python3 gps.py publicar [--sin-avisar] [-m msg]     import_data + git push (+ aviso)
 """
 import argparse
@@ -96,6 +97,8 @@ def main():
     a.add_argument("--hasta", help="fecha AAAA-MM-DD (con --fuera-media)")
     a.add_argument("--nota", default="fijado a mano")
     sub.add_parser("disponibilidad")
+    a = sub.add_parser("objetivos")
+    a.add_argument("sesion", help="clave de la sesión, p. ej. S57")
     a = sub.add_parser("publicar")
     a.add_argument("--sin-avisar", action="store_true")
     a.add_argument("-m", default="Datos GPS actualizados")
@@ -181,6 +184,10 @@ def main():
             L.guardar(lst)
         for l in lst:
             print(f"  #{l['dorsal']:<3} {l['tipo']:22} baja {l['baja']}  alta {l['alta'] or 'ABIERTA'}")
+
+    elif args.cmd == "objetivos":
+        from pipeline import hoja_objetivos
+        print(hoja_objetivos.generar(args.sesion.upper()))
 
     elif args.cmd == "disponibilidad":
         print(disponibilidad.generar())

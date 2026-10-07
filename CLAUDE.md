@@ -29,7 +29,7 @@ Jugador con objetivo individual que NO cuenta para la MEDIA EQUIPO unos días (p
 cargas tras un alta): `estado --fuera-media 7,18 --desde F --hasta F --nota T` (Excel, app y dashboard
 lo excluyen de la media y del cumplimiento del equipo; mantiene objetivo y semáforo).
 
-Otros comandos: `abrir --tipo B --partido J5 --rival X --lunes AAAA-MM-DD` (microciclo
+Otros comandos: `objetivos S57` (PDF de objetivos del día para el campo, en `GPS/Informes/Objetivos/`), `abrir --tipo B --partido J5 --rival X --lunes AAAA-MM-DD` (microciclo
 nuevo), `estado [dorsal=estado ...]`, `disponibilidad`, `publicar [--sin-avisar]`.
 
 **Lesiones** (`GPS/lesiones.json`, pestaña "Lesionados" del dashboard): cuando un jugador pasa
