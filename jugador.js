@@ -721,6 +721,21 @@
       });
       var hasMatch = matchKeys.some(function (k) { return isCompleted(getSession(m, k)); });
 
+      // velocidad máxima de la semana: la mejor de las sesiones (y Extra) y la del partido
+      var vmaxSes = null, vmaxMatch = null;
+      sesKeys.forEach(function (k) {
+        var sp = (getSession(m, k).players || []).find(function (x) { return x.dorsal === DORSAL; });
+        if (sp && sp.velMax != null && !sp.proxyDe && (vmaxSes == null || sp.velMax > vmaxSes)) vmaxSes = sp.velMax;
+      });
+      Object.keys(m.extras || {}).forEach(function (ek) {
+        var ep = (m.extras[ek].players || []).find(function (x) { return x.dorsal === DORSAL; });
+        if (ep && ep.velMax != null && (vmaxSes == null || ep.velMax > vmaxSes)) vmaxSes = ep.velMax;
+      });
+      matchKeys.forEach(function (k) {
+        var mp = (getSession(m, k).players || []).find(function (x) { return x.dorsal === DORSAL; });
+        if (mp && mp.velMax != null && !mp.estimado && !mp.proxyDe && (vmaxMatch == null || mp.velMax > vmaxMatch)) vmaxMatch = mp.velMax;
+      });
+
       // círculo de cumplimiento (semáforo del objetivo de sesiones)
       var cumplSem = cumpl != null ? semaphore(cumpl, 100) : null;
       var donutHTML = cumpl != null
@@ -753,7 +768,16 @@
           '<span class="hm__row hm__row--match"><span class="hm__lbl">Partido</span>' +
           '<span class="hm__n">' + (mv != null ? fmt(mv) : '—') + '</span></span>' +
           '</div>';
-      }).join("") + '</div>' +
+      }).join("") +
+      (vmaxSes != null || vmaxMatch != null
+        ? '<div class="hm">' +
+          '<span class="hm__k">Vel. máx <span class="hm__u">km/h</span></span>' +
+          '<span class="hm__row"><span class="hm__lbl">Sesiones</span>' +
+          '<span class="hm__n">' + (vmaxSes != null ? fmtDec(vmaxSes, 1) : '—') + '</span></span>' +
+          '<span class="hm__row hm__row--match"><span class="hm__lbl">Partido</span>' +
+          '<span class="hm__n">' + (vmaxMatch != null ? fmtDec(vmaxMatch, 1) : '—') + '</span></span>' +
+          '</div>'
+        : '') + '</div>' +
       '<div class="muted" style="font-size:11px;margin-top:2px">' +
       'Realizado en las <b>sesiones de entrenamiento</b> frente a su objetivo (color = semáforo)' +
       (hasMatch ? ', y aparte lo realizado en el partido de esa semana (sin objetivo).' : '.') +
