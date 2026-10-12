@@ -74,7 +74,8 @@ def generar(key):
             continue
         filas_html.append(f'<tr class="grp"><td colspan="{len(COLS) + 3}">{titulo}</td></tr>')
         for d, nombre, obj in con[g]:
-            tag = ' <em>fuera de media</em>' if d in fuera else ""
+            tag = (' <em class="ro">readapt. · obj. individual</em>' if E.objetivo_manual(key, d, est)
+                   else ' <em>fuera de media</em>' if d in fuera else "")
             filas_html.append(f'<tr><td class="d">{d}</td><td class="n">{nombre}{tag}</td>'
                               + "".join(celda(obj[k], dec) for k, _, _, dec in COLS) + '<td class="nt"></td></tr>')
     filas_html.append('<tr class="med"><td></td><td class="n">Media equipo</td>'
@@ -95,6 +96,7 @@ th small {{ text-transform: none; color: #777; font-weight: 400; }}
 td {{ border-bottom: 1px solid #d8d8d8; padding: 1px 4px; height: 22px; }}
 td.d {{ width: 26px; text-align: right; font-weight: 700; color: #555; }}
 td.n {{ width: 175px; font-weight: 600; white-space: nowrap; }}
+td.n em.ro {{ color: #a3401a; background: #fde3d6; }}
 td.n em {{ font-style: normal; font-size: 7.5pt; font-weight: 700; color: #8a6d16; background: #fbf1d0; border-radius: 8px; padding: 0 5px; margin-left: 3px; }}
 td.v {{ text-align: center; font-variant-numeric: tabular-nums; }}
 td.v b {{ font-size: 11.5pt; display: block; line-height: 1; }}
