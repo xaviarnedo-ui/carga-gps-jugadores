@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-10-12 09:53",
+  "generado": "2026-10-12 10:41",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-14)"
  },
  "refPartido": {
@@ -131476,16 +131476,42 @@ window.GPS_DATA_ALL = {
       "dorsal": 20,
       "jugador": "Bejarano, A.",
       "grupo": "DL",
-      "distancia": null,
-      "hmld": null,
-      "hsr": null,
-      "sprint": null,
-      "acc": null,
-      "dec": null,
+      "distancia": {
+       "obj": 4500,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 600,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 175,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 2,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 12,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 18,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true,
+      "readaptObj": true
      },
      {
       "dorsal": 21,
@@ -132266,16 +132292,42 @@ window.GPS_DATA_ALL = {
       "dorsal": 20,
       "jugador": "Bejarano, A.",
       "grupo": "DL",
-      "distancia": null,
-      "hmld": null,
-      "hsr": null,
-      "sprint": null,
-      "acc": null,
-      "dec": null,
+      "distancia": {
+       "obj": 5300,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 900,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 375,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 6.5,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 18,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 30,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true,
+      "readaptObj": true
      },
      {
       "dorsal": 21,
@@ -133056,16 +133108,42 @@ window.GPS_DATA_ALL = {
       "dorsal": 20,
       "jugador": "Bejarano, A.",
       "grupo": "DL",
-      "distancia": null,
-      "hmld": null,
-      "hsr": null,
-      "sprint": null,
-      "acc": null,
-      "dec": null,
+      "distancia": {
+       "obj": 6000,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1000,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 225,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 4.5,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 23.5,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 37.5,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true,
+      "readaptObj": true
      },
      {
       "dorsal": 21,
@@ -133846,16 +133924,42 @@ window.GPS_DATA_ALL = {
       "dorsal": 20,
       "jugador": "Bejarano, A.",
       "grupo": "DL",
-      "distancia": null,
-      "hmld": null,
-      "hsr": null,
-      "sprint": null,
-      "acc": null,
-      "dec": null,
+      "distancia": {
+       "obj": 4240,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 503,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 125,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 3,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 11.6,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 20,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true,
+      "readaptObj": true
      },
      {
       "dorsal": 21,
@@ -134636,16 +134740,42 @@ window.GPS_DATA_ALL = {
       "dorsal": 20,
       "jugador": "Bejarano, A.",
       "grupo": "DL",
-      "distancia": null,
-      "hmld": null,
-      "hsr": null,
-      "sprint": null,
-      "acc": null,
-      "dec": null,
+      "distancia": {
+       "obj": 4000,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 600,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 325,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 7.5,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 12,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 12,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true,
+      "readaptObj": true
      },
      {
       "dorsal": 21,
@@ -136368,41 +136498,42 @@ window.GPS_DATA_ALL = {
      "jugador": "Bejarano, A.",
      "grupo": "DL",
      "distancia": {
-      "obj": null,
+      "obj": 24040,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "hmld": {
-      "obj": null,
+      "obj": 3603,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "hsr": {
-      "obj": null,
+      "obj": 1225,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "sprint": {
-      "obj": null,
+      "obj": 23.5,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "acc": {
-      "obj": null,
+      "obj": 77.1,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "dec": {
-      "obj": null,
+      "obj": 117.5,
       "real": null,
       "dif": null,
       "objFecha": null
-     }
+     },
+     "fueraMedia": true
     },
     {
      "dorsal": 21,
@@ -137182,32 +137313,32 @@ window.GPS_DATA_ALL = {
      "jugador": "Bejarano, A.",
      "grupo": "DL",
      "distancia": {
-      "obj": null,
+      "obj": 24040,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": null,
+      "obj": 3603,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": null,
+      "obj": 1225,
       "real": null,
       "dif": null
      },
      "sprint": {
-      "obj": null,
+      "obj": 23.5,
       "real": null,
       "dif": null
      },
      "acc": {
-      "obj": null,
+      "obj": 77.1,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": null,
+      "obj": 117.5,
       "real": null,
       "dif": null
      }
