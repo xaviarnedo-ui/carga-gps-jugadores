@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-10-12 10:55",
+  "generado": "2026-10-12 10:57",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-14)"
  },
  "refPartido": {
@@ -131545,27 +131545,27 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "hmld": {
-       "obj": 600,
+       "obj": 300,
        "real": null,
        "dif": null
       },
       "hsr": {
-       "obj": 175,
+       "obj": 0,
        "real": null,
        "dif": null
       },
       "sprint": {
-       "obj": 2,
+       "obj": 0,
        "real": null,
        "dif": null
       },
       "acc": {
-       "obj": 12,
+       "obj": 6,
        "real": null,
        "dif": null
       },
       "dec": {
-       "obj": 18,
+       "obj": 8,
        "real": null,
        "dif": null
       },
@@ -132366,12 +132366,12 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "hsr": {
-       "obj": 375,
+       "obj": 425,
        "real": null,
        "dif": null
       },
       "sprint": {
-       "obj": 6.5,
+       "obj": 7.5,
        "real": null,
        "dif": null
       },
@@ -133182,7 +133182,7 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "hsr": {
-       "obj": 225,
+       "obj": 275,
        "real": null,
        "dif": null
       },
@@ -133998,7 +133998,7 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "hsr": {
-       "obj": 125,
+       "obj": 150,
        "real": null,
        "dif": null
       },
@@ -134814,12 +134814,12 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "hsr": {
-       "obj": 325,
+       "obj": 375,
        "real": null,
        "dif": null
       },
       "sprint": {
-       "obj": 7.5,
+       "obj": 8.5,
        "real": null,
        "dif": null
       },
@@ -136567,7 +136567,7 @@ window.GPS_DATA_ALL = {
       "objFecha": null
      },
      "hmld": {
-      "obj": 3603,
+      "obj": 3303,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -136585,13 +136585,13 @@ window.GPS_DATA_ALL = {
       "objFecha": null
      },
      "acc": {
-      "obj": 77.1,
+      "obj": 71.1,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "dec": {
-      "obj": 117.5,
+      "obj": 107.5,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -137381,7 +137381,7 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "hmld": {
-      "obj": 3603,
+      "obj": 3303,
       "real": null,
       "dif": null
      },
@@ -137396,12 +137396,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "acc": {
-      "obj": 77.1,
+      "obj": 71.1,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 117.5,
+      "obj": 107.5,
       "real": null,
       "dif": null
      }
