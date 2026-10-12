@@ -262,7 +262,8 @@ def propagar_estados(n, dorsales, estados=None):
             if d not in filas:
                 continue
             if E.vigente(estados, d) in (C.REHAB, C.LESION):
-                sesion._escribe_obj(ws, filas[d], None)
+                manual = E.objetivo_manual(key, d, estados) if E.vigente(estados, d) == C.REHAB else None
+                sesion._escribe_obj(ws, filas[d], manual)
             elif E.vigente(estados, d) == C.FULL and d in ref:     # alta: objetivo del día
                 clave = dia + roles.get(d, "S") if dia == "MD+1" else dia
                 sesion._escribe_obj(ws, filas[d], referencia.objetivo(ref[d], coefs[tipo][clave]))

@@ -7,6 +7,8 @@ Vive en GPS/estados_jugadores.json (fuera del repo: es dato médico del club).
 "descanso" y "nc" (convocado, no jugó) son de un solo día: no cambian el vigente.
   fuera_media: [{"dorsal", "desde", "hasta", "nota"}] jugadores con objetivo individual que NO
   cuentan para la MEDIA EQUIPO de las sesiones de esos días (p. ej. gestión de cargas tras un alta).
+  objetivos_manuales: {"S62": {"20": {"distancia": 5300, ...}}} objetivo fijado a mano para un
+  jugador (p. ej. readaptación en su última semana): se escribe aunque esté en rehab y se valora.
 """
 import json
 import os
@@ -36,6 +38,12 @@ def fuera_media(fecha, data=None):
     iso = fecha.isoformat() if hasattr(fecha, "isoformat") else str(fecha)
     return {int(x["dorsal"]): x.get("nota", "") for x in data.get("fuera_media", [])
             if x["desde"] <= iso <= x["hasta"]}
+
+
+def objetivo_manual(key, dorsal, data=None):
+    """Objetivo fijado a mano para ese jugador en esa sesión (o None)."""
+    data = data if data is not None else cargar()
+    return (data.get("objetivos_manuales", {}).get(key) or {}).get(str(dorsal))
 
 
 def vigente(data, dorsal):

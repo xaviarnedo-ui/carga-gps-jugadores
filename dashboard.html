@@ -269,7 +269,7 @@ function buildRAW(d){
         if(!players[dd]) players[dd]={d:dd,n:(pl.jugador||"?"),g:(pl.grupo||"?")};
         const mp={};
         METR.forEach(k=>{ const v=pl[k]; if(v && typeof v==="object") mp[k]=[(v.obj===undefined?null:v.obj), (v.real===undefined?null:v.real)]; });
-        row.players.push({d:dd, e:(pl.estado||null), est:!!pl.estimado, fm:!!pl.fueraMedia, dur:dur2min(pl.duracion), vmax:(pl.velMax===undefined?null:pl.velMax), pl:(pl.playerLoad===undefined?null:pl.playerLoad), m:mp});
+        row.players.push({d:dd, e:(pl.estado||null), est:!!pl.estimado, fm:!!pl.fueraMedia, ro:!!pl.readaptObj, dur:dur2min(pl.duracion), vmax:(pl.velMax===undefined?null:pl.velMax), pl:(pl.playerLoad===undefined?null:pl.playerLoad), m:mp});
       });
       sessions.push(row);
     });
@@ -1507,7 +1507,7 @@ function puntosLesion(l){
     if(s.date<l.baja || s.date>fin) return;
     const pr=s.players.find(p=>p.d===l.dorsal);
     if(!pr || !(RADAR_METRICS.some(k=>raw(pr,k).real!=null) || pr.pl!=null)) return;
-    out.push({s, pr, alta: !!l.alta && s.date===l.alta, readapt: pr.e==="rehab" || !!s.isExtra});
+    out.push({s, pr, alta: !!l.alta && s.date===l.alta, readapt: pr.e==="rehab" || pr.ro || !!s.isExtra});
   });
   out.sort((a,b)=> a.s.date<b.s.date?-1 : a.s.date>b.s.date?1 : 0);
   const i0 = out.findIndex(pt=>pt.readapt);
@@ -1533,7 +1533,7 @@ function refPrevia(l){
 function tipoPunto(pt, l){
   if(pt.s.isExtra) return "Extra";
   if(pt.alta) return "Alta · grupo";
-  return pt.pr.e==="rehab" ? "Readaptación" : "Grupo";
+  return pt.pr.ro ? "Readapt. · obj." : pt.pr.e==="rehab" ? "Readaptación" : "Grupo";
 }
 // carga diaria por jugador (sesiones + partidos + Extra) para el ACWR día a día
 const DIA = (()=>{

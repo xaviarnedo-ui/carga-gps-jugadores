@@ -153,6 +153,7 @@
     return n ? acc / n * 100 : null;
   }
   function playerDonut(p, match) {
+    if (p.readaptObj && !p.estado) return '<span class="tag tag--rehab" title="Readaptación con objetivos individuales; no cuenta para la media del equipo">Readapt. · obj. individual</span> ' + playerDonutBase(p, match);
     if (p.fueraMedia && !p.estado) return '<span class="tag tag--parcial" title="Objetivo individual; no cuenta para la media del equipo">Fuera de media</span> ' + playerDonutBase(p, match);
     return playerDonutBase(p, match);
   }
@@ -480,7 +481,8 @@
     var conObj = METRICS.some(function (mm) { return p[mm.key] && p[mm.key].obj != null; });
     var d = (p.distancia || {}).obj;
     var sm = conObj ? '<span class="pdet__sum">obj ' + fmt(d) + ' m</span>' : '<span class="pdet__sum muted">Sin objetivo</span>';
-    if (p.fueraMedia) sm = '<span class="tag tag--parcial" title="Objetivo individual; no cuenta para la media del equipo">Fuera de media</span> ' + sm;
+    if (p.readaptObj) sm = '<span class="tag tag--rehab" title="Readaptación con objetivos individuales">Readapt. · obj. individual</span> ' + sm;
+    else if (p.fueraMedia) sm = '<span class="tag tag--parcial" title="Objetivo individual; no cuenta para la media del equipo">Fuera de media</span> ' + sm;
     var body = conObj
       ? METRICS.map(function (mm) {
           var c = p[mm.key] || {};

@@ -566,6 +566,19 @@ def _fuera_media():
 FUERA_MEDIA = _fuera_media()
 
 
+def _obj_manuales():
+    """{(key, dorsal)} con objetivo fijado a mano (readaptación con objetivos individuales)."""
+    ruta = os.path.join(GPS_DIR, "estados_jugadores.json")
+    if not os.path.exists(ruta):
+        return set()
+    with open(ruta, encoding="utf-8") as f:
+        om = json.load(f).get("objetivos_manuales", {})
+    return {(k, int(d)) for k, v in om.items() for d in v}
+
+
+OBJ_MANUAL = _obj_manuales()
+
+
 def es_fuera_media(dorsal, iso):
     return bool(iso) and any(d == dorsal and a <= iso <= b for d, a, b in FUERA_MEDIA)
 
@@ -576,6 +589,8 @@ def build_sessions_only(sesiones, ses_keys, acu, extras=None):
         for x in sesiones[sk]["players"]:
             if es_fuera_media(x["dorsal"], sesiones[sk].get("date")):
                 x["fueraMedia"] = True
+            if (sk, x["dorsal"]) in OBJ_MANUAL:
+                x["readaptObj"] = True
     obj_by = {p["dorsal"]: p for p in acu["players"]}
     players = []
     for dor, ap in obj_by.items():

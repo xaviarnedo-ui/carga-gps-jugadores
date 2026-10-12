@@ -28,6 +28,10 @@ sesión o partido; Claude actualiza todo con `gps.py`.
 Jugador con objetivo individual que NO cuenta para la MEDIA EQUIPO unos días (p. ej. gestión de
 cargas tras un alta): `estado --fuera-media 7,18 --desde F --hasta F --nota T` (Excel, app y dashboard
 lo excluyen de la media y del cumplimiento del equipo; mantiene objetivo y semáforo).
+Objetivo fijado a mano (p. ej. última semana de readaptación por encima del 100%): `objetivos_manuales`
+en `estados_jugadores.json` ({"S62": {"20": {métricas}}}); se escribe aunque esté en rehab, se valora con
+semáforo y la app lo marca "Readapt. · obj. individual". Combínalo con `--fuera-media` y aplica con
+`microciclo.propagar_estados(n, [dorsal])`.
 
 Otros comandos: `objetivos S57` (PDF de objetivos del día para el campo, en `GPS/Informes/Objetivos/`), `abrir --tipo B --partido J5 --rival X --lunes AAAA-MM-DD` (microciclo
 nuevo), `estado [dorsal=estado ...]`, `disponibilidad`, `publicar [--sin-avisar]`.

@@ -285,6 +285,8 @@
     if (p && p.proxyDe) head += '<div class="alert alert--info" style="margin-bottom:10px">' + iconWarn() +
       '<div><b>Tu GPS no funcionó.</b> Se te han asignado los datos de ' + esc(p.proxyDe) +
       ' como aproximación: no son tus datos reales.</div></div>';
+    if (p && p.readaptObj) head += '<div class="alert alert--info" style="margin-bottom:10px">' + iconWarn() +
+      '<div><b>Readaptación con objetivos individuales.</b> Tu objetivo de hoy está fijado para tu vuelta; no cuenta para la media del equipo.</div></div>';
     if (estado === "na") head += estadoBanner(match ? "na-match" : "na") + '<div style="height:10px"></div>';
     else if (estado === "rehab") head += estadoBanner("rehab") + '<div style="height:10px"></div>';
     else if (estado === "parcial") head += estadoBanner("parcial") + '<div style="height:10px"></div>';

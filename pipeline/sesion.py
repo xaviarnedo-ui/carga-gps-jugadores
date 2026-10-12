@@ -71,7 +71,8 @@ def ajustar_objetivos(wb, desde_key, dorsal, estado, ref, coefs, rol_md1=None):
             continue
         fila = filas[dorsal]
         if estado in (C.REHAB, C.LESION) or (estado == C.DESCANSO and key == desde_key):
-            _escribe_obj(ws, fila, None)
+            from . import estados as E
+            _escribe_obj(ws, fila, E.objetivo_manual(key, dorsal) if estado == C.REHAB else None)
         elif estado == C.FULL:
             tipo, dia = tipo_y_dia(ws)
             if dia == "MD+1":
@@ -110,8 +111,11 @@ def rellenar(ws, datos, estados_dia):
         if est == C.FULL and not tiene_objetivo(ws, fila):
             raise ValueError(f"{ws.title}: {dorsal} es full pero no tiene Objetivo "
                              f"(¿vuelve de rehab/lesión? usa --estado {dorsal}=full)")
+        manual = None
         if est == C.REHAB:
-            _escribe_obj(ws, fila, None)
+            from . import estados as E
+            manual = E.objetivo_manual(ws.title[:-4], dorsal)
+            _escribe_obj(ws, fila, manual)          # rehab: sin objetivo salvo el fijado a mano
         obj = objetivo_fila(ws, fila)
         for m, c in C.SES_OBJ_COL.items():
             real_c, dif_c = ws.cell(fila, c + 1), ws.cell(fila, c + 2)
@@ -120,7 +124,7 @@ def rellenar(ws, datos, estados_dia):
                 pinta(real_c, None), pinta(dif_c, None)
                 continue
             real_c.value = d[m]
-            if est == C.FULL and obj[m] is not None:
+            if (est == C.FULL or manual) and obj[m] is not None:
                 dif_c.value = limpio(r1(d[m] - obj[m]))
                 color = semaforo(d[m], obj[m])
             else:
