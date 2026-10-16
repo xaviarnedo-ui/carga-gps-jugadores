@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-10-16 12:06",
+  "generado": "2026-10-16 12:07",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-14)"
  },
  "refPartido": {
@@ -1858,7 +1858,7 @@ window.GPS_DATA_ALL = {
    "tipo": "Rotura isquiotibial",
    "baja": "2026-09-02",
    "alta": null,
-   "nota": "Fecha confirmada por el cuerpo técnico (informe 03/09).",
+   "nota": "Fecha confirmada por el cuerpo técnico (informe 03/09). Recaída durante la readaptación el 15/10 (S63), confirmada el 16/10.",
    "jugador": "Bejarano, A."
   },
   {
