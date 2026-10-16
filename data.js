@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-10-16 09:00",
+  "generado": "2026-10-16 09:01",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-14)"
  },
  "refPartido": {
@@ -133917,8 +133917,7 @@ window.GPS_DATA_ALL = {
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na",
-      "fueraMedia": true
+      "estado": "na"
      },
      {
       "dorsal": 21,
@@ -134708,8 +134707,7 @@ window.GPS_DATA_ALL = {
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na",
-      "fueraMedia": true
+      "estado": "na"
      },
      {
       "dorsal": 21,
