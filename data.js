@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-10-15 13:03",
+  "generado": "2026-10-16 09:00",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-14)"
  },
  "refPartido": {
@@ -133908,42 +133908,17 @@ window.GPS_DATA_ALL = {
       "dorsal": 20,
       "jugador": "Bejarano, A.",
       "grupo": "DL",
-      "distancia": {
-       "obj": 5365,
-       "real": null,
-       "dif": null
-      },
-      "hmld": {
-       "obj": 578,
-       "real": null,
-       "dif": null
-      },
-      "hsr": {
-       "obj": 150,
-       "real": null,
-       "dif": null
-      },
-      "sprint": {
-       "obj": 3,
-       "real": null,
-       "dif": null
-      },
-      "acc": {
-       "obj": 13.1,
-       "real": null,
-       "dif": null
-      },
-      "dec": {
-       "obj": 22,
-       "real": null,
-       "dif": null
-      },
+      "distancia": null,
+      "hmld": null,
+      "hsr": null,
+      "sprint": null,
+      "acc": null,
+      "dec": null,
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
       "estado": "na",
-      "fueraMedia": true,
-      "readaptObj": true
+      "fueraMedia": true
      },
      {
       "dorsal": 21,
@@ -134724,42 +134699,17 @@ window.GPS_DATA_ALL = {
       "dorsal": 20,
       "jugador": "Bejarano, A.",
       "grupo": "DL",
-      "distancia": {
-       "obj": 5125,
-       "real": null,
-       "dif": null
-      },
-      "hmld": {
-       "obj": 675,
-       "real": null,
-       "dif": null
-      },
-      "hsr": {
-       "obj": 375,
-       "real": null,
-       "dif": null
-      },
-      "sprint": {
-       "obj": 8.5,
-       "real": null,
-       "dif": null
-      },
-      "acc": {
-       "obj": 13.5,
-       "real": null,
-       "dif": null
-      },
-      "dec": {
-       "obj": 14,
-       "real": null,
-       "dif": null
-      },
+      "distancia": null,
+      "hmld": null,
+      "hsr": null,
+      "sprint": null,
+      "acc": null,
+      "dec": null,
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
       "estado": "na",
-      "fueraMedia": true,
-      "readaptObj": true
+      "fueraMedia": true
      },
      {
       "dorsal": 21,
@@ -136482,39 +136432,39 @@ window.GPS_DATA_ALL = {
      "jugador": "Bejarano, A.",
      "grupo": "DL",
      "distancia": {
-      "obj": 24040,
+      "obj": 13550,
       "real": 10103,
-      "dif": -13937,
+      "dif": -3447,
       "objFecha": 13550
      },
      "hmld": {
-      "obj": 3303,
+      "obj": 2050,
       "real": 1310,
-      "dif": -1993,
+      "dif": -740,
       "objFecha": 2050
      },
      "hsr": {
-      "obj": 1225,
+      "obj": 700,
       "real": 690,
-      "dif": -535,
+      "dif": -10,
       "objFecha": 700
      },
      "sprint": {
-      "obj": 23.5,
+      "obj": 12,
       "real": 15,
-      "dif": -8.5,
+      "dif": 3,
       "objFecha": 12.0
      },
      "acc": {
-      "obj": 71.1,
+      "obj": 44.5,
       "real": 34,
-      "dif": -37.1,
+      "dif": -10.5,
       "objFecha": 44.5
      },
      "dec": {
-      "obj": 107.5,
+      "obj": 71.5,
       "real": 43,
-      "dif": -64.5,
+      "dif": -28.5,
       "objFecha": 71.5
      },
      "fueraMedia": true
@@ -137297,34 +137247,34 @@ window.GPS_DATA_ALL = {
      "jugador": "Bejarano, A.",
      "grupo": "DL",
      "distancia": {
-      "obj": 24040,
+      "obj": 13550,
       "real": 10103,
-      "dif": -13937
+      "dif": -3447
      },
      "hmld": {
-      "obj": 3303,
+      "obj": 2050,
       "real": 1310,
-      "dif": -1993
+      "dif": -740
      },
      "hsr": {
-      "obj": 1225,
+      "obj": 700,
       "real": 690,
-      "dif": -535
+      "dif": -10
      },
      "sprint": {
-      "obj": 23.5,
+      "obj": 12,
       "real": 15,
-      "dif": -8.5
+      "dif": 3
      },
      "acc": {
-      "obj": 71.1,
+      "obj": 44.5,
       "real": 34,
-      "dif": -37.1
+      "dif": -10.5
      },
      "dec": {
-      "obj": 107.5,
+      "obj": 71.5,
       "real": 43,
-      "dif": -64.5
+      "dif": -28.5
      }
     },
     {
