@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-10-19 10:46",
+  "generado": "2026-10-19 10:48",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-15)"
  },
  "refPartido": {
@@ -65,6 +65,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "J6",
+     "fecha": "2026-10-11",
+     "previo": {
+      "distancia": 9482.0,
+      "hmld": 1491.2,
+      "hsr": 562.1,
+      "sprint": 15.4,
+      "acc": 16.4,
+      "dec": 40.9,
+      "velMax": 29.26
+     }
+    },
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -108,6 +121,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "J3",
+     "fecha": "2026-09-20",
+     "previo": {
+      "distancia": 9693.1,
+      "hmld": 1432.0,
+      "hsr": 444.0,
+      "sprint": 9.6,
+      "acc": 23.5,
+      "dec": 35.3,
+      "velMax": null
+     }
+    },
     "dispo": "rehab",
     "primeraFecha": "2026-09-03"
    },
@@ -254,6 +280,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "J7",
+     "fecha": "2026-10-18",
+     "previo": {
+      "distancia": 9958.9,
+      "hmld": 1345.8,
+      "hsr": 323.7,
+      "sprint": 5.9,
+      "acc": 22.0,
+      "dec": 31.1,
+      "velMax": 30.84
+     }
+    },
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -312,6 +351,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "J3",
+     "fecha": "2026-09-20",
+     "previo": {
+      "distancia": 11006.0,
+      "hmld": 1846.6,
+      "hsr": 435.5,
+      "sprint": 4.9,
+      "acc": 32.5,
+      "dec": 49.0,
+      "velMax": 29.33
+     }
+    },
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -430,6 +482,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "J7",
+     "fecha": "2026-10-18",
+     "previo": {
+      "distancia": 11193.7,
+      "hmld": 1892.2,
+      "hsr": 675.1,
+      "sprint": 13.7,
+      "acc": 32.0,
+      "dec": 42.4,
+      "velMax": 32.52
+     }
+    },
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -548,6 +613,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "J7",
+     "fecha": "2026-10-18",
+     "previo": {
+      "distancia": 11123.9,
+      "hmld": 1818.2,
+      "hsr": 475.8,
+      "sprint": 10.1,
+      "acc": 29.1,
+      "dec": 39.0,
+      "velMax": 30.15
+     }
+    },
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -666,6 +744,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "J7",
+     "fecha": "2026-10-18",
+     "previo": {
+      "distancia": 9618.4,
+      "hmld": 1559.4,
+      "hsr": 568.6,
+      "sprint": 13.1,
+      "acc": 32.2,
+      "dec": 46.1,
+      "velMax": 31
+     }
+    },
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -739,6 +830,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "J7",
+     "fecha": "2026-10-18",
+     "previo": {
+      "distancia": 9401.0,
+      "hmld": 1550.7,
+      "hsr": 649.7,
+      "sprint": 17.7,
+      "acc": 30.8,
+      "dec": 50.6,
+      "velMax": 31.79
+     }
+    },
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -842,6 +946,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "J7",
+     "fecha": "2026-10-18",
+     "previo": {
+      "distancia": 10504.7,
+      "hmld": 1936.6,
+      "hsr": 683.7,
+      "sprint": 17.1,
+      "acc": 28.1,
+      "dec": 41.8,
+      "velMax": 32.63
+     }
+    },
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -930,6 +1047,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "J7",
+     "fecha": "2026-10-18",
+     "previo": {
+      "distancia": 10264.4,
+      "hmld": 1413.0,
+      "hsr": 267.5,
+      "sprint": 5.6,
+      "acc": 28.2,
+      "dec": 37.5,
+      "velMax": 30.1
+     }
+    },
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -1003,6 +1133,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "J7",
+     "fecha": "2026-10-18",
+     "previo": {
+      "distancia": 9478.7,
+      "hmld": 1032.0,
+      "hsr": 229.0,
+      "sprint": 3.3,
+      "acc": 14.7,
+      "dec": 21.3,
+      "velMax": 28.53
+     }
+    },
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -1106,6 +1249,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "J7",
+     "fecha": "2026-10-18",
+     "previo": {
+      "distancia": 10291.9,
+      "hmld": 1654.9,
+      "hsr": 532.6,
+      "sprint": 11.1,
+      "acc": 39.6,
+      "dec": 37.6,
+      "velMax": 32.61
+     }
+    },
     "dispo": "ok",
     "primeraFecha": "2026-07-27"
    },
@@ -1224,6 +1380,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "J7",
+     "fecha": "2026-10-18",
+     "previo": {
+      "distancia": 9528.3,
+      "hmld": 1364.8,
+      "hsr": 509.6,
+      "sprint": 12.3,
+      "acc": 23.8,
+      "dec": 41.2,
+      "velMax": 33.71
+     }
+    },
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -1342,6 +1511,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "J7",
+     "fecha": "2026-10-18",
+     "previo": {
+      "distancia": 10952.8,
+      "hmld": 2002.3,
+      "hsr": 723.6,
+      "sprint": 13.9,
+      "acc": 37.1,
+      "dec": 64.7,
+      "velMax": 33.18
+     }
+    },
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -1488,6 +1670,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "J7",
+     "fecha": "2026-10-18",
+     "previo": {
+      "distancia": 10824.8,
+      "hmld": 1576.6,
+      "hsr": 475.9,
+      "sprint": 7.9,
+      "acc": 11.4,
+      "dec": 30.6,
+      "velMax": 30.85
+     }
+    },
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -1606,6 +1801,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "J7",
+     "fecha": "2026-10-18",
+     "previo": {
+      "distancia": 10777.1,
+      "hmld": 1517.2,
+      "hsr": 380.0,
+      "sprint": 7.3,
+      "acc": 15.5,
+      "dec": 34.8,
+      "velMax": 31.88
+     }
+    },
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -1709,6 +1917,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "J7",
+     "fecha": "2026-10-18",
+     "previo": {
+      "distancia": 10473.3,
+      "hmld": 1792.6,
+      "hsr": 498.0,
+      "sprint": 8.1,
+      "acc": 36.5,
+      "dec": 53.4,
+      "velMax": 31.17
+     }
+    },
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
@@ -1812,6 +2033,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "J7",
+     "fecha": "2026-10-18",
+     "previo": {
+      "distancia": 10363.4,
+      "hmld": 1866.8,
+      "hsr": 641.4,
+      "sprint": 13.6,
+      "acc": 38.4,
+      "dec": 54.3,
+      "velMax": 30.48
+     }
+    },
     "dispo": "ok",
     "primeraFecha": "2026-07-27"
    },
@@ -1885,6 +2119,19 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
+    "refCambio": {
+     "key": "Juvenil",
+     "fecha": "2026-10-11",
+     "previo": {
+      "distancia": 9320.0,
+      "hmld": 1048.6,
+      "hsr": 291.8,
+      "sprint": 8.0,
+      "acc": 19.8,
+      "dec": 23.0,
+      "velMax": 30.91
+     }
+    },
     "dispo": "ok",
     "primeraFecha": "2026-07-16"
    }
