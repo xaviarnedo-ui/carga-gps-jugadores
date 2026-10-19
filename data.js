@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-10-19 10:48",
+  "generado": "2026-10-19 10:57",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-15)"
  },
  "refPartido": {
@@ -141911,16 +141911,30 @@ window.GPS_DATA_ALL = {
       "dorsal": 3,
       "jugador": "Espiñeiro, A.",
       "grupo": "D",
-      "distancia": null,
+      "distancia": {
+       "obj": 2500,
+       "real": null,
+       "dif": null
+      },
       "hmld": null,
-      "hsr": null,
-      "sprint": null,
+      "hsr": {
+       "obj": 0,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0,
+       "real": null,
+       "dif": null
+      },
       "acc": null,
       "dec": null,
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true,
+      "readaptObj": true
      },
      {
       "dorsal": 4,
@@ -142701,16 +142715,30 @@ window.GPS_DATA_ALL = {
       "dorsal": 3,
       "jugador": "Espiñeiro, A.",
       "grupo": "D",
-      "distancia": null,
+      "distancia": {
+       "obj": 3500,
+       "real": null,
+       "dif": null
+      },
       "hmld": null,
-      "hsr": null,
-      "sprint": null,
+      "hsr": {
+       "obj": 0,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0,
+       "real": null,
+       "dif": null
+      },
       "acc": null,
       "dec": null,
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true,
+      "readaptObj": true
      },
      {
       "dorsal": 4,
@@ -143491,16 +143519,30 @@ window.GPS_DATA_ALL = {
       "dorsal": 3,
       "jugador": "Espiñeiro, A.",
       "grupo": "D",
-      "distancia": null,
+      "distancia": {
+       "obj": 4000,
+       "real": null,
+       "dif": null
+      },
       "hmld": null,
-      "hsr": null,
-      "sprint": null,
+      "hsr": {
+       "obj": 0,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0,
+       "real": null,
+       "dif": null
+      },
       "acc": null,
       "dec": null,
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true,
+      "readaptObj": true
      },
      {
       "dorsal": 4,
@@ -144290,7 +144332,8 @@ window.GPS_DATA_ALL = {
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true
      },
      {
       "dorsal": 4,
@@ -145071,16 +145114,30 @@ window.GPS_DATA_ALL = {
       "dorsal": 3,
       "jugador": "Espiñeiro, A.",
       "grupo": "D",
-      "distancia": null,
+      "distancia": {
+       "obj": 4500,
+       "real": null,
+       "dif": null
+      },
       "hmld": null,
-      "hsr": null,
-      "sprint": null,
+      "hsr": {
+       "obj": 0,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0,
+       "real": null,
+       "dif": null
+      },
       "acc": null,
       "dec": null,
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true,
+      "readaptObj": true
      },
      {
       "dorsal": 4,
@@ -146727,7 +146784,7 @@ window.GPS_DATA_ALL = {
      "jugador": "Espiñeiro, A.",
      "grupo": "D",
      "distancia": {
-      "obj": null,
+      "obj": 14500,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -146739,13 +146796,13 @@ window.GPS_DATA_ALL = {
       "objFecha": null
      },
      "hsr": {
-      "obj": null,
+      "obj": 0,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "sprint": {
-      "obj": null,
+      "obj": 0,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -146761,7 +146818,8 @@ window.GPS_DATA_ALL = {
       "real": null,
       "dif": null,
       "objFecha": null
-     }
+     },
+     "fueraMedia": true
     },
     {
      "dorsal": 4,
@@ -147625,7 +147683,7 @@ window.GPS_DATA_ALL = {
      "jugador": "Espiñeiro, A.",
      "grupo": "D",
      "distancia": {
-      "obj": null,
+      "obj": 14500,
       "real": null,
       "dif": null
      },
@@ -147635,12 +147693,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "hsr": {
-      "obj": null,
+      "obj": 0,
       "real": null,
       "dif": null
      },
      "sprint": {
-      "obj": null,
+      "obj": 0,
       "real": null,
       "dif": null
      },
