@@ -98,9 +98,20 @@ def cuenta_para_ref(key):
     return bool(m) and int(m.group(1)) >= 2
 
 
+def escribir_ref(ws, comp):
+    """Reescribe la tabla REF_PARTIDO desde los componentes."""
+    from . import ref_componentes as RC
+    filas = referencia.filas_ref(ws)
+    for dor, c in comp.items():
+        if int(dor) in filas:
+            ref = RC.ref_de(c)
+            for i, m in enumerate(C.METRICS):
+                ws.cell(filas[int(dor)], 4 + i).value = limpio(ref[m])
+
+
 def actualizar_ref(wb_tipo, key, fecha, datos_reales, nombres, duracion):
-    """REF_PARTIDO = media simple de sus componentes (pretemporada como 1 dato + cada partido
-    con GPS real, extrapolado a la duración real T). Guarda el componente de este partido en
+    """REF_PARTIDO = media ponderada por minutos de sus componentes (pretemporada, peso 1 + cada
+    partido con GPS real extrapolado a la duración real T, peso = minutos/T). Guarda el componente de este partido en
     ref_componentes.json (reprocesar lo sobrescribe: nunca cuenta dos veces) y reescribe la tabla.
     En el log queda la REF de ANTES de este partido (para su objetivo).
     Devuelve (actualizados [(dorsal, minutos)], cameos [(dorsal, minutos)]).
@@ -129,11 +140,7 @@ def actualizar_ref(wb_tipo, key, fecha, datos_reales, nombres, duracion):
         actualizados.append((dor, mins))
         if mins < CAMEO_MIN:
             cameos.append((dor, mins))
-    for dor, c in comp.items():
-        if int(dor) in filas:
-            ref = RC.ref_de(c)
-            for i, m in enumerate(C.METRICS):
-                ws.cell(filas[int(dor)], 4 + i).value = limpio(ref[m])
+    escribir_ref(ws, comp)
     RC.guardar(comp)
     log[key] = {"fecha": fecha, "aplicado": dt.datetime.now().isoformat(timespec="seconds"),
                 "duracion": duracion, "previos": previos}
@@ -148,8 +155,8 @@ def actualizar_ref(wb_tipo, key, fecha, datos_reales, nombres, duracion):
             break
     if fila_nota is None:
         fila_nota = ws.max_row + 2
-    txt = (f"{marca} ACTUALIZACIÓN {fecha} ({key}): REF_PARTIDO = media simple de pretemporada (1 dato) "
-           f"y cada partido de Liga (mismo peso), estimados a la duración real ({duracion:.1f}') con "
+    txt = (f"{marca} ACTUALIZACIÓN {fecha} ({key}): REF_PARTIDO = media ponderada por minutos de pretemporada "
+           f"(peso 1) y cada partido de Liga (peso = minutos jugados / duración), estimados a la duración real ({duracion:.1f}') con "
            f"fórmula de fatiga. {len(actualizados)} jugadores con GPS real: "
            + ", ".join(nombres.get(d, str(d)) for d, _ in actualizados) + ".")
     if cameos:

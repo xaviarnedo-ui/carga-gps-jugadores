@@ -17,6 +17,9 @@ class NecesitaDecision(Exception):
     """Algo que no se puede deducir de los datos: hay que preguntar al preparador."""
 
 
+
+MEDIA = 0   # --proxy D=media: el dorsal 0 no existe; significa "media del equipo de la sesión"
+
 def localizar(key):
     """-> (n, ruta) del microciclo que tiene la hoja `{key}_GPS`."""
     for n, ruta in microciclos_existentes().items():
@@ -174,7 +177,22 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
     # fallo de GPS sin más contexto: se copian los datos de otro jugador de la misma sesión
     # como aproximación (dato proxy; en partidos, fuera de REF_PARTIDO)
     proxies = proxies or {}
+    if MEDIA in proxies.values():   # --proxy D=media: media de los full de la sesión (sin fuera de media)
+        fm = E.fuera_media(fecha, est)
+        base = [v for d, v in datos.items() if E.vigente(est, d) == C.FULL and d not in proxies
+                and d not in fm and d not in override]
+        if not base:
+            raise NecesitaDecision("Proxy con la media: no hay jugadores full en el PDF")
+        media_ses = {k: (round(sum(v[k] for v in base) / len(base), 1)
+                         if all(isinstance(v.get(k), (int, float)) for v in base) else base[0].get(k))
+                     for k in base[0]}
     for dest, src in proxies.items():
+        if src == MEDIA:
+            if dest in datos:
+                raise NecesitaDecision(f"Proxy {dest}←media: el {dest} ya tiene datos en el PDF")
+            datos[dest] = dict(media_ses)
+            override.setdefault(dest, C.FULL)
+            continue
         if src not in datos:
             raise NecesitaDecision(f"Proxy {dest}←{src}: el {src} no está en el PDF")
         if dest in datos:
@@ -183,10 +201,12 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
         override.setdefault(dest, C.FULL)
     if proxies:
         txt_proxy = " ".join(
-            f"{nombres[d]}: fallo de dispositivo GPS — datos de {nombres[s]} (misma sesión) como "
+            f"{nombres[d]}: fallo de dispositivo GPS — datos de "
+            f"{'la media del equipo' if s == MEDIA else nombres[s]} (misma sesión) como "
             f"aproximación (dato proxy estimado, no es GPS real)." for d, s in proxies.items())
         nota = (txt_proxy + " " + nota).strip()
-        res["avisos"].append("Proxy GPS: " + ", ".join(f"{nombres[d]} ← {nombres[s]}" for d, s in proxies.items()))
+        res["avisos"].append("Proxy GPS: " + ", ".join(
+            f"{nombres[d]} ← {'media del equipo' if s == MEDIA else nombres[s]}" for d, s in proxies.items()))
     for d in fallos_gps:
         override.setdefault(d, C.FULL)
     vigentes = {d: E.vigente(est, d) for d in nombres}

@@ -1,7 +1,11 @@
-"""REF_PARTIDO como MEDIA SIMPLE de sus componentes (desde el 28/09/2026):
+"""REF_PARTIDO como MEDIA PONDERADA POR MINUTOS de sus componentes (desde el 19/10/2026; del 28/09
+al 18/10 fue media simple):
 
-  REF = media( bloque de pretemporada (1 dato) , estimado_T de cada partido de Liga con GPS real ,
-               otros partidos que el preparador pida contar, p. ej. con el filial )
+  REF = Σ(peso · valor) / Σ(peso) de: bloque de pretemporada (peso 1, ya es la media de varios
+        partidos) + estimado_T de cada partido de Liga con GPS real + otros partidos que el
+        preparador pida contar (p. ej. con el filial).
+  peso de un partido = minutos jugados / duración real del partido (máx. 1): un partido entero
+  pesa 1 y un cameo de 20' en un partido de 100' pesa 0,2. Nadie se queda fuera.
 
 GPS/ref_componentes.json guarda por jugador:
   {"<dorsal>": {"pretemporada": {métrica: v}, "partidos": {"J4": {"fecha": "...", "valores": {...}}}}}
@@ -28,15 +32,25 @@ def guardar(comp):
         json.dump(comp, f, ensure_ascii=False, indent=1)
 
 
+def peso(partido):
+    """Fracción del partido jugada (minutos / duración real, máx. 1). Sin minutos: 1."""
+    mins, dur = partido.get("minutos"), partido.get("duracion")
+    if not mins or not dur:
+        return 1.0
+    return min(mins / dur, 1.0)
+
+
 def ref_de(comp_jugador, antes_de=None, sin=None):
-    """Media de los componentes. antes_de: solo partidos con fecha < antes_de. sin: excluir esa clave."""
-    datos = [comp_jugador["pretemporada"]] + [
-        p["valores"] for k, p in comp_jugador.get("partidos", {}).items()
+    """Media ponderada por minutos de los componentes (pretemporada, peso 1).
+    antes_de: solo partidos con fecha < antes_de. sin: excluir esa clave."""
+    datos = [(1.0, comp_jugador["pretemporada"])] + [
+        (peso(p), p["valores"]) for k, p in comp_jugador.get("partidos", {}).items()
         if k != sin and (antes_de is None or p["fecha"] < antes_de)]
     out = {}
     for m in C.METRICS:
-        vals = [d[m] for d in datos if d.get(m) is not None]
-        out[m] = r1(sum(vals) / len(vals)) if vals else None
+        vals = [(w, d[m]) for w, d in datos if d.get(m) is not None]
+        tot = sum(w for w, _ in vals)
+        out[m] = r1(sum(w * v for w, v in vals) / tot) if vals and tot else None
     return out
 
 

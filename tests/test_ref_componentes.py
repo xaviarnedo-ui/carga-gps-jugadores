@@ -1,4 +1,4 @@
-"""REF_PARTIDO como media simple de componentes (pretemporada = 1 dato + cada partido)."""
+"""REF_PARTIDO como media ponderada por minutos (pretemporada peso 1 + cada partido, peso min/T)."""
 import json
 import os
 import shutil
@@ -20,6 +20,17 @@ class Media(unittest.TestCase):
         self.assertEqual(RC.ref_de(c)["distancia"], 300)                        # (100+200+600)/3
         self.assertEqual(RC.ref_de(c, antes_de="2026-09-20")["distancia"], 150)  # antes de J3
         self.assertEqual(RC.ref_de(c, sin="J2")["distancia"], 350)
+
+    def test_ponderada_por_minutos(self):
+        c = {"pretemporada": {m: 100 for m in C.METRICS},
+             "partidos": {"J2": {"fecha": "2026-09-13", "minutos": 100, "duracion": 100,
+                                 "valores": {m: 200 for m in C.METRICS}},
+                          "J3": {"fecha": "2026-09-20", "minutos": 25, "duracion": 100,
+                                 "valores": {m: 1000 for m in C.METRICS}},
+                          "J4": {"fecha": "2026-09-27", "minutos": 110, "duracion": 100,
+                                 "valores": {m: 300 for m in C.METRICS}}}}
+        # (1·100 + 1·200 + 0,25·1000 + 1·300) / 3,25 — J4 no pesa más de 1 aunque M > T
+        self.assertEqual(RC.ref_de(c)["distancia"], round(850 / 3.25, 1))
 
 
 @unittest.skipUnless(os.path.exists(RC.RUTA) and os.path.exists(C.TIPO_XLSX), "faltan ficheros del club")

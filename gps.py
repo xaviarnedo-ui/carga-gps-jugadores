@@ -6,6 +6,7 @@
         --estado 6=descanso --estado 26=rehab    estado del día (full/rehab/lesion/descanso/nc/noconv)
         --fallo-gps 14=50                         partido: GPS roto, 50' jugados → estimado desde REF
         --proxy 19=17                             GPS roto: copia los datos del 17 al 19 (dato proxy)
+        --proxy 19=media                          GPS roto: le pone la media de los full de la sesión
         --descartar 11                            ignora la fila de ese dorsal del PDF (no son minutos jugados)
         --extra --solo 26 [--ref-duracion 95]     Extra con solo esos dorsales (p. ej. partido con el filial);
                                                   --ref-duracion: cuenta para su REF_PARTIDO con esa duración
@@ -22,6 +23,7 @@
   python3 gps.py lesiones [--abrir D --tipo T --baja F | --cerrar D --alta F]   registro de lesiones
   python3 gps.py disponibilidad                       regenerar Disponibilidad y Minutos.xlsx
   python3 gps.py objetivos S57                        PDF con los objetivos de la sesión (para el campo)
+  python3 gps.py objetivos S57 --compensar S56        ídem + lo que faltó en S56 (extra por jugador)
   python3 gps.py publicar [--sin-avisar] [-m msg]     import_data + git push (+ aviso)
 """
 import argparse
@@ -99,6 +101,8 @@ def main():
     sub.add_parser("disponibilidad")
     a = sub.add_parser("objetivos")
     a.add_argument("sesion", help="clave de la sesión, p. ej. S57")
+    a.add_argument("--compensar", help="sesión anterior (S56): suma lo que faltó en ella")
+    a.add_argument("--por-posicion", action="store_true", help="agrupado por posición (por defecto: por dorsal)")
     a = sub.add_parser("publicar")
     a.add_argument("--sin-avisar", action="store_true")
     a.add_argument("-m", default="Datos GPS actualizados")
@@ -117,7 +121,8 @@ def main():
                              fallos_gps={int(k): float(v) for k, v in _pares(args.fallo_gps).items()},
                              rol_md1={int(k): v.upper() for k, v in _pares(args.rol).items()},
                              alias={k: int(v) for k, v in _pares(args.alias).items()},
-                             proxies={int(k): int(v) for k, v in _pares(args.proxy).items()},
+                             proxies={int(k): (P.MEDIA if v.lower() == "media" else int(v))
+                                      for k, v in _pares(args.proxy).items()},
                              descartar=args.descartar, solo=args.solo, ref_duracion=args.ref_duracion,
                              tipos_lesion={int(k): v.strip('"') for k, v in _pares(args.lesion).items()},
                              nota=args.nota, extra=args.extra, dry_run=args.prueba)
@@ -187,7 +192,7 @@ def main():
 
     elif args.cmd == "objetivos":
         from pipeline import hoja_objetivos
-        print(hoja_objetivos.generar(args.sesion.upper()))
+        print(hoja_objetivos.generar(args.sesion.upper(), args.compensar, not args.por_posicion))
 
     elif args.cmd == "disponibilidad":
         print(disponibilidad.generar())

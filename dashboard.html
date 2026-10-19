@@ -20,7 +20,7 @@
     --accent:#16305f; --accent-2:#1d5fd4; --on-accent:#ffffff;
     --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#e34948;
     --sem-corto:#5b9bd5; --sem-ok:#1baf7a; --sem-pasado:#eda100; --sem-alto:#e34948; --sem-na:#c4cad6;
-    --band:rgba(27,175,122,.12);
+    --band:rgba(27,175,122,.12); --up-ink:#0f7a52; --dn-ink:#b3261e;
     --shadow:0 1px 2px rgba(20,30,55,.06), 0 8px 24px -12px rgba(20,30,55,.14);
     --r:10px;
   }
@@ -33,7 +33,7 @@
       --accent:#3a5c94; --accent-2:#6ea8ff; --on-accent:#ffffff;
       --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#e66767;
       --sem-corto:#4a86c4; --sem-ok:#199e70; --sem-pasado:#c98500; --sem-alto:#e05656; --sem-na:#3a4557;
-      --band:rgba(25,158,112,.16);
+      --band:rgba(25,158,112,.16); --up-ink:#4fd1a1; --dn-ink:#ff8a85;
       --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.5);
     }
   }
@@ -45,7 +45,7 @@
     --accent:#3a5c94; --accent-2:#6ea8ff; --on-accent:#ffffff;
     --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#e66767;
     --sem-corto:#4a86c4; --sem-ok:#199e70; --sem-pasado:#c98500; --sem-alto:#e05656; --sem-na:#3a4557;
-    --band:rgba(25,158,112,.16);
+    --band:rgba(25,158,112,.16); --up-ink:#4fd1a1; --dn-ink:#ff8a85;
     --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.5);
   }
 
@@ -176,6 +176,10 @@
   .ref-tbl tr.det td{background:var(--surface-2); font-size:12px}
   .ref-tbl tr.det td.lbl{color:var(--ink-2); text-align:left}
   .ref-tbl .hi{font-weight:700} .ref-tbl .lo{color:var(--ink-3)}
+  .ref-tbl .dlt{display:block; width:max-content; margin:2px auto 0; padding:0 5px; border-radius:999px; font-size:10.5px; font-weight:700; line-height:1.45}
+  .ref-tbl .dlt.up{background:rgba(27,175,122,.15); color:var(--up-ink)} .ref-tbl .dlt.dn{background:rgba(227,73,72,.13); color:var(--dn-ink)}
+  .ref-tbl .dlt.eq{color:var(--ink-3); font-weight:600}
+  .ref-tbl .chipd.ult{box-shadow:inset 0 0 0 1.5px var(--ink-2); color:var(--ink)}
   .ref-tbl tr.grp td{font-family:"Barlow Condensed",sans-serif; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-2); background:var(--surface); text-align:left; padding-top:12px}
   .whoop{margin:14px 16px 4px; padding:12px 14px; border:1px solid var(--border); border-radius:8px; background:var(--surface)}
   .whoop h4{margin:0 0 2px; font-size:14px} .whoop .sub{font-size:12px; color:var(--ink-2); margin-bottom:10px}
@@ -1813,7 +1817,7 @@ function viewLesionados(root){
 function viewReferencias(root){
   const rp=RAW.refPartido, ta=rp.teamAvg||{};
   const p=panel("Referencias de partido",
-    "REF_PARTIDO de cada jugador: media, con el mismo peso, de su pretemporada (1 dato) y de cada partido de Liga con GPS real, extrapolado a la duración real de ese partido. Es la base de todos los objetivos. Toca un jugador para ver de qué datos sale.");
+    "REF_PARTIDO de cada jugador: media ponderada por minutos de su pretemporada (peso 1) y de cada partido de Liga con GPS real, extrapolado a la duración real de ese partido. Un partido entero pesa 1 y uno de 20′ de 100′ pesa 0,2: los cameos cuentan, pero poco. Es la base de todos los objetivos. Toca un jugador para ver de qué datos sale.");
   const cols=RADAR_METRICS.concat(["velMax"]);
   const lab=k=> k==="velMax"?"Vel. máx":METRICS[k].lab;
   const dec=k=> k==="velMax"?1:METRICS[k].dec;
@@ -1833,6 +1837,15 @@ function viewReferencias(root){
     cols.map((k,i)=>`<th${i===0?' class="grp-start"':''}>${lab(k)}</th>`).join("")+
     `<th class="grp-start" style="text-align:left">Datos</th></tr></thead>`;
   const tbody=el("tbody");
+  // cambio de la REF con el último partido de cada jugador: verde sube · rojo baja
+  const delta=(pl,k)=>{
+    const rc=pl.refCambio, ant=rc&&rc.previo?rc.previo[k]:null, v=pl[k];
+    if(ant==null||v==null) return "";
+    const d=v-ant, txt=fmtN(Math.abs(d),dec(k));
+    if(Number(txt.replace(/\./g,"").replace(",","."))===0) return `<span class="dlt eq" title="Sin cambio con ${rc.key}">=</span>`;
+    const pct=ant?` (${d>0?"+":"−"}${fmtN(Math.abs(d)/ant*100,1)}%)`:"";
+    return `<span class="dlt ${d>0?"up":"dn"}" title="Con ${rc.key}: ${fmtN(ant,dec(k))} → ${fmtN(v,dec(k))}${pct}">${d>0?"▲ +":"▼ −"}${txt}</span>`;
+  };
   // marca suave: ≥10% por encima / por debajo de la media del equipo
   const cls=(k,v)=> v==null||!ta[k] ? "" : v>=ta[k]*1.10 ? "hi" : v<=ta[k]*0.90 ? "lo" : "";
   Object.entries(GROUPS).forEach(([g,gl])=>{
@@ -1843,8 +1856,8 @@ function viewReferencias(root){
     lst.forEach(pl=>{
       const tr=el("tr",{class:"pl", title:"Ver de qué datos sale su referencia"});
       tr.innerHTML=`<td class="mono">${pl.dorsal}</td><td style="text-align:left">${NAME[pl.dorsal]||pl.jugador}</td>`+
-        cols.map((k,i)=>`<td class="mono${i===0?" grp-start":""} ${cls(k,pl[k])}">${fmtN(pl[k],dec(k))}</td>`).join("")+
-        `<td class="dat grp-start">${(pl.datosRef||[]).map(x=>`<span class="chipd">${x.key}</span>`).join("")}</td>`;
+        cols.map((k,i)=>`<td class="mono${i===0?" grp-start":""} ${cls(k,pl[k])}">${fmtN(pl[k],dec(k))}${delta(pl,k)}</td>`).join("")+
+        `<td class="dat grp-start">${(pl.datosRef||[]).map((x,i,a)=>`<span class="chipd${pl.refCambio&&i===a.length-1?" ult":""}">${x.key}</span>`).join("")}</td>`;
       let abierto=false, filas=[];
       tr.onclick=()=>{
         if(abierto){ filas.forEach(f=>f.remove()); filas=[]; abierto=false; return; }
@@ -1853,7 +1866,7 @@ function viewReferencias(root){
         (pl.datosRef||[]).forEach(x=>{
           const f=el("tr",{class:"det"});
           const desc = x.key==="Pret" ? "Pretemporada (media)" :
-            `${x.key}${x.fecha?" · "+fDate(x.fecha):""}${x.min!=null?` · ${fmtN(x.min,0)}′ → ${fmtN(x.T,0)}′`:""}`;
+            `${x.key}${x.fecha?" · "+fDate(x.fecha):""}${x.min!=null?` · ${fmtN(x.min,0)}′ → ${fmtN(x.T,0)}′`:""}${x.peso!=null?` · peso ${fmtN(x.peso,2)}`:""}`;
           f.innerHTML=`<td></td><td class="lbl">${desc}</td>`+
             cols.map((k,i)=>`<td class="mono${i===0?" grp-start":""}">${k==="velMax"?"":fmtN((x.valores||{})[k],dec(k))}</td>`).join("")+`<td class="grp-start"></td>`;
           ant.after(f); ant=f; filas.push(f);
@@ -1868,6 +1881,7 @@ function viewReferencias(root){
   tbody.appendChild(trt);
   tb.appendChild(tbody); wrap.appendChild(tb); p.appendChild(wrap);
   p.appendChild(el("p",{class:"note", style:"padding-top:10px"},
+    "Debajo de cada valor, cuánto ha cambiado la referencia con el último partido de ese jugador (chip remarcado en «Datos»): ▲ verde sube · ▼ rojo baja. "+
     "Negrita: ≥10% por encima de la media del equipo · gris: ≥10% por debajo. En el detalle, cada partido aparece ya extrapolado (minutos jugados → duración real del partido). "+
     "Fuera de la referencia: J1 (sin GPS), datos estimados por fallo de GPS y datos proxy. Vel. máx: mejor registro de partido. "+
     "Se actualiza sola tras cada partido de Liga."));

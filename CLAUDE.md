@@ -33,7 +33,7 @@ en `estados_jugadores.json` ({"S62": {"20": {métricas}}}); se escribe aunque es
 semáforo y la app lo marca "Readapt. · obj. individual". Combínalo con `--fuera-media` y aplica con
 `microciclo.propagar_estados(n, [dorsal])`.
 
-Otros comandos: `objetivos S57` (PDF de objetivos del día para el campo, en `GPS/Informes/Objetivos/`), `abrir --tipo B --partido J5 --rival X --lunes AAAA-MM-DD` (microciclo
+Otros comandos: `objetivos S57` (PDF de objetivos del día para el campo, en `GPS/Informes/Objetivos/`; va en una sola lista por dorsal (decisión del preparador, 19/10; `--por-posicion` para agrupar); con `--compensar S56` suma a cada jugador lo que le faltó en S56, <90% → hasta el 100%, salvo métrica con ACWR >1,5 o plan de readaptación), `abrir --tipo B --partido J5 --rival X --lunes AAAA-MM-DD` (microciclo
 nuevo), `estado [dorsal=estado ...]`, `disponibilidad`, `publicar [--sin-avisar]`.
 
 **Lesiones** (`GPS/lesiones.json`, pestaña "Lesionados" del dashboard): cuando un jugador pasa
@@ -45,7 +45,7 @@ gestión de carga NO es lesión. Si una lesión se confirma sin PDF (diagnóstic
 en las sesiones aún no cargadas del microciclo activo (las cargadas no se tocan). El diagnóstico se publica tal cual (decisión del preparador).
 
 Fallo de GPS: en partidos con minutos conocidos `--fallo-gps D=min` (estimado desde su REF);
-si el preparador dice "ponle los datos de X", `--proxy D=X` (copia, nota de dato proxy, fuera de REF).
+si el preparador dice "ponle los datos de X", `--proxy D=X` (copia, nota de dato proxy, fuera de REF); "ponle la media del equipo" → `--proxy D=media` (media de los full de la sesión).
 
 Un rehab en un PDF aparte del mismo día se pasa junto al PDF de la sesión (se fusiona).
 Una sesión fuera de calendario (p. ej. un martes) va con `--extra` → hoja `Extra_dd-mm_GPS`.
@@ -63,8 +63,9 @@ Una sesión fuera de calendario (p. ej. un martes) va con `--extra` → hoja `Ex
   Quien no tiene objetivo en toda la semana: acumulado total, informativo (corrección 26/09).
 - ACWR: aguda Σ7d/7, crónica Σ28d/28 en días naturales (sin sesión = 0); media de equipo
   sin los ACWR = 0. Se recalcula siempre desde las hojas *_GPS de todos los microciclos.
-- REF_PARTIDO = MEDIA SIMPLE (mismo peso) de la pretemporada (1 dato) y de cada partido de Liga
-  J≥2 con GPS real (+ partidos con el filial si el preparador lo pide, `--ref-duracion`). Los
+- REF_PARTIDO = MEDIA PONDERADA POR MINUTOS (desde 19/10/2026; antes media simple) de la
+  pretemporada (peso 1) y de cada partido de Liga (peso = minutos jugados / duración real, máx. 1;
+  los cameos cuentan pero poco) J≥2 con GPS real (+ partidos con el filial si el preparador lo pide, `--ref-duracion`). Los
   componentes viven en `GPS/ref_componentes.json` (desde 28/09; antes cada partido promediaba
   con el valor anterior). Cada partido entra como `estimado_T`, con
   `estimado_T = Real + (T − M)·(Real/M)·0,90` y **T = duración real de ese partido** (minutos

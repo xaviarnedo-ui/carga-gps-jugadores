@@ -214,7 +214,8 @@ def marcar_proxies(ws, players):
     de Y (...)" en las notas de la hoja): marca al jugador con proxyDe=Y para avisarle en su app."""
     txt = " ".join(c.value for c in ws["A"] if isinstance(c.value, str))
     for m in re.finditer(r"([^.·:()]+?, [^\W\d_]\.)\s*: fallo de dispositivo GPS — datos de ([^()]+?) \(", txt):
-        dest, src = titlecase(m.group(1).strip()), titlecase(m.group(2).strip())
+        dest, src = titlecase(m.group(1).strip()), m.group(2).strip()
+        src = src if src.startswith("la media") else titlecase(src)
         for p in players:
             if p["jugador"] == dest:
                 p["proxyDe"] = src
@@ -1028,6 +1029,7 @@ def main():
         if date and val is not None:
             dst.setdefault(date, {})[dor] = val
 
+    velmax_hist = {}   # {dorsal: [(fecha, velMax de partido)]} para el cambio de REF
     for path in paths:
         n, m, cac = load_microcycle(path)
         micro_data[n] = m
@@ -1048,6 +1050,7 @@ def main():
                 _add_day(all_days_spr, s["date"], p["dorsal"], (p.get("sprint") or {}).get("real"))
                 if valido_ref and p.get("velMax") is not None:
                     velmax_match[p["dorsal"]] = max(velmax_match.get(p["dorsal"], 0), p["velMax"])
+                    velmax_hist.setdefault(p["dorsal"], []).append((s["date"], p["velMax"]))
                 if valido_ref and p.get(METRICS[0]) and p[METRICS[0]]["real"] is not None:
                     partidos_jugados[p["dorsal"]] = partidos_jugados.get(p["dorsal"], 0) + 1
         # sesiones "extra" (fuera de planificación): su carga sí entra en la serie de
@@ -1126,7 +1129,8 @@ def main():
         if k != "velMax":
             tavg[k] = int(tavg[k])
 
-    # de qué datos sale cada REF (GPS/ref_componentes.json): pretemporada + cada partido
+    # de qué datos sale cada REF (GPS/ref_componentes.json): pretemporada + cada partido (con su peso)
+    from pipeline.ref_componentes import peso as RC_peso, ref_de as RC_ref
     ruta_comp = os.path.join(GPS_DIR, "ref_componentes.json")
     comp = json.load(open(ruta_comp, encoding="utf-8")) if os.path.exists(ruta_comp) else {}
     for r in ref_players:
@@ -1136,9 +1140,18 @@ def main():
             datos.append({"key": "Pret", "valores": c["pretemporada"]})
         for k, v in sorted((c.get("partidos") or {}).items(), key=lambda t: t[1].get("fecha", "")):
             datos.append({"key": "Juvenil" if k.startswith("Extra") else k, "fecha": v.get("fecha"),
-                          "min": v.get("minutos"), "T": v.get("duracion"),
+                          "min": v.get("minutos"), "T": v.get("duracion"), "peso": round(RC_peso(v), 2),
                           "valores": {m: round(x, 1) for m, x in v["valores"].items()}})
         r["datosRef"] = datos
+        # cuánto ha cambiado la REF con su último partido (misma fórmula, sin ese partido)
+        partidos = c.get("partidos") or {}
+        if partidos:
+            ult_k, ult = max(partidos.items(), key=lambda t: t[1].get("fecha", ""))
+            previo = RC_ref(c, sin=ult_k)
+            vh = [v for f, v in velmax_hist.get(r["dorsal"], []) if f < ult.get("fecha", "")]
+            previo["velMax"] = max(vh) if vh else None
+            r["refCambio"] = {"key": "Juvenil" if ult_k.startswith("Extra") else ult_k,
+                              "fecha": ult.get("fecha"), "previo": previo}
 
     compute_dispo(micro_data, ref_players)
     primera = compute_primera_fecha(micro_data)
@@ -1158,9 +1171,10 @@ def main():
             "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-%d)" % max(micro_data),
         },
         "refPartido": {
-            "nota": ("REF_PARTIDO = media simple, con el mismo peso, de la pretemporada completa (PT1-PT3, "
-                     "PT5-PT9; PT4 anulado; días 'Modified' fuera) como UN solo dato y de cada partido de "
-                     "Liga con GPS real (J1 excluido, sin GPS) como un dato más (desde 28/09). "
+            "nota": ("REF_PARTIDO = media ponderada por minutos jugados (desde 19/10; antes, media simple) de la "
+                     "pretemporada completa (PT1-PT3, PT5-PT9; PT4 anulado; días 'Modified' fuera) como UN dato "
+                     "de peso 1 y de cada partido de Liga con GPS real (J1 excluido, sin GPS), con peso = minutos "
+                     "jugados / duración del partido. "
                      "Cada partido de Liga se extrapola con la fórmula de fatiga a su DURACIÓN REAL "
                      "(minutos del jugador que más jugó, con descuento), no a 95' (desde 25/09; J2 y J3 recalculados). "
                      "La media del equipo se calcula con toda la plantilla de campo. "
