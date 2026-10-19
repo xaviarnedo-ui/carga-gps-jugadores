@@ -4,22 +4,22 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-10-19 10:02",
+  "generado": "2026-10-19 10:09",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-14)"
  },
  "refPartido": {
-  "nota": "REF_PARTIDO = media simple, con el mismo peso, de la pretemporada completa (PT1-PT3, PT5-PT9; PT4 anulado; días 'Modified' fuera) como UN solo dato y de cada partido de Liga con GPS real (J1 excluido, sin GPS) como un dato más (desde 28/09). Cada partido de Liga se extrapola con la fórmula de fatiga a su DURACIÓN REAL (minutos del jugador que más jugó, con descuento), no a 95' (desde 25/09; J2 y J3 recalculados). La media del equipo se calcula con toda la plantilla de campo. Vel. máx tomada del mejor registro de partido.",
+  "nota": "REF_PARTIDO = media ponderada por minutos jugados (desde 19/10; antes, media simple) de la pretemporada completa (PT1-PT3, PT5-PT9; PT4 anulado; días 'Modified' fuera) como UN dato de peso 1 y de cada partido de Liga con GPS real (J1 excluido, sin GPS), con peso = minutos jugados / duración del partido. Cada partido de Liga se extrapola con la fórmula de fatiga a su DURACIÓN REAL (minutos del jugador que más jugó, con descuento), no a 95' (desde 25/09; J2 y J3 recalculados). La media del equipo se calcula con toda la plantilla de campo. Vel. máx tomada del mejor registro de partido.",
   "players": [
    {
     "dorsal": 2,
     "jugador": "Montcheu, F.",
     "grupo": "D",
-    "distancia": 10160.7,
-    "hmld": 1755.4,
-    "hsr": 551,
-    "sprint": 13.8,
-    "acc": 19.2,
-    "dec": 45.7,
+    "distancia": 9746.8,
+    "hmld": 1561.1,
+    "hsr": 528.1,
+    "sprint": 13.7,
+    "acc": 19.3,
+    "dec": 42.3,
     "velMax": 29.26,
     "partidos": 8,
     "datosRef": [
@@ -39,6 +39,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-13",
       "min": 8.82,
       "T": 94.88,
+      "peso": 0.09,
       "valores": {
        "distancia": 10255.3,
        "hmld": 1976.7,
@@ -53,6 +54,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-11",
       "min": 26.63,
       "T": 98.43,
+      "peso": 0.27,
       "valores": {
        "distancia": 10816.8,
        "hmld": 1843.3,
@@ -70,12 +72,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 3,
     "jugador": "Espiñeiro, A.",
     "grupo": "D",
-    "distancia": 9785.5,
-    "hmld": 1499.8,
-    "hsr": 487,
-    "sprint": 11.2,
-    "acc": 24.5,
-    "dec": 36.8,
+    "distancia": 9734.8,
+    "hmld": 1462.6,
+    "hsr": 463.4,
+    "sprint": 10.3,
+    "acc": 24,
+    "dec": 36,
     "velMax": 30.38,
     "partidos": 1,
     "datosRef": [
@@ -95,6 +97,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-20",
       "min": 29.27,
       "T": 100.57,
+      "peso": 0.29,
       "valores": {
        "distancia": 9877.9,
        "hmld": 1567.6,
@@ -140,12 +143,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 5,
     "jugador": "Martin, A.",
     "grupo": "D",
-    "distancia": 10102.2,
-    "hmld": 1393.7,
-    "hsr": 341,
-    "sprint": 6.6,
-    "acc": 24.6,
-    "dec": 34.1,
+    "distancia": 10064.3,
+    "hmld": 1361.5,
+    "hsr": 334,
+    "sprint": 6.4,
+    "acc": 23.8,
+    "dec": 33.2,
     "velMax": 31.15,
     "partidos": 14,
     "datosRef": [
@@ -165,6 +168,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-13",
       "min": 94.88,
       "T": 94.88,
+      "peso": 1.0,
       "valores": {
        "distancia": 10149,
        "hmld": 1419,
@@ -179,6 +183,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-20",
       "min": 50.12,
       "T": 100.57,
+      "peso": 0.5,
       "valores": {
        "distancia": 10593.5,
        "hmld": 1810.7,
@@ -193,6 +198,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-27",
       "min": 99.27,
       "T": 99.27,
+      "peso": 1.0,
       "valores": {
        "distancia": 9970,
        "hmld": 1222,
@@ -207,6 +213,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-04",
       "min": 98.8,
       "T": 98.8,
+      "peso": 1.0,
       "valores": {
        "distancia": 9656,
        "hmld": 1145,
@@ -221,6 +228,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-11",
       "min": 98.43,
       "T": 98.43,
+      "peso": 1.0,
       "valores": {
        "distancia": 9937,
        "hmld": 1288,
@@ -235,6 +243,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-18",
       "min": 101.02,
       "T": 101.02,
+      "peso": 1.0,
       "valores": {
        "distancia": 10644,
        "hmld": 1448,
@@ -252,12 +261,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 6,
     "jugador": "Bonet, G.",
     "grupo": "M",
-    "distancia": 10847.3,
-    "hmld": 1802.7,
-    "hsr": 421.4,
-    "sprint": 5.2,
-    "acc": 34,
-    "dec": 51.1,
+    "distancia": 10885,
+    "hmld": 1813.1,
+    "hsr": 424.8,
+    "sprint": 5.1,
+    "acc": 33.6,
+    "dec": 50.6,
     "velMax": 29.33,
     "partidos": 10,
     "datosRef": [
@@ -277,6 +286,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-13",
       "min": 94.88,
       "T": 94.88,
+      "peso": 1.0,
       "valores": {
        "distancia": 10658,
        "hmld": 1700,
@@ -291,6 +301,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-20",
       "min": 68.58,
       "T": 100.57,
+      "peso": 0.68,
       "valores": {
        "distancia": 10530.0,
        "hmld": 1715.0,
@@ -308,12 +319,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 7,
     "jugador": "Riera, N.",
     "grupo": "D",
-    "distancia": 11224.6,
-    "hmld": 1888.1,
-    "hsr": 662.5,
+    "distancia": 11223.1,
+    "hmld": 1883,
+    "hsr": 661.4,
     "sprint": 13.3,
-    "acc": 31.5,
-    "dec": 43.7,
+    "acc": 31.6,
+    "dec": 43.6,
     "velMax": 32.52,
     "partidos": 13,
     "datosRef": [
@@ -333,6 +344,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-13",
       "min": 94.88,
       "T": 94.88,
+      "peso": 1.0,
       "valores": {
        "distancia": 11112,
        "hmld": 1715,
@@ -347,6 +359,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-20",
       "min": 80.97,
       "T": 100.57,
+      "peso": 0.81,
       "valores": {
        "distancia": 11276.2,
        "hmld": 2064.3,
@@ -361,6 +374,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-27",
       "min": 99.27,
       "T": 99.27,
+      "peso": 1.0,
       "valores": {
        "distancia": 11452,
        "hmld": 1895,
@@ -375,6 +389,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-04",
       "min": 98.8,
       "T": 98.8,
+      "peso": 1.0,
       "valores": {
        "distancia": 11093,
        "hmld": 1951,
@@ -389,6 +404,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-11",
       "min": 98.43,
       "T": 98.43,
+      "peso": 1.0,
       "valores": {
        "distancia": 11531,
        "hmld": 1912,
@@ -403,6 +419,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-18",
       "min": 101.02,
       "T": 101.02,
+      "peso": 1.0,
       "valores": {
        "distancia": 11394,
        "hmld": 1830,
@@ -420,12 +437,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 8,
     "jugador": "Cherta, J.",
     "grupo": "M",
-    "distancia": 11219.1,
-    "hmld": 1839.9,
-    "hsr": 458.8,
-    "sprint": 9.3,
-    "acc": 28.7,
-    "dec": 40.7,
+    "distancia": 11178.8,
+    "hmld": 1830.9,
+    "hsr": 468.6,
+    "sprint": 9.7,
+    "acc": 29,
+    "dec": 39.9,
     "velMax": 30.15,
     "partidos": 14,
     "datosRef": [
@@ -445,6 +462,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-13",
       "min": 75.5,
       "T": 94.88,
+      "peso": 0.8,
       "valores": {
        "distancia": 11654.4,
        "hmld": 1908.1,
@@ -459,6 +477,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-20",
       "min": 80.83,
       "T": 100.57,
+      "peso": 0.8,
       "valores": {
        "distancia": 10945.7,
        "hmld": 1939.3,
@@ -473,6 +492,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-27",
       "min": 89.85,
       "T": 99.27,
+      "peso": 0.91,
       "valores": {
        "distancia": 11205.9,
        "hmld": 1655.7,
@@ -487,6 +507,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-04",
       "min": 61.43,
       "T": 98.8,
+      "peso": 0.62,
       "valores": {
        "distancia": 10794.8,
        "hmld": 1627.9,
@@ -501,6 +522,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-11",
       "min": 83.6,
       "T": 98.43,
+      "peso": 0.85,
       "valores": {
        "distancia": 11715.2,
        "hmld": 2173.3,
@@ -515,6 +537,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-18",
       "min": 48.82,
       "T": 101.02,
+      "peso": 0.48,
       "valores": {
        "distancia": 11744.8,
        "hmld": 1962.4,
@@ -532,12 +555,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 9,
     "jugador": "Caballero, R.",
     "grupo": "DL",
-    "distancia": 9749.4,
-    "hmld": 1603.6,
-    "hsr": 549.8,
-    "sprint": 12.3,
-    "acc": 34.1,
-    "dec": 46.3,
+    "distancia": 9686.3,
+    "hmld": 1583,
+    "hsr": 557.1,
+    "sprint": 12.7,
+    "acc": 33.1,
+    "dec": 46.1,
     "velMax": 31,
     "partidos": 14,
     "datosRef": [
@@ -557,6 +580,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-13",
       "min": 67.2,
       "T": 94.88,
+      "peso": 0.71,
       "valores": {
        "distancia": 9430.8,
        "hmld": 1494.1,
@@ -571,6 +595,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-20",
       "min": 100.57,
       "T": 100.57,
+      "peso": 1.0,
       "valores": {
        "distancia": 9594,
        "hmld": 1561,
@@ -585,6 +610,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-27",
       "min": 99.27,
       "T": 99.27,
+      "peso": 1.0,
       "valores": {
        "distancia": 9785,
        "hmld": 1523,
@@ -599,6 +625,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-04",
       "min": 69.62,
       "T": 98.8,
+      "peso": 0.7,
       "valores": {
        "distancia": 9584.5,
        "hmld": 1510.9,
@@ -613,6 +640,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-11",
       "min": 65.1,
       "T": 98.43,
+      "peso": 0.66,
       "valores": {
        "distancia": 10347.1,
        "hmld": 1820.2,
@@ -627,6 +655,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-18",
       "min": 52.2,
       "T": 101.02,
+      "peso": 0.52,
       "valores": {
        "distancia": 10353.9,
        "hmld": 1814.0,
@@ -644,12 +673,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 10,
     "jugador": "Andone, F.",
     "grupo": "DL",
-    "distancia": 9599.4,
-    "hmld": 1544.6,
-    "hsr": 670.6,
-    "sprint": 16.8,
-    "acc": 33.5,
-    "dec": 46.6,
+    "distancia": 9756.8,
+    "hmld": 1587.1,
+    "hsr": 626.4,
+    "sprint": 15.9,
+    "acc": 35.4,
+    "dec": 51.5,
     "velMax": 31.79,
     "partidos": 7,
     "datosRef": [
@@ -669,6 +698,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-04",
       "min": 29.43,
       "T": 98.8,
+      "peso": 0.3,
       "valores": {
        "distancia": 8689.0,
        "hmld": 1367.0,
@@ -683,6 +713,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-11",
       "min": 34.13,
       "T": 98.43,
+      "peso": 0.35,
       "valores": {
        "distancia": 9940.7,
        "hmld": 1563.3,
@@ -697,6 +728,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-18",
       "min": 101.02,
       "T": 101.02,
+      "peso": 1.0,
       "valores": {
        "distancia": 10342,
        "hmld": 1647,
@@ -714,12 +746,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 11,
     "jugador": "Martin, M.",
     "grupo": "D",
-    "distancia": 10640.8,
-    "hmld": 2015.8,
-    "hsr": 742.4,
-    "sprint": 18,
-    "acc": 30.7,
-    "dec": 44.3,
+    "distancia": 10609.6,
+    "hmld": 1979.1,
+    "hsr": 697.5,
+    "sprint": 16.9,
+    "acc": 30.3,
+    "dec": 43.2,
     "velMax": 32.63,
     "partidos": 13,
     "datosRef": [
@@ -739,6 +771,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-13",
       "min": 74.58,
       "T": 94.88,
+      "peso": 0.79,
       "valores": {
        "distancia": 10877.2,
        "hmld": 2109.0,
@@ -753,6 +786,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-20",
       "min": 50.12,
       "T": 100.57,
+      "peso": 0.5,
       "valores": {
        "distancia": 10694.5,
        "hmld": 2064.2,
@@ -767,6 +801,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-04",
       "min": 37.77,
       "T": 98.8,
+      "peso": 0.38,
       "valores": {
        "distancia": 9871.8,
        "hmld": 1909.6,
@@ -781,6 +816,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-11",
       "min": 72.32,
       "T": 98.43,
+      "peso": 0.73,
       "valores": {
        "distancia": 11216.4,
        "hmld": 2122.7,
@@ -795,6 +831,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-18",
       "min": 48.82,
       "T": 101.02,
+      "peso": 0.48,
       "valores": {
        "distancia": 11348.4,
        "hmld": 2278.3,
@@ -812,12 +849,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 14,
     "jugador": "Hernandez, P.",
     "grupo": "M",
-    "distancia": 10095.1,
-    "hmld": 1502.4,
-    "hsr": 256.6,
-    "sprint": 4.5,
-    "acc": 33.9,
-    "dec": 42.6,
+    "distancia": 10253.6,
+    "hmld": 1426.8,
+    "hsr": 268.9,
+    "sprint": 5.6,
+    "acc": 29.3,
+    "dec": 37.7,
     "velMax": 30.1,
     "partidos": 10,
     "datosRef": [
@@ -837,6 +874,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-13",
       "min": 18.98,
       "T": 94.88,
+      "peso": 0.2,
       "valores": {
        "distancia": 9436.0,
        "hmld": 1678.4,
@@ -851,6 +889,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-04",
       "min": 98.8,
       "T": 98.8,
+      "peso": 1.0,
       "valores": {
        "distancia": 10222,
        "hmld": 1302,
@@ -865,6 +904,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-11",
       "min": 98.43,
       "T": 98.43,
+      "peso": 1.0,
       "valores": {
        "distancia": 10684,
        "hmld": 1511,
@@ -879,6 +919,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-18",
       "min": 20.13,
       "T": 101.02,
+      "peso": 0.2,
       "valores": {
        "distancia": 10080.6,
        "hmld": 1647.8,
@@ -896,12 +937,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 16,
     "jugador": "Anglada, H.",
     "grupo": "D",
-    "distancia": 9659.1,
-    "hmld": 1190,
-    "hsr": 297.3,
-    "sprint": 5.4,
-    "acc": 16.4,
-    "dec": 28.3,
+    "distancia": 9578.8,
+    "hmld": 1119.7,
+    "hsr": 266.9,
+    "sprint": 4.5,
+    "acc": 15.6,
+    "dec": 25.2,
     "velMax": 29.02,
     "partidos": 4,
     "datosRef": [
@@ -921,6 +962,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-04",
       "min": 98.8,
       "T": 98.8,
+      "peso": 1.0,
       "valores": {
        "distancia": 9294,
        "hmld": 951,
@@ -935,6 +977,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-11",
       "min": 98.43,
       "T": 98.43,
+      "peso": 1.0,
       "valores": {
        "distancia": 9882,
        "hmld": 1110,
@@ -949,6 +992,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-18",
       "min": 48.82,
       "T": 101.02,
+      "peso": 0.48,
       "valores": {
        "distancia": 10200.4,
        "hmld": 1664.1,
@@ -966,12 +1010,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 17,
     "jugador": "Catala, R.",
     "grupo": "DL",
-    "distancia": 10068.8,
-    "hmld": 1675.1,
-    "hsr": 595.7,
-    "sprint": 13.3,
-    "acc": 42.3,
-    "dec": 41.6,
+    "distancia": 10286.4,
+    "hmld": 1654.2,
+    "hsr": 532.5,
+    "sprint": 11.4,
+    "acc": 39.4,
+    "dec": 37.8,
     "velMax": 32.61,
     "partidos": 11,
     "datosRef": [
@@ -991,6 +1035,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-13",
       "min": 27.28,
       "T": 94.88,
+      "peso": 0.29,
       "valores": {
        "distancia": 10112.9,
        "hmld": 1986.4,
@@ -1005,6 +1050,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-20",
       "min": 50.45,
       "T": 100.57,
+      "peso": 0.5,
       "valores": {
        "distancia": 10284.7,
        "hmld": 1577.8,
@@ -1019,6 +1065,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-27",
       "min": 99.27,
       "T": 99.27,
+      "peso": 1.0,
       "valores": {
        "distancia": 10764,
        "hmld": 1593,
@@ -1033,6 +1080,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-04",
       "min": 23.43,
       "T": 98.8,
+      "peso": 0.24,
       "valores": {
        "distancia": 8801.8,
        "hmld": 1565.6,
@@ -1047,6 +1095,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-18",
       "min": 25.55,
       "T": 101.02,
+      "peso": 0.25,
       "valores": {
        "distancia": 10221.3,
        "hmld": 1646.2,
@@ -1064,12 +1113,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 18,
     "jugador": "Lopez, I.",
     "grupo": "D",
-    "distancia": 9533.7,
-    "hmld": 1363.1,
-    "hsr": 486.2,
-    "sprint": 11.1,
-    "acc": 23.5,
-    "dec": 43.1,
+    "distancia": 9553,
+    "hmld": 1371.4,
+    "hsr": 487.2,
+    "sprint": 11.3,
+    "acc": 23.8,
+    "dec": 43,
     "velMax": 33.71,
     "partidos": 13,
     "datosRef": [
@@ -1089,6 +1138,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-13",
       "min": 94.88,
       "T": 94.88,
+      "peso": 1.0,
       "valores": {
        "distancia": 9401,
        "hmld": 1433,
@@ -1103,6 +1153,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-20",
       "min": 100.57,
       "T": 100.57,
+      "peso": 1.0,
       "valores": {
        "distancia": 9703,
        "hmld": 1386,
@@ -1117,6 +1168,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-27",
       "min": 63.48,
       "T": 99.27,
+      "peso": 0.64,
       "valores": {
        "distancia": 9610.5,
        "hmld": 1445.5,
@@ -1131,6 +1183,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-04",
       "min": 69.75,
       "T": 98.8,
+      "peso": 0.71,
       "valores": {
        "distancia": 9023.1,
        "hmld": 1082.0,
@@ -1145,6 +1198,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-11",
       "min": 98.43,
       "T": 98.43,
+      "peso": 1.0,
       "valores": {
        "distancia": 10001,
        "hmld": 1438,
@@ -1159,6 +1213,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-18",
       "min": 101.02,
       "T": 101.02,
+      "peso": 1.0,
       "valores": {
        "distancia": 9685,
        "hmld": 1407,
@@ -1176,12 +1231,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 19,
     "jugador": "Catala, A.",
     "grupo": "DL",
-    "distancia": 11039,
-    "hmld": 2008.5,
-    "hsr": 709.2,
-    "sprint": 13.7,
-    "acc": 38,
-    "dec": 64,
+    "distancia": 11015.1,
+    "hmld": 1995.2,
+    "hsr": 701.8,
+    "sprint": 13.5,
+    "acc": 37.5,
+    "dec": 63.3,
     "velMax": 33.18,
     "partidos": 14,
     "datosRef": [
@@ -1201,6 +1256,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-13",
       "min": 94.88,
       "T": 94.88,
+      "peso": 1.0,
       "valores": {
        "distancia": 11101,
        "hmld": 1939,
@@ -1215,6 +1271,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-20",
       "min": 100.57,
       "T": 100.57,
+      "peso": 1.0,
       "valores": {
        "distancia": 10950,
        "hmld": 1991,
@@ -1229,6 +1286,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-27",
       "min": 67.72,
       "T": 99.27,
+      "peso": 0.68,
       "valores": {
        "distancia": 11280.8,
        "hmld": 2297.9,
@@ -1243,6 +1301,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-04",
       "min": 76.57,
       "T": 98.8,
+      "peso": 0.77,
       "valores": {
        "distancia": 10524.6,
        "hmld": 1816.3,
@@ -1257,6 +1316,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-11",
       "min": 72.32,
       "T": 98.43,
+      "peso": 0.73,
       "valores": {
        "distancia": 11352.9,
        "hmld": 2178.3,
@@ -1271,6 +1331,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-18",
       "min": 76.4,
       "T": 101.02,
+      "peso": 0.76,
       "valores": {
        "distancia": 11442.2,
        "hmld": 1946.6,
@@ -1316,12 +1377,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 21,
     "jugador": "Bover, R.",
     "grupo": "M",
-    "distancia": 10999,
-    "hmld": 1631.2,
-    "hsr": 540.6,
-    "sprint": 9,
-    "acc": 11.2,
-    "dec": 34.5,
+    "distancia": 11035.3,
+    "hmld": 1589.6,
+    "hsr": 471.7,
+    "sprint": 7.7,
+    "acc": 10.9,
+    "dec": 32.5,
     "velMax": 30.85,
     "partidos": 14,
     "datosRef": [
@@ -1341,6 +1402,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-13",
       "min": 86.85,
       "T": 94.88,
+      "peso": 0.92,
       "valores": {
        "distancia": 11100.0,
        "hmld": 1636.8,
@@ -1355,6 +1417,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-20",
       "min": 50.12,
       "T": 100.57,
+      "peso": 0.5,
       "valores": {
        "distancia": 10633.5,
        "hmld": 1719.2,
@@ -1369,6 +1432,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-27",
       "min": 99.27,
       "T": 99.27,
+      "peso": 1.0,
       "valores": {
        "distancia": 10917,
        "hmld": 1241,
@@ -1383,6 +1447,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-04",
       "min": 38.03,
       "T": 98.8,
+      "peso": 0.38,
       "valores": {
        "distancia": 10583.1,
        "hmld": 1616.4,
@@ -1397,6 +1462,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-11",
       "min": 15.63,
       "T": 98.43,
+      "peso": 0.16,
       "valores": {
        "distancia": 11297.0,
        "hmld": 1833.8,
@@ -1411,6 +1477,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-18",
       "min": 101.02,
       "T": 101.02,
+      "peso": 1.0,
       "valores": {
        "distancia": 11868,
        "hmld": 1641,
@@ -1428,12 +1495,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 22,
     "jugador": "Soler, M.",
     "grupo": "M",
-    "distancia": 10766.3,
-    "hmld": 1495,
-    "hsr": 382.7,
+    "distancia": 10768.2,
+    "hmld": 1498.8,
+    "hsr": 382.2,
     "sprint": 7.6,
     "acc": 15.7,
-    "dec": 35.1,
+    "dec": 35,
     "velMax": 31.88,
     "partidos": 14,
     "datosRef": [
@@ -1453,6 +1520,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-13",
       "min": 94.88,
       "T": 94.88,
+      "peso": 1.0,
       "valores": {
        "distancia": 11065,
        "hmld": 1570,
@@ -1467,6 +1535,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-20",
       "min": 100.57,
       "T": 100.57,
+      "peso": 1.0,
       "valores": {
        "distancia": 10882,
        "hmld": 1557,
@@ -1481,6 +1550,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-27",
       "min": 99.27,
       "T": 99.27,
+      "peso": 1.0,
       "valores": {
        "distancia": 10520,
        "hmld": 1480,
@@ -1495,6 +1565,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-04",
       "min": 98.8,
       "T": 98.8,
+      "peso": 1.0,
       "valores": {
        "distancia": 10419,
        "hmld": 1327,
@@ -1509,6 +1580,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-11",
       "min": 98.43,
       "T": 98.43,
+      "peso": 1.0,
       "valores": {
        "distancia": 11421,
        "hmld": 1592,
@@ -1523,6 +1595,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-18",
       "min": 81.25,
       "T": 101.02,
+      "peso": 0.8,
       "valores": {
        "distancia": 10701.2,
        "hmld": 1361.6,
@@ -1540,12 +1613,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 23,
     "jugador": "Bah, A.",
     "grupo": "D",
-    "distancia": 10365.6,
-    "hmld": 1814.8,
-    "hsr": 530.5,
-    "sprint": 9.6,
-    "acc": 35.5,
-    "dec": 54.2,
+    "distancia": 10428.7,
+    "hmld": 1770.8,
+    "hsr": 497.4,
+    "sprint": 8.5,
+    "acc": 35.2,
+    "dec": 53.7,
     "velMax": 31.17,
     "partidos": 10,
     "datosRef": [
@@ -1565,6 +1638,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-13",
       "min": 18.85,
       "T": 94.88,
+      "peso": 0.2,
       "valores": {
        "distancia": 10695.9,
        "hmld": 2305.9,
@@ -1579,6 +1653,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-20",
       "min": 50.45,
       "T": 100.57,
+      "peso": 0.5,
       "valores": {
        "distancia": 11049.9,
        "hmld": 1973.6,
@@ -1593,6 +1668,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-27",
       "min": 99.27,
       "T": 99.27,
+      "peso": 1.0,
       "valores": {
        "distancia": 10618,
        "hmld": 1634,
@@ -1607,6 +1683,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-04",
       "min": 29.72,
       "T": 98.8,
+      "peso": 0.3,
       "valores": {
        "distancia": 9317.0,
        "hmld": 1478.1,
@@ -1621,6 +1698,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-18",
       "min": 52.2,
       "T": 101.02,
+      "peso": 0.52,
       "valores": {
        "distancia": 10169.7,
        "hmld": 1644.6,
@@ -1638,12 +1716,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 24,
     "jugador": "Llinares, I.",
     "grupo": "M",
-    "distancia": 10460.7,
-    "hmld": 1875.5,
-    "hsr": 622.1,
-    "sprint": 12.3,
-    "acc": 39.6,
-    "dec": 58.5,
+    "distancia": 10497.3,
+    "hmld": 1892.9,
+    "hsr": 645.6,
+    "sprint": 13.5,
+    "acc": 40.7,
+    "dec": 56.1,
     "velMax": 32.29,
     "partidos": 10,
     "datosRef": [
@@ -1663,6 +1741,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-20",
       "min": 18.5,
       "T": 100.57,
+      "peso": 0.18,
       "valores": {
        "distancia": 10039.8,
        "hmld": 1717.4,
@@ -1677,6 +1756,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-27",
       "min": 31.95,
       "T": 99.27,
+      "peso": 0.32,
       "valores": {
        "distancia": 10148.4,
        "hmld": 1949.2,
@@ -1691,6 +1771,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-04",
       "min": 60.75,
       "T": 98.8,
+      "peso": 0.61,
       "valores": {
        "distancia": 10003.0,
        "hmld": 1665.3,
@@ -1705,6 +1786,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-11",
       "min": 28.55,
       "T": 98.43,
+      "peso": 0.29,
       "valores": {
        "distancia": 10890.1,
        "hmld": 1934.6,
@@ -1719,6 +1801,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-18",
       "min": 52.2,
       "T": 101.02,
+      "peso": 0.52,
       "valores": {
        "distancia": 11121.8,
        "hmld": 2014.8,
@@ -1736,12 +1819,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 26,
     "jugador": "Fontanet, B.",
     "grupo": "D",
-    "distancia": 9292.5,
-    "hmld": 991.5,
-    "hsr": 254.8,
-    "sprint": 7.2,
-    "acc": 20.7,
-    "dec": 22.8,
+    "distancia": 9350.9,
+    "hmld": 1013.6,
+    "hsr": 267.8,
+    "sprint": 7.7,
+    "acc": 20.4,
+    "dec": 23.6,
     "velMax": 30.91,
     "partidos": 8,
     "datosRef": [
@@ -1761,6 +1844,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-09-26",
       "min": 47.27,
       "T": 95.0,
+      "peso": 0.5,
       "valores": {
        "distancia": 8885.9,
        "hmld": 838.0,
@@ -1775,6 +1859,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-07",
       "min": 97.42,
       "T": 97.4,
+      "peso": 1.0,
       "valores": {
        "distancia": 9632,
        "hmld": 1066,
@@ -1789,6 +1874,7 @@ window.GPS_DATA_ALL = {
       "fecha": "2026-10-11",
       "min": 99.1,
       "T": 99.1,
+      "peso": 1.0,
       "valores": {
        "distancia": 9428,
        "hmld": 926,
@@ -1804,12 +1890,12 @@ window.GPS_DATA_ALL = {
    }
   ],
   "teamAvg": {
-   "distancia": 10220,
-   "hmld": 1601,
-   "hsr": 492,
+   "distancia": 10222,
+   "hmld": 1578,
+   "hsr": 479,
    "sprint": 10,
-   "acc": 28,
-   "dec": 42,
+   "acc": 27,
+   "dec": 41,
    "velMax": 31.2
   },
   "notas": [
