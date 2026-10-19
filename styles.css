@@ -402,6 +402,32 @@ table.grid .obj{color:var(--txt-2); font-size:11px}
 .pitem__meta{font-size:11px; color:var(--txt-2); font-family:var(--font-mono)}
 .pitem__chev{color:var(--neutro)}
 
+/* ===================== PARTIDO (comparativa de equipo) ===================== */
+.pm-chips,.pm-modo{display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; padding-bottom:2px}
+.pm-chips::-webkit-scrollbar,.pm-modo::-webkit-scrollbar{display:none}
+.pm-modo{margin-top:6px}
+.pm-chip{flex:0 0 auto; border:1px solid var(--line); background:var(--surface); color:var(--txt-2); font:600 12px var(--font); padding:5px 11px; border-radius:999px; cursor:pointer}
+.pm-chip.is-active{background:var(--navy); border-color:var(--navy); color:#fff}
+.pm-rank{display:flex; flex-direction:column; gap:2px; margin-top:12px}
+.pm-row{display:grid; grid-template-columns:18px minmax(0,1.25fr) minmax(0,1fr) auto; align-items:center; gap:8px; padding:5px 6px; border-radius:8px}
+.pm-row.is-me{background:var(--oro-bg); box-shadow:inset 3px 0 0 var(--oro)}
+.pm-pos{font-size:11px; color:var(--txt-2); text-align:right; font-variant-numeric:tabular-nums}
+.pm-name{font-size:12.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.pm-name b{color:var(--txt-2); font-weight:700; margin-right:2px}
+.pm-name small{color:var(--txt-2); font-size:10.5px; margin-left:5px}
+.pm-tag{font-style:normal; font-size:9.5px; font-weight:700; color:var(--naranja); margin-left:3px}
+.pm-bar{position:relative; height:10px; background:var(--line); border-radius:999px}
+.pm-bar i{position:absolute; left:0; top:0; bottom:0; background:var(--azul); border-radius:999px}
+.pm-row.is-me .pm-bar i{background:var(--oro)}
+.pm-bar s{position:absolute; top:-3px; bottom:-3px; width:2px; margin-left:-1px; background:var(--txt); opacity:.55; border-radius:1px}
+.pm-val{font-size:12.5px; font-weight:700; font-variant-numeric:tabular-nums; min-width:44px; text-align:right}
+.pm-scroll{overflow-x:auto; margin:0 -4px}
+.pm-tbl{width:100%; border-collapse:collapse; font-size:11.5px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.pm-tbl th{font-size:10px; color:var(--txt-2); font-weight:700; padding:5px 5px; border-bottom:1px solid var(--line); text-align:right}
+.pm-tbl td{padding:5px 5px; border-bottom:1px solid var(--line); text-align:right}
+.pm-tbl .l{text-align:left}
+.pm-tbl tr.is-me td{background:var(--oro-bg); font-weight:700}
+
 /* ===================== BOTTOM NAV ===================== */
 .bottomnav{
   position:fixed; left:0; right:0; bottom:0; z-index:30;

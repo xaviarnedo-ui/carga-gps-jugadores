@@ -1,13 +1,13 @@
 /* Service worker — cache básico para uso offline en el campo + notificaciones push. */
-var CACHE = "carga-gps-v72";
+var CACHE = "carga-gps-v73";
 var ASSETS = [
   "./",
   "./index.html",
   "./jugador.html",
   "./dashboard.html",
-  "./styles.css?v=55",
+  "./styles.css?v=56",
   "./app.js?v=61",
-  "./jugador.js?v=58",
+  "./jugador.js?v=59",
   "./data.js?v=53",
   "./manifest.json",
   "./manifest.jugador.json",

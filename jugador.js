@@ -835,8 +835,102 @@
     return html + '</div></div>';
   }
 
+
+  /* ------------------------------ PARTIDO ----------------------------- */
+  // Todos los jugadores de un partido de Liga, para compararse entre compañeros.
+  function ligaMatches() {
+    var out = [];
+    MICROS.forEach(function (mk) {
+      var m = DATA[mk];
+      Object.keys(m.partidos || {}).forEach(function (k) {
+        var s = m.partidos[k];
+        if (/^J\d+$/.test(k) && isCompleted(s)) out.push({ key: k, mk: mk, s: s });
+      });
+    });
+    return out.sort(function (a, b) { return a.s.date < b.s.date ? 1 : -1; });
+  }
+  function minutos(d) {
+    if (d == null || d === "") return null;
+    var t = String(d);
+    if (t.indexOf(":") >= 0) {
+      var p = t.split(":").map(Number);
+      return p.length === 3 ? p[0] * 60 + p[1] + p[2] / 60 : p[0] + p[1] / 60;
+    }
+    var v = parseFloat(t); return isNaN(v) ? null : v;
+  }
+  var PM = METRICS.concat([{ key: "velMax", label: "Vel. máx", short: "VMÁX", unit: "km/h" }]);
+  function pval(p, k) { return k === "velMax" ? p.velMax : (p[k] ? p[k].real : null); }
+
+  function screenPartido() {
+    var ms = ligaMatches();
+    if (!ms.length) return '<div class="card"><p class="muted">Aún no hay partidos de Liga con datos.</p></div>';
+    if (!state.partido || !ms.some(function (x) { return x.key === state.partido; })) state.partido = ms[0].key;
+    state.pmet = state.pmet || "distancia";
+    state.pmodo = state.pmodo || "total";
+    var cur = ms.filter(function (x) { return x.key === state.partido; })[0], s = cur.s;
+    var met = PM.filter(function (x) { return x.key === state.pmet; })[0];
+    var por90 = state.pmodo === "90" && met.key !== "velMax";
+    var dec = (met.key === "velMax") ? 1 : (por90 && (met.key === "sprint" || met.key === "acc" || met.key === "dec")) ? 1 : 0;
+
+    var pills = '<div class="pills">' + ms.map(function (x) {
+      return '<button class="pill is-match' + (x.key === state.partido ? " is-active" : "") + '" data-partido="' + x.key + '">' + x.key +
+        '<small>' + esc(("vs " + (x.s.rival || "")).slice(0, 14)) + '</small></button>';
+    }).join("") + '</div>';
+
+    var jug = (s.players || []).filter(function (p) { return p.distancia && p.distancia.real != null; }).map(function (p) {
+      var mins = minutos(p.duracion), v = pval(p, met.key);
+      if (por90) v = (v != null && mins >= 30) ? v / mins * 90 : null;
+      return { p: p, mins: mins, v: v };
+    });
+    var conV = jug.filter(function (x) { return x.v != null; }).sort(function (a, b) { return b.v - a.v; });
+    var max = conV.length ? conV[0].v : 1;
+    var media = conV.length ? conV.reduce(function (a, x) { return a + x.v; }, 0) / conV.length : null;
+    var fueraNota = por90 ? jug.filter(function (x) { return x.v == null; }).length : 0;
+
+    var chips = '<div class="pm-chips">' + PM.map(function (x) {
+      return '<button class="pm-chip' + (x.key === met.key ? " is-active" : "") + '" data-pmet="' + x.key + '">' + esc(x.label) + '</button>';
+    }).join("") + '</div>';
+    var modo = met.key === "velMax" ? "" : '<div class="pm-modo">' +
+      '<button class="pm-chip' + (!por90 ? " is-active" : "") + '" data-pmodo="total">Total</button>' +
+      '<button class="pm-chip' + (por90 ? " is-active" : "") + '" data-pmodo="90">Por 90′</button></div>';
+
+    var rank = conV.map(function (x, i) {
+      var p = x.p, me = p.dorsal === DORSAL;
+      var w = Math.max(2, Math.round(x.v / max * 100));
+      var tags = (p.estimado ? ' <em class="pm-tag">estimado</em>' : '') + (p.proxyDe ? ' <em class="pm-tag">proxy</em>' : '');
+      return '<div class="pm-row' + (me ? " is-me" : "") + '">' +
+        '<span class="pm-pos">' + (i + 1) + '</span>' +
+        '<span class="pm-name"><b>' + p.dorsal + '</b> ' + esc(p.jugador) + tags +
+        '<small>' + (x.mins != null ? Math.round(x.mins) + '′' : '') + '</small></span>' +
+        '<span class="pm-bar"><i style="width:' + w + '%"></i>' +
+        (media ? '<s style="left:' + Math.min(100, media / max * 100) + '%"></s>' : '') + '</span>' +
+        '<span class="pm-val">' + fmtDec(x.v, dec) + '</span></div>';
+    }).join("");
+
+    var tabla = '<div class="pm-scroll"><table class="pm-tbl"><thead><tr><th>#</th><th class="l">Jugador</th><th>Min</th>' +
+      PM.map(function (x) { return '<th>' + esc(x.short) + '</th>'; }).join("") + '</tr></thead><tbody>' +
+      jug.slice().sort(function (a, b) { return a.p.dorsal - b.p.dorsal; }).map(function (x) {
+        var p = x.p;
+        return '<tr' + (p.dorsal === DORSAL ? ' class="is-me"' : '') + '><td>' + p.dorsal + '</td><td class="l">' + esc(p.jugador) + '</td>' +
+          '<td>' + (x.mins != null ? Math.round(x.mins) : '—') + '</td>' +
+          PM.map(function (mm) { var v = pval(p, mm.key); return '<td>' + (mm.key === "velMax" ? fmtDec(v, 1) : fmt(v)) + '</td>'; }).join("") + '</tr>';
+      }).join("") + '</tbody></table></div>';
+
+    return pills +
+      '<div class="card"><div class="card__title">Partido ' + esc(cur.key) + ' <span class="count">vs ' + esc(s.rival || "—") + ' · ' + esc(fdate(s.date)) + '</span></div>' +
+      '<div class="muted" style="margin-bottom:10px">Los datos de todo el equipo en este partido. Tú sales resaltado; la línea vertical es la media del equipo.</div>' +
+      (s.estimado ? '<div class="alert alert--info" style="margin-bottom:10px">' + iconWarn() + '<div><b>Datos estimados.</b> No hay GPS real de este partido.</div></div>' : '') +
+      chips + modo +
+      '<div class="pm-rank">' + (rank || '<p class="muted">Sin datos.</p>') + '</div>' +
+      '<div class="muted" style="font-size:11px;margin-top:6px">' +
+      (por90 ? 'Por 90′: lo que harías al ritmo de tus minutos en un partido de 90′. Fuera quien jugó menos de 30′' + (fueraNota ? ' (' + fueraNota + ')' : '') + '. ' : '') +
+      'Media del equipo: <b>' + fmtDec(media, dec) + '</b>. Jugar más minutos suma más total: usa «Por 90′» para comparar el ritmo.</div>' +
+      '</div>' +
+      '<div class="card"><div class="card__title">Todos los datos <span class="count">por dorsal</span></div>' + tabla + '</div>';
+  }
+
   /* ----------------------------- router ------------------------------ */
-  var SCREENS = { sesion: screenSesion, micro: screenMicro, cargaac: screenCargaAC, perfil: screenPerfil, historial: screenHistorial };
+  var SCREENS = { sesion: screenSesion, micro: screenMicro, cargaac: screenCargaAC, perfil: screenPerfil, historial: screenHistorial, partido: screenPartido };
   function render() {
     renderTopbar();
     view.innerHTML = (SCREENS[state.screen] || screenSesion)();
@@ -854,6 +948,12 @@
   view.addEventListener("click", function (e) {
     var pill = e.target.closest(".pill[data-session]");
     if (pill) { state.session = pill.dataset.session; render(); }
+    var pp = e.target.closest("[data-partido]");
+    if (pp) { state.partido = pp.dataset.partido; render(); }
+    var pm = e.target.closest("[data-pmet]");
+    if (pm) { state.pmet = pm.dataset.pmet; render(); }
+    var pmo = e.target.closest("[data-pmodo]");
+    if (pmo) { state.pmodo = pmo.dataset.pmodo; render(); }
   });
 
   /* ----------------------------- tema -------------------------------- */
