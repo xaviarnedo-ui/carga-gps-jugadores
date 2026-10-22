@@ -48,6 +48,7 @@ Fallo de GPS: en partidos con minutos conocidos `--fallo-gps D=min` (estimado de
 si el preparador dice "ponle los datos de X", `--proxy D=X` (copia, nota de dato proxy, fuera de REF); "ponle la media del equipo" → `--proxy D=media` (media de los full de la sesión).
 
 Un rehab en un PDF aparte del mismo día se pasa junto al PDF de la sesión (se fusiona).
+Tras `procesar` (sin `--prueba`) los PDF se mueven solos a `GPS/Sesiones/` o `GPS/Partidos/` (partidos de Liga y del filial con `--ref-duracion`); si ya existía uno con ese nombre, el viejo va a la Papelera.
 Una sesión fuera de calendario (p. ej. un martes) va con `--extra` → hoja `Extra_dd-mm_GPS`.
 
 ## Reglas de negocio (resumen de la especificación del preparador, 23/09/2026)

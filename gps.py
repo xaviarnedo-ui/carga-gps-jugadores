@@ -30,6 +30,7 @@ import argparse
 import datetime as dt
 import json
 import os
+import shutil
 import subprocess
 import sys
 
@@ -45,6 +46,24 @@ def _pares(lista, conv=str):
         k, v = item.rsplit("=", 1)
         out[k.strip()] = conv(v.strip())
     return out
+
+
+def _archivar_pdf(ruta, carpeta):
+    """El PDF de Catapult ya procesado va a GPS/Sesiones o GPS/Partidos (decisión del preparador,
+    22/10). Si ya había uno con ese nombre (PDF actualizado), el viejo va a la Papelera."""
+    ruta = os.path.abspath(os.path.expanduser(ruta))
+    destino_dir = os.path.join(C.GPS_DIR, carpeta)
+    destino = os.path.join(destino_dir, os.path.basename(ruta))
+    if os.path.dirname(ruta) == destino_dir or not os.path.exists(ruta):
+        return f"  PDF: {os.path.basename(ruta)} ya está en {carpeta}/"
+    os.makedirs(destino_dir, exist_ok=True)
+    if os.path.exists(destino):
+        papelera = os.path.expanduser("~/.Trash")
+        viejo = os.path.join(papelera, f"{os.path.splitext(os.path.basename(ruta))[0]} (anterior "
+                             f"{dt.datetime.now():%Y%m%d-%H%M%S}).pdf")
+        shutil.move(destino, viejo)
+    shutil.move(ruta, destino)
+    return f"  PDF guardado en GPS/{carpeta}/{os.path.basename(ruta)}"
 
 
 def _publicar(mensaje, avisar):
@@ -132,6 +151,9 @@ def main():
             sys.exit(2)
         print(json.dumps(res, ensure_ascii=False, indent=1, default=str))
         if not args.prueba:
+            partido = C.is_match_key(res["key"]) or (args.extra and args.ref_duracion)
+            for ruta in args.pdfs:
+                print(_archivar_pdf(ruta, "Partidos" if partido else "Sesiones"))
             print(P.importar(avisar=False).strip())
             if args.publicar:
                 _publicar(f"Datos GPS: {res['key']}", avisar=not args.sin_avisar)
