@@ -79,7 +79,7 @@ def _deficits(key_ant, fecha):
     return extra, motivo
 
 
-def generar(key, compensar=None, por_dorsal=True):
+def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False):
     n, wb, ws = _buscar(key)
     fecha = fecha_hoja(ws)
     tipo, dia = sesion.tipo_y_dia(ws)
@@ -93,13 +93,18 @@ def generar(key, compensar=None, por_dorsal=True):
         rival = a1.split("vs ", 1)[1].split("(")[0].strip() if "vs " in a1 else ""
 
     con, sin = {g: [] for g, _ in POS}, []
+    fuera_hoja = {}
     for d, r in sorted(filas.items()):
+        if sin_lesionados and E.vigente(est, d) in (C.REHAB, C.LESION):   # hoja solo del grupo
+            fuera_hoja[d] = True
+            continue
         nombre, grupo = ws.cell(r, 2).value, (ws.cell(r, 3).value or "").strip()
         obj = {k: num(ws.cell(r, C.SES_OBJ_COL[k]).value) for k, *_ in COLS}
         if any(v is not None for v in obj.values()):
             con.setdefault(grupo, []).append((d, nombre, obj))
         else:
             sin.append((d, nombre, ESTADO_TXT.get(E.vigente(est, d), "Sin objetivo")))
+    fuera = {d: v for d, v in fuera.items() if d not in fuera_hoja}
     med = {k: num(ws.cell(media, C.SES_OBJ_COL[k]).value) for k, *_ in COLS}
     extra, motivo = _deficits(compensar.upper(), fecha) if compensar else ({}, {})
     if compensar:  # media equipo: objetivo + extra medio de los mismos jugadores que la media
@@ -177,7 +182,7 @@ tr:nth-child(even):not(.grp):not(.med) td {{ background: #fafafa; }}
 <table><thead><tr><th>#</th><th style="text-align:left">Jugador</th>"""
     html += "".join(f"<th>{t}{(' <small>(' + u + ')</small>') if u else ''}</th>" for _, t, u, _ in COLS)
     html += f"""<th>Notas</th></tr></thead><tbody>{''.join(filas_html)}</tbody></table>
-<div class="foot"><b>Sin objetivo hoy:</b> {sin_html}"""
+<div class="foot">{"<b>Sin objetivo hoy:</b> " + sin_html if sin or not sin_lesionados else "Sin los jugadores en readaptación o lesionados."}"""
     if fuera:
         html += f"<br><b>Fuera de media</b> (objetivo individual, no cuentan para la media del equipo){': ' + notas_fm if notas_fm else ''}."
     if compensar:
@@ -190,7 +195,8 @@ tr:nth-child(even):not(.grp):not(.med) td {{ background: #fafafa; }}
 
     os.makedirs(SALIDA, exist_ok=True)
     pdf = os.path.join(SALIDA, f"Objetivos {key} {fecha:%d-%m}"
-                       + (f" + compensación {compensar.upper()}" if compensar else "") + ".pdf")
+                       + (f" + compensación {compensar.upper()}" if compensar else "")
+                       + (" (grupo)" if sin_lesionados else "") + ".pdf")
     with tempfile.NamedTemporaryFile("w", suffix=".html", delete=False, encoding="utf-8") as f:
         f.write(html)
     subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",

@@ -103,6 +103,7 @@ def main():
     a.add_argument("sesion", help="clave de la sesión, p. ej. S57")
     a.add_argument("--compensar", help="sesión anterior (S56): suma lo que faltó en ella")
     a.add_argument("--por-posicion", action="store_true", help="agrupado por posición (por defecto: por dorsal)")
+    a.add_argument("--sin-lesionados", action="store_true", help="sin los jugadores en readaptación o lesionados")
     a = sub.add_parser("publicar")
     a.add_argument("--sin-avisar", action="store_true")
     a.add_argument("-m", default="Datos GPS actualizados")
@@ -192,7 +193,7 @@ def main():
 
     elif args.cmd == "objetivos":
         from pipeline import hoja_objetivos
-        print(hoja_objetivos.generar(args.sesion.upper(), args.compensar, not args.por_posicion))
+        print(hoja_objetivos.generar(args.sesion.upper(), args.compensar, not args.por_posicion, args.sin_lesionados))
 
     elif args.cmd == "disponibilidad":
         print(disponibilidad.generar())

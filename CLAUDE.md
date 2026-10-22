@@ -33,7 +33,7 @@ en `estados_jugadores.json` ({"S62": {"20": {métricas}}}); se escribe aunque es
 semáforo y la app lo marca "Readapt. · obj. individual". Combínalo con `--fuera-media` y aplica con
 `microciclo.propagar_estados(n, [dorsal])`.
 
-Otros comandos: `objetivos S57` (PDF de objetivos del día para el campo, en `GPS/Informes/Objetivos/`; va en una sola lista por dorsal (decisión del preparador, 19/10; `--por-posicion` para agrupar); con `--compensar S56` suma a cada jugador lo que le faltó en S56, <90% → hasta el 100%, salvo métrica con ACWR >1,5 o plan de readaptación), `abrir --tipo B --partido J5 --rival X --lunes AAAA-MM-DD` (microciclo
+Otros comandos: `objetivos S57` (PDF de objetivos del día para el campo, en `GPS/Informes/Objetivos/`; va en una sola lista por dorsal (decisión del preparador, 19/10; `--por-posicion` para agrupar; `--sin-lesionados` deja solo al grupo); con `--compensar S56` suma a cada jugador lo que le faltó en S56, <90% → hasta el 100%, salvo métrica con ACWR >1,5 o plan de readaptación), `abrir --tipo B --partido J5 --rival X --lunes AAAA-MM-DD` (microciclo
 nuevo), `estado [dorsal=estado ...]`, `disponibilidad`, `publicar [--sin-avisar]`.
 
 **Lesiones** (`GPS/lesiones.json`, pestaña "Lesionados" del dashboard): cuando un jugador pasa
