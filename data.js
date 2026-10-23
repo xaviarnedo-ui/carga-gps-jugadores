@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-10-23 12:21",
+  "generado": "2026-10-23 21:54",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-15)"
  },
  "refPartido": {
@@ -144251,7 +144251,7 @@ window.GPS_DATA_ALL = {
      "velMax": 30.04,
      "playerLoad": 540.5
     },
-    "notaDia": "Lesionados / no disponibles (sin sesión ni objetivo): Bejarano, A. Descanso / gestión de carga (sin sesión ni objetivo hoy, sigue disponible): Espiñeiro, A. · Payeras, M. López, I.: trabaja aparte por su lesión de hombro, con los parámetros de la sesión cubiertos (cuenta como sesión completa). Espiñeiro, A. y Payeras, M.: hicieron readaptación; sus datos se cargan aparte (pendientes). Fuera de la MEDIA EQUIPO (objetivo y semáforo individual): Espiñeiro, A. — Espiñeiro: readaptación con objetivo individual de carrera continua (sin HSR)."
+    "notaDia": "Lesionados / no disponibles (sin sesión ni objetivo): Bejarano, A. Descanso / gestión de carga (sin sesión ni objetivo hoy, sigue disponible): Espiñeiro, A. · Payeras, M. López, I.: trabaja aparte por su lesión de hombro, con los parámetros de la sesión cubiertos (cuenta como sesión completa). Espiñeiro, A. y Payeras, M.: hicieron readaptación en el campo, pero sus GPS no grabaron (sin datos de esta sesión). Fuera de la MEDIA EQUIPO (objetivo y semáforo individual): Espiñeiro, A. — Espiñeiro: readaptación con objetivo individual de carrera continua (sin HSR)."
    },
    "S69": {
     "date": "2026-10-23",
