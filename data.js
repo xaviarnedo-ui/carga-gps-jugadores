@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-10-22 12:18",
+  "generado": "2026-10-23 09:43",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-15)"
  },
  "refPartido": {
@@ -3244,7 +3244,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 24.67,
      "playerLoad": 452.1
-    }
+    },
+    "notaDia": "HMLD Obj = REF_PARTIDO HMLD (1.000 m, provisional) × el mismo criterio de coeficiente (media Día -4/-3) que el resto de variables."
    },
    "S2": {
     "date": "2026-07-17",
@@ -3971,7 +3972,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 21.5,
      "playerLoad": 474.5
-    }
+    },
+    "notaDia": "HMLD Obj = REF_PARTIDO HMLD (1.000 m, provisional) × el mismo criterio de coeficiente (media Día -4/-3) que el resto de variables."
    },
    "S3": {
     "date": "2026-07-18",
@@ -4699,7 +4701,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 24.65,
      "playerLoad": 570.4
-    }
+    },
+    "notaDia": "Riera, N.: no participó en S3 (N/A). HMLD Obj = REF_PARTIDO HMLD (1.000 m, provisional) × el mismo criterio de coeficiente (media Día -4/-3) que el resto de variables."
    }
   },
   "partidos": {},
@@ -10050,7 +10053,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 24.72,
      "playerLoad": 391.3
-    }
+    },
+    "notaDia": "HMLD Obj = REF_PARTIDO HMLD (1.000 m, provisional) × el mismo criterio de coeficiente (media Día -4/-3) que el resto de variables."
    },
    "S5": {
     "date": "2026-07-21",
@@ -10777,7 +10781,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 25.7,
      "playerLoad": 639.8
-    }
+    },
+    "notaDia": "López, I.: no participó en S5 (N/A). HMLD Obj = REF_PARTIDO HMLD (1.000 m, provisional) × el mismo criterio de coeficiente (media Día -4/-3) que el resto de variables."
    },
    "S6a": {
     "date": "2026-07-22",
@@ -11504,7 +11509,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 23.79,
      "playerLoad": 176.3
-    }
+    },
+    "notaDia": "Bejarano, A.: no participó en S6 (N/A). HMLD Obj = REF_PARTIDO HMLD (1.000 m, provisional) × el mismo criterio de coeficiente (media Día -4/-3) que el resto de variables."
    },
    "S6b": {
     "date": "2026-07-22",
@@ -12234,7 +12240,8 @@ window.GPS_DATA_ALL = {
      "velMax": 26.01,
      "playerLoad": 430.4,
      "duracion": "1:01:40"
-    }
+    },
+    "notaDia": "López, I. y Bejarano, A.: no participaron en S6b (N/A). Riera, N.: participación parcial — solo bloque \"Rondos\" (10:46 min); resto de la sesión no. HMLD Obj = REF_PARTIDO HMLD (1.000 m, provisional) × el mismo criterio de coeficiente (media Día -4/-3) que el resto de variables."
    },
    "S7": {
     "date": "2026-07-23",
@@ -12962,7 +12969,8 @@ window.GPS_DATA_ALL = {
      "velMax": 25.1,
      "playerLoad": 580.1,
      "duracion": "1:21:56"
-    }
+    },
+    "notaDia": "Bejarano, A.: reincorporación tras S6a/S6b — participación parcial (27:19 min; incluye bloque individual \"Rehab\", 18:32 min, con GPS propio). López, I.: participación parcial (45:51 min, sale a mitad de sesión). HMLD Obj = REF_PARTIDO HMLD (1.000 m, provisional) × el mismo criterio de coeficiente (media Día -4/-3) que el resto de variables."
    },
    "S8": {
     "date": "2026-07-24",
@@ -13691,7 +13699,8 @@ window.GPS_DATA_ALL = {
      "velMax": 26.22,
      "playerLoad": 321.7,
      "duracion": "0:49:30"
-    }
+    },
+    "notaDia": "Andone, F.: no participó en S8 (N/A). Hernández, P.: fallo de GPS en S8 — fila copiada de Bover, R. como sustituto (no son datos propios de Hernández). HMLD Obj = REF_PARTIDO HMLD (1.000 m, provisional) × el mismo criterio de coeficiente (media Día -4/-3) que el resto de variables."
    }
   },
   "partidos": {
@@ -19908,7 +19917,8 @@ window.GPS_DATA_ALL = {
      "velMax": 25.92,
      "playerLoad": 453.1,
      "duracion": "1:14:31"
-    }
+    },
+    "notaDia": "Anglada, H.: no participó en S9 (N/A). Andone, F. y Payeras, M.: duración reducida frente al resto (47:53 y 57:24 vs 1:14:31) — el informe marca Rehab(1) y Part(1) sin decir a quién corresponde cada etiqueta. He asumido Andone=Rehab (reincorporación tras ausencias en S8/PT1) y Payeras=Part (gestión de carga tras jugar el partido completo) — confírmalo si no es así. Catalá, R. (dorsal 17): incorporación nueva a la plantilla — no participó en S9 (jugador no disponible en la fecha), objetivo con marcador uniforme."
    },
    "S10": {
     "date": "2026-07-28",
@@ -20715,7 +20725,8 @@ window.GPS_DATA_ALL = {
      "velMax": 26.73,
      "playerLoad": 689.2,
      "duracion": "1:12:27"
-    }
+    },
+    "notaDia": "López, Riera y Andone: siguen con el objetivo uniforme (todavía sin partido propio). Anglada, H.: no participó en S10 (N/A). Bover, R.: fallo de GPS en S10 — fila copiada de Soler, M. como sustituto. Catalá, R. (dorsal 17): incorporación nueva a la plantilla — no participó en S10 (jugador no disponible en la fecha), objetivo con marcador uniforme."
    },
    "S11": {
     "date": "2026-07-29",
@@ -21522,7 +21533,8 @@ window.GPS_DATA_ALL = {
      "velMax": 27.89,
      "playerLoad": 495.9,
      "duracion": "1:12:27"
-    }
+    },
+    "notaDia": "Sesión reconstruida sumando 3 informes del mismo día: S11a1 y S11a2 (dos grupos de salidas coordinativas, en horarios distintos) + S11b (sesión principal, MD-3). Cada jugador aparece en su grupo (a1 o a2) más S11b; Vel. Máx = la mayor de las dos partes, el resto de variables sumadas. Anglada, H. y Bah, A.: no participaron en S11 (N/A) — ausentes en los tres informes del día. Riera, Andone, López, Catalá R.: siguen con el objetivo uniforme (todavía sin partido propio)."
    },
    "S12": {
     "date": "2026-07-30",
@@ -22329,7 +22341,8 @@ window.GPS_DATA_ALL = {
      "velMax": 27.32,
      "playerLoad": 735.9,
      "duracion": "1:20:32"
-    }
+    },
+    "notaDia": "Anglada, H. y Bah, A.: no participaron en S12 (N/A) — ausentes también en S11. Bover, R.: duración reducida (1:02:20 vs 1:20:32 del resto) — el informe no especifica motivo ni etiqueta Part/Rehab. El informe de esta sesión venía con \"Equipo: ARCHIVE\" en vez de \"CD Atlético Baleares\" en la cabecera — no parece afectar a los datos individuales, pero te lo aviso por si el PDF viene de un sitio distinto al habitual."
    },
    "S13": {
     "date": "2026-07-31",
@@ -23135,7 +23148,8 @@ window.GPS_DATA_ALL = {
      "velMax": 27.16,
      "playerLoad": 393,
      "duracion": "1:06:31"
-    }
+    },
+    "notaDia": "Anglada, H. y Bah, A.: no participaron en S13 (N/A) — cuarta sesión seguida sin ellos. Llinares, I. (dorsal 24, M): incorporación nueva a la plantilla — debuta en S13 con datos reales."
    }
   },
   "partidos": {
@@ -29911,7 +29925,8 @@ window.GPS_DATA_ALL = {
      "velMax": 27.81,
      "playerLoad": 514.6,
      "duracion": "1:15:50"
-    }
+    },
+    "notaDia": "Catalá, R. y Llinares, I.: siguen con el objetivo uniforme (todavía sin partido propio). Anglada, H., Bah, A. y Bover, R.: no participaron en S14 (N/A). Anglada, H., Bah, A. y Bover, R.: no participaron en S14 (N/A)."
    },
    "S15": {
     "date": "2026-08-04",
@@ -30717,7 +30732,8 @@ window.GPS_DATA_ALL = {
      "velMax": 28.53,
      "playerLoad": 555.9,
      "duracion": "1:21:23"
-    }
+    },
+    "notaDia": "Catalá, R. y Llinares, I.: siguen con el objetivo uniforme (todavía sin partido propio). Anglada, H. y Bah, A.: no participaron en S15 (N/A). Bonet, G.: duración reducida (1:04:35 vs 1:21:23 del resto), sin etiqueta que lo explique."
    },
    "S16": {
     "date": "2026-08-06",
@@ -31522,7 +31538,8 @@ window.GPS_DATA_ALL = {
      "velMax": 23.79,
      "playerLoad": 319.9,
      "duracion": "0:45:45"
-    }
+    },
+    "notaDia": "Catalá, R. y Llinares, I.: siguen con el objetivo uniforme (todavía sin partido propio). Anglada, H.: no participó en S16 (N/A). El informe llegó etiquetado \"Other\" en vez de \"MD-4\" — mantengo el objetivo MD-4 ya fijado por la plantilla semanal, avísame si el tipo de sesión real fue otro."
    },
    "S17": {
     "date": "2026-08-07",
@@ -32329,7 +32346,8 @@ window.GPS_DATA_ALL = {
      "velMax": 24.71,
      "playerLoad": 380.1,
      "duracion": "1:04:49"
-    }
+    },
+    "notaDia": "Catalá, R. y Llinares, I.: siguen con el objetivo uniforme (todavía sin partido propio). Anglada, H., Bonet, G. y Caballero, R.: no participaron en S17 (N/A). El informe llegó etiquetado \"Other\" en vez de \"MD-3\" — mantengo el objetivo MD-3 ya fijado por la plantilla semanal."
    }
   },
   "partidos": {
@@ -39911,7 +39929,8 @@ window.GPS_DATA_ALL = {
      "velMax": 26.04,
      "playerLoad": 477.4,
      "duracion": "0:57:36"
-    }
+    },
+    "notaDia": "Llinares, I.: sigue con el objetivo uniforme (todavía sin partido propio de referencia). Anglada, H.: no participó en S18 (N/A). Informe GPS etiquetado \"Other\" en el sistema (no existe categoría \"Mixto\") — mantengo el objetivo mixto ya fijado; avísame si el contenido real de la sesión fue otro."
    },
    "S19": {
     "date": "2026-08-11",
@@ -40716,7 +40735,8 @@ window.GPS_DATA_ALL = {
      "velMax": 26.17,
      "playerLoad": 476.6,
      "duracion": "1:07:32"
-    }
+    },
+    "notaDia": "Llinares, I.: sigue con el objetivo uniforme (todavía sin partido propio de referencia). Anglada, H.: no participó en S19 (N/A)."
    },
    "S20": {
     "date": "2026-08-12",
@@ -41521,7 +41541,8 @@ window.GPS_DATA_ALL = {
      "velMax": 31.96,
      "playerLoad": 633.2,
      "duracion": "1:19:05"
-    }
+    },
+    "notaDia": "Llinares, I.: sigue con el objetivo uniforme (todavía sin partido propio de referencia). Anglada, H.: no participó en S20 (N/A). Andone, F.: sesión parcial (0:58:40 de 1:19:05 del equipo) — salió antes."
    },
    "S21": {
     "date": "2026-08-13",
@@ -42326,7 +42347,8 @@ window.GPS_DATA_ALL = {
      "velMax": 26.45,
      "playerLoad": 336.9,
      "duracion": "0:59:49"
-    }
+    },
+    "notaDia": "Llinares, I.: sigue con el objetivo uniforme (todavía sin partido propio de referencia). Anglada, H.: no participó en S21 (N/A). Bejarano, A.: sesión parcial (0:43:04 de 0:59:49 del equipo) — salió antes."
    }
   },
   "partidos": {
@@ -49905,7 +49927,8 @@ window.GPS_DATA_ALL = {
      "velMax": 26.3,
      "playerLoad": 444.4,
      "duracion": "0:49:37"
-    }
+    },
+    "notaDia": "Anglada, H.: no participó en S22 (N/A)."
    },
    "S23": {
     "date": "2026-08-18",
@@ -50711,7 +50734,8 @@ window.GPS_DATA_ALL = {
      "velMax": 26.99,
      "playerLoad": 454,
      "duracion": "1:11:09"
-    }
+    },
+    "notaDia": "Hernández, P.: falló el GPS en S23 — se usaron los datos de Bover, R. como sustituto (resaltado en amarillo). Cuenta para su carga personal (CARGA_AC), pero NO para la media del equipo. Anglada, H.: no participó en S23 (N/A). Martín, M.: no participó en S23 (N/A)."
    },
    "S24": {
     "date": "2026-08-19",
@@ -51517,7 +51541,8 @@ window.GPS_DATA_ALL = {
      "velMax": 31.31,
      "playerLoad": 541.4,
      "duracion": "1:03:52"
-    }
+    },
+    "notaDia": "Anglada, H.: trabajo de Rehab (16:39, informativo) — no se compara contra el objetivo del equipo, no cuenta para la media. Martín, M.: no participó en S24 (N/A)."
    },
    "S25": {
     "date": "2026-08-20",
@@ -52323,7 +52348,8 @@ window.GPS_DATA_ALL = {
      "velMax": 23.33,
      "playerLoad": 301.1,
      "duracion": "0:56:02"
-    }
+    },
+    "notaDia": "Martín, M.: vuelve a entrenar tras dos días de baja (S23, S24) — sesión algo más corta (45:21 vs 56:02 del resto, se saltó el bloque ABP final). Anglada, H. y Andone, F.: no participaron en S25 (N/A)."
    }
   },
   "partidos": {
@@ -59912,7 +59938,8 @@ window.GPS_DATA_ALL = {
      "velMax": 26.05,
      "playerLoad": 591.6,
      "duracion": "0:56:44"
-    }
+    },
+    "notaDia": "Hernández, P.: sesión parcial (38:46 vs 56:44 del resto, se saltó los dos últimos bloques). Montcheu, F., Andone, F., Anglada, H. y Llinares, I.: no participaron en S26 (N/A)."
    },
    "S27": {
     "date": "2026-08-26",
@@ -60721,7 +60748,8 @@ window.GPS_DATA_ALL = {
      "velMax": 25.2,
      "playerLoad": 445.3,
      "duracion": "1:28:57"
-    }
+    },
+    "notaDia": "Montcheu, F.: trabajo de Rehab (26:07, informativo) — no se compara contra el objetivo del equipo, no cuenta para la media (mismo criterio que Anglada en S24 de Microciclo 6). Payeras, M., Andone, F., Anglada, H. y Llinares, I.: no participaron en S27 (N/A)."
    },
    "S28": {
     "date": "2026-08-27",
@@ -61530,7 +61558,8 @@ window.GPS_DATA_ALL = {
      "velMax": 25.3,
      "playerLoad": 612,
      "duracion": "1:07:32"
-    }
+    },
+    "notaDia": "Llinares, I.: trabajo de Rehab (25:22, informativo) — no se compara contra el objetivo del equipo, no cuenta para la media (mismo criterio que Montcheu en S27). Payeras, M., Riera, N., Andone, F. y Anglada, H.: no participaron en S28 (N/A). Caballero, R. y Catalá, R. completaron la sesión con duración algo menor (0:59:25)."
    },
    "S29": {
     "date": "2026-08-28",
@@ -62337,7 +62366,8 @@ window.GPS_DATA_ALL = {
      "velMax": 27.3,
      "playerLoad": 305,
      "duracion": "0:52:19"
-    }
+    },
+    "notaDia": "Payeras, M., Andone, F. y Anglada, H.: no participaron en S29 (N/A). Riera, N.: sesión con duración algo menor (0:35:39, participación parcial)."
    },
    "S30": {
     "date": "2026-08-29",
@@ -63144,7 +63174,8 @@ window.GPS_DATA_ALL = {
      "velMax": 24.3,
      "playerLoad": 336,
      "duracion": "0:48:00"
-    }
+    },
+    "notaDia": "Payeras, M., Andone, F. y Anglada, H.: no participaron en S30 (N/A)."
    }
   },
   "partidos": {
@@ -69923,7 +69954,8 @@ window.GPS_DATA_ALL = {
      "velMax": 25.0,
      "playerLoad": 355,
      "duracion": "0:36:42"
-    }
+    },
+    "notaDia": "Montcheu, F., Payeras, M., Andone, F. y Anglada, H., Llinares, I.: no participaron en S31 (N/A)."
    },
    "S32": {
     "date": "2026-09-02",
@@ -70731,7 +70763,8 @@ window.GPS_DATA_ALL = {
      "velMax": 25.7,
      "playerLoad": 365,
      "duracion": "1:02:58"
-    }
+    },
+    "notaDia": "Bah, A.: falló el GPS — se usaron los datos de Montcheu, F. como sustituto (no cuenta para la media del equipo, sí para su propia carga). Payeras, M., Andone, F., Anglada, H. y Llinares, I.: no participaron en S32 (N/A). Bejarano, A. y Catalá, R.: sesión con duración menor (participación parcial)."
    },
    "S33": {
     "date": "2026-09-03",
@@ -71579,7 +71612,8 @@ window.GPS_DATA_ALL = {
      "velMax": 29.9,
      "playerLoad": 575,
      "duracion": "1:10:03"
-    }
+    },
+    "notaDia": "Espiñeiro, A.: incorporación nueva (dorsal 3, D) — primer día, sesión parcial de adaptación (0:30:35). Objetivo provisional = media de los D actuales, hasta que dispute su primer partido. Andone, F.: vuelve con protocolo de Rehab (16:32, informativo) — no se compara contra el objetivo del equipo, no cuenta para la media. Payeras, M., Anglada, H., Catalá, R., Bejarano, A. y Llinares, I.: no participaron en S33 (N/A)."
    },
    "S34": {
     "date": "2026-09-04",
@@ -72426,7 +72460,8 @@ window.GPS_DATA_ALL = {
      "velMax": 27.5,
      "playerLoad": 327,
      "duracion": "0:57:52"
-    }
+    },
+    "notaDia": "Llinares, I.: Rehab (15:55, informativo) — no se compara contra el objetivo del equipo, no cuenta para la media. Payeras, M., Andone, F., Anglada, H. y Bejarano, A.: no participaron en S34 (N/A). Espiñeiro, A.: sesión parcial (0:38:12), segundo día de adaptación."
    },
    "S35": {
     "date": "2026-09-05",
@@ -73273,7 +73308,8 @@ window.GPS_DATA_ALL = {
      "velMax": 23.0,
      "playerLoad": 311,
      "duracion": "0:46:18"
-    }
+    },
+    "notaDia": "Anglada, H. y Llinares, I.: Rehab (24:08, informativo) — no se comparan contra el objetivo del equipo, no cuentan para la media. Anglada vuelve tras varias semanas sin ningún Player Load. Payeras, M., Andone, F. y Bejarano, A.: no participaron en S35 (N/A)."
    }
   },
   "partidos": {
@@ -80411,7 +80447,8 @@ window.GPS_DATA_ALL = {
      "velMax": 23.34,
      "playerLoad": 328,
      "duracion": "0:36:18"
-    }
+    },
+    "notaDia": "Llinares, I.: Rehab (9:53, informativo) — no se compara contra el objetivo, no cuenta para la media. Payeras, M., Andone, F., Anglada, H. y Bejarano, A.: sin objetivo mientras estén lesionados (pendiente de alta), no participaron en S36. Sin objetivo mientras estén lesionados (pendiente de alta): Payeras, M. · Andone, F. · Anglada, H. · Bejarano, A. · Llinares, I."
    },
    "S37": {
     "date": "2026-09-09",
@@ -81210,7 +81247,8 @@ window.GPS_DATA_ALL = {
      "velMax": 27.05,
      "playerLoad": 513.4,
      "duracion": "1:18:55"
-    }
+    },
+    "notaDia": "Andone, F., Anglada, H. y Llinares, I.: Rehab (35:28, informativo) — no se comparan contra el objetivo, no cuentan para la media, sí cuentan en Acumulado individual. Payeras, M. y Bejarano, A.: sin objetivo/sesión mientras estén lesionados (pendiente de alta). Sin objetivo mientras estén lesionados (pendiente de alta): Payeras, M. · Andone, F. · Anglada, H. · Bejarano, A. · Llinares, I. Payeras, M., Andone, F., Anglada, H. y Llinares, I.: no participaron en S32 (N/A). Bejarano, A. y Catalá, R.: sesión con duración menor (participación parcial)."
    },
    "S38": {
     "date": "2026-09-10",
@@ -82009,7 +82047,8 @@ window.GPS_DATA_ALL = {
      "velMax": 28.1,
      "playerLoad": 652.4,
      "duracion": "1:19:20"
-    }
+    },
+    "notaDia": "Andone, F., Anglada, H. y Llinares, I.: Rehab (45:39, informativo) — no se comparan contra el objetivo, no cuentan para la media, sí cuentan en Acumulado individual. Payeras, M. y Bejarano, A.: sin objetivo/sesión mientras estén lesionados (pendiente de alta). Andone, F.: vuelve con protocolo de Rehab (16:32, informativo) — no se compara contra el objetivo del equipo, no cuenta para la media. Payeras, M., Anglada, H., Catalá, R., Bejarano, A. y Llinares, I.: no participaron en S33 (N/A)."
    },
    "S39": {
     "date": "2026-09-11",
@@ -82736,7 +82775,8 @@ window.GPS_DATA_ALL = {
      "velMax": 27.33,
      "playerLoad": 369.1,
      "duracion": "1:10:24"
-    }
+    },
+    "notaDia": "Andone, F., Anglada, H., Llinares, I., Payeras, M. y Bejarano, A.: sin sesión en S39 (no participaron, sin objetivo mientras estén lesionados). Espiñeiro, A.: sesión parcial (0:38:12), segundo día de adaptación."
    },
    "S40": {
     "date": "2026-09-12",
@@ -83535,7 +83575,8 @@ window.GPS_DATA_ALL = {
      "velMax": 23.32,
      "playerLoad": 257.7,
      "duracion": "0:29:08"
-    }
+    },
+    "notaDia": "Andone, F., Anglada, H. y Llinares, I.: Rehab (24:12, informativo) — no se comparan contra el objetivo, no cuentan para la media, sí cuentan en Acumulado individual. Payeras, M. y Bejarano, A.: sin sesión en S40. Catalá, R.: sesión completa confirmada (PDF corregido). Payeras, M., Andone, F. y Bejarano, A.: no participaron en S35 (N/A)."
    }
   },
   "partidos": {
@@ -90848,7 +90889,8 @@ window.GPS_DATA_ALL = {
      "velMax": 22.96,
      "playerLoad": 352.8,
      "duracion": "0:58:48"
-    }
+    },
+    "notaDia": "Andone, F., Anglada, H. y Llinares, I.: Rehab (informativo) — no se comparan contra el objetivo, no cuentan para la media, sí cuentan en Acumulado individual. Payeras, M. y Bejarano, A.: sin objetivo/sesión mientras estén lesionados (pendiente de alta)."
    },
    "S42": {
     "date": "2026-09-16",
@@ -91647,7 +91689,8 @@ window.GPS_DATA_ALL = {
      "velMax": 26.94,
      "playerLoad": 539.6,
      "duracion": "1:19:43"
-    }
+    },
+    "notaDia": "Andone, F., Anglada, H. y Llinares, I.: Rehab (informativo) — no se comparan contra el objetivo, no cuentan para la media, sí cuentan en Acumulado individual. Payeras, M. y Bejarano, A.: sin objetivo/sesión mientras estén lesionados (pendiente de alta)."
    },
    "S43": {
     "date": "2026-09-17",
@@ -92446,7 +92489,8 @@ window.GPS_DATA_ALL = {
      "velMax": 31.16,
      "playerLoad": 743.6,
      "duracion": "1:24:24"
-    }
+    },
+    "notaDia": "Andone, F., Anglada, H. y Llinares, I.: Rehab (informativo) — no se comparan contra el objetivo, no cuentan para la media, sí cuentan en Acumulado individual. Payeras, M. y Bejarano, A.: sin objetivo/sesión mientras estén lesionados (pendiente de alta). Martín, M.: GPS no funcionó — datos sustituidos por los de Riera, N. (dorsal 7), a petición del preparador; no son datos propios reales (no deben usarse para actualizar su REF_PARTIDO)."
    },
    "S44": {
     "date": "2026-09-18",
@@ -93198,7 +93242,8 @@ window.GPS_DATA_ALL = {
      "velMax": 23.52,
      "playerLoad": 263.6,
      "duracion": "0:54:41"
-    }
+    },
+    "notaDia": "Anglada, H. y Llinares, I.: Rehab (informativo) — no se comparan contra el objetivo, no cuentan para la media, sí cuentan en Acumulado individual. Payeras, M., Andone, F., Bejarano, A. y Fontanet, B.: sin objetivo/sesión mientras estén lesionados (pendiente de alta). Fontanet, B.: lesionado desde el 17/09."
    },
    "S45": {
     "date": "2026-09-19",
@@ -93972,7 +94017,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 24.44,
      "playerLoad": 302.9
-    }
+    },
+    "notaDia": "Sin objetivo mientras estén lesionados (pendiente de alta, sin sesión hoy): Payeras, M. · Bejarano, A. · Fontanet, B. (lesionado desde el 17/09). Anglada, H. y Andone, F.: Rehab (informativo) — no se comparan contra el objetivo, no cuentan para la media, sí cuentan en Acumulado individual. Llinares, I.: se reincorpora a la dinámica de grupo — objetivo asignado desde hoy (S45)."
    }
   },
   "partidos": {
@@ -101259,7 +101305,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 24.64,
      "playerLoad": 365.4
-    }
+    },
+    "notaDia": "Sin objetivo mientras estén lesionados (pendiente de alta, sin sesión): Payeras, M. · Bejarano, A. Rehab (informativo, no cuenta para la media): Fontanet, B. (progresa desde lesión) y Andone, F. (sesión individual aparte, misma fecha, fusionada aquí). Anglada, H.: se reincorpora a la dinámica de grupo — objetivo asignado desde hoy. Bonet, G.: lesionado desde la J3 (20/09), pendiente de confirmación (corregido el 30/09; antes figuraba como gestión de cargas)."
    },
    "S47": {
     "date": "2026-09-23",
@@ -102033,7 +102080,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 26.98,
      "playerLoad": 509.8
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Andone, F. · Fontanet, B. Lesionados / no disponibles (sin sesión ni objetivo): Payeras, M. · Bejarano, A. · Bonet, G. Bonet, G.: lesionado desde la J3 (20/09), pendiente de confirmación (corregido el 30/09; antes figuraba como gestión de cargas)."
    },
    "S48": {
     "date": "2026-09-24",
@@ -102807,7 +102855,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 30.89,
      "playerLoad": 627.6
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Andone, F. · Fontanet, B. Lesionados / no disponibles (sin sesión ni objetivo): Payeras, M. · Bejarano, A. · Bonet, G. Bonet, G.: lesionado desde la J3 (20/09), pendiente de confirmación (corregido el 30/09; antes figuraba como gestión de cargas)."
    },
    "S49": {
     "date": "2026-09-25",
@@ -103581,7 +103630,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 27.3,
      "playerLoad": 378.6
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Andone, F. Lesionados / no disponibles (sin sesión ni objetivo): Payeras, M. · Bejarano, A. · Bonet, G. Catalá, A.: fallo de dispositivo GPS — datos de Catalá, R. (misma sesión) como aproximación (dato proxy estimado, no es GPS real). Bonet, G.: lesionado desde la J3 (20/09), pendiente de confirmación (corregido el 30/09; antes figuraba como gestión de cargas)."
    },
    "S50": {
     "date": "2026-09-26",
@@ -104331,7 +104381,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 22.9,
      "playerLoad": 285.2
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Andone, F. Lesionados / no disponibles (sin sesión ni objetivo): Payeras, M. · Bejarano, A. · Bonet, G. Descanso / gestión de carga (sin sesión ni objetivo hoy, sigue disponible): Fontanet, B. Espiñeiro, A.: se retira antes (21:42) por un pinchazo en el isquiotibial, pendiente de diagnóstico. Anglada, H.: retirado a los 29' por gestión de cargas. Fontanet, B.: juega con el Juvenil, sin sesión con el primer equipo (sus datos se añadirán aparte). Bonet, G.: lesionado desde la J3 (20/09), pendiente de confirmación (corregido el 30/09; antes figuraba como gestión de cargas)."
    }
   },
   "partidos": {
@@ -111522,7 +111573,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 22.89,
      "playerLoad": 334.9
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Payeras, M. · Andone, F. · Bejarano, A. Lesionados / no disponibles (sin sesión ni objetivo): Espiñeiro, A. · Bonet, G. · Riera, N. · López, I. Andone, F.: fallo de dispositivo GPS — datos de Montcheu, F. (misma sesión) como aproximación (dato proxy estimado, no es GPS real). Riera, N.: lesión muscular en el cuádriceps (lesionado en J4 el 27/09, confirmada el 30/09). López, I.: no entrena; esguince acromioclavicular grado I (lesionado en J4 el 27/09, confirmado el 30/09). Payeras, M. y Bejarano, A.: inician la readaptación (bloque Rehab). Espiñeiro, A.: lesión isquiotibial (baja desde el 26/09). Bonet, G.: lesionado desde la J3 (20/09), pendiente de confirmación (corregido el 30/09; antes figuraba como gestión de cargas)."
    },
    "S52": {
     "date": "2026-09-30",
@@ -112299,7 +112351,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 27.22,
      "playerLoad": 414.9
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Payeras, M. · Bonet, G. · Andone, F. · Bejarano, A. Lesionados / no disponibles (sin sesión ni objetivo): Espiñeiro, A. · Riera, N. · López, I. Fontanet, B.: fallo de dispositivo GPS — datos de Anglada, H. (misma sesión) como aproximación (dato proxy estimado, no es GPS real). Bonet, G.: inicia la readaptación (bloque Rehab GE, 28')."
    },
    "S53": {
     "date": "2026-10-01",
@@ -113003,7 +113056,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 30.46,
      "playerLoad": 520.4
-    }
+    },
+    "notaDia": "Lesionados / no disponibles (sin sesión ni objetivo): Espiñeiro, A. · Riera, N. · López, I. Descanso / gestión de carga (sin sesión ni objetivo hoy, sigue disponible): Payeras, M. · Bonet, G. · Bejarano, A. Montcheu, F.: fallo de dispositivo GPS — datos de Martín, M. (misma sesión) como aproximación (dato proxy estimado, no es GPS real). Payeras, M., Bonet, G. y Bejarano, A.: sin sesión hoy, siguen en readaptación. Andone, F.: alta, hace la sesión completa con el grupo."
    },
    "S54": {
     "date": "2026-10-02",
@@ -113804,7 +113858,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 22.45,
      "playerLoad": 221.6
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Payeras, M. · Riera, N. · López, I. · Bejarano, A. Lesionados / no disponibles (sin sesión ni objetivo): Espiñeiro, A. Descanso / gestión de carga (sin sesión ni objetivo hoy, sigue disponible): Bonet, G. Soler, M.: fallo de dispositivo GPS — datos de Bover, R. (misma sesión) como aproximación (dato proxy estimado, no es GPS real). Payeras, M.: fallo de dispositivo GPS — datos de Bejarano, A. (misma sesión) como aproximación (dato proxy estimado, no es GPS real). Riera, N. y López, I.: inician la readaptación. Bonet, G.: sin sesión hoy, sigue en readaptación. Espiñeiro, A.: no entrena."
    },
    "S55": {
     "date": "2026-10-03",
@@ -114603,7 +114658,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 25.01,
      "playerLoad": 361.1
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Payeras, M. · Riera, N. · López, I. · Bejarano, A. Lesionados / no disponibles (sin sesión ni objetivo): Espiñeiro, A. Descanso / gestión de carga (sin sesión ni objetivo hoy, sigue disponible): Bonet, G. Riera, N. y López, I.: siguen en readaptación aunque hacen la sesión con el grupo. Bonet, G.: sin sesión hoy, sigue en readaptación."
    }
   },
   "partidos": {
@@ -121853,7 +121909,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 22.98,
      "playerLoad": 366.3
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Payeras, M. · Bonet, G. · Bejarano, A. Lesionados / no disponibles (sin sesión ni objetivo): Espiñeiro, A. Descanso / gestión de carga (sin sesión ni objetivo hoy, sigue disponible): Riera, N. · López, I. Riera, N. y López, I.: descanso por gestión de cargas tras el alta. Fuera de la MEDIA EQUIPO (objetivo y semáforo individual): Riera, N. · López, I. — gestión de cargas tras el alta para llegar a la J6."
    },
    "S57": {
     "date": "2026-10-07",
@@ -122653,7 +122710,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 24.77,
      "playerLoad": 467.5
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Payeras, M. · Bonet, G. · Bejarano, A. Lesionados / no disponibles (sin sesión ni objetivo): Espiñeiro, A. Descanso / gestión de carga (sin sesión ni objetivo hoy, sigue disponible): Fontanet, B. Fontanet, B.: juega esta tarde con el Juvenil (sus datos van en la hoja Extra_07-10). Bonet, G.: readaptación (40'), sesión descargada el 08/10. Andone, F.: gestión de carga, solo hace Activación, Rondo y Mantenimiento (29'). Riera, N. y López, I.: bloque Rehab (37'), gestión de cargas. Fuera de la MEDIA EQUIPO (objetivo y semáforo individual): Riera, N. · López, I. — gestión de cargas tras el alta para llegar a la J6."
    },
    "S58": {
     "date": "2026-10-08",
@@ -123452,7 +123510,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 30.33,
      "playerLoad": 648.9
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Payeras, M. · Bejarano, A. Lesionados / no disponibles (sin sesión ni objetivo): Espiñeiro, A. Descanso / gestión de carga (sin sesión ni objetivo hoy, sigue disponible): Fontanet, B. Bonet, G.: alta, hace toda la sesión con el grupo (sigue sancionado para la J6). Fontanet, B.: descanso tras jugar 97' con el Juvenil el 07/10. Riera, N.: no hace el Partido; trabajo extra individual de 5' (Extra Nofre). Fuera de la MEDIA EQUIPO (objetivo y semáforo individual): Riera, N. · López, I. — gestión de cargas tras el alta para llegar a la J6."
    },
    "S59": {
     "date": "2026-10-09",
@@ -124226,7 +124285,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 27.36,
      "playerLoad": 321
-    }
+    },
+    "notaDia": "Lesionados / no disponibles (sin sesión ni objetivo): Espiñeiro, A. Descanso / gestión de carga (sin sesión ni objetivo hoy, sigue disponible): Payeras, M. · Bejarano, A. Payeras, M. y Bejarano, A.: sin sesión hoy, siguen en readaptación. Fuera de la MEDIA EQUIPO (objetivo y semáforo individual): Riera, N. · López, I. — gestión de cargas tras el alta para llegar a la J6."
    },
    "S60": {
     "date": "2026-10-10",
@@ -125049,7 +125109,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 24.1,
      "playerLoad": 316.5
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. · Bejarano, A. Descanso / gestión de carga (sin sesión ni objetivo hoy, sigue disponible): Bonet, G. Espiñeiro, A.: inicia la readaptación (bloque Rehab). Bonet, G.: descanso (mañana cumple el 3.er partido de sanción). Fuera de la MEDIA EQUIPO (objetivo y semáforo individual): Riera, N. · López, I. — gestión de cargas tras el alta para llegar a la J6."
    }
   },
   "partidos": {
@@ -132309,7 +132370,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 24.36,
      "playerLoad": 316.2
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. Descanso / gestión de carga (sin sesión ni objetivo hoy, sigue disponible): Hernández, P. · Bejarano, A. · Soler, M. Hernández, P. y Soler, M.: descanso. Bejarano, A.: no sale al campo (solo gimnasio, resonancia el 13/10); su objetivo de hoy se reparte entre el miércoles y el sábado. Fontanet, B.: recupera como titular (jugó 99' con el Juvenil el 11/10). Fuera de la MEDIA EQUIPO (objetivo y semáforo individual): Bejarano, A. — Bejarano: última semana de readaptación con objetivos individuales por encima del 100%."
    },
    "S62": {
     "date": "2026-10-14",
@@ -133106,7 +133168,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 26.24,
      "playerLoad": 581.8
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Bejarano, A. Descanso / gestión de carga (sin sesión ni objetivo hoy, sigue disponible): Espiñeiro, A. · Payeras, M. Payeras, M. y Espiñeiro, A.: solo gimnasio, no salen al campo (siguen en readaptación). Bejarano, A.: inicio con el grupo + extra HSR (objetivo individual de readaptación). Fuera de la MEDIA EQUIPO (objetivo y semáforo individual): Bejarano, A. — Bejarano: última semana de readaptación con objetivos individuales por encima del 100%."
    },
    "S63": {
     "date": "2026-10-15",
@@ -133903,7 +133966,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 30.23,
      "playerLoad": 784.4
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Bejarano, A. Descanso / gestión de carga (sin sesión ni objetivo hoy, sigue disponible): Espiñeiro, A. · Payeras, M. Payeras, M. y Espiñeiro, A.: solo gimnasio, no salen al campo (siguen en readaptación). Bejarano, A.: día mecánico (cambio de dirección, aceleraciones y frenadas) con objetivo individual de readaptación. Fuera de la MEDIA EQUIPO (objetivo y semáforo individual): Bejarano, A. — Bejarano: última semana de readaptación con objetivos individuales por encima del 100%."
    },
    "S64": {
     "date": "2026-10-16",
@@ -134677,7 +134741,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 21.97,
      "playerLoad": 212.6
-    }
+    },
+    "notaDia": "Lesionados / no disponibles (sin sesión ni objetivo): Bejarano, A. Descanso / gestión de carga (sin sesión ni objetivo hoy, sigue disponible): Espiñeiro, A. · Payeras, M. Hernández, P.: fallo de dispositivo GPS — datos de la media del equipo (misma sesión) como aproximación (dato proxy estimado, no es GPS real). Caballero, R.: fallo de dispositivo GPS — datos de la media del equipo (misma sesión) como aproximación (dato proxy estimado, no es GPS real). Payeras, M. y Espiñeiro, A.: solo gimnasio, no salen al campo (siguen en readaptación). Bejarano, A.: recaída de la lesión de isquiotibial confirmada (se produjo en la S63 del 15/10)."
    },
    "S65": {
     "date": "2026-10-17",
@@ -135473,7 +135538,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 24.74,
      "playerLoad": 317.3
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Payeras, M. Lesionados / no disponibles (sin sesión ni objetivo): Bejarano, A. Descanso / gestión de carga (sin sesión ni objetivo hoy, sigue disponible): Espiñeiro, A. Espiñeiro, A.: solo gimnasio, no sale al campo (sigue en readaptación)."
    }
   },
   "partidos": {
@@ -142587,7 +142653,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 25.64,
      "playerLoad": 396.7
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. Lesionados / no disponibles (sin sesión ni objetivo): Bejarano, A. Descanso / gestión de carga (sin sesión ni objetivo hoy, sigue disponible): Payeras, M. · Riera, N. · Soler, M. · Fontanet, B. Payeras, M.: bici y gimnasio, sin campo (resonancia mañana). Espiñeiro, A.: carrera continua con objetivo individual de readaptación. Fuera de la MEDIA EQUIPO (objetivo y semáforo individual): Espiñeiro, A. — Espiñeiro: readaptación con objetivo individual de carrera continua (sin HSR)."
    },
    "S67": {
     "date": "2026-10-21",
@@ -143408,7 +143475,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 25.41,
      "playerLoad": 543.8
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. Lesionados / no disponibles (sin sesión ni objetivo): Bejarano, A. Fuera de la MEDIA EQUIPO (objetivo y semáforo individual): Espiñeiro, A. — Espiñeiro: readaptación con objetivo individual de carrera continua (sin HSR)."
    },
    "S68": {
     "date": "2026-10-22",
@@ -144182,7 +144250,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": 30.04,
      "playerLoad": 540.5
-    }
+    },
+    "notaDia": "Lesionados / no disponibles (sin sesión ni objetivo): Bejarano, A. Descanso / gestión de carga (sin sesión ni objetivo hoy, sigue disponible): Espiñeiro, A. · Payeras, M. López, I.: trabaja aparte por su lesión de hombro, con los parámetros de la sesión cubiertos (cuenta como sesión completa). Espiñeiro, A. y Payeras, M.: hicieron readaptación; sus datos se cargan aparte (pendientes). Fuera de la MEDIA EQUIPO (objetivo y semáforo individual): Espiñeiro, A. — Espiñeiro: readaptación con objetivo individual de carrera continua (sin HSR)."
    },
    "S69": {
     "date": "2026-10-23",
@@ -144973,7 +145042,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": null,
      "playerLoad": null
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. Lesionados / no disponibles (sin sesión ni objetivo): Bejarano, A. Fuera de la MEDIA EQUIPO (objetivo y semáforo individual): Espiñeiro, A. — Espiñeiro: readaptación con objetivo individual de carrera continua (sin HSR)."
    },
    "S70": {
     "date": "2026-10-24",
@@ -145777,7 +145847,8 @@ window.GPS_DATA_ALL = {
      },
      "velMax": null,
      "playerLoad": null
-    }
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. Lesionados / no disponibles (sin sesión ni objetivo): Bejarano, A. Fuera de la MEDIA EQUIPO (objetivo y semáforo individual): Espiñeiro, A. — Espiñeiro: readaptación con objetivo individual de carrera continua (sin HSR)."
    }
   },
   "partidos": {
