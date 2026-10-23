@@ -147,6 +147,19 @@
   .hm-cell:hover{transform:scale(1.04)}
   .hm-val{font-family:"IBM Plex Mono",monospace; font-size:11px; font-weight:500}
 
+  .av-sec{padding:0 16px 14px}
+  .av-sec h3{font-family:"Barlow Condensed",sans-serif; font-weight:600; font-size:15px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-2); margin:6px 0 8px; display:flex; align-items:center; gap:8px}
+  .av-sec h3 .cnt{font-family:inherit; font-size:12px; background:var(--surface-2); color:var(--ink-2); border-radius:999px; padding:0 8px}
+  .av{display:flex; gap:10px; align-items:flex-start; padding:9px 12px; border-radius:8px; margin-bottom:6px; font-size:13.5px; line-height:1.45; border-left:4px solid var(--border-strong); background:var(--surface-2)}
+  .av b{font-weight:700}
+  .av .ic{flex:0 0 auto; width:20px; height:20px; border-radius:999px; display:grid; place-items:center; font-size:12px; font-weight:800; color:#fff; background:var(--ink-3); margin-top:1px}
+  .av.hi{border-left-color:var(--sem-alto); background:rgba(227,73,72,.08)} .av.hi .ic{background:var(--sem-alto)}
+  .av.mid{border-left-color:var(--sem-pasado); background:rgba(237,161,0,.10)} .av.mid .ic{background:var(--sem-pasado)}
+  .av.low{border-left-color:var(--sem-corto); background:rgba(91,155,213,.10)} .av.low .ic{background:var(--sem-corto)}
+  .av.ok{border-left-color:var(--sem-ok); background:rgba(27,175,122,.10)} .av.ok .ic{background:var(--sem-ok)}
+  .av.go{cursor:pointer} .av.go:hover{filter:brightness(.97)}
+  .av small{color:var(--ink-2)}
+  .av-none{color:var(--ink-3); font-size:13px; padding:4px 2px 8px}
   .mini-kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(112px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:8px; overflow:hidden; margin:0 16px 14px}
   .mini-kpis .kpi{padding:10px 12px}
   .mini-kpis .kpi .n{font-size:19px}
@@ -358,7 +371,7 @@ const state = {
   metric:"distancia", norm:"abs", group:"all",
   buckets:new Set(BUCKET_ORDER),
   players:new Set(),          // evolución overlay + comparador
-  lens:"evolucion",
+  lens:"inicio",
   hmPlayer:null,
   session:null,                // índice (RAW.sessions[i].i) de la sesión elegida en la pestaña Sesión
   acuMc:null, acuRef:null,     // pestaña Microciclos: microciclo y referencia del "Acumulado de la semana"
@@ -522,7 +535,7 @@ function renderShell(){
 
   // Tabs
   const tabDefs=[
-    ["evolucion","Evolución"],["sesion","Sesión"],["microciclos","Microciclos"],
+    ["inicio","Inicio"],["evolucion","Evolución"],["sesion","Sesión"],["microciclos","Microciclos"],
     ["tipo","Tipo de sesión"],["partidos","Partidos"],
     ["jugadores","Jugadores"],["comparador","Comparador"],["lesionados","Lesionados"],["referencias","Referencias"],
   ];
@@ -567,7 +580,8 @@ function fBucketChips(){
 /* ---------- views ---------- */
 function renderView(){
   const v=document.getElementById("view"); v.innerHTML="";
-  ({evolucion:viewEvolucion, sesion:viewSesion, microciclos:viewMicrociclos, tipo:viewTipo, partidos:viewPartidos,
+  document.querySelector(".filters").style.display = state.lens==="inicio" ? "none" : "";
+  ({inicio:viewInicio, evolucion:viewEvolucion, sesion:viewSesion, microciclos:viewMicrociclos, tipo:viewTipo, partidos:viewPartidos,
     jugadores:viewJugadores, comparador:viewComparador, lesionados:viewLesionados, referencias:viewReferencias}[state.lens])(v);
 }
 function panel(title, desc){
@@ -586,6 +600,176 @@ function legendRow(items){
     d.appendChild(s);
   });
   return d;
+}
+
+/* ===== 0 · INICIO: todos los avisos ===== */
+function viewInicio(root){
+  const D=window.GPS_DATA_ALL, mk=(D.microciclos||[])[0], m=D[mk], meta=m.meta||{};
+  const hoy=new Date().toISOString().slice(0,10);
+  const rp=Object.fromEntries(D.refPartido.players.map(p=>[p.dorsal,p]));
+  const nom=d=> NAME[d]||(rp[d]&&rp[d].jugador)||("#"+d);
+  const f2=v=>fmtN(v,2), f1=v=>fmtN(v,1);
+  const done=s=> !!(s && s.teamAvg && s.teamAvg.distancia && s.teamAvg.distancia.real!=null);
+  const keys=(m.orden||[]).map(o=>o.key);
+  const ses=k=> (m.sesiones||{})[k] || (m.partidos||{})[k];
+  const isM=k=> !!(m.partidos||{})[k];
+  const hechas=keys.filter(k=>done(ses(k)));
+  const ultK=hechas.filter(k=>!isM(k)).slice(-1)[0], ult=ultK?ses(ultK):null;
+  const secs=[];   // [titulo, [ {sev, txt, go} ]]
+  const add=(t,arr)=>secs.push([t,arr]);
+  const sevOrd={hi:0,mid:1,low:2,ok:3};
+
+  // 1 · Carga (ACWR) — mismas reglas que la app del entrenador
+  const baseFiable=d=>{
+    const r=rp[d]; if(r&&r.dispo&&r.dispo!=="ok") return false;
+    const pf=r&&r.primeraFecha, c=meta.calculoISO; if(!pf||!c) return true;
+    return diasEntre(pf,c)>=21;
+  };
+  const carga=[];
+  (m.cargaAC.players||[]).forEach(p=>{
+    const r0=rp[p.dorsal]; if(r0&&r0.dispo&&r0.dispo!=="ok") return;   // lesionados/readaptación: van en Disponibilidad
+    const iss=[];
+    if(p.acwr===0 && baseFiable(p.dorsal)) iss.push(["hi","PL 0,00 (sin carga en 7 días)"]);
+    else if(p.acwr>1.5) iss.push(["hi",`PL ${f2(p.acwr)}`]);
+    else if(p.acwr>1.3) iss.push(["mid",`PL ${f2(p.acwr)}`]);
+    else if(p.acwr && p.acwr<0.8 && baseFiable(p.dorsal)) iss.push(["low",`PL ${f2(p.acwr)} (infracarga)`]);
+    if(baseFiable(p.dorsal)) [["acwrHsr","HSR"],["acwrSprint","Sprint"]].forEach(([k,l])=>{
+      const v=p[k]; if(v!=null && v>1.3) iss.push([v>1.5?"hi":"mid",`${l} ${f2(v)}`]);
+    });
+    if(!iss.length) return;
+    const sev=iss.map(x=>x[0]).sort((a,b)=>sevOrd[a]-sevOrd[b])[0];
+    carga.push({sev, go:"jugadores", txt:`<b>${nom(p.dorsal)}</b> · ACWR ${iss.map(x=>x[1]).join(" · ")}`+
+      (sev==="hi"?" <small>— riesgo (&gt;1,50)</small>":sev==="mid"?" <small>— precaución (1,31–1,50)</small>":"")});
+  });
+  add("Carga · ACWR", carga);
+
+  // 2 · Próximo partido
+  const pend=keys.filter(k=>isM(k) && !done(ses(k)));
+  const prox=[];
+  pend.forEach(k=>{
+    const s=ses(k), dd=diasEntre(hoy,s.date);
+    const riesgo=carga.filter(c=>c.sev==="hi").length;
+    prox.push({sev:"low", txt:`<b>${k} vs ${s.rival||"—"}</b> · ${fDate(s.date)} (${dd===0?"hoy":dd===1?"mañana":"en "+dd+" días"})`+
+      (riesgo?` · ${riesgo} jugador${riesgo>1?"es":""} con ACWR en rojo antes del partido`:"")});
+  });
+  add("Próximo partido", prox);
+
+  // 3 · Disponibilidad
+  const disp=[];
+  LESIONES.filter(l=>!l.alta).forEach(l=>{
+    disp.push({sev:"hi", go:"lesionados", txt:`<b>${nom(l.dorsal)}</b> · ${l.tipo||"Lesión"} · baja desde ${fDate(l.baja)} (${diasEntre(l.baja,hoy)} días)`});
+  });
+  const conLes=new Set(LESIONES.filter(l=>!l.alta).map(l=>l.dorsal));
+  D.refPartido.players.filter(p=>p.dispo && p.dispo!=="ok" && !conLes.has(p.dorsal)).forEach(p=>{
+    disp.push({sev:"mid", txt:`<b>${nom(p.dorsal)}</b> · ${p.dispo==="baja"?"Baja":"En readaptación"} (sin lesión registrada)`});
+  });
+  const proxSes=keys.find(k=>!done(ses(k)));
+  if(proxSes){
+    const s=ses(proxSes), ro=[], fm=[];
+    (s.players||[]).forEach(p=>{
+      if(!(p.distancia&&p.distancia.obj!=null)) return;   // solo quien tiene objetivo ese día
+      if(p.readaptObj) ro.push(nom(p.dorsal)); else if(p.fueraMedia) fm.push(nom(p.dorsal)); });
+    if(ro.length) disp.push({sev:"low", txt:`Objetivo individual de readaptación en ${proxSes}: <b>${ro.join(", ")}</b>`});
+    if(fm.length) disp.push({sev:"low", txt:`Fuera de la media del equipo en ${proxSes}: <b>${fm.join(", ")}</b>`});
+  }
+  add("Disponibilidad", disp);
+
+  // 4 · Datos: sesiones sin cargar, datos pendientes, GPS aproximados
+  const dat=[];
+  keys.filter(k=>!done(ses(k)) && ses(k).date<hoy).forEach(k=>
+    dat.push({sev:"mid", txt:`<b>${k}</b> (${fDate(ses(k).date)}) sin cargar todavía`}));
+  hechas.forEach(k=>{
+    const s=ses(k);
+    (s.notaDia||"").split(/(?<=[^A-ZÁÉÍÓÚÑ\s]{2}\.|\)\.)\s+/).filter(t=>/pendiente/i.test(t)).forEach(t=>
+      dat.push({sev:"mid", go:"sesion", txt:`<b>${k}</b> · ${t.replace(/\s+/g," ").trim()}`}));
+    (s.players||[]).forEach(p=>{
+      if(p.proxyDe) dat.push({sev:"low", txt:`<b>${nom(p.dorsal)}</b> · ${k}: falló su GPS, lleva los datos de ${p.proxyDe}`});
+      if(p.estimado) dat.push({sev:"low", txt:`<b>${nom(p.dorsal)}</b> · ${k}: datos estimados (fallo de GPS)`});
+    });
+  });
+  add("Datos", dat);
+
+  // 5 · Última sesión
+  const us=[];
+  if(ult){
+    const devs=[];
+    (ult.players||[]).forEach(p=>{
+      if(p.estado) return;
+      let acc=0,n=0;
+      ["distancia","hmld","hsr","sprint","acc","dec"].forEach(k=>{ const c=p[k]; if(c&&c.obj&&c.real!=null){ acc+=(c.real-c.obj)/c.obj; n++; } });
+      if(n>=3 && Math.abs(acc/n)>=0.5) devs.push([p.dorsal,acc/n]);
+    });
+    devs.sort((a,b)=>Math.abs(b[1])-Math.abs(a[1])).forEach(([d,v])=>
+      us.push({sev:v>0?"mid":"low", go:"sesion", txt:`<b>${nom(d)}</b> · ${v>0?"+":""}${Math.round(v*100)}% sobre lo previsto de media en ${ultK} — ${v>0?"carga muy alta":"muy por debajo"}`}));
+    const ta=ult.teamAvg||{};
+    ["hsr","sprint","acc","dec","distancia"].forEach(k=>{
+      const c=ta[k]; if(!c||!c.obj||c.real==null) return;
+      const r=c.real/c.obj;
+      if(r<0.7||r>1.3) us.push({sev:r>1?"mid":"low", go:"sesion",
+        txt:`Equipo · <b>${METRICS[k]?METRICS[k].lab:k}</b> al ${Math.round(r*100)}% del objetivo en ${ultK} (${fmtN(c.real,k==="sprint"?1:0)} de ${fmtN(c.obj,k==="sprint"?1:0)})`});
+    });
+    const aus=(ult.players||[]).filter(p=>p.estado==="na" && !conLes.has(p.dorsal) && !(rp[p.dorsal]&&rp[p.dorsal].dispo!=="ok"));
+    if(aus.length) us.push({sev:"low", go:"sesion", txt:`Sin datos en ${ultK}: <b>${aus.map(p=>nom(p.dorsal)).join(", ")}</b>`});
+  }
+  add(ult?`Última sesión · ${ultK}`:"Última sesión", us);
+
+  // 6 · Microciclo: volumen muy corto (cuando ya casi está hecho)
+  const mic=[];
+  const sesK=keys.filter(k=>!isM(k)), hechasS=sesK.filter(k=>done(ses(k)));
+  if(hechasS.length>=sesK.length-1){
+    (m.cargasObjetivo.players||[]).forEach(p=>{
+      const c=p.distancia; if(c&&c.obj&&c.real!=null && c.real/c.obj<0.55)
+        mic.push({sev:"low", go:"microciclos", txt:`<b>${nom(p.dorsal)}</b> · solo ${Math.round(c.real/c.obj*100)}% del volumen de sesiones del microciclo`});
+    });
+  }
+  add("Microciclo", mic);
+
+  // 7 · Buenas noticias: récords de vel. máx en el microciclo
+  const best=(d,antes)=>{ let b=0; (D.microciclos||[]).forEach(k2=>{ const M=D[k2];
+    [M.sesiones,M.partidos,M.extras].forEach(g=>Object.values(g||{}).forEach(s=>{
+      if(!s.date||s.date>=antes) return; const pp=(s.players||[]).find(x=>x.dorsal===d);
+      if(pp&&pp.velMax!=null&&!pp.proxyDe&&!pp.estimado) b=Math.max(b,pp.velMax); })); }); return b; };
+  const rec=[];
+  hechas.forEach(k=>{
+    const s=ses(k);
+    (s.players||[]).forEach(p=>{
+      if(p.estado||p.velMax==null||p.proxyDe||p.estimado) return;
+      const prev=best(p.dorsal,s.date);
+      if(prev && p.velMax>prev+0.1) rec.push({sev:"ok", txt:`<b>${nom(p.dorsal)}</b> · récord de vel. máx en ${k}: <b>${f1(p.velMax)}</b> km/h (antes ${f1(prev)})`});
+    });
+  });
+  add("Buenas noticias", rec);
+
+  // pintar
+  const total=secs.reduce((a,[,l])=>a+l.filter(x=>x.sev!=="ok").length,0);
+  const rojos=secs.reduce((a,[,l])=>a+l.filter(x=>x.sev==="hi").length,0);
+  const p=panel("Avisos",
+    `${meta.titulo||mk}${meta.tipo?" · Tipo "+meta.tipo:""} · ${meta.semana||""} · último cálculo ${meta.calculoFecha||"–"}. Todo lo que conviene revisar hoy; toca un aviso para ir a su pestaña.`);
+  const mini=el("div",{class:"mini-kpis"});
+  mini.innerHTML=[
+    {n:rojos, l:"Avisos en rojo"},
+    {n:total, l:"Avisos en total"},
+    {n:`${hechasS.length}/${sesK.length}`, l:"Sesiones cargadas"},
+    {n:LESIONES.filter(l=>!l.alta).length, l:"Bajas abiertas"},
+  ].map(k=>`<div class="kpi"><div class="n">${k.n}</div><div class="l">${k.l}</div></div>`).join("");
+  p.appendChild(mini);
+  const ICO={hi:"!",mid:"!",low:"i",ok:"✓"};
+  secs.forEach(([tit,lst])=>{
+    const sec=el("div",{class:"av-sec"});
+    sec.innerHTML=`<h3>${tit} <span class="cnt">${lst.length}</span></h3>`;
+    if(!lst.length){ sec.appendChild(el("div",{class:"av-none"}, tit.startsWith("Carga")?"Toda la plantilla dentro de zona en PL, HSR y Sprint.":"Nada que destacar.")); }
+    lst.slice().sort((a,b)=>sevOrd[a.sev]-sevOrd[b.sev]).forEach(a=>{
+      const d=el("div",{class:`av ${a.sev}${a.go?" go":""}`});
+      d.innerHTML=`<span class="ic">${ICO[a.sev]}</span><div>${a.txt}</div>`;
+      if(a.go) d.onclick=()=>{ state.lens=a.go; renderShell(); renderView(); window.scrollTo(0,0); };
+      sec.appendChild(d);
+    });
+    p.appendChild(sec);
+  });
+  p.appendChild(el("p",{class:"note", style:"padding:0 16px 14px"},
+    "ACWR: rojo >1,50 · naranja 1,31–1,50 · azul <0,80 (HSR y Sprint solo con base fiable: disponible y ≥21 días en el equipo). "+
+    "Última sesión: jugadores a ±50% de lo previsto de media y métricas del equipo fuera de 70–130%."));
+  root.appendChild(p);
 }
 
 /* ===== 1 · EVOLUCIÓN ===== */

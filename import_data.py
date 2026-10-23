@@ -106,6 +106,20 @@ def header_row(ws, key="Dorsal"):
     return None, None
 
 
+def nota_dia(ws, hdr_idx):
+    """Notas del día que escribe el pipeline bajo la tabla (estados, fallos de GPS, datos
+    pendientes...). Sin la línea que describe el objetivo."""
+    if not hdr_idx:
+        return None
+    out = []
+    for row in ws.iter_rows(min_row=hdr_idx + 1, max_col=1, values_only=True):
+        v = row[0]
+        if isinstance(v, str) and v.strip() and not v.strip().isdigit() \
+                and not v.upper().startswith(("MEDIA", "OBJETIVO")):
+            out.append(v.strip())
+    return " ".join(out) or None
+
+
 def player_rows(ws, hdr_idx):
     """Filas de jugador (col A = dorsal numérico) y la fila MEDIA EQUIPO si existe."""
     rows, media = [], None
@@ -285,7 +299,7 @@ def parse_session(ws):
 
     marcar_proxies(ws, players)
     return dict(date=iso(date), role=role, tipo=tipo, nota=a2, titulo=a1,
-                players=players, teamAvg=team)
+                players=players, teamAvg=team, notaDia=nota_dia(ws, hi))
 
 
 def _hecha(players):
