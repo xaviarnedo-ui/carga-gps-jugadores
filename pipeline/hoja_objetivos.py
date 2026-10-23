@@ -104,7 +104,8 @@ def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False):
             con.setdefault(grupo, []).append((d, nombre, obj))
         else:
             sin.append((d, nombre, ESTADO_TXT.get(E.vigente(est, d), "Sin objetivo")))
-    fuera = {d: v for d, v in fuera.items() if d not in fuera_hoja}
+    con_obj = {d for g in con.values() for d, _, _ in g}
+    fuera = {d: v for d, v in fuera.items() if d in con_obj}   # solo quien sale con objetivo hoy
     med = {k: num(ws.cell(media, C.SES_OBJ_COL[k]).value) for k, *_ in COLS}
     extra, motivo = _deficits(compensar.upper(), fecha) if compensar else ({}, {})
     if compensar:  # media equipo: objetivo + extra medio de los mismos jugadores que la media
