@@ -200,7 +200,11 @@ tr:nth-child(even):not(.grp):not(.med) td {{ background: #fafafa; }}
                        + (" (grupo)" if sin_lesionados else "") + ".pdf")
     with tempfile.NamedTemporaryFile("w", suffix=".html", delete=False, encoding="utf-8") as f:
         f.write(html)
-    subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
-                    f"--print-to-pdf={pdf}", "file://" + f.name], check=True, capture_output=True)
+    antes = os.path.getmtime(pdf) if os.path.exists(pdf) else 0
+    r = subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
+                        f"--print-to-pdf={pdf}", "file://" + f.name], capture_output=True, text=True)
+    # Chrome a veces sale con código ≠ 0 al cerrar ("Teardown watchdog") aunque el PDF ya está escrito
+    if not os.path.exists(pdf) or os.path.getmtime(pdf) <= antes:
+        raise RuntimeError("Chrome no generó el PDF:\n" + (r.stderr or "")[-800:])
     os.unlink(f.name)
     return pdf
