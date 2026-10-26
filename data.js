@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-10-26 12:24",
+  "generado": "2026-10-26 12:29",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-16)"
  },
  "refPartido": {
@@ -152866,34 +152866,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Hernández, P.",
       "grupo": "M",
       "distancia": {
-       "obj": 1550.9,
+       "obj": 5169.7,
        "real": 4599,
-       "dif": 3048.1
+       "dif": -570.7
       },
       "hmld": {
-       "obj": 110.1,
+       "obj": 733.9,
        "real": 444,
-       "dif": 333.9
+       "dif": -289.9
       },
       "hsr": {
-       "obj": 0,
+       "obj": 139.2,
        "real": 101,
-       "dif": 101
+       "dif": -38.2
       },
       "sprint": {
-       "obj": 0,
+       "obj": 1.7,
        "real": 0,
-       "dif": 0
+       "dif": -1.7
       },
       "acc": {
-       "obj": 1.5,
+       "obj": 19,
        "real": 3,
-       "dif": 1.5
+       "dif": -16
       },
       "dec": {
-       "obj": 1.5,
+       "obj": 25.1,
        "real": 5,
-       "dif": 3.5
+       "dif": -20.1
       },
       "velMax": 23.79,
       "playerLoad": 441,
@@ -153259,39 +153259,39 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 2984.7,
+      "obj": 3185.7,
       "real": 3657.5,
-      "dif": 672.8
+      "dif": 471.8
      },
      "hmld": {
-      "obj": 404.3,
+      "obj": 438.9,
       "real": 331.8,
-      "dif": -72.5
+      "dif": -107.1
      },
      "hsr": {
-      "obj": 105.5,
+      "obj": 113.2,
       "real": 153.5,
-      "dif": 48
+      "dif": 40.3
      },
      "sprint": {
-      "obj": 1.4,
+      "obj": 1.5,
       "real": 2.6,
-      "dif": 1.2
+      "dif": 1.1
      },
      "acc": {
-      "obj": 7.9,
+      "obj": 8.9,
       "real": 4,
-      "dif": -3.9
+      "dif": -4.9
      },
      "dec": {
-      "obj": 12.1,
+      "obj": 13.4,
       "real": 4.6,
-      "dif": -7.5
+      "dif": -8.8
      },
      "velMax": 22.67,
      "playerLoad": 393.3
     },
-    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. Lesionados / no disponibles (sin sesión ni objetivo): Bejarano, A. Espiñeiro, A. y Payeras, M.: readaptación individual en el campo."
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. Lesionados / no disponibles (sin sesión ni objetivo): Bejarano, A. Espiñeiro, A. y Payeras, M.: readaptación individual en el campo. Hernández, P.: hizo la sesión de compensación (objetivo de suplente)."
    },
    "S72": {
     "date": "2026-10-27",
@@ -158606,40 +158606,40 @@ window.GPS_DATA_ALL = {
      "jugador": "Hernández, P.",
      "grupo": "M",
      "distancia": {
-      "obj": 13337.9,
+      "obj": 16956.7,
       "real": 4599,
-      "dif": -8738.9,
-      "objFecha": 1550.9
+      "dif": -12357.7,
+      "objFecha": 5169.7
      },
      "hmld": {
-      "obj": 1313.5,
+      "obj": 1937.3,
       "real": 444,
-      "dif": -869.5,
-      "objFecha": 110.1
+      "dif": -1493.3,
+      "objFecha": 733.9
      },
      "hsr": {
-      "obj": 139.2,
+      "obj": 278.4,
       "real": 101,
-      "dif": -38.2,
-      "objFecha": 0
+      "dif": -177.4,
+      "objFecha": 139.2
      },
      "sprint": {
-      "obj": 2.6,
+      "obj": 4.3,
       "real": 0,
-      "dif": -2.6,
-      "objFecha": 0
+      "dif": -4.3,
+      "objFecha": 1.7
      },
      "acc": {
-      "obj": 35.5,
+      "obj": 53,
       "real": 3,
-      "dif": -32.5,
-      "objFecha": 1.5
+      "dif": -50,
+      "objFecha": 19
      },
      "dec": {
-      "obj": 45.5,
+      "obj": 69.1,
       "real": 5,
-      "dif": -40.5,
-      "objFecha": 1.5
+      "dif": -64.1,
+      "objFecha": 25.1
      }
     },
     {
@@ -159055,40 +159055,40 @@ window.GPS_DATA_ALL = {
    ],
    "teamAvg": {
     "distancia": {
-     "obj": 14818.5,
+     "obj": 15019.6,
      "real": 3657.5,
-     "dif": -11161.0,
-     "objFecha": 2984.7
+     "dif": -11362.1,
+     "objFecha": 3185.7
     },
     "hmld": {
-     "obj": 1732.8,
+     "obj": 1767.4,
      "real": 331.8,
-     "dif": -1401.0,
-     "objFecha": 404.3
+     "dif": -1435.6,
+     "objFecha": 438.9
     },
     "hsr": {
-     "obj": 350.1,
+     "obj": 357.8,
      "real": 153.5,
-     "dif": -196.6,
-     "objFecha": 105.5
+     "dif": -204.3,
+     "objFecha": 113.2
     },
     "sprint": {
-     "obj": 5.9,
+     "obj": 6,
      "real": 2.6,
-     "dif": -3.3,
-     "objFecha": 1.4
+     "dif": -3.4,
+     "objFecha": 1.5
     },
     "acc": {
-     "obj": 40.2,
+     "obj": 41.2,
      "real": 4.0,
-     "dif": -36.2,
-     "objFecha": 7.9
+     "dif": -37.2,
+     "objFecha": 8.9
     },
     "dec": {
-     "obj": 61.3,
+     "obj": 62.6,
      "real": 4.6,
-     "dif": -56.7,
-     "objFecha": 12.1
+     "dif": -58.0,
+     "objFecha": 13.4
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."
@@ -159450,34 +159450,34 @@ window.GPS_DATA_ALL = {
      "jugador": "Hernández, P.",
      "grupo": "M",
      "distancia": {
-      "obj": 13337.9,
+      "obj": 16956.7,
       "real": 4599,
-      "dif": -8738.9
+      "dif": -12357.7
      },
      "hmld": {
-      "obj": 1313.5,
+      "obj": 1937.3,
       "real": 444,
-      "dif": -869.5
+      "dif": -1493.3
      },
      "hsr": {
-      "obj": 139.2,
+      "obj": 278.4,
       "real": 101,
-      "dif": -38.2
+      "dif": -177.4
      },
      "sprint": {
-      "obj": 2.6,
+      "obj": 4.3,
       "real": 0,
-      "dif": -2.6
+      "dif": -4.3
      },
      "acc": {
-      "obj": 35.5,
+      "obj": 53,
       "real": 3,
-      "dif": -32.5
+      "dif": -50
      },
      "dec": {
-      "obj": 45.5,
+      "obj": 69.1,
       "real": 5,
-      "dif": -40.5
+      "dif": -64.1
      }
     },
     {
@@ -159833,34 +159833,34 @@ window.GPS_DATA_ALL = {
    ],
    "teamAvg": {
     "distancia": {
-     "obj": 14818.5,
+     "obj": 15019.6,
      "real": 3657.5,
-     "dif": -11161
+     "dif": -11362.1
     },
     "hmld": {
-     "obj": 1732.8,
+     "obj": 1767.4,
      "real": 331.8,
-     "dif": -1401
+     "dif": -1435.6
     },
     "hsr": {
-     "obj": 350.1,
+     "obj": 357.8,
      "real": 153.5,
-     "dif": -196.6
+     "dif": -204.3
     },
     "sprint": {
-     "obj": 5.9,
+     "obj": 6,
      "real": 2.6,
-     "dif": -3.3
+     "dif": -3.4
     },
     "acc": {
-     "obj": 40.2,
+     "obj": 41.2,
      "real": 4,
-     "dif": -36.2
+     "dif": -37.2
     },
     "dec": {
-     "obj": 61.3,
+     "obj": 62.6,
      "real": 4.6,
-     "dif": -56.7
+     "dif": -58
     }
    },
    "nota": "Acumulado de toda la semana: sesiones de entrenamiento + partido(s). Objetivo de la semana completa de Microciclo 16 (Lunes MD+1 individual según rol en J8 + Martes MD-2 + Miércoles MD-1 + Viernes MD-2 + Sábado MD-1). Acumulado (Real) pendiente de cargar sesión a sesión."
