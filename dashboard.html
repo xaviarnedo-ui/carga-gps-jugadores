@@ -160,6 +160,16 @@
   .av.go{cursor:pointer} .av.go:hover{filter:brightness(.97)}
   .av small{color:var(--ink-2)}
   .av-none{color:var(--ink-3); font-size:13px; padding:4px 2px 8px}
+  .ses-tbl{font-size:11.5px}
+  .ses-tbl th, .ses-tbl td{padding:3px 5px; white-space:nowrap}
+  .ses-tbl thead th{font-size:9.5px; letter-spacing:.04em}
+  .ses-tbl .v-real{font-size:12px}
+  .ses-tbl .v-obj{font-size:10.5px}
+  .ses-tbl td.pct{font-size:11px}
+  .ses-tbl td.cum{font-size:12.5px}
+  .ses-tbl th.sortable{cursor:pointer; user-select:none} .ses-tbl th.sortable:hover{color:var(--ink)}
+  .ses-tbl th.on{color:var(--ink)}
+  .ses-tbl .pos{font-size:9.5px; font-weight:700; margin-left:4px}
   .pm-dual{display:grid; grid-template-columns:minmax(0,1fr); gap:6px}
   @media (min-width:1100px){ .pm-dual{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr); align-items:start} }
   .pm-h{font-family:"Barlow Condensed",sans-serif; font-weight:600; font-size:14px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-2); margin:2px 16px 6px}
@@ -388,7 +398,8 @@ const state = {
   acuMc:null, acuRef:null,     // pestaña Microciclos: microciclo y referencia del "Acumulado de la semana"
   acuOrden:"dorsal",           // orden de la tabla: dorsal | desc | asc (por % de cumplimiento medio)
   sesOrden:"dorsal",           // lo mismo en la pestaña Sesión
-  pmSel:null, pmSortK:"dorsal", pmSortAsc:false,   // pestaña Partidos: partido elegido y orden de la tabla
+  pmSel:null, pmSortK:"dorsal", pmSortAsc:false,
+  sesObj: window.innerWidth>=1400,   // pestaña Sesión: columnas de objetivo (en pantallas estrechas, ocultas)   // pestaña Partidos: partido elegido y orden de la tabla
 };
 
 /* ---------- value helpers ---------- */
@@ -996,7 +1007,18 @@ function viewSesion(root){
   const cumplSes = pr => { if(pr.est) return null; const ps=RADAR_METRICS.filter(k=>{const c=raw(pr,k); return c.obj && c.real!=null;}).map(k=>raw(pr,k).real/raw(pr,k).obj*100);
     return ps.length? ps.reduce((a,b)=>a+b,0)/ps.length : null; };
   players.forEach(pr=> pr.cumpl = conObj? cumplSes(pr) : null);
-  if(conObj && state.sesOrden!=="dorsal"){
+  // por minuto (filtro Normalización): obj y real entre los minutos de cada jugador; en partidos,
+  // fuera quien jugó menos de 30′ (su ritmo se dispara)
+  const pm = state.norm==="permin";
+  const porMin = (v, pr) => !pm || v==null ? v : (pr.dur && (!s.isMatch || pr.dur>=30) ? v/pr.dur : null);
+  const decM = k => pm ? (k==="distancia"||k==="hmld" ? 1 : 2) : METRICS[k].dec;
+  if(state.sesOrden.startsWith("m:")){             // orden por el real de una métrica (cabecera)
+    const k=state.sesOrden.slice(2), asc=!!state.sesAsc;
+    const v=pr=> k==="vmax"? pr.vmax : k==="pl"? pr.pl : k==="dur"? pr.dur : porMin(raw(pr,k).real, pr);
+    players.sort((a,b)=>{ const va=v(a), vb=v(b);
+      if(va==null&&vb==null) return a.d-b.d; if(va==null) return 1; if(vb==null) return -1;
+      return asc ? va-vb : vb-va; });
+  } else if(conObj && state.sesOrden!=="dorsal"){
     const sg = state.sesOrden==="desc" ? -1 : 1;
     players.sort((a,b)=> (a.cumpl==null)-(b.cumpl==null) || sg*((a.cumpl||0)-(b.cumpl||0)) || a.d-b.d);
   }
@@ -1044,42 +1066,58 @@ function viewSesion(root){
       b.onclick=()=>{ state.sesOrden=v; renderView(); };
       ob.appendChild(b);
     });
-    go.appendChild(ob); bar.appendChild(go); p.appendChild(bar);
+    go.appendChild(ob); bar.appendChild(go);
+    const gv=el("div",{class:"fgroup"}); gv.appendChild(el("span",{},"Objetivo"));
+    const vb=el("div",{class:"chips"});
+    [[true,"Ver columnas"],[false,"Ocultar"]].forEach(([v,t])=>{
+      const b=el("button",{class:"chip sm","aria-pressed":state.sesObj===v},t);
+      b.onclick=()=>{ state.sesObj=v; renderView(); };
+      vb.appendChild(b);
+    });
+    gv.appendChild(vb); bar.appendChild(gv);
+    p.appendChild(bar);
   }
+  const vObj = conObj && state.sesObj;
   p.appendChild(legendRow([
     {c:"var(--sem-corto)",t:"< 90% obj."},{c:"var(--sem-ok)",t:"90–110%"},
     {c:"var(--sem-pasado)",t:"110–120%"},{c:"var(--sem-alto)",t:"> 120%"},
   ]));
 
-  // tabla: cada jugador × cada métrica (obj/real/%)
+  // tabla: cada jugador × cada métrica (obj/real/%); la cabecera de cada métrica ordena
   const wrap=el("div",{class:"tbl-scroll sticky-col"});
-  const tb=el("table");
-  const head1=['<th rowspan="2">Jugador</th>','<th rowspan="2">Pos</th>']
-    .concat(!conObj? [] : ['<th rowspan="2" class="grp-start">Cumpl.<br>medio</th>'])
-    .concat(RADAR_METRICS.map(k=>`<th colspan="3" class="grp-start">${METRICS[k].lab}${METRICS[k].u?` (${METRICS[k].u})`:""}</th>`))
-    .concat(['<th rowspan="2" class="grp-start">Vel. máx<br>(km/h)</th>','<th rowspan="2">Player<br>Load</th>','<th rowspan="2">Duración</th>'])
+  const tb=el("table",{class:"ses-tbl"});
+  const CORTO={distancia:"Distancia",hmld:"HMLD",hsr:"HSR",sprint:"Sprints",acc:"ACC",dec:"DEC"};
+  const sk = state.sesOrden.startsWith("m:") ? state.sesOrden.slice(2) : null;
+  const flecha = k => sk===k ? (state.sesAsc?" ▲":" ▼") : "";
+  const sth = (k, txt, extra) => `<th ${extra||""} data-sk="${k}" class="sortable grp-start${sk===k?" on":""}" title="Ordenar por ${txt}">${txt}${flecha(k)}</th>`;
+  const uPm = k => pm ? ` (${METRICS[k].u||"nº"}/min)` : (METRICS[k].u?` (${METRICS[k].u})`:"");
+  const head1=['<th rowspan="2">Jugador</th>']
+    .concat(!conObj? [] : ['<th rowspan="2" class="grp-start">Cumpl.</th>'])
+    .concat(RADAR_METRICS.map(k=>sth(k, CORTO[k]+uPm(k), `colspan="${vObj?3:2}"`)))
+    .concat([sth("vmax","Vmáx",'rowspan="2"'), sth("pl","PL",'rowspan="2"'), sth("dur","Min",'rowspan="2"')])
     .join("");
-  const head2=RADAR_METRICS.map(()=>'<th class="grp-start">Obj</th><th>Real</th><th>%</th>').join("");
+  const head2=RADAR_METRICS.map(()=>(vObj?'<th class="grp-start">Obj</th><th>Real</th>':'<th class="grp-start">Real</th>')+'<th>%</th>').join("");
   tb.innerHTML=`<thead><tr>${head1}</tr><tr>${head2}</tr></thead>`;
   const body=el("tbody");
 
   function pctCell(pct){
-    if(pct==null) return `<td class="mono">–</td>`;
+    if(pct==null) return `<td class="mono pct">–</td>`;
     const col = pct<90?"var(--sem-corto)": pct<=110?"var(--sem-ok)": pct<=120?"var(--sem-pasado)":"var(--sem-alto)";
-    return `<td class="mono" style="color:${col}; font-weight:700">${Math.round(pct)}%</td>`;
+    return `<td class="mono pct" style="color:${col}; font-weight:700">${Math.round(pct)}%</td>`;
   }
 
   players.forEach(pr=>{
     const g=POS[pr.d];
-    const cells=[`<td>#${pr.d} ${NAME[pr.d]||"?"}${pr.fm?` <span class="muted" title="Objetivo individual; no cuenta para la media del equipo">· fuera de media</span>`:""}</td>`, `<td class="pos-${g||""}">${GROUPS[g]||g||"–"}</td>`];
-    if(conObj) cells.push(`<td class="mono grp-start" style="font-weight:700; font-size:14px; color:${semColor(pr.cumpl)}">${pr.cumpl!=null?Math.round(pr.cumpl)+"%":(pr.est?'<span title="Datos estimados por fallo de GPS">est.</span>':"–")}</td>`);
+    const cells=[`<td><span class="muted">${pr.d}</span> ${NAME[pr.d]||"?"}<span class="pos pos-${g||""}">${GROUPS[g]||g||""}</span>${pr.fm?` <span class="muted" title="Objetivo individual; no cuenta para la media del equipo">· f. media</span>`:""}</td>`];
+    if(conObj) cells.push(`<td class="mono grp-start cum" style="font-weight:700; color:${semColor(pr.cumpl)}">${pr.cumpl!=null?Math.round(pr.cumpl)+"%":(pr.est?'<span title="Datos estimados por fallo de GPS">est.</span>':"–")}</td>`);
     let hasAny=false;
     RADAR_METRICS.forEach(k=>{
       const c=raw(pr,k);
       if(c.real!=null) hasAny=true;
       const pct=(c.obj&&c.real!=null)? c.real/c.obj*100 : null;
-      cells.push(`<td class="mono v-obj grp-start">${c.obj!=null?fmtN(c.obj,METRICS[k].dec):"–"}</td>`);
-      cells.push(`<td class="mono v-real">${c.real!=null?fmtN(c.real,METRICS[k].dec):"–"}</td>`);
+      const o=porMin(c.obj,pr), r=porMin(c.real,pr);
+      if(vObj) cells.push(`<td class="mono v-obj grp-start">${o!=null?fmtN(o,decM(k)):"–"}</td>`);
+      cells.push(`<td class="mono v-real${vObj?"":" grp-start"}" title="${o!=null?"Objetivo "+fmtN(o,decM(k)):""}">${r!=null?fmtN(r,decM(k)):"–"}</td>`);
       cells.push(pctCell(pct));
     });
     if(pr.vmax!=null||pr.pl!=null) hasAny=true;
@@ -1091,13 +1129,15 @@ function viewSesion(root){
   });
 
   // fila MEDIA EQUIPO
-  const teamCells=['<td>MEDIA EQUIPO</td>','<td></td>'];
-  if(conObj) teamCells.push(`<td class="mono grp-start" style="font-weight:700; font-size:14px; color:${semColor(cumplEq)}">${cumplEq!=null?Math.round(cumplEq)+"%":"–"}</td>`);
+  const teamCells=['<td>MEDIA EQUIPO</td>'];
+  if(conObj) teamCells.push(`<td class="mono grp-start cum" style="font-weight:700; color:${semColor(cumplEq)}">${cumplEq!=null?Math.round(cumplEq)+"%":"–"}</td>`);
   RADAR_METRICS.forEach(k=>{
     const teamReal=teamPoint(s,k,"abs"), teamObjV=teamObj(s,k,"abs");
     const pct=(teamObjV&&teamReal!=null)? teamReal/teamObjV*100 : null;
-    teamCells.push(`<td class="mono v-obj grp-start">${teamObjV!=null?fmtN(teamObjV,METRICS[k].dec):"–"}</td>`);
-    teamCells.push(`<td class="mono v-real">${teamReal!=null?fmtN(teamReal,METRICS[k].dec):"–"}</td>`);
+    const mr = pm ? (()=>{ const xs=players.map(pr=>porMin(raw(pr,k).real,pr)).filter(v=>v!=null); return xs.length? xs.reduce((a,b)=>a+b,0)/xs.length : null; })() : teamReal;
+    const mo = pm ? (()=>{ const xs=players.map(pr=>porMin(raw(pr,k).obj,pr)).filter(v=>v!=null); return xs.length? xs.reduce((a,b)=>a+b,0)/xs.length : null; })() : teamObjV;
+    if(vObj) teamCells.push(`<td class="mono v-obj grp-start">${mo!=null?fmtN(mo,decM(k)):"–"}</td>`);
+    teamCells.push(`<td class="mono v-real${vObj?"":" grp-start"}" title="${mo!=null?"Objetivo "+fmtN(mo,decM(k)):""}">${mr!=null?fmtN(mr,decM(k)):"–"}</td>`);
     teamCells.push(pctCell(pct));
   });
   teamCells.push(`<td class="mono grp-start">${vmaxTeam!=null?fmtN(vmaxTeam,1):"–"}</td>`);
@@ -1106,7 +1146,14 @@ function viewSesion(root){
   const trTeam=el("tr",{class:"total"}); trTeam.innerHTML=teamCells.join(""); body.appendChild(trTeam);
 
   tb.appendChild(body); wrap.appendChild(tb); p.appendChild(wrap);
-  p.appendChild(el("p",{class:"note"},"Jugadores en gris: no tienen dato real cargado en esta sesión (descanso o gestión de carga). Los lesionados y en readaptación van aparte, debajo."));
+  tb.querySelectorAll("th[data-sk]").forEach(h=> h.onclick=()=>{
+    const v="m:"+h.dataset.sk;
+    if(state.sesOrden===v) state.sesAsc=!state.sesAsc; else { state.sesOrden=v; state.sesAsc=false; }
+    renderView();
+  });
+  p.appendChild(el("p",{class:"note"},"Toca el nombre de una métrica para ordenar por su valor real (otra vez, al revés). "+
+    (pm? "Por minuto: objetivo y real divididos entre los minutos de cada jugador"+(s.isMatch?" (fuera quien jugó menos de 30′)":"")+"; el % no cambia. " : "")+
+    "Jugadores en gris: no tienen dato real cargado en esta sesión (descanso o gestión de carga). Los lesionados y en readaptación van aparte, debajo."));
   if(bajas.length) p.appendChild(tablaBajas(s, bajas));
   root.appendChild(p);
 }
