@@ -386,7 +386,7 @@ function raw(pr, metric){
   const m=pr.m[metric]; return m? {obj:m[0], real:m[1]} : {obj:null, real:null};
 }
 // partidos OFICIALES = liga (clave "Jx"); los PTx de pretemporada no cuentan aquí
-const isOficial = s => s.isMatch && /^J\d/.test(s.key);
+const isOficial = s => s.isMatch && /^(J|COPA)\d/.test(s.key);   // Copa cuenta como Liga
 const officialMatches = () => RAW.sessions.filter(isOficial);
 // suma/media/mejor de un parámetro entre los jugadores que jugaron ese partido
 function matchStat(s, metric){

@@ -93,7 +93,10 @@ def _guardar_log(log):
 
 
 def cuenta_para_ref(key):
-    """Liga J2 en adelante (J1 excluido para siempre: GPS perdido, datos estimados)."""
+    """Liga J2 en adelante (J1 excluido para siempre: GPS perdido, datos estimados) y Copa, que
+    cuenta como un partido de Liga más (decisión del preparador, 26/10/2026)."""
+    if re.match(r"^COPA\d+$", key):
+        return True
     m = re.match(r"^J(\d+)$", key)
     return bool(m) and int(m.group(1)) >= 2
 
