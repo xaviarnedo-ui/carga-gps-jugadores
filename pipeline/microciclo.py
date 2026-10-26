@@ -276,7 +276,7 @@ def cambiar_tipo(n, tipo, estados=None):
         for d, fila in filas.items():
             if not sesion.tiene_objetivo(ws, fila) or d not in ref:
                 continue
-            clave = dia + roles.get(d, "S") if dia == "MD+1" else dia
+            clave = dia + (E.rol_md1(key, d, estados) or roles.get(d, "S")) if dia == "MD+1" else dia
             sesion._escribe_obj(ws, fila, referencia.objetivo(ref[d], coefs[tipo][clave]))
             cuantos += 1
         if sesion.hecha(ws):
@@ -337,7 +337,7 @@ def propagar_estados(n, dorsales, estados=None):
                 manual = E.objetivo_manual(key, d, estados) if E.vigente(estados, d) == C.REHAB else None
                 sesion._escribe_obj(ws, filas[d], manual)
             elif E.vigente(estados, d) == C.FULL and d in ref:     # alta: objetivo del día
-                clave = dia + roles.get(d, "S") if dia == "MD+1" else dia
+                clave = dia + (E.rol_md1(key, d, estados) or roles.get(d, "S")) if dia == "MD+1" else dia
                 sesion._escribe_obj(ws, filas[d], referencia.objetivo(ref[d], coefs[tipo][clave]))
         sesion.escribir_media(ws, filas, media, {d: C.FULL for d, r in filas.items()
                                                  if sesion.tiene_objetivo(ws, r)})

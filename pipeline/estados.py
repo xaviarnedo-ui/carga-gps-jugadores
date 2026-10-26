@@ -46,6 +46,13 @@ def objetivo_manual(key, dorsal, data=None):
     return (data.get("objetivos_manuales", {}).get(key) or {}).get(str(dorsal))
 
 
+def rol_md1(key, dorsal, data=None):
+    """Rol del MD+1 fijado a mano ('T' recuperación / 'S' compensación) para esa sesión, o None.
+    P. ej. quien jugó entero con el filial el día del partido: {"roles_md1": {"S71": {"26": "T"}}}."""
+    data = data if data is not None else cargar()
+    return (data.get("roles_md1", {}).get(key) or {}).get(str(dorsal))
+
+
 def vigente(data, dorsal):
     return data["vigente"].get(str(dorsal), {}).get("estado", C.FULL)
 

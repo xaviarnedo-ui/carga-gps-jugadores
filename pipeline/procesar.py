@@ -272,7 +272,7 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
                 continue
             rol = None
             if e == C.FULL and sesion.tipo_y_dia(ws)[1] == "MD+1":
-                rol = (rol_md1 or {}).get(d)
+                rol = (rol_md1 or {}).get(d) or E.rol_md1(key, d, est)
                 if rol is None:
                     ult = _ultimo_partido_antes(fecha)
                     rol = microciclo.roles_md1(ult).get(d, "S") if ult is not None else "S"

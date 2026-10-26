@@ -44,6 +44,8 @@ gestión de carga NO es lesión. Si una lesión se confirma sin PDF (diagnóstic
 `lesiones --abrir D --tipo T --baja F` + `estado D=lesion --desde F --nota T`, que quita el objetivo
 en las sesiones aún no cargadas del microciclo activo (las cargadas no se tocan). El diagnóstico se publica tal cual (decisión del preparador).
 
+Rol del MD+1 a mano (p. ej. jugó entero con el filial el día del partido → recuperación): `roles_md1` en `estados_jugadores.json` ({"S71": {"26": "T"}}) y `microciclo.propagar_estados(n, [dorsal])`; lo respetan procesar, propagar y `tipo`.
+
 Fallo de GPS: en partidos con minutos conocidos `--fallo-gps D=min` (estimado desde su REF);
 si el preparador dice "ponle los datos de X", `--proxy D=X` (copia, nota de dato proxy, fuera de REF); "ponle la media del equipo" → `--proxy D=media` (media de los full de la sesión).
 
