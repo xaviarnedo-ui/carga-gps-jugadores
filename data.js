@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-10-26 09:10",
+  "generado": "2026-10-26 09:58",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-16)"
  },
  "refPartido": {
@@ -2263,12 +2263,12 @@ window.GPS_DATA_ALL = {
     "dorsal": 26,
     "jugador": "Fontanet, B.",
     "grupo": "D",
-    "distancia": 9350.9,
-    "hmld": 1013.6,
-    "hsr": 267.8,
-    "sprint": 7.7,
-    "acc": 20.4,
-    "dec": 23.6,
+    "distancia": 9267.1,
+    "hmld": 999,
+    "hsr": 247.9,
+    "sprint": 6.9,
+    "acc": 19.4,
+    "dec": 24.1,
     "velMax": 30.91,
     "partidos": 8,
     "datosRef": [
@@ -2327,18 +2327,33 @@ window.GPS_DATA_ALL = {
        "acc": 22,
        "dec": 25
       }
+     },
+     {
+      "key": "Juvenil",
+      "fecha": "2026-10-25",
+      "min": 94.97,
+      "T": 95.0,
+      "peso": 1.0,
+      "valores": {
+       "distancia": 8973.8,
+       "hmld": 948.3,
+       "hsr": 178.1,
+       "sprint": 4.0,
+       "acc": 16.0,
+       "dec": 26.0
+      }
      }
     ],
     "refCambio": {
      "key": "Juvenil",
-     "fecha": "2026-10-11",
+     "fecha": "2026-10-25",
      "previo": {
-      "distancia": 9320.0,
-      "hmld": 1048.6,
-      "hsr": 291.8,
-      "sprint": 8.0,
-      "acc": 19.8,
-      "dec": 23.0,
+      "distancia": 9350.9,
+      "hmld": 1013.6,
+      "hsr": 267.8,
+      "sprint": 7.7,
+      "acc": 20.4,
+      "dec": 23.6,
       "velMax": 30.91
      }
     },
@@ -2347,7 +2362,7 @@ window.GPS_DATA_ALL = {
    }
   ],
   "teamAvg": {
-   "distancia": 10270,
+   "distancia": 10266,
    "hmld": 1589,
    "hsr": 479,
    "sprint": 10,
@@ -2396,7 +2411,8 @@ window.GPS_DATA_ALL = {
    "[pipeline J6] ACTUALIZACIÓN 2026-10-11 (J6): REF_PARTIDO = media simple de pretemporada (1 dato) y cada partido de Liga (mismo peso), estimados a la duración real (98.4') con fórmula de fatiga. 14 jugadores con GPS real: MONTCHEU, F., MARTIN, A., RIERA, N., CHERTA, J., CABALLERO, R., ANDONE, F., MARTIN, M., HERNANDEZ, P., ANGLADA, H., LOPEZ, I., CATALA, A., BOVER, R., SOLER, M., LLINARES, I.. AVISO cameos cortos (extrapolación agresiva): MONTCHEU, F. (27'), BOVER, R. (16'), LLINARES, I. (29').",
    "[pipeline Extra_11-10] ACTUALIZACIÓN 2026-10-11 (Extra_11-10): REF_PARTIDO = media simple de pretemporada (1 dato) y cada partido de Liga (mismo peso), estimados a la duración real (99.1') con fórmula de fatiga. 1 jugadores con GPS real: FONTANET, B..",
    "[pipeline J7] ACTUALIZACIÓN 2026-10-18 (J7): REF_PARTIDO = media simple de pretemporada (1 dato) y cada partido de Liga (mismo peso), estimados a la duración real (101.0') con fórmula de fatiga. 15 jugadores con GPS real: MARTIN, A., RIERA, N., CHERTA, J., CABALLERO, R., ANDONE, F., MARTIN, M., HERNANDEZ, P., ANGLADA, H., CATALA, R., LOPEZ, I., CATALA, A., BOVER, R., SOLER, M., BAH, A., LLINARES, I.. AVISO cameos cortos (extrapolación agresiva): HERNANDEZ, P. (20'), CATALA, R. (26').",
-   "[pipeline J8] ACTUALIZACIÓN 2026-10-25 (J8): REF_PARTIDO = media ponderada por minutos de pretemporada (peso 1) y cada partido de Liga (peso = minutos jugados / duración), estimados a la duración real (97.7') con fórmula de fatiga. 14 jugadores con GPS real: MARTIN, A., BONET, G., RIERA, N., CHERTA, J., CABALLERO, R., ANDONE, F., HERNANDEZ, P., ANGLADA, H., CATALA, R., CATALA, A., BOVER, R., SOLER, M., BAH, A., LLINARES, I.. AVISO cameos cortos (extrapolación agresiva): CHERTA, J. (12'), CATALA, R. (20')."
+   "[pipeline J8] ACTUALIZACIÓN 2026-10-25 (J8): REF_PARTIDO = media ponderada por minutos de pretemporada (peso 1) y cada partido de Liga (peso = minutos jugados / duración), estimados a la duración real (97.7') con fórmula de fatiga. 14 jugadores con GPS real: MARTIN, A., BONET, G., RIERA, N., CHERTA, J., CABALLERO, R., ANDONE, F., HERNANDEZ, P., ANGLADA, H., CATALA, R., CATALA, A., BOVER, R., SOLER, M., BAH, A., LLINARES, I.. AVISO cameos cortos (extrapolación agresiva): CHERTA, J. (12'), CATALA, R. (20').",
+   "[pipeline Extra_25-10] ACTUALIZACIÓN 2026-10-25 (Extra_25-10): REF_PARTIDO = media ponderada por minutos de pretemporada (peso 1) y cada partido de Liga (peso = minutos jugados / duración), estimados a la duración real (95.0') con fórmula de fatiga. 1 jugadores con GPS real: FONTANET, B.."
   ]
  },
  "coeficientes": {
@@ -146869,7 +146885,56 @@ window.GPS_DATA_ALL = {
     "objNota": "OBJETIVO = REF_PARTIDO previa al partido escalada a los minutos jugados (fórmula de fatiga, duración 97.7'). Estimados por fallo de GPS: sin cumplimiento."
    }
   },
-  "extras": {},
+  "extras": {
+   "Extra_25-10": {
+    "date": "2026-10-25",
+    "titulo": "SESIÓN EXTRA · Domingo 25/10/2026 — Partido JUV PALMA",
+    "nota": "Sesión adicional para Fontanet, B. NO cuenta para la media del equipo, NO se compara contra objetivo y NO entra en Disponibilidad y Minutos. SÍ se suma al Acumulado individual y al ACWR (PL, HSR y Sprint) de estos jugadores. Fontanet, B.: partido con el juvenil contra el Palma (no convocado con el primer equipo en la J8).",
+    "players": [
+     {
+      "dorsal": 26,
+      "jugador": "Fontanet, B.",
+      "grupo": "D",
+      "distancia": {
+       "obj": null,
+       "real": 8971,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": 948,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": 178,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": 4,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": 16,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": 26,
+       "dif": null
+      },
+      "velMax": 28.78,
+      "playerLoad": 719,
+      "duracion": "95"
+     }
+    ],
+    "soloJugadores": [
+     26
+    ]
+   }
+  },
   "cargasObjetivo": {
    "players": [
     {
@@ -147699,38 +147764,38 @@ window.GPS_DATA_ALL = {
      "grupo": "D",
      "distancia": {
       "obj": 12343.2,
-      "real": 13801,
-      "dif": 1457.8,
+      "real": 22772,
+      "dif": 10428.8,
       "objFecha": 12343.2
      },
      "hmld": {
       "obj": 1175.8,
-      "real": 1593,
-      "dif": 417.2,
+      "real": 2541,
+      "dif": 1365.2,
       "objFecha": 1175.8
      },
      "hsr": {
       "obj": 267.8,
-      "real": 335,
-      "dif": 67.2,
+      "real": 513,
+      "dif": 245.2,
       "objFecha": 267.8
      },
      "sprint": {
       "obj": 8.1,
-      "real": 3,
-      "dif": -5.1,
+      "real": 7,
+      "dif": -1.1,
       "objFecha": 8.1
      },
      "acc": {
       "obj": 31,
-      "real": 31,
-      "dif": 0,
+      "real": 47,
+      "dif": 16,
       "objFecha": 31.0
      },
      "dec": {
       "obj": 35.7,
-      "real": 60,
-      "dif": 24.3,
+      "real": 86,
+      "dif": 50.3,
       "objFecha": 35.7
      }
     }
@@ -147738,38 +147803,38 @@ window.GPS_DATA_ALL = {
    "teamAvg": {
     "distancia": {
      "obj": 20244.3,
-     "real": 19302.4,
-     "dif": -941.9,
+     "real": 19800.8,
+     "dif": -443.5,
      "objFecha": 20244.3
     },
     "hmld": {
      "obj": 2735,
-     "real": 2651.8,
-     "dif": -83.2,
+     "real": 2704.4,
+     "dif": -30.6,
      "objFecha": 2735.0
     },
     "hsr": {
      "obj": 694.3,
-     "real": 741.2,
-     "dif": 46.9,
+     "real": 751.1,
+     "dif": 56.8,
      "objFecha": 694.3
     },
     "sprint": {
      "obj": 14.1,
-     "real": 14.4,
-     "dif": 0.3,
+     "real": 14.6,
+     "dif": 0.5,
      "objFecha": 14.1
     },
     "acc": {
      "obj": 64,
-     "real": 60.3,
-     "dif": -3.7,
+     "real": 61.2,
+     "dif": -2.8,
      "objFecha": 64.0
     },
     "dec": {
      "obj": 94,
-     "real": 73.5,
-     "dif": -20.5,
+     "real": 74.9,
+     "dif": -19.1,
      "objFecha": 94.0
     }
    },
@@ -148483,66 +148548,66 @@ window.GPS_DATA_ALL = {
      "grupo": "D",
      "distancia": {
       "obj": 12343.2,
-      "real": 13801,
-      "dif": 1457.8
+      "real": 22772,
+      "dif": 10428.8
      },
      "hmld": {
       "obj": 1175.8,
-      "real": 1593,
-      "dif": 417.2
+      "real": 2541,
+      "dif": 1365.2
      },
      "hsr": {
       "obj": 267.8,
-      "real": 335,
-      "dif": 67.2
+      "real": 513,
+      "dif": 245.2
      },
      "sprint": {
       "obj": 8.1,
-      "real": 3,
-      "dif": -5.1
+      "real": 7,
+      "dif": -1.1
      },
      "acc": {
       "obj": 31,
-      "real": 31,
-      "dif": 0
+      "real": 47,
+      "dif": 16
      },
      "dec": {
       "obj": 35.7,
-      "real": 60,
-      "dif": 24.3
+      "real": 86,
+      "dif": 50.3
      }
     }
    ],
    "teamAvg": {
     "distancia": {
      "obj": 20244.3,
-     "real": 19302.4,
-     "dif": -941.9
+     "real": 19800.8,
+     "dif": -443.5
     },
     "hmld": {
      "obj": 2735,
-     "real": 2651.8,
-     "dif": -83.2
+     "real": 2704.4,
+     "dif": -30.6
     },
     "hsr": {
      "obj": 694.3,
-     "real": 741.2,
-     "dif": 46.9
+     "real": 751.1,
+     "dif": 56.8
     },
     "sprint": {
      "obj": 14.1,
-     "real": 14.4,
-     "dif": 0.3
+     "real": 14.6,
+     "dif": 0.5
     },
     "acc": {
      "obj": 64,
-     "real": 60.3,
-     "dif": -3.7
+     "real": 61.2,
+     "dif": -2.8
     },
     "dec": {
      "obj": 94,
-     "real": 73.5,
-     "dif": -20.5
+     "real": 74.9,
+     "dif": -19.1
     }
    },
    "nota": "Acumulado de toda la semana: sesiones de entrenamiento + partido(s). Objetivo de la semana completa de Microciclo 15 (Lunes MD+1 individual según rol en J7 + Miércoles MD-4 + Jueves MD-3 + Viernes MD-2 + Sábado MD-1). Acumulado (Real) pendiente de cargar sesión a sesión."
@@ -151993,21 +152058,21 @@ window.GPS_DATA_ALL = {
      "dorsal": 26,
      "jugador": "Fontanet, B.",
      "grupo": "D",
-     "acwr": 0.68,
-     "cargaAguda": 179.9,
-     "cargaCronica": 264.1,
+     "acwr": 0.98,
+     "cargaAguda": 282.6,
+     "cargaCronica": 289.8,
      "plS66": 0,
      "plS67": 485,
      "plS68": 442,
      "plS69": 0,
      "plS70": 332,
      "plJ8": 0,
-     "acwrHsr": 0.61,
-     "cargaAgudaHsr": 47.9,
-     "cargaCronicaHsr": 78.7,
-     "acwrSprint": 0.32,
-     "cargaAgudaSprint": 0.4,
-     "cargaCronicaSprint": 1.4,
+     "acwrHsr": 0.86,
+     "cargaAgudaHsr": 73.3,
+     "cargaCronicaHsr": 85.1,
+     "acwrSprint": 0.67,
+     "cargaAgudaSprint": 1,
+     "cargaCronicaSprint": 1.5,
      "serie": {
       "pl": [
        431,
@@ -152037,7 +152102,7 @@ window.GPS_DATA_ALL = {
        442,
        0,
        332,
-       0
+       719
       ],
       "aguda": [
        265,
@@ -152067,7 +152132,7 @@ window.GPS_DATA_ALL = {
        201,
        172,
        180,
-       180
+       283
       ],
       "cronica": [
        242,
@@ -152097,7 +152162,7 @@ window.GPS_DATA_ALL = {
        278,
        266,
        264,
-       264
+       290
       ],
       "acwr": [
        1.1,
@@ -152127,7 +152192,7 @@ window.GPS_DATA_ALL = {
        0.72,
        0.65,
        0.68,
-       0.68
+       0.98
       ],
       "ses": [
        "",
@@ -152157,27 +152222,27 @@ window.GPS_DATA_ALL = {
        "S68",
        "",
        "S70",
-       ""
+       "J8"
       ]
      }
     }
    ],
    "teamAvg": {
-    "acwr": 1.12,
-    "cargaAguda": 343.8,
-    "cargaCronica": 336.9,
+    "acwr": 1.14,
+    "cargaAguda": 348.9,
+    "cargaCronica": 338.1,
     "plS66": null,
     "plS67": null,
     "plS68": null,
     "plS69": null,
     "plS70": null,
     "plJ8": null,
-    "acwrHsr": 1,
-    "cargaAgudaHsr": 144.4,
-    "cargaCronicaHsr": 146.1,
-    "acwrSprint": 1.05,
+    "acwrHsr": 1.01,
+    "cargaAgudaHsr": 145.8,
+    "cargaCronicaHsr": 146.5,
+    "acwrSprint": 1.07,
     "cargaAgudaSprint": 2.9,
-    "cargaCronicaSprint": 2.7
+    "cargaCronicaSprint": 2.8
    },
    "nota": "Carga aguda = Σ métrica de los últimos 7 días naturales ÷ 7 · Carga crónica = Σ últimos 28 días ÷ 28 · ACWR = aguda ÷ crónica (sobre totales sin redondear). Los días sin sesión cuentan como 0. La media del equipo excluye a jugadores con ACWR = 0,00 (normalmente lesión/baja prolongada). Microciclo 15 CERRADO (fecha de cálculo 25/10/2026). LEYENDA ACWR: AZUL < 0,80 (infracarga) · VERDE 0,80-1,30 (zona óptima) · AMARILLO 1,31-1,50 (precaución) · ROJO > 1,50 (riesgo de sobrecarga).",
    "serieDias": [
@@ -152239,7 +152304,7 @@ window.GPS_DATA_ALL = {
      540,
      307,
      333,
-     736
+     735
     ],
     "aguda": [
      344,
@@ -152269,7 +152334,7 @@ window.GPS_DATA_ALL = {
      335,
      349,
      347,
-     344
+     349
     ],
     "cronica": [
      322,
@@ -152299,7 +152364,7 @@ window.GPS_DATA_ALL = {
      329,
      328,
      328,
-     337
+     338
     ],
     "acwr": [
      1.07,
@@ -152329,7 +152394,7 @@ window.GPS_DATA_ALL = {
      1.02,
      1.06,
      1.06,
-     1.12
+     1.14
     ],
     "ses": [
      "",
@@ -163281,7 +163346,7 @@ window.GPS_DATA_ALL = {
        442,
        0,
        332,
-       0
+       719
       ],
       "aguda": [
        265,
@@ -163484,7 +163549,7 @@ window.GPS_DATA_ALL = {
      540,
      307,
      333,
-     736
+     735
     ],
     "aguda": [
      344,
