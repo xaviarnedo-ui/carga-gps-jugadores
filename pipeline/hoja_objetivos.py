@@ -86,7 +86,9 @@ def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False):
     filas, media = filas_jugadores(ws)
     est = E.cargar()
     fuera = E.fuera_media(fecha, est)
-    partido = next((s for s in wb.sheetnames if s.startswith("J") and s.endswith("_GPS")), None)
+    hojas_p = sorted((s for s in wb.sheetnames if C.SHEET_KEY_RE.match(s) and C.is_match_key(s[:-4])),
+                     key=lambda s: fecha_hoja(wb[s]) or dt.date.max)
+    partido = next((s for s in hojas_p if (fecha_hoja(wb[s]) or dt.date.max) >= fecha), hojas_p[-1] if hojas_p else None)
     rival = ""
     if partido:
         a1 = str(wb[partido].cell(1, 1).value or "")

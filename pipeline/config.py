@@ -37,8 +37,8 @@ GRIS_MEDIA = "FFD9D9D9"
 FULL, REHAB, LESION, DESCANSO, NC, NOCONV = "full", "rehab", "lesion", "descanso", "nc", "noconv"
 ESTADOS = (FULL, REHAB, LESION, DESCANSO, NC, NOCONV)
 
-SHEET_KEY_RE = re.compile(r"^(S\d+\w*|PT\d+|J\d+)_GPS$")
+SHEET_KEY_RE = re.compile(r"^(S\d+\w*|PT\d+|J\d+|COPA\d+)_GPS$")
 
 
 def is_match_key(key):
-    return bool(re.match(r"^(PT|J)\d+$", key))
+    return bool(re.match(r"^(PT|J|COPA)\d+$", key))

@@ -18,6 +18,8 @@
         --prueba                                  escribe en GPS/_prueba/, no toca nada real
         --publicar [--sin-avisar]                 import_data + git push (+ aviso a jugadores)
   python3 gps.py abrir --tipo B --partido J5 --rival "Rival" --lunes 2026-09-28
+  python3 gps.py abrir --tipo A --partido J9 --rival "Penya" --lunes 2026-10-26 \\
+      --dias MD+1,MD-2,MD-1,COPA1,MD-2,MD-1,J9 --rival-de COPA1=Eldense   (semana con Copa)
   python3 gps.py tipo 12 A                            cambia el Tipo de un microciclo y recalcula objetivos
   python3 gps.py estado [4=lesion ...] [--desde F --nota T]  ver / fijar estado vigente (+ ajusta objetivos pendientes)
   python3 gps.py lesiones [--abrir D --tipo T --baja F | --cerrar D --alta F]   registro de lesiones
@@ -99,8 +101,11 @@ def main():
     a = sub.add_parser("abrir")
     a.add_argument("--tipo", required=True)
     a.add_argument("--partido", required=True)
-    a.add_argument("--rival", required=True)
+    a.add_argument("--rival", required=True, help="rival del partido de --partido")
     a.add_argument("--lunes", required=True)
+    a.add_argument("--dias", help="semana distinta, lunes a domingo separados por comas: día (MD+1...), "
+                                  "'-' descanso o clave de partido. P. ej. MD+1,MD-2,MD-1,COPA1,MD-2,MD-1,J9")
+    a.add_argument("--rival-de", action="append", help="rival de otro partido de la semana: COPA1=Eldense")
     a = sub.add_parser("tipo")
     a.add_argument("n", type=int)
     a.add_argument("tipo")
@@ -159,12 +164,16 @@ def main():
                 _publicar(f"Datos GPS: {res['key']}", avisar=not args.sin_avisar)
 
     elif args.cmd == "abrir":
-        destino, claves, (pk, pf), roles = microciclo.abrir(
-            args.tipo.upper(), args.partido.upper(), args.rival, dt.date.fromisoformat(args.lunes))
+        dias = ([None if x.strip() in ("-", "") else x.strip().upper() for x in args.dias.split(",")]
+                if args.dias else None)
+        destino, claves, partidos, roles = microciclo.abrir(
+            args.tipo.upper(), args.partido.upper(), args.rival, dt.date.fromisoformat(args.lunes),
+            dias=dias, rivales={k.upper(): v for k, v in _pares(args.rival_de).items()})
         print(f"Creado {destino}")
         for k, dia, f in claves:
             print(f"  {k} {dia} {f:%a %d/%m}")
-        print(f"  {pk} {pf:%a %d/%m}")
+        for pk, pf in partidos:
+            print(f"  {pk} {pf:%a %d/%m}")
         print("  Titulares MD+1:", sorted(d for d, r in roles.items() if r == "T"))
         disponibilidad.generar()
 

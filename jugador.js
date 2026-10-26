@@ -844,7 +844,7 @@
       var m = DATA[mk];
       Object.keys(m.partidos || {}).forEach(function (k) {
         var s = m.partidos[k];
-        if (/^J\d+$/.test(k) && isCompleted(s)) out.push({ key: k, mk: mk, s: s });
+        if (/^(J|COPA)\d+$/.test(k) && isCompleted(s)) out.push({ key: k, mk: mk, s: s });
       });
     });
     return out.sort(function (a, b) { return a.s.date < b.s.date ? 1 : -1; });
@@ -873,7 +873,7 @@
     var dec = (met.key === "velMax") ? 1 : (por90 && (met.key === "sprint" || met.key === "acc" || met.key === "dec")) ? 1 : 0;
 
     var pills = '<div class="pills">' + ms.map(function (x) {
-      return '<button class="pill is-match' + (x.key === state.partido ? " is-active" : "") + '" data-partido="' + x.key + '">' + x.key +
+      return '<button class="pill is-match' + (x.key === state.partido ? " is-active" : "") + '" data-partido="' + x.key + '">' + (x.key.indexOf("COPA") === 0 ? "Copa" : x.key) +
         '<small>' + esc(("vs " + (x.s.rival || "")).slice(0, 14)) + '</small></button>';
     }).join("") + '</div>';
 

@@ -57,8 +57,8 @@ class Informe:
     @property
     def codigo(self):
         """Código de hoja deducido del título: 'S47', 'J3', 'PT9' o None (rehab/otros)."""
-        m = re.match(r"^(S\d+\w*|PT\d+|J\d+)\b", self.titulo.strip(), re.I)
-        return m.group(1).upper() if m else None
+        m = re.match(r"^(S\d+\w*|PT\d+|J\d+|COPA\s*\d*)\b", self.titulo.strip(), re.I)
+        return m.group(1).upper().replace(" ", "") if m else None
 
 
 def dur_a_min(texto):

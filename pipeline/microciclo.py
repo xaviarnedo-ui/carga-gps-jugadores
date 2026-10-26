@@ -1,7 +1,7 @@
-"""Apertura de un microciclo nuevo a partir del anterior (estructura fija Tipo A/B/C):
+"""Apertura de un microciclo nuevo a partir del anterior. Semana tipo (Tipo A/B/C):
 
 Lunes MD+1 · Martes descanso · Miércoles MD-4 · Jueves MD-3 · Viernes MD-2 · Sábado MD-1 ·
-Domingo partido. Objetivo = REF_PARTIDO vigente × coeficiente del día; MD+1 según el rol en el
+Domingo partido. Con `dias` se monta otra semana (p. ej. dos partidos: Copa entre semana). Objetivo = REF_PARTIDO vigente × coeficiente del día; MD+1 según el rol en el
 último partido (titular ≥60', suplente <60' o no jugó); lesión/rehab = sin objetivo.
 """
 import datetime as dt
@@ -44,8 +44,50 @@ def _limpia_filas(ws, cols, desde_fila, hasta_fila):
             pinta(ws.cell(r, c), None)
 
 
+def _ajusta_carga_ac(wc, hdr, n_eventos):
+    """Deja en cada bloque de CARGA_AC (PL, HSR, Sprint) una columna por evento de la semana:
+    inserta o borra columnas al final de las de cada día (semanas con dos partidos, p. ej. Copa)."""
+    from copy import copy
+    from openpyxl.utils import get_column_letter
+    merged = [str(r) for r in wc.merged_cells.ranges if r.min_row <= 3]
+    for r in merged:
+        wc.unmerge_cells(r)
+    for b in reversed(carga_ac._bloques(wc, hdr)):
+        dif = n_eventos - len(b["dias"])
+        ult = b["dias"][-1][0]
+        if dif > 0:
+            wc.insert_cols(ult + 1, dif)
+            pref = str(wc.cell(hdr, ult).value or "").split()[0]
+            for c in range(ult + 1, ult + 1 + dif):
+                for r in range(1, wc.max_row + 1):
+                    src, dst = wc.cell(r, ult), wc.cell(r, c)
+                    if src.has_style:
+                        dst._style = copy(src._style)
+                wc.cell(hdr, c).value = f"{pref} NUEVA\n"     # cabecera provisional (se renombra luego)
+        elif dif < 0:
+            wc.delete_cols(ult + dif + 1, -dif)
+    for c in range(1, wc.max_column + 1):           # anchos por columna (insert/delete no los mueve)
+        h = str(wc.cell(hdr, c).value or "")
+        wc.column_dimensions[get_column_letter(c)].width = (
+            6 if c == 1 else 18 if c == 2 else 7 if c == 3 else 11 if ("aguda" in h.lower() or "crónica" in h.lower()) else 9)
+    for r in merged:
+        fila = int(re.search(r"(\d+)$", r).group(1))
+        wc.merge_cells(start_row=fila, start_column=1, end_row=fila, end_column=wc.max_column)
+
+
+def _competicion(key):
+    if re.match(r"^J\d+$", key):
+        return f"Liga, Jornada {key[1:]}"
+    if key.startswith("COPA"):
+        return "Copa"
+    return "Amistoso"
+
+
 def abrir(tipo, partido_key, rival, lunes, estados=None, ref=None, coefs=None,
-          destino=None, n_prev=None, liga=True):
+          destino=None, n_prev=None, liga=True, dias=None, rivales=None):
+    """dias: 7 entradas de lunes a domingo — día de sesión ("MD+1", "MD-4"...), None (descanso) o la
+    clave de un partido ("J9", "COPA1"). Por defecto la semana tipo: MD+1, descanso, MD-4, MD-3,
+    MD-2, MD-1 y partido. rivales: {clave_partido: rival}."""
     existentes = microciclos_existentes()
     n_prev = n_prev or max(existentes)
     n = n_prev + 1
@@ -54,6 +96,18 @@ def abrir(tipo, partido_key, rival, lunes, estados=None, ref=None, coefs=None,
         raise FileExistsError(f"Ya existe {destino}")
     if lunes.weekday() != 0:
         raise ValueError(f"{lunes} no es lunes")
+    dias = dias or ["MD+1", None, "MD-4", "MD-3", "MD-2", "MD-1", partido_key]
+    if len(dias) != 7:
+        raise ValueError("dias: hacen falta 7 entradas (lunes a domingo)")
+    rivales = dict(rivales or {})
+    rivales.setdefault(partido_key, rival)
+    es_partido = lambda x: bool(x) and C.is_match_key(x)
+    estructura = [(off, d) for off, d in enumerate(dias) if d and not es_partido(d)]
+    partidos_sem = [(off, d) for off, d in enumerate(dias) if es_partido(d)]
+    if len(estructura) != 5:
+        raise ValueError(f"La semana debe tener 5 sesiones (tiene {len(estructura)})")
+    if not partidos_sem:
+        raise ValueError("La semana no tiene ningún partido")
 
     wb = openpyxl.load_workbook(existentes[n_prev])
     estados = estados if estados is not None else E.cargar()
@@ -65,19 +119,22 @@ def abrir(tipo, partido_key, rival, lunes, estados=None, ref=None, coefs=None,
         raise ValueError(f"No hay coeficientes para el Tipo {tipo} en Microciclo_Tipo.xlsx")
 
     ses = sesion.hojas_sesion(wb)
-    partidos = [wb[x] for x in wb.sheetnames if re.match(r"^(PT|J)\d+_GPS$", x)]
-    if len(ses) != 5 or len(partidos) != 1:
-        raise ValueError(f"Microciclo {n_prev}: esperaba 5 sesiones y 1 partido para copiar la "
-                         f"estructura; hay {len(ses)} y {len(partidos)}")
-    ws_part_prev = partidos[0]
+    partidos = sorted((wb[x] for x in wb.sheetnames if C.SHEET_KEY_RE.match(x) and C.is_match_key(x[:-4])),
+                      key=lambda w: fecha_hoja(w) or dt.date.min)
+    if len(ses) != 5 or not partidos:
+        raise ValueError(f"Microciclo {n_prev}: esperaba 5 sesiones y al menos 1 partido para copiar "
+                         f"la estructura; hay {len(ses)} y {len(partidos)}")
+    ws_part_prev = partidos[-1]                       # el último partido manda el rol del MD+1
     prev_key = ws_part_prev.title[:-4]
     roles = roles_md1(ws_part_prev)
+    for w in partidos[:-1]:                           # otros partidos de la semana anterior (Copa...)
+        del wb[w.title]
     for x in [x for x in wb.sheetnames if x.lower().startswith("extra")]:
         del wb[x]
 
     ult = max(int(re.match(r"S(\d+)", k).group(1)) for k, _, _ in ses)
     claves = []
-    for i, ((_, ws, _), (off, dia)) in enumerate(zip(ses, ESTRUCTURA)):
+    for i, ((_, ws, _), (off, dia)) in enumerate(zip(ses, estructura)):
         key = f"S{ult + 1 + i}"
         fecha = lunes + dt.timedelta(days=off)
         claves.append((key, dia, fecha))
@@ -115,51 +172,66 @@ def abrir(tipo, partido_key, rival, lunes, estados=None, ref=None, coefs=None,
         est_dia = {d: E.vigente(estados, d) for d in filas}
         ws.cell(media + 2, 1).value = sesion.nota_estados(nombres, est_dia)
 
-    # partido
-    fecha_p = lunes + dt.timedelta(days=6)
-    ws = ws_part_prev
-    ws.title = f"{partido_key}_GPS"
-    jornada = re.match(r"J(\d+)", partido_key)
-    comp = f"Liga, Jornada {jornada.group(1)}" if jornada else "Amistoso"
-    ws.cell(1, 1).value = (f"PARTIDO {partido_key} · vs {rival} ({fecha_p:%d/%m/%Y}) — DATOS DE PARTIDO "
-                           f"({comp})")
-    ws.cell(2, 1).value = "No lleva Obj/Dif. Datos pendientes de cargar tras el encuentro."
-    ws.cell(3, 1).value = f"MICROCICLO {n} · PARTIDO {'LIGA ' if jornada else ''}{partido_key}"
-    filas, media = filas_jugadores(ws)
-    _limpia_filas(ws, range(4, 13), min(filas.values()), media)
-    for rr in range(media + 1, media + 8):
-        vaciar(ws.cell(rr, 1))
+    # partido(s): el primero reutiliza la hoja del anterior; el resto, copias de ella
+    plantilla = ws_part_prev
+    hojas_p = [plantilla] + [wb.copy_worksheet(plantilla) for _ in partidos_sem[1:]]
+    info_p = []
+    for ws, (off, pk) in zip(hojas_p, partidos_sem):
+        fecha_p = lunes + dt.timedelta(days=off)
+        comp = _competicion(pk)
+        ws.title = f"{pk}_GPS"
+        ws.cell(1, 1).value = (f"PARTIDO {pk} · vs {rivales.get(pk, '—')} ({fecha_p:%d/%m/%Y}) — DATOS DE "
+                               f"PARTIDO ({comp})")
+        ws.cell(2, 1).value = "No lleva Obj/Dif. Datos pendientes de cargar tras el encuentro."
+        tag = "LIGA " if pk.startswith("J") else "COPA " if pk.startswith("COPA") else ""
+        ws.cell(3, 1).value = f"MICROCICLO {n} · PARTIDO {tag}{pk}"
+        filas, media = filas_jugadores(ws)
+        _limpia_filas(ws, range(4, 13), min(filas.values()), media)
+        for rr in range(media + 1, media + 8):
+            vaciar(ws.cell(rr, 1))
+        info_p.append((pk, fecha_p, comp))
+
+    # hojas en orden cronológico; Acumulado y CARGA_AC al final
+    fechas = {f"{k}_GPS": f for k, _, f in claves}
+    fechas.update({f"{k}_GPS": f for k, f, _ in info_p})
+    wb._sheets.sort(key=lambda w: (0, fechas[w.title]) if w.title in fechas else
+                    (1, ["Acumulado", "CARGA_AC"].index(w.title) if w.title in ("Acumulado", "CARGA_AC") else 9))
 
     # Acumulado
     wa = wb["Acumulado"]
     fin = lunes + dt.timedelta(days=6)
     rango = (f"{lunes.day}-{fin.day} {MESES_CORTOS[fin.month]}" if lunes.month == fin.month
              else f"{lunes.day} {MESES_CORTOS[lunes.month]}-{fin.day} {MESES_CORTOS[fin.month]}")
-    partes = [f"{k} ({dia})" for k, dia, _ in claves]
-    partes.insert(1, "Descanso (Martes)")
-    wa.cell(3, 1).value = (f"SEMANA: MICROCICLO {n} ({rango}) · TIPO {tipo} · SESIONES: "
-                           + " · ".join(partes)
-                           + f" · {partido_key} vs {rival} ({comp.split(',')[0]}, {fecha_p:%d/%m})")
-    wa.cell(4, 1).value = (f"Objetivo de la semana completa de Microciclo {n} (Lunes MD+1 individual "
-                           f"según rol en {prev_key} + Miércoles MD-4 + Jueves MD-3 + Viernes MD-2 + "
-                           f"Sábado MD-1). Acumulado (Real) pendiente de cargar sesión a sesión.")
+    por_off = {off: f"{k} ({dia})" for (k, dia, f) in claves for off in [(f - lunes).days]}
+    por_off.update({(f - lunes).days: f"{k} vs {rivales.get(k, '—')} ({c.split(',')[0]}, {f:%d/%m})"
+                    for k, f, c in info_p})
+    partes = [por_off.get(o, f"Descanso ({DIAS_SEMANA[o]})") for o in range(7)]
+    wa.cell(3, 1).value = (f"SEMANA: MICROCICLO {n} ({rango}) · TIPO {tipo} · SESIONES: " + " · ".join(partes))
+    wa.cell(4, 1).value = (f"Objetivo de la semana completa de Microciclo {n} ("
+                           + " + ".join(f"{DIAS_SEMANA[f.weekday()]} {dia}" + (
+                               f" individual según rol en {prev_key}" if dia == "MD+1" else "")
+                                        for _, dia, f in claves)
+                           + "). Acumulado (Real) pendiente de cargar sesión a sesión.")
     filas_a, media_a = filas_jugadores(wa)
     for rr in range(media_a + 1, media_a + 5):
         vaciar(wa.cell(rr, 1))
     wa.cell(media_a + 2, 1).value = f"Microciclo {n} EN CURSO."
     acumulado.recalcular(wb)
 
-    # CARGA_AC: cabeceras nuevas y columnas vacías
+    # CARGA_AC: una columna por evento (sesiones + partidos), cabeceras nuevas y vacías
     wc = wb["CARGA_AC"]
     hdr = [r for r in range(1, 10) if wc.cell(r, 1).value == "Dorsal"][0]
-    eventos = [(k, f) for k, _, f in claves] + [(partido_key, fecha_p)]
+    eventos = sorted([(k, f, None) for k, _, f in claves] + [(k, f, c) for k, f, c in info_p],
+                     key=lambda t: t[1])
+    _ajusta_carga_ac(wc, hdr, len(eventos))
     for b in carga_ac._bloques(wc, hdr):
-        if len(b["dias"]) != len(eventos):
-            raise ValueError("CARGA_AC: el número de columnas por sesión no cuadra con la semana")
         pref = {"pl": "PL", "hsr": "HSR", "sprint": "Sprint"}[b["metrica"]]
-        for (col, _), (k, f) in zip(b["dias"], eventos):
-            suf = f" ({comp.split(',')[0]})" if k == partido_key else ""
+        for (col, _), (k, f, comp) in zip(b["dias"], eventos):
+            suf = f" ({comp.split(',')[0]})" if comp else ""
             wc.cell(hdr, col).value = f"{pref} {k}\n{f:%d/%m}{suf}"
+            filas_c, media_c = filas_jugadores(wc)
+            for r in list(filas_c.values()) + ([media_c] if media_c else []):
+                vaciar(wc.cell(r, col))
     wb.save(destino)
 
     # ACWR de arranque: a fecha del último dato disponible (el nuevo aún no tiene ninguno)
@@ -168,7 +240,7 @@ def abrir(tipo, partido_key, rival, lunes, estados=None, ref=None, coefs=None,
     ultimo = max((f for serie in hist.values() for (_, f) in serie), default=None)
     carga_ac.rellenar(wb, n, hist, asof=ultimo)
     wb.save(destino)
-    return destino, claves, (partido_key, fecha_p), roles
+    return destino, claves, [(k, f) for k, f, _ in info_p], roles
 
 
 def cambiar_tipo(n, tipo, estados=None):

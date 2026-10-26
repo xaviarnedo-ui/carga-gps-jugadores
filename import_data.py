@@ -456,7 +456,7 @@ def parse_carga_ac(ws):
              "cargaCronica" + suf: num(row[end - 1])}
         if suf == "":  # solo el bloque PL guarda las columnas por sesión (para la gráfica)
             for c in range(j + 1, end - 2):
-                m = re.search(r"PL\s+(S\d+\w*|PT\d+|J\d+)", str(hdr[c] or ""))
+                m = re.search(r"PL\s+(S\d+\w*|PT\d+|J\d+|COPA\d+)", str(hdr[c] or ""))
                 if m:
                     d["pl" + m.group(1)] = num(row[c])
         return d
@@ -504,13 +504,13 @@ def load_microcycle(path):
         # "Extra_*" (rehab controlado fuera de la planificación semanal) NO
         # entran en orden/cargasObjetivo/Disponibilidad: son visibles solo
         # para los jugadores de esa hoja (y el entrenador) — ver "extras".
-        if not re.match(r"(S\d+|PT\d+|J\d+)\w*$", key):
+        if not re.match(r"(S\d+|PT\d+|J\d+|COPA\d+)\w*$", key):
             if key.lower().startswith("extra"):
                 extras[key] = parse_extra(wb[name])
             continue
         a1 = str(wb[name].cell(1, 1).value or "").upper()
         # hoja de partido: PTx_GPS (pretemporada) o Jx_GPS (liga); A1 empieza por "PARTIDO"
-        if a1.startswith("PARTIDO") or re.match(r"(PT|J)\d", key):
+        if a1.startswith("PARTIDO") or re.match(r"(PT|J|COPA)\d", key):
             partidos[key] = parse_match(wb[name])
             orden.append(("partido", key, partidos[key]["date"]))
         else:

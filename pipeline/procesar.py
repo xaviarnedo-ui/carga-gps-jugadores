@@ -145,6 +145,14 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
                                "día que una sesión, pásalo junto al PDF de esa sesión.")
     fecha = (principal or infs[0]).fecha
     key = principal.codigo if principal else f"Extra_{fecha:%d-%m}"
+    if key == "COPA":                                 # título "COPA ELDENSE": la Copa de esa semana
+        n, ruta = localizar_por_fecha(fecha)
+        _wb = openpyxl.load_workbook(ruta, read_only=True)
+        copas = [x[:-4] for x in _wb.sheetnames if re.match(r"^COPA\d+_GPS$", x)]
+        _wb.close()
+        if len(copas) != 1:
+            raise NecesitaDecision(f"No encuentro una única hoja de Copa en el Microciclo {n}: {copas}")
+        key = copas[0]
     n, ruta = localizar(key) if principal else localizar_por_fecha(fecha)
     wb = openpyxl.load_workbook(ruta)
     wt = openpyxl.load_workbook(C.TIPO_XLSX)
