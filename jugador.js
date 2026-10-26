@@ -867,66 +867,109 @@
     if (!state.partido || !ms.some(function (x) { return x.key === state.partido; })) state.partido = ms[0].key;
     state.pmet = state.pmet || "distancia";
     state.pmodo = state.pmodo || "total";
+    state.psort = state.psort || "dorsal";
     var cur = ms.filter(function (x) { return x.key === state.partido; })[0], s = cur.s;
     var met = PM.filter(function (x) { return x.key === state.pmet; })[0];
-    var por90 = state.pmodo === "90" && met.key !== "velMax";
-    var dec = (met.key === "velMax") ? 1 : (por90 && (met.key === "sprint" || met.key === "acc" || met.key === "dec")) ? 1 : 0;
+    var modo = state.pmodo;                       // total | min | 90
+    var MINMIN = 30;                              // por minuto / por 90': fuera los cameos
+    // valor de un jugador en una métrica según el modo (vel. máx nunca se normaliza)
+    function val(p, mins, k) {
+      var v = pval(p, k);
+      if (v == null || k === "velMax" || modo === "total") return v;
+      if (!(mins >= MINMIN)) return null;
+      return modo === "min" ? v / mins : v / mins * 90;
+    }
+    function decs(k) {
+      if (k === "velMax") return 1;
+      if (modo === "min") return (k === "distancia" || k === "hmld") ? 1 : 2;
+      if (modo === "90") return (k === "sprint" || k === "acc" || k === "dec") ? 1 : 0;
+      return 0;
+    }
+    function fv(v, k) { return v == null ? "—" : fmtDec(v, decs(k)); }
+    function corto(n) { return String(n || "").split(",")[0]; }
 
     var pills = '<div class="pills">' + ms.map(function (x) {
-      return '<button class="pill is-match' + (x.key === state.partido ? " is-active" : "") + '" data-partido="' + x.key + '">' + (x.key.indexOf("COPA") === 0 ? "Copa" : x.key) +
+      return '<button class="pill is-match' + (x.key === state.partido ? " is-active" : "") + '" data-partido="' + x.key + '">' +
+        (x.key.indexOf("COPA") === 0 ? "Copa" : x.key) +
         '<small>' + esc(("vs " + (x.s.rival || "")).slice(0, 14)) + '</small></button>';
     }).join("") + '</div>';
 
     var jug = (s.players || []).filter(function (p) { return p.distancia && p.distancia.real != null; }).map(function (p) {
-      var mins = minutos(p.duracion), v = pval(p, met.key);
-      if (por90) v = (v != null && mins >= 30) ? v / mins * 90 : null;
-      return { p: p, mins: mins, v: v };
+      return { p: p, mins: minutos(p.duracion) };
     });
-    var conV = jug.filter(function (x) { return x.v != null; }).sort(function (a, b) { return b.v - a.v; });
+    var conV = jug.map(function (x) { return { p: x.p, mins: x.mins, v: val(x.p, x.mins, met.key) }; })
+      .filter(function (x) { return x.v != null; }).sort(function (a, b) { return b.v - a.v; });
     var max = conV.length ? conV[0].v : 1;
     var media = conV.length ? conV.reduce(function (a, x) { return a + x.v; }, 0) / conV.length : null;
-    var fueraNota = por90 ? jug.filter(function (x) { return x.v == null; }).length : 0;
+    var fuera = modo === "total" || met.key === "velMax" ? 0 : jug.filter(function (x) { return !(x.mins >= MINMIN); }).length;
 
     var chips = '<div class="pm-chips">' + PM.map(function (x) {
       return '<button class="pm-chip' + (x.key === met.key ? " is-active" : "") + '" data-pmet="' + x.key + '">' + esc(x.label) + '</button>';
     }).join("") + '</div>';
-    var modo = met.key === "velMax" ? "" : '<div class="pm-modo">' +
-      '<button class="pm-chip' + (!por90 ? " is-active" : "") + '" data-pmodo="total">Total</button>' +
-      '<button class="pm-chip' + (por90 ? " is-active" : "") + '" data-pmodo="90">Por 90′</button></div>';
+    var modos = '<div class="pm-modo">' + [["total", "Total"], ["min", "Por minuto"], ["90", "Por 90′"]].map(function (m) {
+      return '<button class="pm-chip' + (modo === m[0] ? " is-active" : "") + '" data-pmodo="' + m[0] + '">' + m[1] + '</button>';
+    }).join("") + '</div>';
+    var unidad = met.key === "velMax" ? "km/h" : (modo === "min" ? met.unit + "/min" : modo === "90" ? met.unit + " cada 90′" : met.unit);
 
     var rank = conV.map(function (x, i) {
       var p = x.p, me = p.dorsal === DORSAL;
       var w = Math.max(2, Math.round(x.v / max * 100));
-      var tags = (p.estimado ? ' <em class="pm-tag">estimado</em>' : '') + (p.proxyDe ? ' <em class="pm-tag">proxy</em>' : '');
+      var tags = (p.estimado ? ' <em class="pm-tag">est.</em>' : '') + (p.proxyDe ? ' <em class="pm-tag">proxy</em>' : '');
       return '<div class="pm-row' + (me ? " is-me" : "") + '">' +
         '<span class="pm-pos">' + (i + 1) + '</span>' +
-        '<span class="pm-name"><b>' + p.dorsal + '</b> ' + esc(p.jugador) + tags +
+        '<span class="pm-name"><b>' + p.dorsal + '</b> ' + esc(corto(p.jugador)) + tags +
         '<small>' + (x.mins != null ? Math.round(x.mins) + '′' : '') + '</small></span>' +
         '<span class="pm-bar"><i style="width:' + w + '%"></i>' +
         (media ? '<s style="left:' + Math.min(100, media / max * 100) + '%"></s>' : '') + '</span>' +
-        '<span class="pm-val">' + fmtDec(x.v, dec) + '</span></div>';
+        '<span class="pm-val">' + fv(x.v, met.key) + '</span></div>';
     }).join("");
 
-    var tabla = '<div class="pm-scroll"><table class="pm-tbl"><thead><tr><th>#</th><th class="l">Jugador</th><th>Min</th>' +
-      PM.map(function (x) { return '<th>' + esc(x.short) + '</th>'; }).join("") + '</tr></thead><tbody>' +
-      jug.slice().sort(function (a, b) { return a.p.dorsal - b.p.dorsal; }).map(function (x) {
-        var p = x.p;
-        return '<tr' + (p.dorsal === DORSAL ? ' class="is-me"' : '') + '><td>' + p.dorsal + '</td><td class="l">' + esc(p.jugador) + '</td>' +
-          '<td>' + (x.mins != null ? Math.round(x.mins) : '—') + '</td>' +
-          PM.map(function (mm) { var v = pval(p, mm.key); return '<td>' + (mm.key === "velMax" ? fmtDec(v, 1) : fmt(v)) + '</td>'; }).join("") + '</tr>';
-      }).join("") + '</tbody></table></div>';
+    // tabla: todas las métricas en el mismo modo, ordenable tocando la cabecera
+    var cols = [{ key: "dorsal", short: "#" }, { key: "mins", short: "MIN" }].concat(PM);
+    var filas = jug.map(function (x) {
+      var r = { p: x.p, mins: x.mins, v: {} };
+      PM.forEach(function (mm) { r.v[mm.key] = val(x.p, x.mins, mm.key); });
+      return r;
+    });
+    var sk = state.psort, asc = !!state.psortAsc;
+    filas.sort(function (a, b) {
+      var va = sk === "dorsal" ? a.p.dorsal : sk === "mins" ? a.mins : a.v[sk];
+      var vb = sk === "dorsal" ? b.p.dorsal : sk === "mins" ? b.mins : b.v[sk];
+      if (va == null && vb == null) return a.p.dorsal - b.p.dorsal;
+      if (va == null) return 1;
+      if (vb == null) return -1;
+      var d = (sk === "dorsal" ? va - vb : vb - va);
+      return asc ? -d : d;
+    });
+    var tabla = '<table class="pm-tbl"><thead><tr>' + cols.map(function (c) {
+      var on = c.key === sk;
+      return '<th class="' + (c.key === "dorsal" ? "l" : "") + (on ? " is-sort" : "") + '" data-psort="' + c.key + '">' +
+        esc(c.key === "dorsal" ? "Jugador" : c.short) + (on ? (asc ? "▲" : "▼") : "") + '</th>';
+    }).join("") + '</tr></thead><tbody>' + filas.map(function (r) {
+      var p = r.p;
+      return '<tr' + (p.dorsal === DORSAL ? ' class="is-me"' : '') + '>' +
+        '<td class="l"><b>' + p.dorsal + '</b> ' + esc(corto(p.jugador)) + '</td>' +
+        '<td' + (sk === "mins" ? ' class="is-sort"' : '') + '>' + (r.mins != null ? Math.round(r.mins) : '—') + '</td>' +
+        PM.map(function (mm) { return '<td' + (sk === mm.key ? ' class="is-sort"' : '') + '>' + fv(r.v[mm.key], mm.key) + '</td>'; }).join("") +
+        '</tr>';
+    }).join("") + '</tbody></table>';
+
+    var notaModo = modo === "min" ? 'Por minuto: cada dato dividido entre los minutos jugados (ritmo). ' :
+      modo === "90" ? 'Por 90′: lo que harías a ese ritmo en un partido de 90′. ' : 'Total: lo que hizo cada uno en el partido; jugar más minutos suma más. ';
+    if (fuera) notaModo += 'Fuera quien jugó menos de ' + MINMIN + '′ (' + fuera + '). ';
 
     return pills +
-      '<div class="card"><div class="card__title">Partido ' + esc(cur.key) + ' <span class="count">vs ' + esc(s.rival || "—") + ' · ' + esc(fdate(s.date)) + '</span></div>' +
-      '<div class="muted" style="margin-bottom:10px">Los datos de todo el equipo en este partido. Tú sales resaltado; la línea vertical es la media del equipo.</div>' +
-      (s.estimado ? '<div class="alert alert--info" style="margin-bottom:10px">' + iconWarn() + '<div><b>Datos estimados.</b> No hay GPS real de este partido.</div></div>' : '') +
-      chips + modo +
+      '<div class="card pm-card"><div class="card__title">' + (cur.key.indexOf("COPA") === 0 ? "Copa" : "Partido " + esc(cur.key)) +
+      ' <span class="count">vs ' + esc(s.rival || "—") + ' · ' + esc(fdate(s.date)) + '</span></div>' +
+      (s.estimado ? '<div class="alert alert--info" style="margin-bottom:8px">' + iconWarn() + '<div><b>Datos estimados.</b> No hay GPS real de este partido.</div></div>' : '') +
+      chips + modos +
+      '<div class="pm-sub">' + esc(met.label) + ' · ' + esc(unidad) + ' · media equipo <b>' + fv(media, met.key) + '</b> (línea vertical)</div>' +
       '<div class="pm-rank">' + (rank || '<p class="muted">Sin datos.</p>') + '</div>' +
-      '<div class="muted" style="font-size:11px;margin-top:6px">' +
-      (por90 ? 'Por 90′: lo que harías al ritmo de tus minutos en un partido de 90′. Fuera quien jugó menos de 30′' + (fueraNota ? ' (' + fueraNota + ')' : '') + '. ' : '') +
-      'Media del equipo: <b>' + fmtDec(media, dec) + '</b>. Jugar más minutos suma más total: usa «Por 90′» para comparar el ritmo.</div>' +
       '</div>' +
-      '<div class="card"><div class="card__title">Todos los datos <span class="count">por dorsal</span></div>' + tabla + '</div>';
+      '<div class="card pm-card"><div class="card__title">Todos los datos <span class="count">' +
+      (modo === "min" ? "por minuto" : modo === "90" ? "por 90′" : "total") + ' · toca para ordenar</span></div>' +
+      tabla +
+      '<div class="muted pm-foot">' + notaModo + 'Tú sales resaltado.</div></div>';
   }
 
   /* ----------------------------- router ------------------------------ */
@@ -954,6 +997,12 @@
     if (pm) { state.pmet = pm.dataset.pmet; render(); }
     var pmo = e.target.closest("[data-pmodo]");
     if (pmo) { state.pmodo = pmo.dataset.pmodo; render(); }
+    var ps = e.target.closest("[data-psort]");
+    if (ps) {
+      var k = ps.dataset.psort;
+      if (state.psort === k) state.psortAsc = !state.psortAsc; else { state.psort = k; state.psortAsc = false; }
+      render();
+    }
   });
 
   /* ----------------------------- tema -------------------------------- */

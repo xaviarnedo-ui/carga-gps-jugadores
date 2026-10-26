@@ -403,30 +403,41 @@ table.grid .obj{color:var(--txt-2); font-size:11px}
 .pitem__chev{color:var(--neutro)}
 
 /* ===================== PARTIDO (comparativa de equipo) ===================== */
-.pm-chips,.pm-modo{display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; padding-bottom:2px}
+.pm-card{padding:12px 10px}
+.pm-chips,.pm-modo{display:flex; gap:5px; overflow-x:auto; scrollbar-width:none; padding-bottom:2px}
 .pm-chips::-webkit-scrollbar,.pm-modo::-webkit-scrollbar{display:none}
-.pm-modo{margin-top:6px}
-.pm-chip{flex:0 0 auto; border:1px solid var(--line); background:var(--surface); color:var(--txt-2); font:600 12px var(--font); padding:5px 11px; border-radius:999px; cursor:pointer}
+.pm-modo{margin-top:5px}
+.pm-chip{flex:0 0 auto; border:1px solid var(--line); background:var(--surface); color:var(--txt-2); font:600 11.5px var(--font); padding:4px 9px; border-radius:999px; cursor:pointer}
 .pm-chip.is-active{background:var(--navy); border-color:var(--navy); color:#fff}
-.pm-rank{display:flex; flex-direction:column; gap:2px; margin-top:12px}
-.pm-row{display:grid; grid-template-columns:18px minmax(0,1.25fr) minmax(0,1fr) auto; align-items:center; gap:8px; padding:5px 6px; border-radius:8px}
+.pm-sub{font-size:11px; color:var(--txt-2); margin:8px 0 2px}
+.pm-rank{display:flex; flex-direction:column; gap:0}
+.pm-row{display:grid; grid-template-columns:16px minmax(0,1.15fr) minmax(0,1fr) auto; align-items:center; gap:6px; padding:2px 4px; border-radius:6px}
 .pm-row.is-me{background:var(--oro-bg); box-shadow:inset 3px 0 0 var(--oro)}
-.pm-pos{font-size:11px; color:var(--txt-2); text-align:right; font-variant-numeric:tabular-nums}
-.pm-name{font-size:12.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.pm-name b{color:var(--txt-2); font-weight:700; margin-right:2px}
-.pm-name small{color:var(--txt-2); font-size:10.5px; margin-left:5px}
-.pm-tag{font-style:normal; font-size:9.5px; font-weight:700; color:var(--naranja); margin-left:3px}
-.pm-bar{position:relative; height:10px; background:var(--line); border-radius:999px}
+.pm-pos{font-size:10px; color:var(--txt-2); text-align:right; font-variant-numeric:tabular-nums}
+.pm-name{font-size:11.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.pm-name b{color:var(--txt-2); font-weight:700; margin-right:1px}
+.pm-name small{color:var(--txt-2); font-size:9.5px; margin-left:4px}
+.pm-tag{font-style:normal; font-size:9px; font-weight:700; color:var(--naranja); margin-left:3px}
+.pm-bar{position:relative; height:8px; background:var(--line); border-radius:999px}
 .pm-bar i{position:absolute; left:0; top:0; bottom:0; background:var(--azul); border-radius:999px}
 .pm-row.is-me .pm-bar i{background:var(--oro)}
-.pm-bar s{position:absolute; top:-3px; bottom:-3px; width:2px; margin-left:-1px; background:var(--txt); opacity:.55; border-radius:1px}
-.pm-val{font-size:12.5px; font-weight:700; font-variant-numeric:tabular-nums; min-width:44px; text-align:right}
-.pm-scroll{overflow-x:auto; margin:0 -4px}
-.pm-tbl{width:100%; border-collapse:collapse; font-size:11.5px; font-variant-numeric:tabular-nums; white-space:nowrap}
-.pm-tbl th{font-size:10px; color:var(--txt-2); font-weight:700; padding:5px 5px; border-bottom:1px solid var(--line); text-align:right}
-.pm-tbl td{padding:5px 5px; border-bottom:1px solid var(--line); text-align:right}
+.pm-bar s{position:absolute; top:-2px; bottom:-2px; width:2px; margin-left:-1px; background:var(--txt); opacity:.55; border-radius:1px}
+.pm-val{font-size:11.5px; font-weight:700; font-variant-numeric:tabular-nums; min-width:38px; text-align:right}
+.pm-tbl{width:100%; table-layout:auto; border-collapse:collapse; font-size:10px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.pm-tbl th{font-size:9px; color:var(--txt-2); font-weight:700; padding:4px 2px; border-bottom:1px solid var(--line); text-align:right; cursor:pointer; user-select:none; letter-spacing:-.1px}
+.pm-tbl td{padding:3px 2px; border-bottom:1px solid var(--line); text-align:right}
 .pm-tbl .l{text-align:left}
+.pm-tbl td.l{max-width:72px; overflow:hidden; text-overflow:ellipsis}
+.pm-tbl td.l b{color:var(--txt-2)}
+.pm-tbl .is-sort{color:var(--ink); font-weight:700}
+.pm-tbl th.is-sort{color:var(--ink)}
 .pm-tbl tr.is-me td{background:var(--oro-bg); font-weight:700}
+.pm-foot{font-size:10.5px; margin-top:6px}
+@media (min-width:900px) and (pointer:fine){
+  .pm-tbl{font-size:12px} .pm-tbl th{font-size:10.5px; padding:5px 6px} .pm-tbl td{padding:4px 6px}
+  .pm-tbl td.l{max-width:none}
+  .pm-name,.pm-val{font-size:12.5px} .pm-row{padding:3px 6px}
+}
 
 /* ===================== BOTTOM NAV ===================== */
 .bottomnav{
