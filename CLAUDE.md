@@ -66,7 +66,7 @@ Una sesión fuera de calendario (p. ej. un martes) va con `--extra` → hoja `Ex
   sin los ACWR = 0. Se recalcula siempre desde las hojas *_GPS de todos los microciclos.
 - REF_PARTIDO = MEDIA PONDERADA POR MINUTOS (desde 19/10/2026; antes media simple) de la
   pretemporada (peso 1) y de cada partido de Liga (peso = minutos jugados / duración real, máx. 1;
-  los cameos cuentan pero poco) J≥2 con GPS real (+ partidos con el filial si el preparador lo pide, `--ref-duracion`). Los
+  los cameos cuentan pero poco) J≥2 con GPS real (+ Copa, `COPA#`, como uno de Liga más desde el 26/10; + partidos con el filial si el preparador lo pide, `--ref-duracion`). Los
   componentes viven en `GPS/ref_componentes.json` (desde 28/09; antes cada partido promediaba
   con el valor anterior). Cada partido entra como `estimado_T`, con
   `estimado_T = Real + (T − M)·(Real/M)·0,90` y **T = duración real de ese partido** (minutos
