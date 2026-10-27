@@ -659,6 +659,7 @@ function viewInicio(root){
     else if(p.acwr && p.acwr<0.8 && baseFiable(p.dorsal)) iss.push(["low",`PL ${f2(p.acwr)} (infracarga)`]);
     if(baseFiable(p.dorsal)) [["acwrHsr","HSR"],["acwrSprint","Sprint"]].forEach(([k,l])=>{
       const v=p[k]; if(v!=null && v>1.3) iss.push([v>1.5?"hi":"mid",`${l} ${f2(v)}`]);
+      else if(v!=null && v<0.8) iss.push(["low",`${l} ${f2(v)} (infracarga)`]);
     });
     if(!iss.length) return;
     const sev=iss.map(x=>x[0]).sort((a,b)=>sevOrd[a]-sevOrd[b])[0];
@@ -666,6 +667,68 @@ function viewInicio(root){
       (sev==="hi"?" <small>— riesgo (&gt;1,50)</small>":sev==="mid"?" <small>— precaución (1,31–1,50)</small>":"")});
   });
   add("Carga · ACWR", carga);
+
+  // --- series diarias (entrenos, partidos y extras) para los avisos de 7 días ---
+  const dias={}, vmd={};
+  (D.microciclos||[]).forEach(k2=>{ const M=D[k2];
+    [M.sesiones,M.partidos,M.extras].forEach(g=>Object.values(g||{}).forEach(s=>{ if(!s.date) return;
+      (s.players||[]).forEach(p=>{ const v=k=> p[k]&&typeof p[k]==="object"? p[k].real : null;
+        if(v("distancia")==null && p.playerLoad==null) return;
+        const o=((dias[p.dorsal]=dias[p.dorsal]||{})[s.date]=dias[p.dorsal][s.date]||{distancia:0,hsr:0,sprint:0});
+        ["distancia","hsr","sprint"].forEach(k=>{ o[k]+= v(k)||0; });
+        if(p.velMax!=null && !p.proxyDe && !p.estimado) (vmd[p.dorsal]=vmd[p.dorsal]||{})[s.date]=Math.max((vmd[p.dorsal]||{})[s.date]||0,p.velMax);
+      }); })); });
+  const ultimo = Object.values(dias).flatMap(o=>Object.keys(o)).sort().pop();
+  const menos=(iso,n)=>{ const d=new Date(iso+"T12:00:00"); d.setDate(d.getDate()-n); return d.toISOString().slice(0,10); };
+  const suma=(d,k,desde,hasta)=> Object.entries(dias[d]||{}).filter(([f])=>f>desde&&f<=hasta).reduce((a,[,o])=>a+o[k],0);
+  const disponible=d=>{ const r=rp[d]; return !(r&&r.dispo&&r.dispo!=="ok") && !LESIONES.some(l=>l.dorsal===d&&!l.alta); };
+  const nombreLista=a=>a.map(x=>`<b>${nom(x)}</b>`).join(", ");
+
+  // 1 · picos semanales: últimos 7 días frente a la media de las 4 semanas anteriores
+  const picos=[];
+  if(ultimo) D.refPartido.players.forEach(r=>{ const d=r.dorsal;
+    if(!disponible(d) || !r.primeraFecha || r.primeraFecha>menos(ultimo,35)) return;
+    const msg=[];
+    [["hsr","HSR"],["sprint","sprints"]].forEach(([k,l])=>{
+      const ahora=suma(d,k,menos(ultimo,7),ultimo);
+      const prev=[1,2,3,4].map(i=>suma(d,k,menos(ultimo,7*(i+1)),menos(ultimo,7*i)));
+      const media=prev.reduce((a,b)=>a+b,0)/4;
+      if(media>0 && ahora>media*1.15) msg.push(`${l} +${Math.round((ahora/media-1)*100)}% (${fmtN(ahora,0)} frente a ${fmtN(media,0)})`);
+    });
+    if(msg.length) picos.push({sev: msg.some(t=>/\+(\d+)/.exec(t)&&+/\+(\d+)/.exec(t)[1]>=30)?"hi":"mid", go:"jugadores",
+      txt:`<b>${nom(d)}</b> · últimos 7 días: ${msg.join(" · ")} <small>— media de las 4 semanas anteriores</small>`});
+  });
+  add("Picos de alta velocidad (7 días)", picos);
+
+  // 2 · exposición a velocidad máxima: ≥95% de su vel. máx de partido en los últimos 7 días
+  const sinVmax=[];
+  if(ultimo) D.refPartido.players.forEach(r=>{ const d=r.dorsal;
+    if(!disponible(d) || !r.velMax || !Object.keys(dias[d]||{}).some(f=>f>menos(ultimo,7))) return;
+    const mx=Math.max(0,...Object.entries(vmd[d]||{}).filter(([f])=>f>menos(ultimo,7)&&f<=ultimo).map(([,v])=>v));
+    if(mx < r.velMax*0.95) sinVmax.push({d, pc:Math.floor(mx/r.velMax*100)});
+  });
+  add("Velocidad máxima (7 días)", sinVmax.length ? [{sev:"mid", go:"jugadores",
+    txt:`Sin llegar al 95% de su vel. máx en los últimos 7 días: ${sinVmax.sort((a,b)=>a.pc-b.pc).map(x=>`<b>${nom(x.d)}</b> <small>(${x.pc}%)</small>`).join(", ")}`}] : []);
+
+  // 3 · no titulares muy por debajo: carga de 7 días (en partidos de su referencia) frente a la mediana de los titulares
+  const brecha=[];
+  const ultPartido=(()=>{ let best=null; (D.microciclos||[]).forEach(k2=>Object.entries(D[k2].partidos||{}).forEach(([k,s])=>{
+    if(s.date&&s.date<=ultimo&&(s.players||[]).some(p=>p.distancia&&p.distancia.real!=null)&&(!best||s.date>best.date)) best={k,...s}; })); return best; })();
+  if(ultimo && ultPartido){
+    const mins=x=>{ if(x==null) return 0; const t=String(x); if(t.includes(":")){const q=t.split(":").map(Number); return q.length===3?q[0]*60+q[1]+q[2]/60:q[0]+q[1]/60;} return parseFloat(t)||0; };
+    const tit=new Set(ultPartido.players.filter(p=>mins(p.duracion)>=60).map(p=>p.dorsal));
+    const rel=(d,k)=>{ const r=rp[d]; return r&&r[k]? suma(d,k,menos(ultimo,7),ultimo)/r[k] : null; };
+    const med=k=>{ const xs=[...tit].map(d=>rel(d,k)).filter(v=>v!=null).sort((a,b)=>a-b); return xs.length? xs[Math.floor(xs.length/2)] : null; };
+    const MT={distancia:med("distancia"), hsr:med("hsr"), sprint:med("sprint")};
+    D.refPartido.players.forEach(r=>{ const d=r.dorsal;
+      if(tit.has(d) || !disponible(d) || !Object.keys(dias[d]||{}).some(f=>f>menos(ultimo,7))) return;
+      const bajo=[["distancia","distancia"],["hsr","HSR"],["sprint","sprints"]].map(([k,l])=>{ const v=rel(d,k), t=MT[k];
+        return v!=null&&t&&v<t*0.75 ? `${l} ${Math.round(v/t*100)}%` : null; }).filter(Boolean);
+      if(bajo.length) brecha.push({sev:bajo.length>=2?"hi":"mid", go:"jugadores",
+        txt:`<b>${nom(d)}</b> · no fue titular en ${ultPartido.k}: en 7 días lleva ${bajo.join(" · ")} de lo de un titular`});
+    });
+  }
+  add("No titulares por debajo (7 días)", brecha);
 
   // 2 · Próximo partido
   const pend=keys.filter(k=>isM(k) && !done(ses(k)));
@@ -726,7 +789,9 @@ function viewInicio(root){
     devs.sort((a,b)=>Math.abs(b[1])-Math.abs(a[1])).forEach(([d,v])=>
       us.push({sev:v>0?"mid":"low", go:"sesion", txt:`<b>${nom(d)}</b> · ${v>0?"+":""}${Math.round(v*100)}% sobre lo previsto de media en ${ultK} — ${v>0?"carga muy alta":"muy por debajo"}`}));
     const ta=ult.teamAvg||{};
-    ["hsr","sprint","acc","dec","distancia"].forEach(k=>{
+    // en MD+1 la media mezcla recuperación y compensación (y los titulares no tienen objetivo de alta
+    // intensidad): no se compara la media del equipo
+    if(!/^MD\+1/.test(String(ult.role||"").replace(/\s+/g,""))) ["hsr","sprint","acc","dec","distancia"].forEach(k=>{
       const c=ta[k]; if(!c||!c.obj||c.real==null) return;
       const r=c.real/c.obj;
       if(r<0.7||r>1.3) us.push({sev:r>1?"mid":"low", go:"sesion",
@@ -781,7 +846,8 @@ function viewInicio(root){
   secs.forEach(([tit,lst])=>{
     const sec=el("div",{class:"av-sec"});
     sec.innerHTML=`<h3>${tit} <span class="cnt">${lst.length}</span></h3>`;
-    if(!lst.length){ sec.appendChild(el("div",{class:"av-none"}, tit.startsWith("Carga")?"Toda la plantilla dentro de zona en PL, HSR y Sprint.":"Nada que destacar.")); }
+    if(!lst.length){ sec.appendChild(el("div",{class:"av-none"}, tit.startsWith("Carga")?"Toda la plantilla dentro de zona en PL, HSR y Sprint.":
+      tit.startsWith("Velocidad")?"Todos los disponibles han llegado al 95% de su vel. máx esta semana.":"Nada que destacar.")); }
     lst.slice().sort((a,b)=>sevOrd[a.sev]-sevOrd[b.sev]).forEach(a=>{
       const d=el("div",{class:`av ${a.sev}${a.go?" go":""}`});
       d.innerHTML=`<span class="ic">${ICO[a.sev]}</span><div>${a.txt}</div>`;
@@ -791,7 +857,10 @@ function viewInicio(root){
     p.appendChild(sec);
   });
   p.appendChild(el("p",{class:"note", style:"padding:0 16px 14px"},
-    "ACWR: rojo >1,50 · naranja 1,31–1,50 · azul <0,80 (HSR y Sprint solo con base fiable: disponible y ≥21 días en el equipo). "+
+    "ACWR: rojo >1,50 · naranja 1,31–1,50 · azul <0,80 en PL, HSR y Sprint (HSR y Sprint solo con base fiable: disponible y ≥21 días en el equipo). "+
+    "Picos: HSR o sprints de los últimos 7 días más de un 15% por encima de la media de las 4 semanas anteriores (rojo desde +30%). "+
+    "Velocidad máxima: disponibles que no han llegado al 95% de su mejor vel. máx de partido en 7 días. "+
+    "No titulares: carga de 7 días (entrenos + partido, en partidos de su referencia) por debajo del 75% de la mediana de los titulares del último partido. "+
     "Última sesión: jugadores a ±50% de lo previsto de media y métricas del equipo fuera de 70–130%."));
   root.appendChild(p);
 }

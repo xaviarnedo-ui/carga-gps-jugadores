@@ -63,6 +63,11 @@ Una sesión fuera de calendario (p. ej. un martes) va con `--extra` → hoja `Ex
   MD-3: HSR y Sprints ×2; Distancia y HMLD ×1, `C.PESOS_DIA`); el de la semana = media de sus sesiones.
   Sprints en el %: dentro de ±2 = 100%; fuera solo cuenta lo que se sale (`C.ratio_cumplimiento`).
   MD+1 titulares: solo objetivo de Distancia y HMLD (coeficiente vacío en MICROCICLOS = sin objetivo).
+- Coeficientes A y B revisados el 27/10/2026 (MD-4 volumen y frenadas, MD-3 día de velocidad, MD-2 muy baja,
+  MD-1 = lo que se hace y sin objetivo de sprint; +1 Suplentes sin cambios). Ver la propuesta en GPS/Informes.
+- Avisos del dashboard (Inicio): ACWR PL/HSR/Sprint (>1,3 y <0,8), picos de HSR/sprints de 7 días >+15% sobre
+  la media de las 4 semanas anteriores, quién no ha llegado al 95% de su vel. máx en 7 días y no titulares por
+  debajo del 75% de la carga de 7 días de los titulares del último partido. Sin extra fijo en MD-4 (de momento).
 - full: Obj/Real/Dif/semáforo, cuenta en la media. rehab: solo Real, no cuenta en la media,
   sí en Acumulado y ACWR. lesión: nada (0 en ACWR). descanso: sin objetivo ese día.
 - Los cambios de estado se aplican desde ese día en adelante, nunca hacia atrás.

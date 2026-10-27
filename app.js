@@ -253,6 +253,8 @@
           if (v != null && v > 1.30) {
             out.push({ sev: v > 1.50 ? "hi" : "mid",
               msg: "ACWR " + x[1] + " " + fmtDec(v, 2) + " — " + (v > 1.50 ? "muy por encima de 1,50" : "zona de peligro (>1,30)") + "." });
+          } else if (v != null && v < 0.80) {
+            out.push({ sev: "low", msg: "ACWR " + x[1] + " " + fmtDec(v, 2) + " — infracarga (<0,80)." });
           }
         });
       }
