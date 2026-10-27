@@ -31,13 +31,10 @@
     return v.toLocaleString("es-ES", { minimumFractionDigits: d, maximumFractionDigits: d });
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
-  function semaphore(real, obj) {
-    if (real == null || obj == null || obj === 0) return null;
-    var p = (real - obj) / obj;
-    if (p < -0.10) return "sem-azul";
-    if (p <= 0.10) return "sem-verde";
-    if (p <= 0.20) return "sem-naranja";
-    return "sem-rojo";
+  // tolerancia por métrica (reglas.js): sin métrica, ±10% (p. ej. el % de cumplimiento)
+  function semaphore(real, obj, metric) {
+    var z = window.GPS_REGLAS.zona(real, obj, metric);
+    return z ? "sem-" + z : null;
   }
   function acwrClass(v) {
     if (v == null) return "";
@@ -169,8 +166,8 @@
   function mk(html) { var t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstChild; }
 
   /* ------------------------- componente métrica --------------------- */
-  function mrow(label, unit, me, obj, team, meDec) {
-    var sem = semaphore(me, obj);
+  function mrow(label, unit, me, obj, team, meDec, key) {
+    var sem = semaphore(me, obj, key);
     var scale = Math.max(me || 0, obj || 0, team || 0) * 1.12 || 1;
     var meW = me != null ? Math.max(2, Math.min(100, me / scale * 100)) : 0;
     var objL = obj != null ? Math.max(0, Math.min(100, obj / scale * 100)) : null;
@@ -187,15 +184,15 @@
       '<div class="mv"><span class="mv__n">' + (obj != null ? f(obj) : "—") + '</span><span class="mv__k">objetivo</span></div>' +
       '<div class="mv mv--team"><span class="mv__n">' + (team != null ? f(team) : "—") + '</span><span class="mv__k">media equipo</span></div>' +
       '</div>' +
-      objBar(meW, objL, sem) +
+      objBar(meW, objL, sem, window.GPS_REGLAS.banda(obj, key), scale) +
       '</div>';
   }
   // barra de cumplimiento: relleno hasta lo conseguido (color = semáforo),
-  // franja verde = ±10 % del objetivo, tick + triángulo = objetivo, bolita = dónde ha llegado.
-  function objBar(meW, objL, sem) {
+  // franja verde = zona de cada métrica (reglas.js), tick + triángulo = objetivo, bolita = dónde ha llegado.
+  function objBar(meW, objL, sem, band, scale) {
     if (objL == null) return "";
-    var lo = Math.max(0, objL * 0.9).toFixed(1);
-    var hi = Math.min(100, objL * 1.1).toFixed(1);
+    var lo = Math.max(0, band ? band[0] / scale * 100 : objL * 0.9).toFixed(1);
+    var hi = Math.min(100, band ? band[1] / scale * 100 : objL * 1.1).toFixed(1);
     return '<div class="obar" style="--me:' + meW.toFixed(1) + '%;--obj:' + objL.toFixed(1) + '%;--lo:' + lo + '%;--hi:' + hi + '%">' +
       '<div class="obar__track"><span class="obar__zone"></span><span class="obar__fill ' + (sem || "") + '"></span></div>' +
       '<span class="obar__obj"></span><span class="obar__end ' + (sem || "") + '"></span></div>';
@@ -297,7 +294,7 @@
         var c = p ? p[mm.key] : null;
         var me = c ? c.real : null;
         var obj = estado === "rehab" ? null : (c ? c.obj : null);   // partidos de Liga: objetivo por minutos
-        return mrow(mm.label, mm.unit, me, obj, estado === "rehab" ? null : teamOf(mm.key), 0);
+        return mrow(mm.label, mm.unit, me, obj, estado === "rehab" ? null : teamOf(mm.key), 0, mm.key);
       }).join("");
     }
 
@@ -339,7 +336,7 @@
     var rows = METRICS.map(function (mm) {
       var c = p ? p[mm.key] : null;
       var t = ta[mm.key] || {};
-      return mrow(mm.label, mm.unit, c ? c.real : null, c ? c.obj : null, t.real != null ? t.real : null, 0);
+      return mrow(mm.label, mm.unit, c ? c.real : null, c ? c.obj : null, t.real != null ? t.real : null, 0, mm.key);
     }).join("");
 
     return '<div class="card">' +
@@ -686,12 +683,17 @@
       var closed = meta.estado !== "activo";
       var doneSes = sesKeys.filter(function (k) { return isCompleted(getSession(m, k)); }).length;
 
-      var ratios = [];
-      METRICS.forEach(function (mm) {
-        var c = so[mm.key];
-        if (c && c.obj && c.real != null) ratios.push(c.real / c.obj);
+      // % de la semana = media del cumplimiento de cada sesión hecha (con los pesos del día, reglas.js)
+      var cs = [];
+      sesKeys.forEach(function (k) {
+        var ss = getSession(m, k);
+        if (!isCompleted(ss)) return;
+        var sp = (ss.players || []).find(function (x) { return x.dorsal === DORSAL; });
+        if (!sp || sp.estado) return;
+        var c = window.GPS_REGLAS.cumplimiento(function (kk) { return sp[kk]; }, ss.role);
+        if (c != null) cs.push(c);
       });
-      var cumpl = ratios.length ? Math.round(ratios.reduce(function (a, b) { return a + b; }, 0) / ratios.length * 100) : null;
+      var cumpl = cs.length ? Math.round(cs.reduce(function (a, b) { return a + b; }, 0) / cs.length) : null;
 
       var plTot = 0, plAny = false, nNa = 0;
       keys.forEach(function (k) {
@@ -758,7 +760,7 @@
 
       var mets = '<div class="hist-metrics">' + METRICS.map(function (mm) {
         var c = so[mm.key] || {};
-        var sem = semaphore(c.real, c.obj);
+        var sem = semaphore(c.real, c.obj, mm.key);
         var mv = matchVals[mm.key];
         var dp = c.obj ? Math.round((c.real - c.obj) / c.obj * 100) : null;
         return '<div class="hm' + (sem ? ' ' + sem : '') + '">' +
@@ -790,13 +792,9 @@
       sesKeys.forEach(function (k) {
         var sp = (getSession(m, k).players || []).find(function (x) { return x.dorsal === DORSAL; });
         if (!sp) return;
-        var rs = [];
-        METRICS.forEach(function (mm) {
-          var cc = sp[mm.key];
-          if (cc && cc.obj && cc.real != null) rs.push(cc.real / cc.obj);
-        });
-        if (rs.length) {
-          var sc = semaphore(rs.reduce(function (a, b) { return a + b; }, 0) / rs.length * 100, 100);
+        var cc = window.GPS_REGLAS.cumplimiento(function (kk) { return sp[kk]; }, getSession(m, k).role);
+        if (cc != null) {
+          var sc = semaphore(cc, 100);
           if (sc) barSem[k] = sc;
         }
       });

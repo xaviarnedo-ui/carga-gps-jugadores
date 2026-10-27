@@ -37,6 +37,13 @@ GRIS_MEDIA = "FFD9D9D9"
 FULL, REHAB, LESION, DESCANSO, NC, NOCONV = "full", "rehab", "lesion", "descanso", "nc", "noconv"
 ESTADOS = (FULL, REHAB, LESION, DESCANSO, NC, NOCONV)
 
+# --- tolerancia del semáforo y pesos del % de cumplimiento (decisión del preparador, 27/10/2026)
+# zona verde: ±10% Distancia/HMLD, ±20% HSR/ACC/DEC, ±2 sprints (valor absoluto); naranja hasta el
+# doble de la tolerancia por encima, rojo más; azul por debajo. Mismo criterio en reglas.js.
+TOLERANCIA = {"distancia": ("pct", 10), "hmld": ("pct", 10), "hsr": ("pct", 20),
+              "acc": ("pct", 20), "dec": ("pct", 20), "sprint": ("abs", 2)}
+PESOS_DIA = {"MD-4": {"acc": 2, "dec": 2}, "MD-3": {"hsr": 2, "sprint": 2}}
+
 SHEET_KEY_RE = re.compile(r"^(S\d+\w*|PT\d+|J\d+|COPA\d+)_GPS$")
 
 

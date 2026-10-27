@@ -57,7 +57,10 @@ Una sesión fuera de calendario (p. ej. un martes) va con `--extra` → hoja `Ex
 
 - Objetivo del día = `round(REF_PARTIDO × coeficiente, 1)` (hoja MICROCICLOS). MD+1: titular
   si jugó ≥60' el partido anterior, suplente si <60' o no jugó.
-- Semáforo: < −10% azul · ±10% verde · +10–20% naranja · > +20% rojo (objetivo 0 → verde).
+- Semáforo (desde 27/10/2026, `C.TOLERANCIA` y `reglas.js`): zona verde Distancia/HMLD ±10%, HSR/ACC/DEC ±20%,
+  Sprints ±2 en valor absoluto; azul por debajo, naranja hasta el doble de la tolerancia por encima, rojo más
+  (objetivo 0 → verde). % de cumplimiento de una sesión = media ponderada de real/obj (MD-4: ACC y DEC ×2;
+  MD-3: HSR y Sprints ×2; Distancia y HMLD ×1, `C.PESOS_DIA`); el de la semana = media de sus sesiones.
 - full: Obj/Real/Dif/semáforo, cuenta en la media. rehab: solo Real, no cuenta en la media,
   sí en Acumulado y ACWR. lesión: nada (0 en ACWR). descanso: sin objetivo ese día.
 - Los cambios de estado se aplican desde ese día en adelante, nunca hacia atrás.

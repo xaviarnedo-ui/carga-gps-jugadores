@@ -38,13 +38,10 @@
   function signed(p) { return p == null ? "—" : (p > 0 ? "+" : "") + p + "%"; }
   function fdate(iso) { if (!iso) return "—"; var p = iso.split("-"); return p[2] + "/" + p[1] + "/" + p[0]; }
 
-  function semaphore(real, obj) {
-    if (real == null || obj == null || obj === 0) return null;
-    var p = (real - obj) / obj;
-    if (p < -0.10) return "sem-azul";
-    if (p <= 0.10) return "sem-verde";
-    if (p <= 0.20) return "sem-naranja";
-    return "sem-rojo";
+  // tolerancia por métrica (reglas.js): sin métrica, ±10% (p. ej. el % de cumplimiento)
+  function semaphore(real, obj, metric) {
+    var z = window.GPS_REGLAS.zona(real, obj, metric);
+    return z ? "sem-" + z : null;
   }
   function acwrClass(v) {
     if (v == null) return "";
@@ -142,15 +139,27 @@
       '<text x="' + c + '" y="' + c + '" text-anchor="middle" dominant-baseline="central" class="donut__t">' + esc(txt) + '</text>' +
       '</svg>';
   }
-  // % medio de consecución sobre todos los parámetros con objetivo (real/obj)
+  // % de cumplimiento: media ponderada de real/obj según el día (reglas.js; MD-4 pesa ACC/DEC,
+  // MD-3 pesa HSR/Sprints). En la vista de microciclo viene ya calculado (_cumpl = media de sesiones).
+  var CTX_ROLE = null;
   function achievedPct(p) {
+    if (p._cumpl !== undefined) return p._cumpl;
     if (p.estimado) return null;            // datos reconstruidos (fallo de GPS): no se valora
-    var acc = 0, n = 0;
-    METRICS.forEach(function (mm) {
-      var c = p[mm.key];
-      if (c && c.obj && c.real != null) { acc += c.real / c.obj; n++; }
+    return window.GPS_REGLAS.cumplimiento(function (k) { return p[k]; }, CTX_ROLE);
+  }
+  // cumplimiento de la semana de un jugador = media del % de las sesiones ya hechas con objetivo
+  function weekPct(m, dorsal) {
+    var v = [];
+    sessionKeys(m).forEach(function (k) {
+      if (isMatch(m, k)) return;
+      var s = getSession(m, k);
+      if (!isCompleted(s)) return;
+      var p = (s.players || []).find(function (x) { return x.dorsal === dorsal; });
+      if (!p || p.estado || p.estimado) return;
+      var c = window.GPS_REGLAS.cumplimiento(function (kk) { return p[kk]; }, s.role);
+      if (c != null) v.push(c);
     });
-    return n ? acc / n * 100 : null;
+    return v.length ? v.reduce(function (a, b) { return a + b; }, 0) / v.length : null;
   }
   function playerDonut(p, match) {
     if (p.readaptObj && !p.estado) return '<span class="tag tag--rehab" title="Readaptación con objetivos individuales; no cuenta para la media del equipo">Readapt. · obj. individual</span> ' + playerDonutBase(p, match);
@@ -167,16 +176,17 @@
   }
 
   /* ------------------------- componente métrica (fila) --------------------- */
-  function objBar(meW, objL, sem) {
+  function objBar(meW, objL, sem, band, scale) {
     if (objL == null) return "";
-    var lo = Math.max(0, objL * 0.9).toFixed(1), hi = Math.min(100, objL * 1.1).toFixed(1);
+    var lo = Math.max(0, band ? band[0] / scale * 100 : objL * 0.9).toFixed(1),
+        hi = Math.min(100, band ? band[1] / scale * 100 : objL * 1.1).toFixed(1);
     return '<div class="obar" style="--me:' + meW.toFixed(1) + '%;--obj:' + objL.toFixed(1) + '%;--lo:' + lo + '%;--hi:' + hi + '%">' +
       '<div class="obar__track"><span class="obar__zone"></span><span class="obar__fill ' + (sem || "") + '"></span></div>' +
       '<span class="obar__obj"></span><span class="obar__end ' + (sem || "") + '"></span></div>';
   }
   // fila de métrica: valor principal / objetivo / referencia (equipo o jugador)
-  function mrow(label, unit, me, obj, ref, refLabel, dec) {
-    var sem = semaphore(me, obj);
+  function mrow(label, unit, me, obj, ref, refLabel, dec, key) {
+    var sem = semaphore(me, obj, key);
     var scale = Math.max(me || 0, obj || 0, ref || 0) * 1.12 || 1;
     var meW = me != null ? Math.max(2, Math.min(100, me / scale * 100)) : 0;
     var objL = obj != null ? Math.max(0, Math.min(100, obj / scale * 100)) : null;
@@ -191,7 +201,7 @@
       '<div class="mv"><span class="mv__n">' + (obj != null ? f(obj) : "—") + '</span><span class="mv__k">objetivo</span></div>' +
       '<div class="mv mv--team"><span class="mv__n">' + (ref != null ? f(ref) : "—") + '</span><span class="mv__k">' + esc(refLabel || "media equipo") + '</span></div>' +
       '</div>' +
-      objBar(meW, objL, sem) +
+      objBar(meW, objL, sem, window.GPS_REGLAS.banda(obj, key), scale) +
       '</div>';
   }
 
@@ -265,7 +275,7 @@
     var rep = { "sem-azul": 0, "sem-verde": 0, "sem-naranja": 0, "sem-rojo": 0 }, comp = 0, scored = [];
     if (!isMatch(m, lastKey)) last.players.forEach(function (p) {
       if (p.estado) return;
-      var s = semaphore(p.distancia.real, p.distancia.obj);
+      var s = semaphore(p.distancia.real, p.distancia.obj, "distancia");
       if (s) { rep[s]++; comp++; }
       var acc = 0, n = 0;
       METRICS.forEach(function (mm) { var c = p[mm.key]; if (c && c.obj) { acc += (c.real - c.obj) / c.obj; n++; } });
@@ -459,7 +469,7 @@
   function teamMetricCards(ta, dec) {
     return '<div class="tm-grid">' + METRICS.map(function (mm) {
       var c = ta[mm.key] || {};
-      var sem = c.obj != null ? semaphore(c.real, c.obj) : null;
+      var sem = c.obj != null ? semaphore(c.real, c.obj, mm.key) : null;
       var f = fmt;
       return '<div class="tm">' +
         '<div class="tm__k">' + esc(mm.label) + ' <span class="mrow__unit">' + (mm.unit || "") + '</span></div>' +
@@ -486,7 +496,7 @@
     var body = conObj
       ? METRICS.map(function (mm) {
           var c = p[mm.key] || {};
-          return mrow(mm.label, mm.unit, null, c.obj, null, "", 0);
+          return mrow(mm.label, mm.unit, null, c.obj, null, "", 0, mm.key);
         }).join("")
       : '<div class="muted">Sin objetivo para esta sesión (lesión, readaptación o descanso).</div>';
     return playerDetails(p.dorsal, p.jugador, p.grupo, sm, body + shareLine(p.dorsal, p.jugador));
@@ -497,7 +507,7 @@
     var rows = ex.players.map(function (p) {
       var body = METRICS.map(function (mm) {
         var c = p[mm.key] || {};
-        return mrow(mm.label, mm.unit, c.real, null, null, "", 0);
+        return mrow(mm.label, mm.unit, c.real, null, null, "", 0, mm.key);
       }).join("") + '<div class="info-metrics" style="margin-top:9px">' +
         kpi(p.velMax != null ? fmtDec(p.velMax, 1) : "—", "Vel. máx km/h") +
         kpi(fmt(p.playerLoad), "Player Load") +
@@ -535,6 +545,7 @@
     var match = isMatch(m, state.session);
     var done = isCompleted(s);
     var ta = s.teamAvg || {};
+    CTX_ROLE = match ? null : s.role;
 
     var head = '<div class="card"><div class="card__title">Media del equipo <span class="count">' +
       state.session + ' · ' + esc(match ? ('vs ' + (s.rival || '—')) : roleShort(sessionRole(s))) + ' · ' + esc(fdate(s.date)) + '</span></div>' +
@@ -569,7 +580,7 @@
         body += METRICS.map(function (mm) {
           var c = p[mm.key] || {};
           var tr = (ta[mm.key] || {}).real;
-          return mrow(mm.label, mm.unit, c.real, (reh ? null : c.obj), reh ? null : tr, "media equipo", 0);
+          return mrow(mm.label, mm.unit, c.real, (reh ? null : c.obj), reh ? null : tr, "media equipo", 0, mm.key);
         }).join("");
         body += '<div class="info-metrics" style="margin-top:9px">' +
           kpi(p.velMax != null ? fmtDec(p.velMax, 1) : "—", "Vel. máx km/h") +
@@ -640,7 +651,13 @@
 
     // a mitad de semana se compara con el objetivo a fecha (lo que ya se debería llevar)
     var enCurso = pend.length > 0;
-    var vista = enCurso ? co.players.map(aFecha) : co.players;
+    CTX_ROLE = null;
+    // % de cada jugador = media del cumplimiento de sus sesiones ya hechas (con los pesos del día)
+    var vista = co.players.map(function (p) {
+      var q = enCurso ? aFecha(p) : Object.assign({}, p);
+      q._cumpl = weekPct(m, p.dorsal);
+      return q;
+    });
     var taV = enCurso ? aFecha(ta) : ta;
     var head = '<div class="card"><div class="card__title">Media del equipo <span class="count">acumulado · ' + sesK.length + ' sesiones</span></div>' +
       cumplEquipo(vista, enCurso ? 'a fecha' : '') +
@@ -654,7 +671,7 @@
     var rows = players.map(function (p) {
       var body = METRICS.map(function (mm) {
         var c = p[mm.key] || {};
-        return mrow(mm.label, mm.unit, c.real, c.obj, (ta[mm.key] || {}).real, "media equipo", 0);
+        return mrow(mm.label, mm.unit, c.real, c.obj, (ta[mm.key] || {}).real, "media equipo", 0, mm.key);
       }).join("") + shareLine(p.dorsal, p.jugador);
       return playerDetails(p.dorsal, p.jugador, p.grupo, playerDonut(p, false), body);
     }).join("");

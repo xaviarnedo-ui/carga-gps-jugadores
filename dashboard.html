@@ -264,6 +264,7 @@
 <main class="wrap" id="view"></main>
 
 <script src="data.js?v=53"></script>
+<script src="reglas.js?v=1"></script>
 <script>
 "use strict";
 function buildRAW(d){
@@ -867,13 +868,17 @@ function viewEvolucion(root){
   // objective band
   if(showBand && objY.some(v=>v!=null)){
     if(state.norm==="pctobj"){
-      svg.appendChild(el("rect",{class:"band-fill", x:mL, y:Y(110), width:iw, height:Y(90)-Y(110)}));
+      const tp=(window.GPS_REGLAS.TOL[state.metric]||["pct",10]); const tv=tp[0]==="pct"?tp[1]:20;
+      svg.appendChild(el("rect",{class:"band-fill", x:mL, y:Y(100+tv), width:iw, height:Y(100-tv)-Y(100+tv)}));
       svg.appendChild(el("line",{class:"band-line", x1:mL, x2:W-mR, y1:Y(100), y2:Y(100)}));
     } else {
       const dpath = line(objY.map((v,i)=> v==null?null:[X(i),Y(v)]));
-      // simple filled ribbon +/-10%
-      const up=line(objY.map((v,i)=> v==null?null:[X(i),Y(v*1.1)]));
-      const dn=objY.map((v,i)=> v==null?null:[X(i),Y(v*0.9)]).filter(Boolean).reverse();
+      // zona verde de la métrica (reglas.js); por minuto, en proporción
+      const bd=v=>{ const b=window.GPS_REGLAS.banda(v, state.metric)||[v*0.9,v*1.1];
+        if(state.norm==="permin" && window.GPS_REGLAS.TOL[state.metric] && window.GPS_REGLAS.TOL[state.metric][0]==="abs") return [v*0.8, v*1.2];
+        return b; };
+      const up=line(objY.map((v,i)=> v==null?null:[X(i),Y(bd(v)[1])]));
+      const dn=objY.map((v,i)=> v==null?null:[X(i),Y(bd(v)[0])]).filter(Boolean).reverse();
       if(up && dn.length){
         svg.appendChild(el("path",{class:"band-fill", d: up+" L"+dn.map(p=>p.join(",")).join(" L")+" Z"}));
       }
@@ -1004,8 +1009,7 @@ function viewSesion(root){
   const bajas = visibles.filter(pr=>esBaja(pr,s));
   // cumplimiento medio de cada jugador = media de real/objetivo en las métricas con objetivo
   const conObj = !s.isMatch || !!s.objNota;   // partidos de Liga: objetivo por minutos jugados
-  const cumplSes = pr => { if(pr.est) return null; const ps=RADAR_METRICS.filter(k=>{const c=raw(pr,k); return c.obj && c.real!=null;}).map(k=>raw(pr,k).real/raw(pr,k).obj*100);
-    return ps.length? ps.reduce((a,b)=>a+b,0)/ps.length : null; };
+  const cumplSes = pr => pr.est ? null : cumplPr(pr, s.role);   // pesos del día (MD-4: ACC/DEC · MD-3: HSR/Sprints)
   players.forEach(pr=> pr.cumpl = conObj? cumplSes(pr) : null);
   // por minuto (filtro Normalización): obj y real entre los minutos de cada jugador; en partidos,
   // fuera quien jugó menos de 30′ (su ritmo se dispara)
@@ -1078,10 +1082,7 @@ function viewSesion(root){
     p.appendChild(bar);
   }
   const vObj = conObj && state.sesObj;
-  p.appendChild(legendRow([
-    {c:"var(--sem-corto)",t:"< 90% obj."},{c:"var(--sem-ok)",t:"90–110%"},
-    {c:"var(--sem-pasado)",t:"110–120%"},{c:"var(--sem-alto)",t:"> 120%"},
-  ]));
+  p.appendChild(legendRow(LEYENDA_ZONAS));
 
   // tabla: cada jugador × cada métrica (obj/real/%); la cabecera de cada métrica ordena
   const wrap=el("div",{class:"tbl-scroll sticky-col"});
@@ -1100,9 +1101,9 @@ function viewSesion(root){
   tb.innerHTML=`<thead><tr>${head1}</tr><tr>${head2}</tr></thead>`;
   const body=el("tbody");
 
-  function pctCell(pct){
+  function pctCell(pct, real, obj, k){
     if(pct==null) return `<td class="mono pct">–</td>`;
-    const col = pct<90?"var(--sem-corto)": pct<=110?"var(--sem-ok)": pct<=120?"var(--sem-pasado)":"var(--sem-alto)";
+    const col = zonaColor(real, obj, k) || semColor(pct);
     return `<td class="mono pct" style="color:${col}; font-weight:700">${Math.round(pct)}%</td>`;
   }
 
@@ -1118,7 +1119,7 @@ function viewSesion(root){
       const o=porMin(c.obj,pr), r=porMin(c.real,pr);
       if(vObj) cells.push(`<td class="mono v-obj grp-start">${o!=null?fmtN(o,decM(k)):"–"}</td>`);
       cells.push(`<td class="mono v-real${vObj?"":" grp-start"}" title="${o!=null?"Objetivo "+fmtN(o,decM(k)):""}">${r!=null?fmtN(r,decM(k)):"–"}</td>`);
-      cells.push(pctCell(pct));
+      cells.push(pctCell(pct, c.real, c.obj, k));
     });
     if(pr.vmax!=null||pr.pl!=null) hasAny=true;
     cells.push(`<td class="mono grp-start">${pr.vmax!=null?fmtN(pr.vmax,1):"–"}</td>`);
@@ -1138,7 +1139,7 @@ function viewSesion(root){
     const mo = pm ? (()=>{ const xs=players.map(pr=>porMin(raw(pr,k).obj,pr)).filter(v=>v!=null); return xs.length? xs.reduce((a,b)=>a+b,0)/xs.length : null; })() : teamObjV;
     if(vObj) teamCells.push(`<td class="mono v-obj grp-start">${mo!=null?fmtN(mo,decM(k)):"–"}</td>`);
     teamCells.push(`<td class="mono v-real${vObj?"":" grp-start"}" title="${mo!=null?"Objetivo "+fmtN(mo,decM(k)):""}">${mr!=null?fmtN(mr,decM(k)):"–"}</td>`);
-    teamCells.push(pctCell(pct));
+    teamCells.push(pctCell(pct, teamReal, teamObjV, k));
   });
   teamCells.push(`<td class="mono grp-start">${vmaxTeam!=null?fmtN(vmaxTeam,1):"–"}</td>`);
   teamCells.push(`<td class="mono">${plTeam!=null?fmtN(plTeam,0):"–"}</td>`);
@@ -1279,6 +1280,8 @@ function acumuladoSemana(mc){
     const hecha = hechas.includes(s);
     s.players.forEach(pr=>{
       const r=f(pr.d); r.desde=desde[pr.d]||null; if(pr.fm) r.fm=true;
+      // % de cada sesión con objetivo (pesos del día); pendiente = sin hacer todavía
+      if(conObj(pr)){ (r.cs || (r.cs=[])).push(hecha ? (pr.est ? null : (cumplPr(pr, s.role) ?? 0)) : undefined); }
       RADAR_METRICS.forEach(k=>{ const c=raw(pr,k); suma(r.obj,k,c.obj); if(hecha) suma(r.objF,k,c.obj); });
       if(r.desde && !conObj(pr)){ if(conReal(pr)) r.parcial=true; return; }   // readaptación antes de volver
       RADAR_METRICS.forEach(k=> suma(r.acum,k,raw(pr,k).real));
@@ -1295,12 +1298,21 @@ function acumuladoSemana(mc){
   }));
   return {ses, hechas, filas:Object.values(filas).sort((a,b)=>a.d-b.d)};
 }
-// cumplimiento medio = media de (acumulado / objetivo) en las 6 métricas con objetivo > 0
+// cumplimiento de la semana = media del % de cada sesión con objetivo (pesos del día, reglas.js).
+// "a fecha": solo las sesiones ya hechas · "semana": las pendientes cuentan como 0
 function cumplMedio(r, refKey){
-  const ps = RADAR_METRICS.filter(k=> r[refKey][k]).map(k=> (r.acum[k]||0) / r[refKey][k] * 100);
-  return ps.length ? ps.reduce((a,b)=>a+b,0)/ps.length : null;
+  const cs=(r.cs||[]).filter(v=>v!==null);
+  const vals = refKey==="objF" ? cs.filter(v=>v!==undefined) : cs.map(v=> v===undefined ? 0 : v);
+  return vals.length ? vals.reduce((a,b)=>a+b,0)/vals.length : null;
 }
 const semColor = pct => pct==null? "var(--ink-3)" : pct<90?"var(--sem-corto)": pct<=110?"var(--sem-ok)": pct<=120?"var(--sem-pasado)":"var(--sem-alto)";
+// color por métrica con su tolerancia (reglas.js: Dist./HMLD ±10%, HSR/ACC/DEC ±20%, Sprints ±2)
+const ZCOL={azul:"var(--sem-corto)",verde:"var(--sem-ok)",naranja:"var(--sem-pasado)",rojo:"var(--sem-alto)"};
+const zonaColor=(real,obj,k)=>{ const z=window.GPS_REGLAS.zona(real,obj,k); return z? ZCOL[z] : null; };
+// % de cumplimiento de un jugador en una sesión (media ponderada según el día)
+const cumplPr=(pr,role)=> window.GPS_REGLAS.cumplimiento(k=>raw(pr,k), role);
+const LEYENDA_ZONAS=[{c:"var(--sem-corto)",t:"Por debajo de la zona"},{c:"var(--sem-ok)",t:"En zona (Dist./HMLD ±10% · HSR/ACC/DEC ±20% · Sprints ±2)"},
+  {c:"var(--sem-pasado)",t:"Por encima"},{c:"var(--sem-alto)",t:"Muy por encima (más del doble)"}];
 function panelAcumulado(){
   const conDatos = MICROS.filter(mc=> RAW.sessions.some(s=>s.mc===mc && !s.isMatch && sessionHasData(s)));
   if(state.acuMc==null || !conDatos.includes(state.acuMc)) state.acuMc = conDatos[conDatos.length-1];
@@ -1361,13 +1373,11 @@ function panelAcumulado(){
     {n:conObj.filter(r=>r.cumpl!=null && r.cumpl<90).length, l:"Por debajo (< 90%)"},
   ].map(k=>`<div class="kpi"><div class="n">${k.n}</div><div class="l">${k.l}</div></div>`).join("");
   p.appendChild(mini);
-  p.appendChild(legendRow([
-    {c:"var(--sem-corto)",t:"< 90%"},{c:"var(--sem-ok)",t:"90–110%"},
-    {c:"var(--sem-pasado)",t:"110–120%"},{c:"var(--sem-alto)",t:"> 120%"},
-  ]));
-  const pctCell = pct => {
+  p.appendChild(legendRow(LEYENDA_ZONAS));
+  p.appendChild(el("p",{class:"note", style:"padding:0 16px 6px"},"«Cumpl.» = media del % de cada sesión, con más peso en ACC/DEC el MD-4 y en HSR/Sprints el MD-3 (verde 90–110%). Las métricas, con la zona de cada una sobre el acumulado de la semana."));
+  const pctCell = (pct, real, obj, k) => {
     if(pct==null) return `<td class="mono">–</td>`;
-    const col = pct<90?"var(--sem-corto)": pct<=110?"var(--sem-ok)": pct<=120?"var(--sem-pasado)":"var(--sem-alto)";
+    const col = (k==="sprint" ? null : zonaColor(real, obj, k)) || semColor(pct);
     return `<td class="mono" style="color:${col}; font-weight:700">${Math.round(pct)}%</td>`;
   };
   const wrap=el("div",{class:"tbl-scroll sticky-col"});
@@ -1385,7 +1395,7 @@ function panelAcumulado(){
       const o=r[refKey][k], a=r.acum[k];
       cells.push(`<td class="mono v-obj grp-start">${o!=null?fmtN(o,METRICS[k].dec):"–"}</td>`);
       cells.push(`<td class="mono v-real">${a!=null?fmtN(a,METRICS[k].dec):"–"}</td>`);
-      cells.push(conPct? pctCell(o? (a||0)/o*100 : null) : `<td class="mono">–</td>`);
+      cells.push(conPct? pctCell(o? (a||0)/o*100 : null, a||0, o, k) : `<td class="mono">–</td>`);
     });
     cells.push(`<td class="mono grp-start">${r.pl!=null?fmtN(r.pl,0):"–"}</td>`);
     cells.push(`<td class="mono">${r.min!=null?fmtN(r.min,0)+"′":"–"}</td>`);
@@ -1406,7 +1416,7 @@ function panelAcumulado(){
     RADAR_METRICS.forEach(k=>{
       const o=med[refKey][k], a=med.acum[k];
       cells.push(`<td class="mono v-obj grp-start">${fmtN(o,METRICS[k].dec)}</td><td class="mono v-real">${fmtN(a,METRICS[k].dec)}</td>`);
-      cells.push(pctCell(o? a/o*100 : null));
+      cells.push(pctCell(o? a/o*100 : null, a, o, k));
     });
     cells.push(`<td class="mono grp-start">${pls.length?fmtN(pls.reduce((a,b)=>a+b,0)/pls.length,0):"–"}</td>`);
     cells.push(`<td class="mono">${mins.length?fmtN(mins.reduce((a,b)=>a+b,0)/mins.length,0)+"′":"–"}</td>`);
@@ -1672,10 +1682,7 @@ function tablaJugadoresPartido(partidos){
 function viewJugadores(root){
   const p=panel("Mapa de jugadores",
     "Media de la temporada de cada jugador frente a su objetivo individual, por métrica. Verde = en objetivo, azul = por debajo, ámbar/rojo = por encima. Pulsa una fila para ver la ficha.");
-  p.appendChild(legendRow([
-    {c:"var(--sem-corto)",t:"< 90% obj."},{c:"var(--sem-ok)",t:"90–110%"},
-    {c:"var(--sem-pasado)",t:"110–120%"},{c:"var(--sem-alto)",t:"> 120%"},
-  ]));
+  p.appendChild(legendRow(LEYENDA_ZONAS));
 
   const cols=RADAR_METRICS;
   const players=PLAYERS.filter(pl=> state.group==="all" || pl.g===state.group);
@@ -1685,9 +1692,10 @@ function viewJugadores(root){
       const pr=s.players.find(x=>x.d===dorsal); if(!pr) return;
       const c=raw(pr,m); if(c.obj!=null && c.real!=null){ real+=c.real; obj+=c.obj; n++; }
     });
-    return n? {pct:real/obj*100, n} : null;
+    return n? {pct:real/obj*100, n, real:real/n, obj:obj/n} : null;
   };
-  const colOf=pct=> pct==null?"var(--sem-na)": pct<90?"var(--sem-corto)": pct<=110?"var(--sem-ok)": pct<=120?"var(--sem-pasado)":"var(--sem-alto)";
+  // color con la zona de cada métrica sobre la media por sesión
+  const colOf=(c,m)=> !c ? "var(--sem-na)" : (zonaColor(c.real, c.obj, m) || semColor(c.pct));
 
   const wrap=el("div",{class:"tbl-scroll"});
   const tb=el("table");
@@ -1699,7 +1707,7 @@ function viewJugadores(root){
     tr.appendChild(el("td",{class:"pos-"+pl.g}, GROUPS[pl.g]||pl.g));
     cols.forEach(m=>{
       const c=cell(pl.d,m);
-      const td=el("td",{class:"hm-cell", style:`background:${colOf(c?.pct)}; color:#fff`});
+      const td=el("td",{class:"hm-cell", style:`background:${colOf(c,m)}; color:#fff`});
       td.innerHTML=`<span class="hm-val">${c?Math.round(c.pct)+"%":"–"}</span>`;
       tr.appendChild(td);
     });
@@ -1743,7 +1751,7 @@ function viewJugadores(root){
         el("td",{},bk),
         el("td",{class:"mono"},String(vn)),
         el("td",{class:"mono"},fmtN(val/vn, state.norm==="permin"?2:0)),
-        el("td",{class:"mono", style:pct!=null?`color:${colOf(pct)}`:""}, pct!=null?Math.round(pct)+"%":"–"),
+        el("td",{class:"mono", style:pct!=null?`color:${colOf({pct, real:real/n, obj:obj/n}, state.metric)}`:""}, pct!=null?Math.round(pct)+"%":"–"),
       ]));
     });
     t.appendChild(tbody); bt.appendChild(t); grid.appendChild(bt);

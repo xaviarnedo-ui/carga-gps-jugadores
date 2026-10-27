@@ -1,10 +1,10 @@
 """Hoja PDF de objetivos de una sesión para llevar al entrenamiento (A4 apaisado).
 
-Objetivo de cada jugador por métrica + zona verde (±10%), agrupado por posición; quien no tiene
+Objetivo de cada jugador por métrica + zona verde (C.TOLERANCIA), agrupado por posición; quien no tiene
 objetivo (lesión, rehab, descanso) va aparte. HTML → PDF con Chrome headless.
 
 Con `compensar=SXX` (sesión anterior) añade a cada jugador lo que le faltó en ella: en cada métrica
-que quedó por debajo de la zona verde (<90%), extra = objetivo − real. No se compensa a quien tiene
+que quedó por debajo de la zona verde, extra = objetivo − real. No se compensa a quien tiene
 objetivo individual de readaptación (su plan manda) ni la métrica cuyo ACWR está en rojo (>1,5;
 PL para distancia/HMLD/ACC/DEC).
 """
@@ -19,7 +19,7 @@ from . import carga_ac
 from . import config as C
 from . import estados as E
 from . import sesion
-from .xlsx import fecha_hoja, filas_jugadores, microciclos_existentes, num
+from .xlsx import fecha_hoja, filas_jugadores, microciclos_existentes, num, semaforo
 
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 SALIDA = os.path.join(C.GPS_DIR, "Informes", "Objetivos")
@@ -63,7 +63,7 @@ def _deficits(key_ant, fecha):
         if not any(v is not None for v in real.values()):
             continue
         falta = {k: obj[k] - real[k] for k, *_ in COLS
-                 if obj[k] and real[k] is not None and real[k] < obj[k] * 0.9}
+                 if obj[k] and real[k] is not None and semaforo(real[k], obj[k], k) == C.AZUL}
         if not falta:
             continue
         if E.objetivo_manual(key_ant, d, est):
@@ -116,7 +116,11 @@ def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False):
             vals = [extra.get(d, {}).get(k, 0) for d, o in en_media if o[k] is not None]
             med[k] = (med[k], sum(vals) / len(vals)) if vals and med[k] is not None else med[k]
 
-    def celda(v, dec, mas=None):
+    def zona(v, k):
+        tipo, t = C.TOLERANCIA.get(k, ("pct", 10))
+        return (max(0, v - t), v + t) if tipo == "abs" else (v * (1 - t / 100), v * (1 + t / 100))
+
+    def celda(v, dec, mas=None, k=None):
         if v is None:
             return '<td class="v">–</td>'
         if isinstance(v, tuple):  # media con compensación: (objetivo, extra medio)
@@ -125,8 +129,9 @@ def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False):
         if mas:
             return (f'<td class="v x"><b>{_fmt(v + mas, dec)}</b>'
                     f'<span>{_fmt(v, dec)} <i>+{_fmt(mas, dec)}</i></span></td>')
+        lo, hi = zona(v, k)
         return (f'<td class="v"><b>{_fmt(v, dec)}</b>'
-                f'<span>{_fmt(v * 0.9, dec)}–{_fmt(v * 1.1, dec)}</span></td>')
+                f'<span>{_fmt(lo, dec)}–{_fmt(hi, dec)}</span></td>')
 
     filas_html = []
     bloques = ([(None, sorted((x for g in con.values() for x in g), key=lambda x: x[0]))] if por_dorsal
@@ -140,17 +145,17 @@ def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False):
             tag = (' <em class="ro">readapt. · obj. individual</em>' if E.objetivo_manual(key, d, est)
                    else ' <em>fuera de media</em>' if d in fuera else "")
             filas_html.append(f'<tr><td class="d">{d}</td><td class="n">{nombre}{tag}</td>'
-                              + "".join(celda(obj[k], dec, extra.get(d, {}).get(k)) for k, _, _, dec in COLS)
+                              + "".join(celda(obj[k], dec, extra.get(d, {}).get(k), k) for k, _, _, dec in COLS)
                               + f'<td class="nt">{motivo.get(d, "")}</td></tr>')
     filas_html.append('<tr class="med"><td></td><td class="n">Media equipo</td>'
-                      + "".join(celda(med[k], dec) for k, _, _, dec in COLS) + '<td class="nt"></td></tr>')
+                      + "".join(celda(med[k], dec, None, k) for k, _, _, dec in COLS) + '<td class="nt"></td></tr>')
 
     sin_html = " · ".join(f"<b>{d}</b> {nom} <span>({e})</span>" for d, nom, e in sin) or "—"
     notas_fm = "; ".join(sorted({v for v in fuera.values() if v}))
-    sub = f"Objetivo individual = REF_PARTIDO × coeficiente {dia} (Tipo {tipo}) · en verde, zona ±10%"
+    sub = f"Objetivo individual = REF_PARTIDO × coeficiente {dia} (Tipo {tipo}) · en verde, zona: Dist./HMLD ±10% · HSR/ACC/DEC ±20% · Sprints ±2"
     if compensar:
         sub = (f"Naranja: total = objetivo hoy <b>+ lo que faltó en {compensar.upper()}</b> · "
-               f"resto: objetivo y zona ±10%")
+               f"resto: objetivo y zona verde")
     html = f"""<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Objetivos {key}</title><style>
 @page {{ size: A4 landscape; margin: 7mm 10mm; }}
 * {{ box-sizing: border-box; }}
@@ -190,7 +195,7 @@ tr:nth-child(even):not(.grp):not(.med) td {{ background: #fafafa; }}
         html += f"<br><b>Fuera de media</b> (objetivo individual, no cuentan para la media del equipo){': ' + notas_fm if notas_fm else ''}."
     if compensar:
         html += (f"<br><b>Compensación {compensar.upper()}:</b> en cada métrica que quedó por debajo de la zona "
-                 f"verde (&lt;90% del objetivo) se suma lo que faltó para llegar al 100%. No se compensa la "
+                 f"verde (Dist./HMLD −10%, HSR/ACC/DEC −20%, Sprints −2) se suma lo que faltó para llegar al 100%. No se compensa la "
                  f"métrica con ACWR en rojo (&gt;1,5) ni a quien sigue un plan individual de readaptación. "
                  f"La media equipo muestra el total y, debajo, objetivo + extra medio.")
     html += f"""<br><span>Generado el {dt.date.today():%d/%m/%Y} desde el Excel del Microciclo {n}.</span></div>

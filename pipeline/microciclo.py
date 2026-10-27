@@ -19,8 +19,8 @@ DIAS_SEMANA = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", 
 MESES_CORTOS = ["", "ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"]
 ESTRUCTURA = [(0, "MD+1"), (2, "MD-4"), (3, "MD-3"), (4, "MD-2"), (5, "MD-1")]   # (offset, día)
 TITULAR_MIN = 60
-LEYENDA = ("LEYENDA: AZUL < −10% (corto) · VERDE ±10% (cumplido) · NARANJA +10% a +20% (pasado) "
-           "· ROJO > +20% (muy pasado).")
+LEYENDA = ("LEYENDA: VERDE = en zona (Distancia y HMLD ±10%, HSR/ACC/DEC ±20%, Sprints ±2) · AZUL = por "
+           "debajo · NARANJA = por encima hasta el doble de la tolerancia · ROJO = más.")
 
 
 def roles_md1(ws_partido):

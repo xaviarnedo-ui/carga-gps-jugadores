@@ -197,7 +197,7 @@ def escribir_objetivos(ws, objetivos, nota, sin_valorar=()):
                 if d in sin_valorar:
                     pinta(cell_r, None)
                     continue
-                pinta(cell_r, semaforo(real, obj[m]))
+                pinta(cell_r, semaforo(real, obj[m], m))
                 if obj[m]:
                     pcts.append(real / obj[m] * 100)
             else:

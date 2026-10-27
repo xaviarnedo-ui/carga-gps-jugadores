@@ -69,7 +69,7 @@ def recalcular(wb):
             ws.cell(fila, c).value = limpio(o)
             ws.cell(fila, c + 1).value = limpio(r1(a))
             ws.cell(fila, c + 2).value = limpio(r1(a - o)) if o is not None and a is not None else None
-            pinta(ws.cell(fila, c + 1), semaforo(a, obj_fecha[m]) if obj_fecha[m] else None)
+            pinta(ws.cell(fila, c + 1), semaforo(a, obj_fecha[m], m) if obj_fecha[m] else None)
 
     from . import estados as E
     fuera = {}
@@ -90,7 +90,7 @@ def recalcular(wb):
         ws.cell(fila_media, c).value = limpio(o)
         ws.cell(fila_media, c + 1).value = limpio(a)
         ws.cell(fila_media, c + 2).value = limpio(r1(a - o))
-        pinta(ws.cell(fila_media, c + 1), semaforo(a, of) if of else None)
+        pinta(ws.cell(fila_media, c + 1), semaforo(a, of, m) if of else None)
 
     # nota de quien vuelve a mitad de semana (fila media+3, se reescribe siempre)
     nota = ws.cell(fila_media + 3, 1)

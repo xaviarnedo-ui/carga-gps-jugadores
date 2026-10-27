@@ -126,7 +126,7 @@ def rellenar(ws, datos, estados_dia):
             real_c.value = d[m]
             if (est == C.FULL or manual) and obj[m] is not None:
                 dif_c.value = limpio(r1(d[m] - obj[m]))
-                color = semaforo(d[m], obj[m])
+                color = semaforo(d[m], obj[m], m)
             else:
                 vaciar(dif_c)
                 color = None
@@ -157,7 +157,7 @@ def escribir_media(ws, filas, fila_media, estados_dia):
         ws.cell(fila_media, c).value = limpio(o)
         ws.cell(fila_media, c + 1).value = limpio(r)
         ws.cell(fila_media, c + 2).value = limpio(r1(r - o)) if o is not None and r is not None else None
-        color = semaforo(r, o)
+        color = semaforo(r, o, m)
         pinta(ws.cell(fila_media, c + 1), color), pinta(ws.cell(fila_media, c + 2), color)
     ws.cell(fila_media, C.SES_VMAX).value = media(C.SES_VMAX, 2)
     ws.cell(fila_media, C.SES_PL).value = limpio(media(C.SES_PL, 1))

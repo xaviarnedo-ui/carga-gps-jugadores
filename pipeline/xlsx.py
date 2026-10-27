@@ -30,18 +30,20 @@ def pinta(cell, par):
     cell.font = font
 
 
-def semaforo(real, obj):
-    """Semáforo de cumplimiento. Objetivo 0 -> verde (no hay nada que cumplir ni pasarse)."""
+def semaforo(real, obj, metrica=None):
+    """Semáforo de cumplimiento con la tolerancia de cada métrica (C.TOLERANCIA; sin métrica,
+    ±10%). Objetivo 0 -> verde (no hay nada que cumplir ni pasarse)."""
     if real is None or obj is None:
         return None
     if obj == 0:
         return C.VERDE
-    pct = (real - obj) / obj * 100
-    if pct < -10:
+    tipo, t = C.TOLERANCIA.get(metrica, ("pct", 10))
+    d = real - obj if tipo == "abs" else (real - obj) / obj * 100
+    if d < -t:
         return C.AZUL
-    if pct <= 10:
+    if d <= t:
         return C.VERDE
-    if pct <= 20:
+    if d <= 2 * t:
         return C.NARANJA
     return C.ROJO
 
