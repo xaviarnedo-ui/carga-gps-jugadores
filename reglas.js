@@ -28,15 +28,24 @@
   }
   function dia(role) { return String(role || "").replace(/\s+/g, "").toUpperCase(); }
   function peso(role, m) { var p = PESOS[dia(role)]; return (p && p[m]) || 1; }
+  // real/obj para el %; sprints: dentro de ±2 = 100%, fuera solo cuenta lo que se sale de la zona
+  // (sobre un objetivo mínimo de 2). Igual que config.ratio_cumplimiento.
+  function ratio(real, obj, m) {
+    var t = tol(m);
+    if (t[0] !== "abs") return real / obj;
+    var d = real - obj;
+    if (Math.abs(d) <= t[1]) return 1;
+    return 1 + (d > 0 ? d - t[1] : d + t[1]) / Math.max(obj, t[1]);
+  }
   // get(m) -> {obj, real}; devuelve % (100 = cumplido) o null
   function cumplimiento(get, role) {
     var a = 0, w = 0;
     METR.forEach(function (m) {
       var c = get(m);
-      if (c && c.obj && c.real != null) { var k = peso(role, m); a += k * c.real / c.obj; w += k; }
+      if (c && c.obj && c.real != null) { var k = peso(role, m); a += k * ratio(c.real, c.obj, m); w += k; }
     });
     return w ? a / w * 100 : null;
   }
   function textoTol(m) { var t = tol(m); return t[0] === "abs" ? "±" + t[1] : "±" + t[1] + "%"; }
-  window.GPS_REGLAS = { TOL: TOL, PESOS: PESOS, zona: zona, banda: banda, peso: peso, cumplimiento: cumplimiento, textoTol: textoTol };
+  window.GPS_REGLAS = { TOL: TOL, PESOS: PESOS, zona: zona, banda: banda, peso: peso, ratio: ratio, cumplimiento: cumplimiento, textoTol: textoTol };
 })();

@@ -29,5 +29,18 @@ class Tolerancias(unittest.TestCase):
         self.assertEqual(semaforo(7, 1.5, "sprint"), C.ROJO)       # +5,5
 
 
+class CumplimientoSprints(unittest.TestCase):
+    def test_dentro_de_zona_es_100(self):
+        self.assertEqual(C.ratio_cumplimiento(3, 1.5, "sprint"), 1.0)
+        self.assertEqual(C.ratio_cumplimiento(0, 1.8, "sprint"), 1.0)
+
+    def test_fuera_cuenta_lo_que_se_sale(self):
+        self.assertAlmostEqual(C.ratio_cumplimiento(7, 1.5, "sprint"), 1 + 3.5 / 2)   # +5,5 → +3,5 fuera
+        self.assertAlmostEqual(C.ratio_cumplimiento(3, 8, "sprint"), 1 - 3 / 8)       # −5 → −3 fuera
+
+    def test_resto_igual(self):
+        self.assertEqual(C.ratio_cumplimiento(120, 100, "hsr"), 1.2)
+
+
 if __name__ == "__main__":
     unittest.main()

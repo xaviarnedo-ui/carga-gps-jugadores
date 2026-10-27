@@ -264,7 +264,7 @@
 <main class="wrap" id="view"></main>
 
 <script src="data.js?v=53"></script>
-<script src="reglas.js?v=1"></script>
+<script src="reglas.js?v=2"></script>
 <script>
 "use strict";
 function buildRAW(d){
@@ -1115,7 +1115,7 @@ function viewSesion(root){
     RADAR_METRICS.forEach(k=>{
       const c=raw(pr,k);
       if(c.real!=null) hasAny=true;
-      const pct=(c.obj&&c.real!=null)? c.real/c.obj*100 : null;
+      const pct=(c.obj&&c.real!=null)? window.GPS_REGLAS.ratio(c.real,c.obj,k)*100 : null;
       const o=porMin(c.obj,pr), r=porMin(c.real,pr);
       if(vObj) cells.push(`<td class="mono v-obj grp-start">${o!=null?fmtN(o,decM(k)):"–"}</td>`);
       cells.push(`<td class="mono v-real${vObj?"":" grp-start"}" title="${o!=null?"Objetivo "+fmtN(o,decM(k)):""}">${r!=null?fmtN(r,decM(k)):"–"}</td>`);
@@ -1134,7 +1134,7 @@ function viewSesion(root){
   if(conObj) teamCells.push(`<td class="mono grp-start cum" style="font-weight:700; color:${semColor(cumplEq)}">${cumplEq!=null?Math.round(cumplEq)+"%":"–"}</td>`);
   RADAR_METRICS.forEach(k=>{
     const teamReal=teamPoint(s,k,"abs"), teamObjV=teamObj(s,k,"abs");
-    const pct=(teamObjV&&teamReal!=null)? teamReal/teamObjV*100 : null;
+    const pct=(teamObjV&&teamReal!=null)? window.GPS_REGLAS.ratio(teamReal,teamObjV,k)*100 : null;
     const mr = pm ? (()=>{ const xs=players.map(pr=>porMin(raw(pr,k).real,pr)).filter(v=>v!=null); return xs.length? xs.reduce((a,b)=>a+b,0)/xs.length : null; })() : teamReal;
     const mo = pm ? (()=>{ const xs=players.map(pr=>porMin(raw(pr,k).obj,pr)).filter(v=>v!=null); return xs.length? xs.reduce((a,b)=>a+b,0)/xs.length : null; })() : teamObjV;
     if(vObj) teamCells.push(`<td class="mono v-obj grp-start">${mo!=null?fmtN(mo,decM(k)):"–"}</td>`);

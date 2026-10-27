@@ -44,10 +44,12 @@ def ref_partido(wb_tipo):
 
 
 def objetivo(ref_jugador, coef_dia):
-    """round(REF × coef, 1) por métrica. None si no hay referencia."""
+    """round(REF × coef, 1) por métrica. None si no hay referencia; coeficiente vacío = sin objetivo
+    en esa métrica (p. ej. MD+1 titulares: solo Distancia y HMLD)."""
     if not ref_jugador:
         return None
-    return {m: (r1(ref_jugador[m] * coef_dia[m]) if ref_jugador.get(m) is not None else None)
+    return {m: (r1(ref_jugador[m] * coef_dia[m])
+                if ref_jugador.get(m) is not None and coef_dia.get(m) is not None else None)
             for m in C.METRICS}
 
 

@@ -44,6 +44,19 @@ TOLERANCIA = {"distancia": ("pct", 10), "hmld": ("pct", 10), "hsr": ("pct", 20),
               "acc": ("pct", 20), "dec": ("pct", 20), "sprint": ("abs", 2)}
 PESOS_DIA = {"MD-4": {"acc": 2, "dec": 2}, "MD-3": {"hsr": 2, "sprint": 2}}
 
+
+def ratio_cumplimiento(real, obj, metrica):
+    """real/obj para el % de cumplimiento. Sprints (tolerancia absoluta): dentro de ±2 cuenta como
+    100%; fuera, solo cuenta lo que se sale de la zona, sobre un objetivo mínimo de 2 (continuo en el
+    borde y sin disparar el % cuando el objetivo es de 1–2 sprints). Igual en reglas.js."""
+    tipo, t = TOLERANCIA.get(metrica, ("pct", 10))
+    if tipo != "abs":
+        return real / obj
+    d = real - obj
+    if abs(d) <= t:
+        return 1.0
+    return 1 + (d - t if d > 0 else d + t) / max(obj, t)
+
 SHEET_KEY_RE = re.compile(r"^(S\d+\w*|PT\d+|J\d+|COPA\d+)_GPS$")
 
 

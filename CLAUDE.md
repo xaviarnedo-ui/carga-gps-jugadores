@@ -61,6 +61,8 @@ Una sesión fuera de calendario (p. ej. un martes) va con `--extra` → hoja `Ex
   Sprints ±2 en valor absoluto; azul por debajo, naranja hasta el doble de la tolerancia por encima, rojo más
   (objetivo 0 → verde). % de cumplimiento de una sesión = media ponderada de real/obj (MD-4: ACC y DEC ×2;
   MD-3: HSR y Sprints ×2; Distancia y HMLD ×1, `C.PESOS_DIA`); el de la semana = media de sus sesiones.
+  Sprints en el %: dentro de ±2 = 100%; fuera solo cuenta lo que se sale (`C.ratio_cumplimiento`).
+  MD+1 titulares: solo objetivo de Distancia y HMLD (coeficiente vacío en MICROCICLOS = sin objetivo).
 - full: Obj/Real/Dif/semáforo, cuenta en la media. rehab: solo Real, no cuenta en la media,
   sí en Acumulado y ACWR. lesión: nada (0 en ACWR). descanso: sin objetivo ese día.
 - Los cambios de estado se aplican desde ese día en adelante, nunca hacia atrás.
