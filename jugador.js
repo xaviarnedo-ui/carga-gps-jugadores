@@ -372,9 +372,10 @@
 
     var extra = "";
     if (p.acwrHsr != null || p.acwrSprint != null) {
-      var danger = [];
+      var danger = [], bajos = [];
       [["HSR", p.acwrHsr], ["Sprints", p.acwrSprint]].forEach(function (x) {
         if (x[1] != null && x[1] > 1.30) danger.push(x[0] + " " + fmtDec(x[1], 2));
+        else if (x[1] != null && x[1] > 0 && x[1] < 0.80 && !(ME && ME.dispo && ME.dispo !== "ok")) bajos.push(x[0] + " " + fmtDec(x[1], 2));
       });
       extra = '<div class="section-label" style="margin:16px 0 6px">ACWR por métrica</div>' +
         '<div class="kpi-row">' +
@@ -383,6 +384,9 @@
         '</div>' +
         (danger.length
           ? '<div class="alert" style="margin-top:10px">' + iconWarn() + '<div><b>Zona de peligro en ' + esc(danger.join(" y ")) + '.</b> Tu carga de alta intensidad ha subido muy rápido respecto a tu media de las últimas semanas. Coméntalo con tu preparador.</div></div>'
+          : '') +
+        (bajos.length
+          ? '<div class="alert alert--info" style="margin-top:10px">' + iconWarn() + '<div><b>Infracarga en ' + esc(bajos.join(" y ")) + '.</b> Por debajo de 0,80: estás haciendo menos alta intensidad que tu media de las últimas semanas. Coméntalo con tu preparador.</div></div>'
           : '');
     }
 

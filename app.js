@@ -59,8 +59,11 @@
       : [["PL", p.acwr], ["HSR", p.acwrHsr], ["SPR", p.acwrSprint]];
     return rows.map(function (x) {
       if (x[1] == null) return "";
-      if (dangerOnly && !(x[1] > 1.30)) return "";
-      return '<span class="acwr ' + acwrClass(x[1]) + '" style="font-size:12px">' + esc(x[0]) + ' ' + fmtDec(x[1], 2) + '</span>';
+      // etiquetas de la lista: peligro (>1,30) y, para los disponibles, infracarga (<0,80)
+      var bajo = x[1] > 0 && x[1] < 0.80 && dispoOf(p.dorsal) === "ok";
+      if (dangerOnly && !(x[1] > 1.30) && !bajo) return "";
+      return '<span class="acwr ' + acwrClass(x[1]) + '" style="font-size:12px"' + (bajo ? ' title="Infracarga: por debajo de 0,80"' : '') + '>' +
+        esc(x[0]) + ' ' + fmtDec(x[1], 2) + (bajo ? ' ↓' : '') + '</span>';
     }).join("");
   }
 
