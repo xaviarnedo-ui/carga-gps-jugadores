@@ -730,6 +730,29 @@ function viewInicio(root){
   }
   add("No titulares por debajo (7 días)", brecha);
 
+  // 4 · por debajo de forma sostenida: 3 microciclos seguidos con la mediana de real/objetivo de
+  // HSR o de sprints de sus entrenamientos por debajo del 70%
+  const sostenido=[];
+  const mcs=(D.microciclos||[]).map(k2=>D[k2]).filter(M=>Object.values(M.sesiones||{}).some(done));
+  const ult3=mcs.slice(0,3);   // D.microciclos va del más reciente al más antiguo
+  if(ult3.length===3){
+    const mediana=a=>{ const x=a.slice().sort((p,q)=>p-q); return x.length? x[Math.floor(x.length/2)] : null; };
+    D.refPartido.players.forEach(r=>{ const d=r.dorsal; if(!disponible(d)) return;
+      const malas=[];
+      [["hsr","HSR"],["sprint","sprints"]].forEach(([k,l])=>{
+        const sem=ult3.map(M=>{ const v=[];
+          Object.values(M.sesiones||{}).forEach(s=>{ if(!done(s)) return;
+            const p=(s.players||[]).find(x=>x.dorsal===d);
+            if(!p||p.estado||p.readaptObj||p.fueraMedia||p.estimado||!p[k]||!p[k].obj||p[k].real==null) return;
+            v.push(window.GPS_REGLAS.ratio(p[k].real,p[k].obj,k)); });
+          return v.length>=2 ? mediana(v) : null; });
+        if(sem.every(v=>v!=null && v<0.7)) malas.push(`${l} ${sem.slice().reverse().map(v=>Math.round(v*100)+"%").join(" → ")}`);
+      });
+      if(malas.length) sostenido.push({sev:"mid", go:"jugadores", txt:`<b>${nom(d)}</b> · 3 semanas por debajo del 70%: ${malas.join(" · ")} <small>(mediana de sus entrenos, de la más antigua a la última)</small>`});
+    });
+  }
+  add("Por debajo 3 semanas seguidas", sostenido);
+
   // 2 · Próximo partido
   const pend=keys.filter(k=>isM(k) && !done(ses(k)));
   const prox=[];
@@ -860,6 +883,7 @@ function viewInicio(root){
     "ACWR: rojo >1,50 · naranja 1,31–1,50 · azul <0,80 en PL, HSR y Sprint (HSR y Sprint solo con base fiable: disponible y ≥21 días en el equipo). "+
     "Picos: HSR o sprints de los últimos 7 días más de un 15% por encima de la media de las 4 semanas anteriores (rojo desde +30%). "+
     "Velocidad máxima: disponibles que no han llegado al 95% de su mejor vel. máx de partido en 7 días. "+
+    "Por debajo 3 semanas: mediana de real/objetivo de HSR o sprints de sus entrenos por debajo del 70% en los 3 últimos microciclos (con al menos 2 sesiones cada uno). "+
     "No titulares: carga de 7 días (entrenos + partido, en partidos de su referencia) por debajo del 75% de la mediana de los titulares del último partido. "+
     "Última sesión: jugadores a ±50% de lo previsto de media y métricas del equipo fuera de 70–130%."));
   root.appendChild(p);

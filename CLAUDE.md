@@ -67,7 +67,9 @@ Una sesión fuera de calendario (p. ej. un martes) va con `--extra` → hoja `Ex
   MD-1 = lo que se hace y sin objetivo de sprint; +1 Suplentes sin cambios). Ver la propuesta en GPS/Informes.
 - Avisos del dashboard (Inicio): ACWR PL/HSR/Sprint (>1,3 y <0,8), picos de HSR/sprints de 7 días >+15% sobre
   la media de las 4 semanas anteriores, quién no ha llegado al 95% de su vel. máx en 7 días y no titulares por
-  debajo del 75% de la carga de 7 días de los titulares del último partido. Sin extra fijo en MD-4 (de momento).
+  debajo del 75% de la carga de 7 días de los titulares del último partido, y quién lleva 3 microciclos seguidos con la
+  mediana de HSR o sprints de sus entrenos por debajo del 70%. Sin extra fijo en MD-4 (de momento). La referencia
+  de entreno sigue siendo la individual (se descartó mezclarla con la media de su posición, 28/10).
 - full: Obj/Real/Dif/semáforo, cuenta en la media. rehab: solo Real, no cuenta en la media,
   sí en Acumulado y ACWR. lesión: nada (0 en ACWR). descanso: sin objetivo ese día.
 - Los cambios de estado se aplican desde ese día en adelante, nunca hacia atrás.
