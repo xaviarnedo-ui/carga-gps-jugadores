@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-10-30 09:36",
+  "generado": "2026-10-30 09:51",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-16)"
  },
  "refPartido": {
@@ -155153,12 +155153,22 @@ window.GPS_DATA_ALL = {
       "hmld": null,
       "hsr": null,
       "sprint": null,
-      "acc": null,
-      "dec": null,
+      "acc": {
+       "obj": 25,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 25,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true,
+      "readaptObj": true
      },
      {
       "dorsal": 4,
@@ -155168,12 +155178,22 @@ window.GPS_DATA_ALL = {
       "hmld": null,
       "hsr": null,
       "sprint": null,
-      "acc": null,
-      "dec": null,
+      "acc": {
+       "obj": 20,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 20,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true,
+      "readaptObj": true
      },
      {
       "dorsal": 5,
@@ -155888,7 +155908,7 @@ window.GPS_DATA_ALL = {
      "velMax": null,
      "playerLoad": null
     },
-    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. Lesionados / no disponibles (sin sesión ni objetivo): Bejarano, A."
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. Lesionados / no disponibles (sin sesión ni objetivo): Bejarano, A. Fuera de la MEDIA EQUIPO (objetivo y semáforo individual): Espiñeiro, A. · Payeras, M. — Espiñeiro y Payeras: readaptación con objetivo individual de ACC y DEC."
    },
    "S75": {
     "date": "2026-10-31",
@@ -158375,40 +158395,41 @@ window.GPS_DATA_ALL = {
      "grupo": "D",
      "distancia": {
       "obj": null,
-      "real": 8936,
+      "real": null,
       "dif": null,
       "objFecha": null
      },
      "hmld": {
       "obj": null,
-      "real": 831,
+      "real": null,
       "dif": null,
       "objFecha": null
      },
      "hsr": {
       "obj": null,
-      "real": 131,
+      "real": null,
       "dif": null,
       "objFecha": null
      },
      "sprint": {
       "obj": null,
-      "real": 0,
+      "real": null,
       "dif": null,
       "objFecha": null
      },
      "acc": {
-      "obj": null,
-      "real": 22,
+      "obj": 25,
+      "real": null,
       "dif": null,
       "objFecha": null
      },
      "dec": {
-      "obj": null,
-      "real": 17,
+      "obj": 25,
+      "real": null,
       "dif": null,
       "objFecha": null
-     }
+     },
+     "fueraMedia": true
     },
     {
      "dorsal": 4,
@@ -158416,40 +158437,41 @@ window.GPS_DATA_ALL = {
      "grupo": "D",
      "distancia": {
       "obj": null,
-      "real": 8154,
+      "real": null,
       "dif": null,
       "objFecha": null
      },
      "hmld": {
       "obj": null,
-      "real": 620,
+      "real": null,
       "dif": null,
       "objFecha": null
      },
      "hsr": {
       "obj": null,
-      "real": 98,
+      "real": null,
       "dif": null,
       "objFecha": null
      },
      "sprint": {
       "obj": null,
-      "real": 0,
+      "real": null,
       "dif": null,
       "objFecha": null
      },
      "acc": {
-      "obj": null,
-      "real": 19,
+      "obj": 20,
+      "real": null,
       "dif": null,
       "objFecha": null
      },
      "dec": {
-      "obj": null,
-      "real": 13,
+      "obj": 20,
+      "real": null,
       "dif": null,
       "objFecha": null
-     }
+     },
+     "fueraMedia": true
     },
     {
      "dorsal": 5,
@@ -159273,32 +159295,32 @@ window.GPS_DATA_ALL = {
      "grupo": "D",
      "distancia": {
       "obj": null,
-      "real": 8936,
+      "real": null,
       "dif": null
      },
      "hmld": {
       "obj": null,
-      "real": 831,
+      "real": null,
       "dif": null
      },
      "hsr": {
       "obj": null,
-      "real": 131,
+      "real": null,
       "dif": null
      },
      "sprint": {
       "obj": null,
-      "real": 0,
+      "real": null,
       "dif": null
      },
      "acc": {
-      "obj": null,
-      "real": 22,
+      "obj": 25,
+      "real": null,
       "dif": null
      },
      "dec": {
-      "obj": null,
-      "real": 17,
+      "obj": 25,
+      "real": null,
       "dif": null
      }
     },
@@ -159308,32 +159330,32 @@ window.GPS_DATA_ALL = {
      "grupo": "D",
      "distancia": {
       "obj": null,
-      "real": 8154,
+      "real": null,
       "dif": null
      },
      "hmld": {
       "obj": null,
-      "real": 620,
+      "real": null,
       "dif": null
      },
      "hsr": {
       "obj": null,
-      "real": 98,
+      "real": null,
       "dif": null
      },
      "sprint": {
       "obj": null,
-      "real": 0,
+      "real": null,
       "dif": null
      },
      "acc": {
-      "obj": null,
-      "real": 19,
+      "obj": 20,
+      "real": null,
       "dif": null
      },
      "dec": {
-      "obj": null,
-      "real": 13,
+      "obj": 20,
+      "real": null,
       "dif": null
      }
     },
