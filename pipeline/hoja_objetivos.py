@@ -94,7 +94,7 @@ def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False):
         a1 = str(wb[partido].cell(1, 1).value or "")
         rival = a1.split("vs ", 1)[1].split("(")[0].strip() if "vs " in a1 else ""
 
-    con, sin = {g: [] for g, _ in POS}, []
+    con, sin, readapt = {g: [] for g, _ in POS}, [], []
     fuera_hoja = {}
     for d, r in sorted(filas.items()):
         if sin_lesionados and E.vigente(est, d) in (C.REHAB, C.LESION):   # hoja solo del grupo
@@ -102,11 +102,14 @@ def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False):
             continue
         nombre, grupo = ws.cell(r, 2).value, (ws.cell(r, 3).value or "").strip()
         obj = {k: num(ws.cell(r, C.SES_OBJ_COL[k]).value) for k, *_ in COLS}
-        if any(v is not None for v in obj.values()):
+        if any(v is not None for v in obj.values()) and E.vigente(est, d) == C.REHAB \
+                and E.objetivo_manual(key, d, est):        # readaptación con objetivo propio: grupo aparte
+            readapt.append((d, nombre, obj))
+        elif any(v is not None for v in obj.values()):
             con.setdefault(grupo, []).append((d, nombre, obj))
         else:
             sin.append((d, nombre, ESTADO_TXT.get(E.vigente(est, d), "Sin objetivo")))
-    con_obj = {d for g in con.values() for d, _, _ in g}
+    con_obj = {d for g in con.values() for d, _, _ in g}   # (readaptación: ya va en su grupo)
     fuera = {d: v for d, v in fuera.items() if d in con_obj}   # solo quien sale con objetivo hoy
     med = {k: num(ws.cell(media, C.SES_OBJ_COL[k]).value) for k, *_ in COLS}
     extra, motivo = _deficits(compensar.upper(), fecha) if compensar else ({}, {})
@@ -149,6 +152,13 @@ def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False):
                               + f'<td class="nt">{motivo.get(d, "")}</td></tr>')
     filas_html.append('<tr class="med"><td></td><td class="n">Media equipo</td>'
                       + "".join(celda(med[k], dec, None, k) for k, _, _, dec in COLS) + '<td class="nt"></td></tr>')
+    if readapt:
+        filas_html.append(f'<tr class="grp"><td colspan="{len(COLS) + 3}">Readaptación · objetivo individual '
+                          f'(no cuentan para la media)</td></tr>')
+        for d, nombre, obj in readapt:
+            filas_html.append(f'<tr><td class="d">{d}</td><td class="n">{nombre}</td>'
+                              + "".join(celda(obj[k], dec, None, k) for k, _, _, dec in COLS)
+                              + '<td class="nt"></td></tr>')
 
     sin_html = " · ".join(f"<b>{d}</b> {nom} <span>({e})</span>" for d, nom, e in sin) or "—"
     notas_fm = "; ".join(sorted({v for v in fuera.values() if v}))
