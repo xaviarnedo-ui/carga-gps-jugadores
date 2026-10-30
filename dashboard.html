@@ -263,7 +263,9 @@
 
 <main class="wrap" id="view"></main>
 
-<script src="data.js?v=53"></script>
+<!-- data.js con marca de tiempo: el dashboard no pasa por el service worker y el navegador guardaba
+     una copia vieja de data.js (GitHub Pages: max-age=600); así siempre carga los datos del día -->
+<script>document.write('<script src="data.js?t=' + Date.now() + '"><\/script>');</script>
 <script src="reglas.js?v=2"></script>
 <script>
 "use strict";
