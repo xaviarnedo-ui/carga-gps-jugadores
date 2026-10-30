@@ -61,12 +61,25 @@ def _ultimo_partido_antes(fecha):
     return mejor[1] if mejor else None
 
 
+def clave_copa(key, fecha):
+    """Título "COPA ELDENSE" (sin número): la hoja COPA# de la semana de ese partido."""
+    if key != "COPA":
+        return key
+    n, ruta = localizar_por_fecha(fecha)
+    _wb = openpyxl.load_workbook(ruta, read_only=True)
+    copas = [x[:-4] for x in _wb.sheetnames if re.match(r"^COPA\d+_GPS$", x)]
+    _wb.close()
+    if len(copas) != 1:
+        raise NecesitaDecision(f"No encuentro una única hoja de Copa en el Microciclo {n}: {copas}")
+    return copas[0]
+
+
 # ---------------------------------------------------------------------------- leer
 def leer(pdfs, carpeta_png):
     """Resumen para decidir estados antes de procesar."""
     infs = [informe.leer(p) for p in pdfs]
     principal = next((i for i in infs if i.codigo), infs[0])
-    key = principal.codigo
+    key = clave_copa(principal.codigo, principal.fecha) if principal.codigo else None
     n, ruta = localizar(key) if key else localizar_por_fecha(principal.fecha)
     wb = openpyxl.load_workbook(ruta, data_only=True)
     hoja = wb[f"{key}_GPS"] if key else next(wb[x] for x in wb.sheetnames if C.SHEET_KEY_RE.match(x))
@@ -145,14 +158,7 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
                                "día que una sesión, pásalo junto al PDF de esa sesión.")
     fecha = (principal or infs[0]).fecha
     key = principal.codigo if principal else f"Extra_{fecha:%d-%m}"
-    if key == "COPA":                                 # título "COPA ELDENSE": la Copa de esa semana
-        n, ruta = localizar_por_fecha(fecha)
-        _wb = openpyxl.load_workbook(ruta, read_only=True)
-        copas = [x[:-4] for x in _wb.sheetnames if re.match(r"^COPA\d+_GPS$", x)]
-        _wb.close()
-        if len(copas) != 1:
-            raise NecesitaDecision(f"No encuentro una única hoja de Copa en el Microciclo {n}: {copas}")
-        key = copas[0]
+    key = clave_copa(key, fecha)
     n, ruta = localizar(key) if principal else localizar_por_fecha(fecha)
     wb = openpyxl.load_workbook(ruta)
     wt = openpyxl.load_workbook(C.TIPO_XLSX)
