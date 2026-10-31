@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-10-30 12:54",
+  "generado": "2026-10-31 09:41",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-16)"
  },
  "refPartido": {
@@ -155968,31 +155968,51 @@ window.GPS_DATA_ALL = {
       "dorsal": 3,
       "jugador": "Espiñeiro, A.",
       "grupo": "D",
-      "distancia": null,
+      "distancia": {
+       "obj": 8500,
+       "real": null,
+       "dif": null
+      },
       "hmld": null,
-      "hsr": null,
+      "hsr": {
+       "obj": 240,
+       "real": null,
+       "dif": null
+      },
       "sprint": null,
       "acc": null,
       "dec": null,
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true,
+      "readaptObj": true
      },
      {
       "dorsal": 4,
       "jugador": "Payeras, M.",
       "grupo": "D",
-      "distancia": null,
+      "distancia": {
+       "obj": 8500,
+       "real": null,
+       "dif": null
+      },
       "hmld": null,
-      "hsr": null,
+      "hsr": {
+       "obj": 150,
+       "real": null,
+       "dif": null
+      },
       "sprint": null,
       "acc": null,
       "dec": null,
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
-      "estado": "na"
+      "estado": "na",
+      "fueraMedia": true,
+      "readaptObj": true
      },
      {
       "dorsal": 5,
@@ -156639,7 +156659,7 @@ window.GPS_DATA_ALL = {
      "velMax": null,
      "playerLoad": null
     },
-    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. Lesionados / no disponibles (sin sesión ni objetivo): Bejarano, A."
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. Lesionados / no disponibles (sin sesión ni objetivo): Bejarano, A. Fuera de la MEDIA EQUIPO (objetivo y semáforo individual): Espiñeiro, A. · Payeras, M. — Espiñeiro y Payeras: readaptación con objetivo individual de distancia y HSR."
    }
   },
   "partidos": {
@@ -158406,9 +158426,9 @@ window.GPS_DATA_ALL = {
      "jugador": "Espiñeiro, A.",
      "grupo": "D",
      "distancia": {
-      "obj": null,
+      "obj": 8500,
       "real": 4418,
-      "dif": null,
+      "dif": -4082,
       "objFecha": null
      },
      "hmld": {
@@ -158418,9 +158438,9 @@ window.GPS_DATA_ALL = {
       "objFecha": null
      },
      "hsr": {
-      "obj": null,
+      "obj": 240,
       "real": 19,
-      "dif": null,
+      "dif": -221,
       "objFecha": null
      },
      "sprint": {
@@ -158448,9 +158468,9 @@ window.GPS_DATA_ALL = {
      "jugador": "Payeras, M.",
      "grupo": "D",
      "distancia": {
-      "obj": null,
+      "obj": 8500,
       "real": 4223,
-      "dif": null,
+      "dif": -4277,
       "objFecha": null
      },
      "hmld": {
@@ -158460,9 +158480,9 @@ window.GPS_DATA_ALL = {
       "objFecha": null
      },
      "hsr": {
-      "obj": null,
+      "obj": 150,
       "real": 7,
-      "dif": null,
+      "dif": -143,
       "objFecha": null
      },
      "sprint": {
@@ -159306,9 +159326,9 @@ window.GPS_DATA_ALL = {
      "jugador": "Espiñeiro, A.",
      "grupo": "D",
      "distancia": {
-      "obj": null,
+      "obj": 8500,
       "real": 4418,
-      "dif": null
+      "dif": -4082
      },
      "hmld": {
       "obj": null,
@@ -159316,9 +159336,9 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "hsr": {
-      "obj": null,
+      "obj": 240,
       "real": 19,
-      "dif": null
+      "dif": -221
      },
      "sprint": {
       "obj": null,
@@ -159341,9 +159361,9 @@ window.GPS_DATA_ALL = {
      "jugador": "Payeras, M.",
      "grupo": "D",
      "distancia": {
-      "obj": null,
+      "obj": 8500,
       "real": 4223,
-      "dif": null
+      "dif": -4277
      },
      "hmld": {
       "obj": null,
@@ -159351,9 +159371,9 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "hsr": {
-      "obj": null,
+      "obj": 150,
       "real": 7,
-      "dif": null
+      "dif": -143
      },
      "sprint": {
       "obj": null,
