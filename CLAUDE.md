@@ -46,6 +46,8 @@ en las sesiones aún no cargadas del microciclo activo (las cargadas no se tocan
 
 Rol del MD+1 a mano (p. ej. jugó entero con el filial el día del partido → recuperación): `roles_md1` en `estados_jugadores.json` ({"S71": {"26": "T"}}) y `microciclo.propagar_estados(n, [dorsal])`; lo respetan procesar, propagar y `tipo`.
 
+Si Catapult no genera el PDF: pasar la tabla "Desglose del deportista" (capturas) a un `.csv` (ver `informe.leer_csv`) y `procesar` el CSV como si fuera el PDF.
+
 Fallo de GPS: en partidos con minutos conocidos `--fallo-gps D=min` (estimado desde su REF);
 si el preparador dice "ponle los datos de X", `--proxy D=X` (copia, nota de dato proxy, fuera de REF); "ponle la media del equipo" → `--proxy D=media` (media de los full de la sesión).
 
