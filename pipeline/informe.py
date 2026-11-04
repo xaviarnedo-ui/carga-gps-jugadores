@@ -42,7 +42,8 @@ def leer_csv(ruta):
             d = dict(zip(cab, (c.strip() for c in row)))
             filas.append(pdf_catapult.FilaJugador(
                 nombre=d["nombre"].upper(), posicion=d.get("posicion", ""),
-                **{k: float(d[k].replace(",", ".")) for k in ("distancia", "hmld", "hsr", "sprint", "acc", "dec", "vmax", "pl")},
+                **{k: (float(d[k].replace(",", ".")) if d.get(k) not in (None, "") else None)
+                   for k in ("distancia", "hmld", "hsr", "sprint", "acc", "dec", "vmax", "pl")},
                 duracion=d["duracion"]))
     return pdf_catapult.Informe(ruta=str(ruta), titulo=meta["titulo"], etiqueta=meta.get("etiqueta", ""),
                                 fecha=dt.date.fromisoformat(meta["fecha"]), tiempo_total=None, filas=filas)
