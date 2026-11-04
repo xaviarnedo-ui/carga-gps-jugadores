@@ -95,6 +95,7 @@ def main():
     a.add_argument("--alias", action="append")
     a.add_argument("--extra", action="store_true")
     a.add_argument("--nota", default="")
+    a.add_argument("--sumar", help="GPS puestos tarde, a todos: min=10,distancia=1000,acc=5,dec=5")
     a.add_argument("--prueba", action="store_true")
     a.add_argument("--publicar", action="store_true")
     a.add_argument("--sin-avisar", action="store_true")
@@ -150,7 +151,8 @@ def main():
                                       for k, v in _pares(args.proxy).items()},
                              descartar=args.descartar, solo=args.solo, ref_duracion=args.ref_duracion,
                              tipos_lesion={int(k): v.strip('"') for k, v in _pares(args.lesion).items()},
-                             nota=args.nota, extra=args.extra, dry_run=args.prueba)
+                             nota=args.nota, extra=args.extra, dry_run=args.prueba,
+                             sumar={k.lower(): float(v) for k, v in _pares(args.sumar.split(",") if args.sumar else None).items()})
         except P.NecesitaDecision as e:
             print("NECESITO UNA DECISIÓN (no se ha escrito nada):\n" + str(e))
             sys.exit(2)

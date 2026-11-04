@@ -144,13 +144,36 @@ def decidir_estados(roster, en_pdf, vigentes, override, es_partido):
     return out
 
 
+NOMBRES_SUMA = {"distancia": "m", "hmld": "m de HMLD", "hsr": "m de HSR", "sprint": "sprints",
+               "acc": "ACC", "dec": "DEC", "pl": "de Player Load", "min": "minutos"}
+
+
+def aplicar_suma(infs, sumar):
+    """GPS puestos tarde: suma a cada jugador de los PDF la parte no registrada (estimada por el
+    preparador). Devuelve la nota que queda en la hoja."""
+    from .pdf_catapult import dur_a_min
+    for inf in infs:
+        for f in inf.filas:
+            for m, v in sumar.items():
+                if m == "min":
+                    tot = round((dur_a_min(f.duracion) or 0) * 60 + v * 60)
+                    f.duracion = f"{tot // 3600}:{tot % 3600 // 60:02d}:{tot % 60:02d}"
+                elif getattr(f, m, None) is not None:
+                    setattr(f, m, getattr(f, m) + v)
+    partes = ", ".join(f"{v:g} {NOMBRES_SUMA.get(m, m)}" for m, v in sumar.items())
+    return f"GPS puestos tarde: a todos se les ha sumado {partes} (estimación del preparador)."
+
+
 def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run=False,
              alias=None, rol_md1=None, tipos_lesion=None, proxies=None, descartar=None,
-             solo=None, ref_duracion=None):
-    """Devuelve un dict-resumen. dry_run: escribe en el scratchpad, no toca nada real."""
+             solo=None, ref_duracion=None, sumar=None):
+    """Devuelve un dict-resumen. dry_run: escribe en el scratchpad, no toca nada real.
+    sumar: {métrica|"min": valor} que se suma a TODOS los jugadores del PDF (GPS puestos tarde)."""
     override = override or {}
     fallos_gps = fallos_gps or {}
     infs = [informe.leer(p) for p in pdfs]
+    if sumar:
+        nota = (aplicar_suma(infs, sumar) + " " + nota).strip()
     principal = next((i for i in infs if i.codigo), None)
     if principal is None and not extra:
         raise NecesitaDecision("Ningún PDF trae código de sesión/partido (S##/J#/PT#): si es una "
