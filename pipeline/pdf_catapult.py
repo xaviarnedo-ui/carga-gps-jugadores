@@ -126,10 +126,13 @@ def leer(ruta) -> Informe:
                   tiempo_total=tiempo_total)
     for i, page in enumerate(doc):
         lines = [l.strip() for l in page.get_text().splitlines() if l.strip()]
-        if "Desglose del deportista" not in lines:
+        # Catapult en inglés/español antiguo ("Desglose del deportista" … "Duration") o en castellano
+        # desde noviembre de 2026 ("Desglose del atleta" … "Duración")
+        if "Desglose del deportista" not in lines and "Desglose del atleta" not in lines:
             inf.paginas_resumen.append(i)
             continue
-        body = lines[lines.index("Duration") + 1:]
+        fin_cab = next(k for k, l in enumerate(lines) if l in ("Duration", "Duración"))
+        body = lines[fin_cab + 1:]
         pendientes = []
         j = 0
         while j < len(body):
@@ -150,7 +153,7 @@ def leer(ruta) -> Informe:
             pendientes.append(tok)
             j += 1
     if not inf.filas:
-        raise ValueError(f"No encuentro la tabla 'Desglose del deportista' en {ruta}")
+        raise ValueError(f"No encuentro la tabla 'Desglose del deportista/atleta' en {ruta}")
     return inf
 
 
