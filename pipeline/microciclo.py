@@ -104,8 +104,8 @@ def abrir(tipo, partido_key, rival, lunes, estados=None, ref=None, coefs=None,
     es_partido = lambda x: bool(x) and C.is_match_key(x)
     estructura = [(off, d) for off, d in enumerate(dias) if d and not es_partido(d)]
     partidos_sem = [(off, d) for off, d in enumerate(dias) if es_partido(d)]
-    if len(estructura) != 5:
-        raise ValueError(f"La semana debe tener 5 sesiones (tiene {len(estructura)})")
+    if not 1 <= len(estructura) <= 6:
+        raise ValueError(f"La semana debe tener entre 1 y 6 sesiones (tiene {len(estructura)})")
     if not partidos_sem:
         raise ValueError("La semana no tiene ningún partido")
 
@@ -121,8 +121,8 @@ def abrir(tipo, partido_key, rival, lunes, estados=None, ref=None, coefs=None,
     ses = sesion.hojas_sesion(wb)
     partidos = sorted((wb[x] for x in wb.sheetnames if C.SHEET_KEY_RE.match(x) and C.is_match_key(x[:-4])),
                       key=lambda w: fecha_hoja(w) or dt.date.min)
-    if len(ses) != 5 or not partidos:
-        raise ValueError(f"Microciclo {n_prev}: esperaba 5 sesiones y al menos 1 partido para copiar "
+    if not ses or not partidos:
+        raise ValueError(f"Microciclo {n_prev}: esperaba al menos 1 sesión y 1 partido para copiar "
                          f"la estructura; hay {len(ses)} y {len(partidos)}")
     ws_part_prev = partidos[-1]                       # el último partido manda el rol del MD+1
     prev_key = ws_part_prev.title[:-4]
@@ -133,6 +133,15 @@ def abrir(tipo, partido_key, rival, lunes, estados=None, ref=None, coefs=None,
         del wb[x]
 
     ult = max(int(re.match(r"S(\d+)", k).group(1)) for k, _, _ in ses)
+    # semanas con más o menos sesiones que la anterior (descansos, dobles jornadas…)
+    while len(ses) < len(estructura):
+        k0, w0, f0 = ses[-1]
+        nueva = wb.copy_worksheet(w0)
+        nueva.title = f"_nueva{len(ses)}_GPS"
+        ses.append((k0, nueva, f0))
+    for _, w, _ in ses[len(estructura):]:
+        del wb[w.title]
+    ses = ses[:len(estructura)]
     claves = []
     for i, ((_, ws, _), (off, dia)) in enumerate(zip(ses, estructura)):
         key = f"S{ult + 1 + i}"

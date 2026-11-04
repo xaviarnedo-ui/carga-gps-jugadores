@@ -54,6 +54,7 @@ si el preparador dice "ponle los datos de X", `--proxy D=X` (copia, nota de dato
 Un rehab en un PDF aparte del mismo día se pasa junto al PDF de la sesión (se fusiona).
 Tras `procesar` (sin `--prueba`) los PDF se mueven solos a `GPS/Sesiones/` o `GPS/Partidos/` (partidos de Liga y del filial con `--ref-duracion`); si ya existía uno con ese nombre, el viejo va a la Papelera.
 Una sesión fuera de calendario (p. ej. un martes) va con `--extra` → hoja `Extra_dd-mm_GPS`.
+Semana con días de descanso extra: `abrir --dias=",,MD-4,MD-3,MD-2,MD-1,J10"` (vacío = descanso; acepta de 1 a 6 sesiones; con `=` porque empieza por coma). Lo que hagan los lesionados un día de descanso del equipo va con `--extra`.
 
 ## Reglas de negocio (resumen de la especificación del preparador, 23/09/2026)
 
