@@ -26,6 +26,7 @@
   python3 gps.py disponibilidad                       regenerar Disponibilidad y Minutos.xlsx
   python3 gps.py objetivos S57                        PDF con los objetivos de la sesión (para el campo)
   python3 gps.py objetivos S57 --compensar S56        ídem + lo que faltó en S56 (extra por jugador)
+        --bloque 2=hsr:150,sprint:4 [--nota-bloque T]   + extra a mano (p. ej. ACWR < 0,8)
   python3 gps.py publicar [--sin-avisar] [-m msg]     import_data + git push (+ aviso)
   python3 gps.py comparativa [--hasta 9]              25-26 vs 26-27 en las mismas jornadas (OCR de lo
                                                       que falte de 25-26) → HTML + PDF en GPS/Informes
@@ -131,6 +132,8 @@ def main():
     a.add_argument("--compensar", help="sesión anterior (S56): suma lo que faltó en ella")
     a.add_argument("--por-posicion", action="store_true", help="agrupado por posición (por defecto: por dorsal)")
     a.add_argument("--sin-lesionados", action="store_true", help="sin los jugadores en readaptación o lesionados")
+    a.add_argument("--bloque", action="append", help="extra a mano: 2=hsr:150,sprint:4 (repetible)")
+    a.add_argument("--nota-bloque", help="texto del pie para el bloque (contenido de la tarea)")
     a = sub.add_parser("comparativa")
     a.add_argument("--hasta", type=int, help="última jornada (por defecto, la última jugada)")
     a = sub.add_parser("publicar")
@@ -230,7 +233,10 @@ def main():
 
     elif args.cmd == "objetivos":
         from pipeline import hoja_objetivos
-        print(hoja_objetivos.generar(args.sesion.upper(), args.compensar, not args.por_posicion, args.sin_lesionados))
+        bloque = {int(d): {k: float(v) for k, v in (x.split(":") for x in m.split(","))}
+                  for d, m in _pares(args.bloque).items()}
+        print(hoja_objetivos.generar(args.sesion.upper(), args.compensar, not args.por_posicion, args.sin_lesionados,
+                                     bloque, args.nota_bloque))
 
     elif args.cmd == "disponibilidad":
         print(disponibilidad.generar())

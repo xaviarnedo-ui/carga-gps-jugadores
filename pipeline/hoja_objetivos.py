@@ -7,6 +7,9 @@ Con `compensar=SXX` (sesión anterior) añade a cada jugador lo que le faltó en
 que quedó por debajo de la zona verde, extra = objetivo − real. No se compensa a quien tiene
 objetivo individual de readaptación (su plan manda) ni la métrica cuyo ACWR está en rojo (>1,5;
 PL para distancia/HMLD/ACC/DEC).
+
+Con `bloque={dorsal: {métrica: extra}}` (gps.py objetivos … --bloque 2=hsr:150,sprint:4) se suma un
+extra decidido por el preparador (p. ej. no titulares con ACWR de HSR/sprints < 0,8) y se anota en la fila.
 """
 import datetime as dt
 import os
@@ -79,7 +82,7 @@ def _deficits(key_ant, fecha):
     return extra, motivo
 
 
-def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False):
+def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False, bloque=None, nota_bloque=None):
     n, wb, ws = _buscar(key)
     fecha = fecha_hoja(ws)
     tipo, dia = sesion.tipo_y_dia(ws)
@@ -113,7 +116,13 @@ def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False):
     fuera = {d: v for d, v in fuera.items() if d in con_obj}   # solo quien sale con objetivo hoy
     med = {k: num(ws.cell(media, C.SES_OBJ_COL[k]).value) for k, *_ in COLS}
     extra, motivo = _deficits(compensar.upper(), fecha) if compensar else ({}, {})
-    if compensar:  # media equipo: objetivo + extra medio de los mismos jugadores que la media
+    TXT = {"distancia": "m", "hmld": "m HMLD", "hsr": "m HSR", "sprint": "spr", "acc": "acc", "dec": "dec"}
+    for d, mets in (bloque or {}).items():
+        for k, v in mets.items():
+            extra.setdefault(d, {})[k] = extra.get(d, {}).get(k, 0) + v
+        txt = "Bloque ACWR: " + " · ".join(f"+{_fmt(v, 0)} {TXT[k]}" for k, v in mets.items())
+        motivo[d] = f"{motivo[d]}; {txt}" if motivo.get(d) else txt
+    if compensar or bloque:  # media equipo: objetivo + extra medio de los mismos jugadores que la media
         en_media = [(d, o) for g in con.values() for d, _, o in g if d not in fuera]
         for k, *_ in COLS:
             vals = [extra.get(d, {}).get(k, 0) for d, o in en_media if o[k] is not None]
@@ -163,9 +172,11 @@ def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False):
     sin_html = " · ".join(f"<b>{d}</b> {nom} <span>({e})</span>" for d, nom, e in sin) or "—"
     notas_fm = "; ".join(sorted({v for v in fuera.values() if v}))
     sub = f"Objetivo individual = REF_PARTIDO × coeficiente {dia} (Tipo {tipo}) · en verde, zona: Dist./HMLD ±10% · HSR/ACC/DEC ±20% · Sprints ±2"
-    if compensar:
-        sub = (f"Naranja: total = objetivo hoy <b>+ lo que faltó en {compensar.upper()}</b> · "
-               f"resto: objetivo y zona verde")
+    if compensar or bloque:
+        sub = (f"Naranja: total = objetivo hoy <b>+ "
+               + (f"lo que faltó en {compensar.upper()}" if compensar else "")
+               + (" + " if compensar and bloque else "") + ("bloque ACWR" if bloque else "")
+               + "</b> · resto: objetivo y zona verde")
     html = f"""<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Objetivos {key}</title><style>
 @page {{ size: A4 landscape; margin: 7mm 10mm; }}
 * {{ box-sizing: border-box; }}
@@ -192,9 +203,9 @@ tr.med td {{ border-top: 1.5px solid #333; background: #f6f6f3; }}
 tr:nth-child(even):not(.grp):not(.med) td {{ background: #fafafa; }}
 .foot {{ margin-top: 6px; font-size: 8.5pt; color: #333; line-height: 1.45; }}
 .foot span {{ color: #777; }}
-{"td { height: 19px; padding-top: 0; padding-bottom: 0; } .foot { margin-top: 3px; line-height: 1.3; }" if compensar else ""}
+{"td { height: 19px; padding-top: 0; padding-bottom: 0; } .foot { margin-top: 3px; line-height: 1.3; }" if compensar or bloque else ""}
 </style></head><body>
-<div class="head"><h1>{key} · {dia}{" + compensación" if compensar else ""} <small>Tipo {tipo} · {DIAS[fecha.weekday()]} {fecha:%d/%m/%Y}</small></h1>
+<div class="head"><h1>{key} · {dia}{" + compensación" if compensar else ""}{" + bloque ACWR" if bloque else ""} <small>Tipo {tipo} · {DIAS[fecha.weekday()]} {fecha:%d/%m/%Y}</small></h1>
 <div class="club">AT BALEARES · Microciclo {n}{(" · " + partido[:-4] + " vs " + rival) if rival else ""}<br>
 {sub}</div></div>
 <table><thead><tr><th>#</th><th style="text-align:left">Jugador</th>"""
@@ -208,6 +219,9 @@ tr:nth-child(even):not(.grp):not(.med) td {{ background: #fafafa; }}
                  f"verde (Dist./HMLD −10%, HSR/ACC/DEC −20%, Sprints −2) se suma lo que faltó para llegar al 100%. No se compensa la "
                  f"métrica con ACWR en rojo (&gt;1,5) ni a quien sigue un plan individual de readaptación. "
                  f"La media equipo muestra el total y, debajo, objetivo + extra medio.")
+    if bloque:
+        html += (f"<br><b>Bloque ACWR &lt;0,8</b> (no titulares; notas a la derecha): "
+                 + (nota_bloque or "extra decidido por el preparador.") + " Incluido en el total naranja.")
     html += f"""<br><span>Generado el {dt.date.today():%d/%m/%Y} desde el Excel del Microciclo {n}.</span></div>
 </body></html>"""
 
