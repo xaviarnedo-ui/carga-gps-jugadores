@@ -27,6 +27,8 @@
   python3 gps.py objetivos S57                        PDF con los objetivos de la sesión (para el campo)
   python3 gps.py objetivos S57 --compensar S56        ídem + lo que faltó en S56 (extra por jugador)
   python3 gps.py publicar [--sin-avisar] [-m msg]     import_data + git push (+ aviso)
+  python3 gps.py comparativa [--hasta 9]              25-26 vs 26-27 en las mismas jornadas (OCR de lo
+                                                      que falte de 25-26) → HTML + PDF en GPS/Informes
 """
 import argparse
 import datetime as dt
@@ -129,6 +131,8 @@ def main():
     a.add_argument("--compensar", help="sesión anterior (S56): suma lo que faltó en ella")
     a.add_argument("--por-posicion", action="store_true", help="agrupado por posición (por defecto: por dorsal)")
     a.add_argument("--sin-lesionados", action="store_true", help="sin los jugadores en readaptación o lesionados")
+    a = sub.add_parser("comparativa")
+    a.add_argument("--hasta", type=int, help="última jornada (por defecto, la última jugada)")
     a = sub.add_parser("publicar")
     a.add_argument("--sin-avisar", action="store_true")
     a.add_argument("-m", default="Datos GPS actualizados")
@@ -230,6 +234,12 @@ def main():
 
     elif args.cmd == "disponibilidad":
         print(disponibilidad.generar())
+
+    elif args.cmd == "comparativa":
+        from pipeline import comparativa
+        R, html, pdf = comparativa.generar(args.hasta)
+        print(comparativa.tabla_texto(R))
+        print(f"  HTML: {html}\n  PDF:  {pdf}")
 
     elif args.cmd == "publicar":
         _publicar(args.m, avisar=not args.sin_avisar)

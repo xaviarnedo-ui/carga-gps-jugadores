@@ -56,6 +56,24 @@ Tras `procesar` (sin `--prueba`) los PDF se mueven solos a `GPS/Sesiones/` o `GP
 Una sesión fuera de calendario (p. ej. un martes) va con `--extra` → hoja `Extra_dd-mm_GPS`.
 Semana con días de descanso extra: `abrir --dias=",,MD-4,MD-3,MD-2,MD-1,J10"` (vacío = descanso; acepta de 1 a 6 sesiones; con `=` porque empieza por coma). Lo que hagan los lesionados un día de descanso del equipo va con `--extra`.
 
+## Comparativa con la temporada pasada (se repite durante el año)
+
+`python3 gps.py comparativa [--hasta N]` compara 25-26 y 26-27 en las MISMAS jornadas (J1…JN; por
+defecto la última jugada) por tipo de día (MD+1 suplentes, MD-4…MD-1, partido), la semana tipo y la
+evolución por tramos de 5 jornadas. Hecha por primera vez el 04/11/2026 (J1-J9); el preparador quiere
+repetirla a lo largo de la temporada (p. ej. cada pocas jornadas o cuando lo pida).
+- 25-26: PDF en `~/Desktop/PROFESIONAL/AT BALEARES/AT BALEARES 25-26/GPS` (toda la temporada). Su texto
+  está codificado → OCR (`pipeline/catapult_ocr.py`, Apple Vision con pyobjc 10.3.1 instalado con
+  `pip3 install --user`). Lo leído se guarda en `GPS/Comparativa temporadas/Temporada 25-26.json` y no
+  se vuelve a leer; cada jornada nueva son ~5 PDF (~1 min cada uno). Si un PDF no cuadra con su fila
+  «Averages», el comando avisa (⚠): revisa ese PDF antes de dar las cifras.
+- Salida: `GPS/Informes/Comparativa carga 25-26 vs 26-27 (J1-JN).pdf` (uno por actualización, queda el
+  histórico) y el HTML en `GPS/Comparativa temporadas/`. El HTML se publica en el artifact
+  https://claude.ai/artifact/4k4iTYN1vo2WhfdySMPfjg (para el móvil): cópialo al scratchpad y publica con
+  `url` (lee antes el artifact).
+- Reglas: ver la cabecera de `pipeline/comparativa.py` (filtro de sesión completa 60 % de la mediana,
+  partido 75 % del máximo, MD+1 solo suplentes, ACC+DEC sumados, tipo de día por etiqueta o calendario).
+
 ## Reglas de negocio (resumen de la especificación del preparador, 23/09/2026)
 
 - Objetivo del día = `round(REF_PARTIDO × coeficiente, 1)` (hoja MICROCICLOS). MD+1: titular
