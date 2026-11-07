@@ -310,7 +310,7 @@ function buildRAW(d){
         if(!players[dd]) players[dd]={d:dd,n:(pl.jugador||"?"),g:(pl.grupo||"?")};
         const mp={};
         METR.forEach(k=>{ const v=pl[k]; if(v && typeof v==="object") mp[k]=[(v.obj===undefined?null:v.obj), (v.real===undefined?null:v.real)]; });
-        row.players.push({d:dd, e:(pl.estado||null), est:!!pl.estimado, fm:!!pl.fueraMedia, ro:!!pl.readaptObj, dur:dur2min(pl.duracion), vmax:(pl.velMax===undefined?null:pl.velMax), pl:(pl.playerLoad===undefined?null:pl.playerLoad), m:mp});
+        row.players.push({d:dd, e:(pl.estado||null), est:!!pl.estimado, fm:!!pl.fueraMedia, ro:!!pl.readaptObj, ds:(pl.distSprint==null?null:pl.distSprint), dur:dur2min(pl.duracion), vmax:(pl.velMax===undefined?null:pl.velMax), pl:(pl.playerLoad===undefined?null:pl.playerLoad), m:mp});
       });
       sessions.push(row);
     });
@@ -320,7 +320,7 @@ function buildRAW(d){
       src.players.forEach(pl=>{
         const mp={};
         METR.forEach(k=>{ const v=pl[k]; if(v && typeof v==="object") mp[k]=[null, (v.real===undefined?null:v.real)]; });
-        row.players.push({d:pl.dorsal, e:"extra", dur:dur2min(pl.duracion), vmax:(pl.velMax===undefined?null:pl.velMax), pl:(pl.playerLoad===undefined?null:pl.playerLoad), m:mp});
+        row.players.push({d:pl.dorsal, e:"extra", ds:(pl.distSprint==null?null:pl.distSprint), dur:dur2min(pl.duracion), vmax:(pl.velMax===undefined?null:pl.velMax), pl:(pl.playerLoad===undefined?null:pl.playerLoad), m:mp});
       });
       extras.push(row);
     });
@@ -1262,7 +1262,7 @@ function tablaBajas(s, bajas){
   const tb=el("table");
   tb.innerHTML=`<thead><tr><th>Jugador</th><th>Situación</th><th style="text-align:left">Lesión</th><th>Día</th>`+
     RADAR_METRICS.map((k,i)=>`<th${i===0?' class="grp-start"':''}>${METRICS[k].lab}</th>`).join("")+
-    `<th class="grp-start">Vel. máx</th><th>Player Load</th><th>Duración</th></tr></thead>`;
+    `<th class="grp-start">Vel. máx</th><th>Player Load</th><th>Duración</th><th>Dist. sprint</th></tr></thead>`;
   const body=el("tbody");
   bajas.forEach(pr=>{
     const l=lesionEn(pr.d, s.date);
@@ -1279,10 +1279,11 @@ function tablaBajas(s, bajas){
     cells.push(`<td class="mono grp-start">${pr.vmax!=null?fmtN(pr.vmax,1):"–"}</td>`);
     cells.push(`<td class="mono">${pr.pl!=null?fmtN(pr.pl,0):"–"}</td>`);
     cells.push(`<td class="mono">${pr.dur!=null?fmtN(pr.dur,0)+"′":"–"}</td>`);
+    cells.push(`<td class="mono">${pr.ds!=null?fmtN(pr.ds,0):"–"}</td>`);
     const tr=el("tr"); tr.innerHTML=cells.join(""); body.appendChild(tr);
   });
   tb.appendChild(body); wrap.appendChild(tb); box.appendChild(wrap);
-  box.appendChild(el("p",{class:"note"},"No cuentan para la MEDIA EQUIPO ni tienen objetivo. \"Día\" = día de baja (el de la lesión es el día 1)."));
+  box.appendChild(el("p",{class:"note"},"No cuentan para la MEDIA EQUIPO ni tienen objetivo. \"Día\" = día de baja (el de la lesión es el día 1). Dist. sprint = metros en la banda de velocidad 6 de Catapult (desde el 07/11/2026)."));
   return box;
 }
 
@@ -2173,7 +2174,7 @@ function fichaLesion(l){
       const tb=el("table");
       tb.innerHTML=`<thead><tr><th>Fecha</th><th>Sesión</th><th style="text-align:left">Tipo</th><th>Duración</th>`+
         LES_METRICS.map((k,i)=>`<th${i===0?' class="grp-start"':''}>${METRICS[k].lab}</th>`).join("")+
-        `<th class="grp-start">ACWR PL</th><th>ACWR HSR</th><th>ACWR Spr.</th></tr></thead>`;
+        `<th>Dist. sprint</th><th class="grp-start">ACWR PL</th><th>ACWR HSR</th><th>ACWR Spr.</th></tr></thead>`;
       const tbody=el("tbody");
       pts.forEach(pt=>{
         const cells=[`<td class="mono">${fDate(pt.s.date)}</td>`, `<td>${pt.s.key}</td>`,
@@ -2181,12 +2182,13 @@ function fichaLesion(l){
           `<td class="mono">${pt.pr.dur!=null?fmtN(pt.pr.dur,0)+"′":"–"}</td>`];
         LES_METRICS.forEach((k,i)=>{ const v=raw(pt.pr,k).real;
           cells.push(`<td class="mono${i===0?" grp-start":""}">${v!=null?fmtN(v,METRICS[k].dec):"–"}</td>`); });
+        cells.push(`<td class="mono">${pt.pr.ds!=null?fmtN(pt.pr.ds,0):"–"}</td>`);
         Object.values(ACWR_SERIES).forEach((a,i)=> cells.push(`<td class="mono${i===0?" grp-start":""}">${fmtN(acwrDia(l.dorsal,a.met,pt.s.date),2)}</td>`));
         const tr=el("tr"); tr.innerHTML=cells.join(""); tbody.appendChild(tr);
       });
       const refCells=[`<td>Media previa</td>`,`<td></td>`,`<td style="text-align:left" class="muted">4 semanas antes</td>`,`<td></td>`];
       LES_METRICS.forEach((k,i)=> refCells.push(`<td class="mono${i===0?" grp-start":""}">${ref[k]!=null?fmtN(ref[k],METRICS[k].dec):"–"}</td>`));
-      refCells.push(`<td class="grp-start"></td><td></td><td></td>`);
+      refCells.push(`<td></td><td class="grp-start"></td><td></td><td></td>`);
       const trr=el("tr",{class:"total"}); trr.innerHTML=refCells.join(""); tbody.appendChild(trr);
       tb.appendChild(tbody); wrap.appendChild(tb); body.appendChild(wrap);
     }
