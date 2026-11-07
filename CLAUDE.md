@@ -51,6 +51,10 @@ Si Catapult no genera el PDF: pasar la tabla "Desglose del deportista" (capturas
 Fallo de GPS: en partidos con minutos conocidos `--fallo-gps D=min` (estimado desde su REF);
 si el preparador dice "ponle los datos de X", `--proxy D=X` (copia, nota de dato proxy, fuera de REF); "ponle la media del equipo" → `--proxy D=media` (media de los full de la sesión).
 
+Distancia en sprint («Distancia de la banda de velocidad 6 (m)», columna opcional tras la duración en los PDF desde el
+07/11/2026): se lee siempre, pero DE MOMENTO solo se escribe y se muestra para readaptación (decisión del preparador,
+07/11): col. 25 de las hojas S##_GPS (solo filas rehab), col. 13 de Extra_* (rehab/lesión), `distSprint` en data.js
+y KPI «Dist. sprint (m)» en la app. Para extenderlo a todos, quitar el filtro en `sesion.rellenar` y `_procesar_extra`.
 Un rehab en un PDF aparte del mismo día se pasa junto al PDF de la sesión (se fusiona).
 Tras `procesar` (sin `--prueba`) los PDF se mueven solos a `GPS/Sesiones/` o `GPS/Partidos/` (partidos de Liga y del filial con `--ref-duracion`); si ya existía uno con ese nombre, el viejo va a la Papelera.
 Una sesión fuera de calendario (p. ej. un martes) va con `--extra` → hoja `Extra_dd-mm_GPS`.
