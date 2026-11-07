@@ -31,6 +31,7 @@ class FilaJugador:
     vmax: float
     pl: float
     duracion: str          # "1:19:20"
+    dist_sprint: Optional[float] = None   # «Distancia de la banda de velocidad 6 (m)», desde el 07/11/2026
 
     @property
     def minutos(self):
@@ -132,23 +133,31 @@ def leer(ruta) -> Informe:
             inf.paginas_resumen.append(i)
             continue
         fin_cab = next(k for k, l in enumerate(lines) if l in ("Duration", "Duración"))
+        # columna opcional tras la duración: «Distancia de la banda de velocidad 6 (m)» (distancia
+        # en sprint, añadida en Catapult el 07/11/2026). Su cabecera ocupa varias líneas hasta «(m)».
+        extra = 0
+        cola = lines[fin_cab + 1:fin_cab + 7]
+        if any("banda de" in l for l in cola) and "(m)" in cola:
+            fin_cab += cola.index("(m)") + 1
+            extra = 1
         body = lines[fin_cab + 1:]
         pendientes = []
         j = 0
         while j < len(body):
             tok = body[j]
             if tok == "Averages":
-                inf.medias = body[j + 1:j + 10]
+                inf.medias = body[j + 1:j + 10 + extra]
                 break
-            # una fila = [nombre..., posición, 8 números, duración]
-            ventana = body[j:j + 9]
-            if (len(ventana) == 9 and all(_NUM.match(t) for t in ventana[:8])
-                    and _DUR.match(ventana[8]) and pendientes):
+            # una fila = [nombre..., posición, 8 números, duración, (distancia en sprint)]
+            ventana = body[j:j + 9 + extra]
+            if (len(ventana) == 9 + extra and all(_NUM.match(t) for t in ventana[:8])
+                    and _DUR.match(ventana[8]) and all(_NUM.match(t) for t in ventana[9:]) and pendientes):
                 *nom, pos = pendientes
                 v = [_num(t) for t in ventana[:8]]
-                inf.filas.append(FilaJugador(_unir_nombre(nom), pos, *v, ventana[8]))
+                ds = _num(ventana[9]) if extra else None
+                inf.filas.append(FilaJugador(_unir_nombre(nom), pos, *v, ventana[8], ds))
                 pendientes = []
-                j += 9
+                j += 9 + extra
                 continue
             pendientes.append(tok)
             j += 1

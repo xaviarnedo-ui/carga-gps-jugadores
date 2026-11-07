@@ -410,6 +410,10 @@ def _procesar_extra(wb, ruta, n, key, fecha, infs, alias, est, res, dry_run, not
         fila = [d, nombres[d], grupos[d]] + [v[m] for m in C.METRICS] + [v["vmax"], v["pl"], v["dur"]]
         for j, x in enumerate(fila, start=1):
             ws.cell(5 + i, j, x)
+        # distancia en sprint: solo readaptación / lesionados (de momento)
+        if v.get("dsprint") is not None and E.vigente(est, d) in (C.REHAB, C.LESION):
+            ws.cell(4, C.EXTRA_DSPRINT, C.DSPRINT_TITULO)
+            ws.cell(5 + i, C.EXTRA_DSPRINT, v["dsprint"])
     acumulado.recalcular(wb)
     hist = carga_ac.historial({n: wb})
     asof, _ = carga_ac.rellenar(wb, n, hist)

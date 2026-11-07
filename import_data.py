@@ -266,6 +266,9 @@ def parse_session(ws):
         rec["velMax"] = num(row[21])
         rec["playerLoad"] = num(row[22])
         rec["duracion"] = (str(row[23]).strip() if row[23] not in (None, "·", "") else None)
+        # distancia en sprint (banda 6): solo la escribe el pipeline para readaptación
+        if len(row) > 24 and num(row[24]) is not None:
+            rec["distSprint"] = num(row[24])
         # estado:
         #  - sin ningún real ni PL              -> "na" (no participó)
         #  - con real pero SIN Dif en ninguna   -> "rehab" (trabajo individual, no se
@@ -404,6 +407,8 @@ def parse_extra(ws):
         rec["velMax"] = num(row[9])
         rec["playerLoad"] = num(row[10])
         rec["duracion"] = (str(row[11]).strip() if row[11] not in (None, "·", "") else None)
+        if len(row) > 12 and num(row[12]) is not None:   # distancia en sprint (solo readaptación)
+            rec["distSprint"] = num(row[12])
         players.append(rec)
     return dict(date=iso(date), titulo=str(a1).strip(), nota=str(a2).strip(),
                players=players, soloJugadores=[p["dorsal"] for p in players])

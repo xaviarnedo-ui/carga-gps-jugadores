@@ -234,6 +234,7 @@
       kpi((p.velMax != null ? fmtDec(p.velMax, 1) : "—"), "Vel. máx km/h", "") +
       kpi(fmt(p.playerLoad), "Player Load", "") +
       kpi((p.duracion || "—"), "Duración", "") +
+      (p.distSprint != null ? kpi(fmt(p.distSprint), "Dist. sprint (m)", "") : "") +
       '</div>' +
       (ex.nota ? '<div class="note" style="margin-top:12px">' + noteHtml(ex.nota) + '</div>' : '') +
       '</div>';
@@ -304,6 +305,7 @@
         kpi((p.velMax != null ? fmtDec(p.velMax, 1) : "—"), "Vel. máx km/h", s.teamAvg && s.teamAvg.velMax != null ? "equipo " + fmtDec(s.teamAvg.velMax, 1) : "") +
         kpi(fmt(p.playerLoad), "Player Load", s.teamAvg && s.teamAvg.playerLoad != null ? "equipo " + fmt(s.teamAvg.playerLoad) : "") +
         kpi((p.duracion || "—"), "Duración", "") +
+        (p.distSprint != null ? kpi(fmt(p.distSprint), "Dist. sprint (m)", "") : "") +
         '</div>';
     }
 

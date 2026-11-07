@@ -137,8 +137,24 @@ def rellenar(ws, datos, estados_dia):
                 vaciar(cell)
             else:
                 cell.value = d[k]
+        # distancia en sprint: solo readaptación (de momento)
+        cell = ws.cell(fila, C.SES_DSPRINT)
+        if est == C.REHAB and d is not None and d.get("dsprint") is not None:
+            cell.value = d["dsprint"]
+            _cabecera_dsprint(ws, min(filas.values()) - 1)
+        elif cell.value is not None:
+            vaciar(cell)
     escribir_media(ws, filas, fila_media, estados_dia)
     return fila_media
+
+
+def _cabecera_dsprint(ws, fila_cab):
+    from copy import copy
+    h, ref = ws.cell(fila_cab, C.SES_DSPRINT), ws.cell(fila_cab, C.SES_DUR)
+    if h.value != C.DSPRINT_TITULO:
+        h.value = C.DSPRINT_TITULO
+        h.font, h.fill, h.border, h.alignment = copy(ref.font), copy(ref.fill), copy(ref.border), copy(ref.alignment)
+        ws.column_dimensions[h.column_letter].width = max(ws.column_dimensions[ref.column_letter].width or 10, 13)
 
 
 def escribir_media(ws, filas, fila_media, estados_dia):

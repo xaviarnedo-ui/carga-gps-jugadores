@@ -158,7 +158,7 @@ def abrir(tipo, partido_key, rival, lunes, estados=None, ref=None, coefs=None,
                                f"cargar. {LEYENDA}")
         ws.cell(3, 1).value = f"MICROCICLO {n} · TIPO {tipo} · {dia}"
         filas, media = filas_jugadores(ws)
-        cols = [c + k for c in C.SES_OBJ_COL.values() for k in (1, 2)] + [C.SES_VMAX, C.SES_PL, C.SES_DUR]
+        cols = [c + k for c in C.SES_OBJ_COL.values() for k in (1, 2)] + [C.SES_VMAX, C.SES_PL, C.SES_DUR, C.SES_DSPRINT]
         _limpia_filas(ws, cols, min(filas.values()), media)
         for c in C.SES_OBJ_COL.values():
             vaciar(ws.cell(media, c))

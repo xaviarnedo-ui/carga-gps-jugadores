@@ -20,9 +20,14 @@ METRIC_LABEL = {"distancia": "Distancia", "hmld": "HMLD", "hsr": "HSR",
 # --- layout hoja de sesión S##_GPS (columnas 1-based)
 SES_OBJ_COL = {m: 4 + 3 * i for i, m in enumerate(METRICS)}   # Real = +1, Dif = +2
 SES_VMAX, SES_PL, SES_DUR = 22, 23, 24
+# distancia en sprint (banda de velocidad 6 de Catapult, desde el 07/11/2026): de momento solo se
+# escribe y se muestra para los jugadores en readaptación (decisión del preparador, 07/11/2026)
+SES_DSPRINT = 25
+DSPRINT_TITULO = "Dist. sprint\n(m) · readapt."
 # --- layout hoja de partido / extra
 MAT_COL = {m: 4 + i for i, m in enumerate(METRICS)}
 MAT_VMAX, MAT_PL, MAT_DUR = 10, 11, 12
+EXTRA_DSPRINT = 13
 
 # --- semáforo de cumplimiento (fill, font)
 AZUL = ("FFBDD7EE", "FF1F4E78")

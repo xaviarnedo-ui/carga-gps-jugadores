@@ -516,7 +516,7 @@
       }).join("") + '<div class="info-metrics" style="margin-top:9px">' +
         kpi(p.velMax != null ? fmtDec(p.velMax, 1) : "—", "Vel. máx km/h") +
         kpi(fmt(p.playerLoad), "Player Load") +
-        kpi(p.duracion || "—", "Duración") + '</div>' + shareLine(p.dorsal, p.jugador);
+        kpi(p.duracion || "—", "Duración") + (p.distSprint != null ? kpi(fmt(p.distSprint), "Dist. sprint (m)") : "") + '</div>' + shareLine(p.dorsal, p.jugador);
       return playerDetails(p.dorsal, p.jugador, p.grupo, "", body, true);
     }).join("");
     return '<div class="card"><div class="card__title">Sesión individual <span class="count">' + esc(fdate(ex.date)) + '</span></div>' +
@@ -590,7 +590,7 @@
         body += '<div class="info-metrics" style="margin-top:9px">' +
           kpi(p.velMax != null ? fmtDec(p.velMax, 1) : "—", "Vel. máx km/h") +
           kpi(fmt(p.playerLoad), "Player Load") +
-          kpi(p.duracion || "—", "Duración") + '</div>';
+          kpi(p.duracion || "—", "Duración") + (p.distSprint != null ? kpi(fmt(p.distSprint), "Dist. sprint (m)") : "") + '</div>';
       }
       if (match && p.estimado) body = '<div class="alert alert--info" style="margin-bottom:8px">' + iconWarn() +
         '<div><b>Datos estimados.</b> Fallo de GPS: valores reconstruidos, no son GPS real.</div></div>' + body;
