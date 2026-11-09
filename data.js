@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-11-09 12:44",
+  "generado": "2026-11-09 12:45",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-18)"
  },
  "refPartido": {
@@ -175106,12 +175106,12 @@ window.GPS_DATA_ALL = {
       "jugador": "Fontanet, B.",
       "grupo": "D",
       "distancia": {
-       "obj": 2039.7,
+       "obj": 2023.3,
        "real": null,
        "dif": null
       },
       "hmld": {
-       "obj": 60.3,
+       "obj": 58.6,
        "real": null,
        "dif": null
       },
@@ -175127,12 +175127,12 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 4513.5,
+      "obj": 4512.6,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 595.7,
+      "obj": 595.6,
       "real": null,
       "dif": null
      },
@@ -175881,17 +175881,17 @@ window.GPS_DATA_ALL = {
       "jugador": "Fontanet, B.",
       "grupo": "D",
       "distancia": {
-       "obj": 4635.6,
+       "obj": 4598.3,
        "real": null,
        "dif": null
       },
       "hmld": {
-       "obj": 421.8,
+       "obj": 409.9,
        "real": null,
        "dif": null
       },
       "hsr": {
-       "obj": 45,
+       "obj": 42.1,
        "real": null,
        "dif": null
       },
@@ -175901,12 +175901,12 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "acc": {
-       "obj": 14.7,
+       "obj": 15.1,
        "real": null,
        "dif": null
       },
       "dec": {
-       "obj": 15.9,
+       "obj": 15.5,
        "real": null,
        "dif": null
       },
@@ -175918,17 +175918,17 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 5271.9,
+      "obj": 5269.8,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 704.6,
+      "obj": 704,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 92.2,
+      "obj": 92.1,
       "real": null,
       "dif": null
      },
@@ -176672,32 +176672,32 @@ window.GPS_DATA_ALL = {
       "jugador": "Fontanet, B.",
       "grupo": "D",
       "distancia": {
-       "obj": 6675.3,
+       "obj": 6621.6,
        "real": null,
        "dif": null
       },
       "hmld": {
-       "obj": 753.3,
+       "obj": 732,
        "real": null,
        "dif": null
       },
       "hsr": {
-       "obj": 212.5,
+       "obj": 198.7,
        "real": null,
        "dif": null
       },
       "sprint": {
-       "obj": 6,
+       "obj": 5.5,
        "real": null,
        "dif": null
       },
       "acc": {
-       "obj": 13.7,
+       "obj": 14.1,
        "real": null,
        "dif": null
       },
       "dec": {
-       "obj": 14.7,
+       "obj": 14.3,
        "real": null,
        "dif": null
       },
@@ -176709,17 +176709,17 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 7591.5,
+      "obj": 7588.5,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 1258.2,
+      "obj": 1257.1,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 435.5,
+      "obj": 434.8,
       "real": null,
       "dif": null
      },
@@ -177463,22 +177463,22 @@ window.GPS_DATA_ALL = {
       "jugador": "Fontanet, B.",
       "grupo": "D",
       "distancia": {
-       "obj": 2317.8,
+       "obj": 2299.2,
        "real": null,
        "dif": null
       },
       "hmld": {
-       "obj": 140.6,
+       "obj": 136.6,
        "real": null,
        "dif": null
       },
       "hsr": {
-       "obj": 45,
+       "obj": 42.1,
        "real": null,
        "dif": null
       },
       "sprint": {
-       "obj": 0.4,
+       "obj": 0.3,
        "real": null,
        "dif": null
       },
@@ -177488,7 +177488,7 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "dec": {
-       "obj": 1.5,
+       "obj": 1.4,
        "real": null,
        "dif": null
       },
@@ -177500,17 +177500,17 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 2636,
+      "obj": 2634.9,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 234.9,
+      "obj": 234.6,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 92.2,
+      "obj": 92.1,
       "real": null,
       "dif": null
      },
@@ -178186,28 +178186,28 @@ window.GPS_DATA_ALL = {
       "jugador": "Fontanet, B.",
       "grupo": "D",
       "distancia": {
-       "obj": 2595.9,
+       "obj": 2575,
        "real": null,
        "dif": null
       },
       "hmld": {
-       "obj": 200.9,
+       "obj": 195.2,
        "real": null,
        "dif": null
       },
       "hsr": {
-       "obj": 20,
+       "obj": 18.7,
        "real": null,
        "dif": null
       },
       "sprint": null,
       "acc": {
-       "obj": 7.4,
+       "obj": 7.7,
        "real": null,
        "dif": null
       },
       "dec": {
-       "obj": 6.1,
+       "obj": 6,
        "real": null,
        "dif": null
       },
@@ -178219,17 +178219,17 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 2952.3,
+      "obj": 2951.1,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 335.5,
+      "obj": 335.2,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 41,
+      "obj": 40.9,
       "real": null,
       "dif": null
      },
@@ -179948,37 +179948,37 @@ window.GPS_DATA_ALL = {
      "jugador": "Fontanet, B.",
      "grupo": "D",
      "distancia": {
-      "obj": 18264.3,
+      "obj": 18117.4,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "hmld": {
-      "obj": 1576.9,
+      "obj": 1532.3,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "hsr": {
-      "obj": 322.5,
+      "obj": 301.6,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "sprint": {
-      "obj": 7.1,
+      "obj": 6.5,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "acc": {
-      "obj": 38.2,
+      "obj": 39.3,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "dec": {
-      "obj": 38.2,
+      "obj": 37.2,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -179987,21 +179987,21 @@ window.GPS_DATA_ALL = {
    ],
    "teamAvg": {
     "distancia": {
-     "obj": 22965.2,
+     "obj": 22957,
      "real": 0.0,
-     "dif": -22965.2,
+     "dif": -22957.0,
      "objFecha": 0.0
     },
     "hmld": {
-     "obj": 3128.9,
+     "obj": 3126.5,
      "real": 0.0,
-     "dif": -3128.9,
+     "dif": -3126.5,
      "objFecha": 0.0
     },
     "hsr": {
-     "obj": 830.2,
+     "obj": 829.1,
      "real": 0.0,
-     "dif": -830.2,
+     "dif": -829.1,
      "objFecha": 0.0
     },
     "sprint": {
@@ -180732,32 +180732,32 @@ window.GPS_DATA_ALL = {
      "jugador": "Fontanet, B.",
      "grupo": "D",
      "distancia": {
-      "obj": 18264.3,
+      "obj": 18117.4,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 1576.9,
+      "obj": 1532.3,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 322.5,
+      "obj": 301.6,
       "real": null,
       "dif": null
      },
      "sprint": {
-      "obj": 7.1,
+      "obj": 6.5,
       "real": null,
       "dif": null
      },
      "acc": {
-      "obj": 38.2,
+      "obj": 39.3,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 38.2,
+      "obj": 37.2,
       "real": null,
       "dif": null
      }
@@ -180765,19 +180765,19 @@ window.GPS_DATA_ALL = {
    ],
    "teamAvg": {
     "distancia": {
-     "obj": 22965.2,
+     "obj": 22957,
      "real": 0,
-     "dif": -22965.2
+     "dif": -22957
     },
     "hmld": {
-     "obj": 3128.9,
+     "obj": 3126.5,
      "real": 0,
-     "dif": -3128.9
+     "dif": -3126.5
     },
     "hsr": {
-     "obj": 830.2,
+     "obj": 829.1,
      "real": 0,
-     "dif": -830.2
+     "dif": -829.1
     },
     "sprint": {
      "obj": 13,
