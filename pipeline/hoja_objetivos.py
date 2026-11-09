@@ -145,10 +145,32 @@ def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False, bloque=N
         return (f'<td class="v"><b>{_fmt(v, dec)}</b>'
                 f'<span>{_fmt(lo, dec)}–{_fmt(hi, dec)}</span></td>')
 
+    def media_grupo(lista):
+        """Media del objetivo (y del extra) de un grupo, sin los que están fuera de la media."""
+        en = [(d, o) for d, _, o in lista if d not in fuera]
+        out = {}
+        for k, *_ in COLS:
+            vals = [(o[k], extra.get(d, {}).get(k, 0)) for d, o in en if o[k] is not None]
+            if not vals:
+                out[k] = None
+                continue
+            m, x = sum(v for v, _ in vals) / len(vals), sum(e for _, e in vals) / len(vals)
+            out[k] = (m, x) if (compensar or bloque) else m
+        return out
+
+    todos = sorted((x for g in con.values() for x in g), key=lambda x: x[0])
+    # MD+1: titulares (solo objetivo de distancia y HMLD = recuperación) y suplentes por separado,
+    # cada grupo con su media (decisión del preparador, 09/11/2026)
+    partir_md1 = dia == "MD+1" and por_dorsal
+    if partir_md1:
+        tit = [x for x in todos if x[2]["hsr"] is None]
+        bloques = [("Titulares · recuperación (solo distancia y HMLD)", tit, "Media titulares"),
+                   ("Suplentes · sesión completa", [x for x in todos if x not in tit], "Media suplentes")]
+    else:
+        bloques = ([(None, todos, None)] if por_dorsal
+                   else [(titulo, con.get(g), None) for g, titulo in POS])
     filas_html = []
-    bloques = ([(None, sorted((x for g in con.values() for x in g), key=lambda x: x[0]))] if por_dorsal
-               else [(titulo, con.get(g)) for g, titulo in POS])
-    for titulo, lista in bloques:
+    for titulo, lista, nom_media in bloques:
         if not lista:
             continue
         if titulo:
@@ -159,8 +181,13 @@ def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False, bloque=N
             filas_html.append(f'<tr><td class="d">{d}</td><td class="n">{nombre}{tag}</td>'
                               + "".join(celda(obj[k], dec, extra.get(d, {}).get(k), k) for k, _, _, dec in COLS)
                               + f'<td class="nt">{motivo.get(d, "")}</td></tr>')
-    filas_html.append('<tr class="med"><td></td><td class="n">Media equipo</td>'
-                      + "".join(celda(med[k], dec, None, k) for k, _, _, dec in COLS) + '<td class="nt"></td></tr>')
+        if nom_media:
+            mg = media_grupo(lista)
+            filas_html.append(f'<tr class="med"><td></td><td class="n">{nom_media}</td>'
+                              + "".join(celda(mg[k], dec, None, k) for k, _, _, dec in COLS) + '<td class="nt"></td></tr>')
+    if not partir_md1:
+        filas_html.append('<tr class="med"><td></td><td class="n">Media equipo</td>'
+                          + "".join(celda(med[k], dec, None, k) for k, _, _, dec in COLS) + '<td class="nt"></td></tr>')
     if readapt:
         filas_html.append(f'<tr class="grp"><td colspan="{len(COLS) + 3}">Readaptación · objetivo individual '
                           f'(no cuentan para la media)</td></tr>')
