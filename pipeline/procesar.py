@@ -164,11 +164,31 @@ def aplicar_suma(infs, sumar):
     return f"GPS puestos tarde: a todos se les ha sumado {partes} (estimación del preparador)."
 
 
+def _sumar_a(datos, sumar_a, nombres):
+    """GPS puesto tarde a jugadores concretos: suma lo no registrado (estimación del preparador)."""
+    notas = []
+    for d, mets in (sumar_a or {}).items():
+        if d not in datos:
+            raise NecesitaDecision(f"--sumar-a: el {d} no está en el PDF")
+        for m, v in mets.items():
+            k = "dur" if m == "min" else m
+            if k not in datos[d] or datos[d][k] is None:
+                raise NecesitaDecision(f"--sumar-a: métrica desconocida '{m}'")
+            x = round(datos[d][k] + v, 1)
+            datos[d][k] = int(x) if x == int(x) else x
+            if m == "min" and datos[d].get("min") is not None:
+                datos[d]["min"] += v
+        partes = ", ".join(f"{v:g} {NOMBRES_SUMA.get(m, m)}" for m, v in mets.items())
+        notas.append(f"{nombres.get(d, d)}: GPS puesto tarde, se le ha sumado {partes} (estimación del preparador).")
+    return " ".join(notas)
+
+
 def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run=False,
              alias=None, rol_md1=None, tipos_lesion=None, proxies=None, descartar=None,
-             solo=None, ref_duracion=None, sumar=None):
+             solo=None, ref_duracion=None, sumar=None, sumar_a=None):
     """Devuelve un dict-resumen. dry_run: escribe en el scratchpad, no toca nada real.
-    sumar: {métrica|"min": valor} que se suma a TODOS los jugadores del PDF (GPS puestos tarde)."""
+    sumar: {métrica|"min": valor} que se suma a TODOS los jugadores del PDF (GPS puestos tarde).
+    sumar_a: {dorsal: {métrica|"min": valor}}: lo mismo para jugadores concretos."""
     override = override or {}
     fallos_gps = fallos_gps or {}
     infs = [informe.leer(p) for p in pdfs]
@@ -206,6 +226,7 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
         if dup:
             raise NecesitaDecision(f"Jugadores en más de un PDF: {sorted(dup)}")
         datos.update(dd)
+    nota = (_sumar_a(datos, sumar_a, nombres) + " " + nota).strip()
     # filas del PDF que no son carga real del jugador (p. ej. GPS encendido en el banquillo)
     for d in (descartar or []):
         if datos.pop(d, None) is not None and d not in (proxies or {}):   # con proxy: lo explica su nota
