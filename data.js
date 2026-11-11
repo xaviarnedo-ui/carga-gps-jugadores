@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-11-09 12:58",
+  "generado": "2026-11-11 08:27",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-18)"
  },
  "refPartido": {
@@ -174820,34 +174820,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Andone, F.",
       "grupo": "DL",
       "distancia": {
-       "obj": 6223.6,
+       "obj": 5042,
        "real": 5042,
-       "dif": -1181.6
+       "dif": 0
       },
       "hmld": {
-       "obj": 968.7,
+       "obj": 561,
        "real": 561,
-       "dif": -407.7
+       "dif": 0
       },
       "hsr": {
-       "obj": 329.5,
+       "obj": 121,
        "real": 121,
-       "dif": -208.5
+       "dif": 0
       },
       "sprint": {
-       "obj": 4.8,
+       "obj": 0,
        "real": 0,
-       "dif": -4.8
+       "dif": 0
       },
       "acc": {
-       "obj": 24.1,
+       "obj": 8,
        "real": 8,
-       "dif": -16.1
+       "dif": 0
       },
       "dec": {
-       "obj": 36.3,
+       "obj": 19,
        "real": 19,
-       "dif": -17.3
+       "dif": 0
       },
       "velMax": 22.63,
       "playerLoad": 543,
@@ -175139,34 +175139,34 @@ window.GPS_DATA_ALL = {
       "jugador": "Soler, M.",
       "grupo": "M",
       "distancia": {
-       "obj": 6906.8,
+       "obj": 4111,
        "real": 4111,
-       "dif": -2795.8
+       "dif": 0
       },
       "hmld": {
-       "obj": 970.2,
+       "obj": 376,
        "real": 376,
-       "dif": -594.2
+       "dif": 0
       },
       "hsr": {
-       "obj": 250.3,
+       "obj": 104,
        "real": 104,
-       "dif": -146.3
+       "dif": 0
       },
       "sprint": {
-       "obj": 3.2,
+       "obj": 0,
        "real": 0,
-       "dif": -3.2
+       "dif": 0
       },
       "acc": {
-       "obj": 11.5,
+       "obj": 1,
        "real": 1,
-       "dif": -10.5
+       "dif": 0
       },
       "dec": {
-       "obj": 26.5,
+       "obj": 3,
        "real": 3,
-       "dif": -23.5
+       "dif": 0
       },
       "velMax": 22.87,
       "playerLoad": 478,
@@ -175289,39 +175289,39 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 4644.8,
+      "obj": 4410.8,
       "real": 4133.3,
-      "dif": -511.5
+      "dif": -277.5
      },
      "hmld": {
-      "obj": 625.6,
+      "obj": 566.7,
       "real": 425.2,
-      "dif": -200.4
+      "dif": -141.5
      },
      "hsr": {
-      "obj": 338.5,
+      "obj": 299.1,
       "real": 146.5,
-      "dif": -192
+      "dif": -152.6
      },
      "sprint": {
-      "obj": 4.8,
+      "obj": 3.9,
       "real": 1.6,
-      "dif": -3.2
+      "dif": -2.3
      },
      "acc": {
-      "obj": 21.7,
+      "obj": 18.7,
       "real": 7.4,
-      "dif": -14.3
+      "dif": -11.3
      },
      "dec": {
-      "obj": 31.9,
+      "obj": 27.3,
       "real": 8,
-      "dif": -23.9
+      "dif": -19.3
      },
      "velMax": 23.92,
      "playerLoad": 450
     },
-    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. Lesionados / no disponibles (sin sesión ni objetivo): Martín, A. · Bejarano, A."
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. Lesionados / no disponibles (sin sesión ni objetivo): Martín, A. · Bejarano, A. Andone, F. y Soler, M.: sesión mixta (parte con titulares y parte con suplentes); su objetivo se ajustó a lo realizado (decisión del preparador, 11/11)."
    },
    "S81": {
     "date": "2026-11-11",
@@ -179526,40 +179526,40 @@ window.GPS_DATA_ALL = {
      "jugador": "Andone, F.",
      "grupo": "DL",
      "distancia": {
-      "obj": 23511.4,
+      "obj": 22329.8,
       "real": 5042,
-      "dif": -18469.4,
-      "objFecha": 6223.6
+      "dif": -17287.8,
+      "objFecha": 5042
      },
      "hmld": {
-      "obj": 3347.2,
+      "obj": 2939.5,
       "real": 561,
-      "dif": -2786.2,
-      "objFecha": 968.7
+      "dif": -2378.5,
+      "objFecha": 561
      },
      "hsr": {
-      "obj": 1038,
+      "obj": 829.5,
       "real": 121,
-      "dif": -917,
-      "objFecha": 329.5
+      "dif": -708.5,
+      "objFecha": 121
      },
      "sprint": {
-      "obj": 16.9,
+      "obj": 12.1,
       "real": 0,
-      "dif": -16.9,
-      "objFecha": 4.8
+      "dif": -12.1,
+      "objFecha": 0
      },
      "acc": {
-      "obj": 91.3,
+      "obj": 75.2,
       "real": 8,
-      "dif": -83.3,
-      "objFecha": 24.1
+      "dif": -67.2,
+      "objFecha": 8
      },
      "dec": {
-      "obj": 117.2,
+      "obj": 99.9,
       "real": 19,
-      "dif": -98.2,
-      "objFecha": 36.3
+      "dif": -80.9,
+      "objFecha": 19
      }
     },
     {
@@ -179895,40 +179895,40 @@ window.GPS_DATA_ALL = {
      "jugador": "Soler, M.",
      "grupo": "M",
      "distancia": {
-      "obj": 26092.4,
+      "obj": 23296.6,
       "real": 4111,
-      "dif": -21981.4,
-      "objFecha": 6906.8
+      "dif": -19185.6,
+      "objFecha": 4111
      },
      "hmld": {
-      "obj": 3352.4,
+      "obj": 2758.2,
       "real": 376,
-      "dif": -2976.4,
-      "objFecha": 970.2
+      "dif": -2382.2,
+      "objFecha": 376
      },
      "hsr": {
-      "obj": 788.5,
+      "obj": 642.2,
       "real": 104,
-      "dif": -684.5,
-      "objFecha": 250.3
+      "dif": -538.2,
+      "objFecha": 104
      },
      "sprint": {
-      "obj": 11.2,
+      "obj": 8,
       "real": 0,
-      "dif": -11.2,
-      "objFecha": 3.2
+      "dif": -8,
+      "objFecha": 0
      },
      "acc": {
-      "obj": 43.7,
+      "obj": 33.2,
       "real": 1,
-      "dif": -42.7,
-      "objFecha": 11.5
+      "dif": -32.2,
+      "objFecha": 1
      },
      "dec": {
-      "obj": 85.5,
+      "obj": 62,
       "real": 3,
-      "dif": -82.5,
-      "objFecha": 26.5
+      "dif": -59,
+      "objFecha": 3
      }
     },
     {
@@ -180057,40 +180057,40 @@ window.GPS_DATA_ALL = {
    ],
    "teamAvg": {
     "distancia": {
-     "obj": 23113.6,
+     "obj": 22879.7,
      "real": 4133.3,
-     "dif": -18980.3,
-     "objFecha": 4644.8
+     "dif": -18746.4,
+     "objFecha": 4410.8
     },
     "hmld": {
-     "obj": 3179.7,
+     "obj": 3120.8,
      "real": 425.2,
-     "dif": -2754.5,
-     "objFecha": 625.6
+     "dif": -2695.6,
+     "objFecha": 566.7
     },
     "hsr": {
-     "obj": 850.8,
+     "obj": 830,
      "real": 146.5,
-     "dif": -704.3,
-     "objFecha": 179.2
+     "dif": -683.5,
+     "objFecha": 158.3
     },
     "sprint": {
-     "obj": 13.3,
+     "obj": 12.9,
      "real": 1.6,
-     "dif": -11.7,
-     "objFecha": 2.5
+     "dif": -11.3,
+     "objFecha": 2.1
     },
     "acc": {
-     "obj": 68.2,
+     "obj": 66.6,
      "real": 7.4,
-     "dif": -60.8,
-     "objFecha": 11.5
+     "dif": -59.2,
+     "objFecha": 9.9
     },
     "dec": {
-     "obj": 86.4,
+     "obj": 84,
      "real": 8.0,
-     "dif": -78.4,
-     "objFecha": 16.9
+     "dif": -76.0,
+     "objFecha": 14.5
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."
@@ -180382,34 +180382,34 @@ window.GPS_DATA_ALL = {
      "jugador": "Andone, F.",
      "grupo": "DL",
      "distancia": {
-      "obj": 23511.4,
+      "obj": 22329.8,
       "real": 5042,
-      "dif": -18469.4
+      "dif": -17287.8
      },
      "hmld": {
-      "obj": 3347.2,
+      "obj": 2939.5,
       "real": 561,
-      "dif": -2786.2
+      "dif": -2378.5
      },
      "hsr": {
-      "obj": 1038,
+      "obj": 829.5,
       "real": 121,
-      "dif": -917
+      "dif": -708.5
      },
      "sprint": {
-      "obj": 16.9,
+      "obj": 12.1,
       "real": 0,
-      "dif": -16.9
+      "dif": -12.1
      },
      "acc": {
-      "obj": 91.3,
+      "obj": 75.2,
       "real": 8,
-      "dif": -83.3
+      "dif": -67.2
      },
      "dec": {
-      "obj": 117.2,
+      "obj": 99.9,
       "real": 19,
-      "dif": -98.2
+      "dif": -80.9
      }
     },
     {
@@ -180697,34 +180697,34 @@ window.GPS_DATA_ALL = {
      "jugador": "Soler, M.",
      "grupo": "M",
      "distancia": {
-      "obj": 26092.4,
+      "obj": 23296.6,
       "real": 4111,
-      "dif": -21981.4
+      "dif": -19185.6
      },
      "hmld": {
-      "obj": 3352.4,
+      "obj": 2758.2,
       "real": 376,
-      "dif": -2976.4
+      "dif": -2382.2
      },
      "hsr": {
-      "obj": 788.5,
+      "obj": 642.2,
       "real": 104,
-      "dif": -684.5
+      "dif": -538.2
      },
      "sprint": {
-      "obj": 11.2,
+      "obj": 8,
       "real": 0,
-      "dif": -11.2
+      "dif": -8
      },
      "acc": {
-      "obj": 43.7,
+      "obj": 33.2,
       "real": 1,
-      "dif": -42.7
+      "dif": -32.2
      },
      "dec": {
-      "obj": 85.5,
+      "obj": 62,
       "real": 3,
-      "dif": -82.5
+      "dif": -59
      }
     },
     {
@@ -180835,34 +180835,34 @@ window.GPS_DATA_ALL = {
    ],
    "teamAvg": {
     "distancia": {
-     "obj": 23113.6,
+     "obj": 22879.7,
      "real": 4133.3,
-     "dif": -18980.3
+     "dif": -18746.4
     },
     "hmld": {
-     "obj": 3179.7,
+     "obj": 3120.8,
      "real": 425.2,
-     "dif": -2754.5
+     "dif": -2695.6
     },
     "hsr": {
-     "obj": 850.8,
+     "obj": 830,
      "real": 146.5,
-     "dif": -704.3
+     "dif": -683.5
     },
     "sprint": {
-     "obj": 13.3,
+     "obj": 12.9,
      "real": 1.6,
-     "dif": -11.7
+     "dif": -11.3
     },
     "acc": {
-     "obj": 68.2,
+     "obj": 66.6,
      "real": 7.4,
-     "dif": -60.8
+     "dif": -59.2
     },
     "dec": {
-     "obj": 86.4,
+     "obj": 84,
      "real": 8,
-     "dif": -78.4
+     "dif": -76
     }
    },
    "nota": "Acumulado de toda la semana: sesiones de entrenamiento + partido(s). Objetivo de la semana completa de Microciclo 18 (Lunes MD+1 individual según rol en J10 + Miércoles MD-4 + Jueves MD-3 + Viernes MD-2 + Sábado MD-1). Acumulado (Real) pendiente de cargar sesión a sesión."
