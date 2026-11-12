@@ -136,6 +136,8 @@ def main():
     a.add_argument("--sin-lesionados", action="store_true", help="sin los jugadores en readaptación o lesionados")
     a.add_argument("--bloque", action="append", help="extra a mano: 2=hsr:150,sprint:4 (repetible)")
     a.add_argument("--nota-bloque", help="texto del pie para el bloque (contenido de la tarea)")
+    a.add_argument("--nota-jugador", action="append",
+                   help="nota en la columna Notas de un jugador (repetible): 26=\"Tope 3-4 sprints\"")
     a = sub.add_parser("comparativa")
     a.add_argument("--hasta", type=int, help="última jornada (por defecto, la última jugada)")
     a = sub.add_parser("publicar")
@@ -239,8 +241,12 @@ def main():
         from pipeline import hoja_objetivos
         bloque = {int(d): {k: float(v) for k, v in (x.split(":") for x in m.split(","))}
                   for d, m in _pares(args.bloque).items()}
+        notas = {}
+        for item in args.nota_jugador or []:
+            d, t = item.split("=", 1)
+            notas[int(d)] = t.strip().strip('"')
         print(hoja_objetivos.generar(args.sesion.upper(), args.compensar, not args.por_posicion, args.sin_lesionados,
-                                     bloque, args.nota_bloque))
+                                     bloque, args.nota_bloque, notas))
 
     elif args.cmd == "disponibilidad":
         print(disponibilidad.generar())

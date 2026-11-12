@@ -82,7 +82,8 @@ def _deficits(key_ant, fecha):
     return extra, motivo
 
 
-def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False, bloque=None, nota_bloque=None):
+def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False, bloque=None, nota_bloque=None,
+            notas=None):
     n, wb, ws = _buscar(key)
     fecha = fecha_hoja(ws)
     tipo, dia = sesion.tipo_y_dia(ws)
@@ -122,6 +123,8 @@ def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False, bloque=N
             extra.setdefault(d, {})[k] = extra.get(d, {}).get(k, 0) + v
         txt = "Bloque ACWR: " + " · ".join(f"+{_fmt(v, 0)} {TXT[k]}" for k, v in mets.items())
         motivo[d] = f"{motivo[d]}; {txt}" if motivo.get(d) else txt
+    for d, t in (notas or {}).items():   # notas a mano del preparador (p. ej. topes por ACWR)
+        motivo[d] = f"{motivo[d]}; {t}" if motivo.get(d) else t
     if compensar or bloque:  # media equipo: objetivo + extra medio de los mismos jugadores que la media
         en_media = [(d, o) for g in con.values() for d, _, o in g if d not in fuera]
         for k, *_ in COLS:
