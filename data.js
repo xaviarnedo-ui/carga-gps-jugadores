@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-11-16 09:36",
+  "generado": "2026-11-16 09:47",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-19)"
  },
  "refPartido": {
@@ -398,7 +398,7 @@ window.GPS_DATA_ALL = {
       "velMax": 31.15
      }
     },
-    "dispo": "rehab",
+    "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
    {
@@ -185357,8 +185357,16 @@ window.GPS_DATA_ALL = {
       "dorsal": 5,
       "jugador": "Martín, A.",
       "grupo": "D",
-      "distancia": null,
-      "hmld": null,
+      "distancia": {
+       "obj": 2264.3,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 85,
+       "real": null,
+       "dif": null
+      },
       "hsr": null,
       "sprint": null,
       "acc": null,
@@ -185866,12 +185874,12 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 4295.7,
+      "obj": 4182.8,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 503.1,
+      "obj": 479.9,
       "real": null,
       "dif": null
      },
@@ -185898,7 +185906,7 @@ window.GPS_DATA_ALL = {
      "velMax": null,
      "playerLoad": null
     },
-    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. · Martín, A. · Bejarano, A."
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. · Bejarano, A."
    },
    "S86": {
     "date": "2026-11-18",
@@ -185980,12 +185988,36 @@ window.GPS_DATA_ALL = {
       "dorsal": 5,
       "jugador": "Martín, A.",
       "grupo": "D",
-      "distancia": null,
-      "hmld": null,
-      "hsr": null,
-      "sprint": null,
-      "acc": null,
-      "dec": null,
+      "distancia": {
+       "obj": 5146.2,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 595.3,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 64.9,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.7,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 17.7,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 21.3,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
@@ -186633,17 +186665,17 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 5290.7,
+      "obj": 5282.6,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 713.6,
+      "obj": 707,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 93.5,
+      "obj": 91.9,
       "real": null,
       "dif": null
      },
@@ -186653,19 +186685,19 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "acc": {
-      "obj": 22,
+      "obj": 21.8,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 29.2,
+      "obj": 28.7,
       "real": null,
       "dif": null
      },
      "velMax": null,
      "playerLoad": null
     },
-    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. · Martín, A. · Bejarano, A."
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. · Bejarano, A."
    },
    "S87": {
     "date": "2026-11-19",
@@ -186747,12 +186779,36 @@ window.GPS_DATA_ALL = {
       "dorsal": 5,
       "jugador": "Martín, A.",
       "grupo": "D",
-      "distancia": null,
-      "hmld": null,
-      "hsr": null,
-      "sprint": null,
-      "acc": null,
-      "dec": null,
+      "distancia": {
+       "obj": 7410.5,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1063,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 306.7,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 5.6,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 16.5,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 19.6,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
@@ -187400,39 +187456,39 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 7618.5,
+      "obj": 7607,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 1274.3,
+      "obj": 1262.5,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 441.6,
+      "obj": 434.1,
       "real": null,
       "dif": null
      },
      "sprint": {
-      "obj": 9.1,
+      "obj": 8.9,
       "real": null,
       "dif": null
      },
      "acc": {
-      "obj": 20.5,
+      "obj": 20.3,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 26.9,
+      "obj": 26.5,
       "real": null,
       "dif": null
      },
      "velMax": null,
      "playerLoad": null
     },
-    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. · Martín, A. · Bejarano, A."
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. · Bejarano, A."
    },
    "S88": {
     "date": "2026-11-20",
@@ -187514,12 +187570,36 @@ window.GPS_DATA_ALL = {
       "dorsal": 5,
       "jugador": "Martín, A.",
       "grupo": "D",
-      "distancia": null,
-      "hmld": null,
-      "hsr": null,
-      "sprint": null,
-      "acc": null,
-      "dec": null,
+      "distancia": {
+       "obj": 2573.1,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 198.4,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 64.9,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.3,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 2.8,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 2,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
@@ -188167,17 +188247,17 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 2645.3,
+      "obj": 2641.3,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 237.9,
+      "obj": 235.7,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 93.5,
+      "obj": 91.9,
       "real": null,
       "dif": null
      },
@@ -188192,14 +188272,14 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "dec": {
-      "obj": 2.7,
+      "obj": 2.6,
       "real": null,
       "dif": null
      },
      "velMax": null,
      "playerLoad": null
     },
-    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. · Martín, A. · Bejarano, A."
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. · Bejarano, A."
    },
    "S89": {
     "date": "2026-11-21",
@@ -188277,12 +188357,32 @@ window.GPS_DATA_ALL = {
       "dorsal": 5,
       "jugador": "Martín, A.",
       "grupo": "D",
-      "distancia": null,
-      "hmld": null,
-      "hsr": null,
+      "distancia": {
+       "obj": 2881.9,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 283.5,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 28.9,
+       "real": null,
+       "dif": null
+      },
       "sprint": null,
-      "acc": null,
-      "dec": null,
+      "acc": {
+       "obj": 9,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 8.2,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
@@ -188866,17 +188966,17 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 2962.8,
+      "obj": 2958.3,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 339.8,
+      "obj": 336.7,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 41.6,
+      "obj": 40.9,
       "real": null,
       "dif": null
      },
@@ -188886,19 +188986,19 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "acc": {
-      "obj": 11.1,
+      "obj": 11,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 11.2,
+      "obj": 11.1,
       "real": null,
       "dif": null
      },
      "velMax": null,
      "playerLoad": null
     },
-    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. · Martín, A. · Bejarano, A."
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. · Bejarano, A."
    }
   },
   "partidos": {
@@ -189898,37 +189998,37 @@ window.GPS_DATA_ALL = {
      "jugador": "Martín, A.",
      "grupo": "D",
      "distancia": {
-      "obj": null,
+      "obj": 20276,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "hmld": {
-      "obj": null,
+      "obj": 2225.2,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "hsr": {
-      "obj": null,
+      "obj": 465.4,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "sprint": {
-      "obj": null,
+      "obj": 6.6,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "acc": {
-      "obj": null,
+      "obj": 46,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "dec": {
-      "obj": null,
+      "obj": 51.1,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -190634,39 +190734,39 @@ window.GPS_DATA_ALL = {
    ],
    "teamAvg": {
     "distancia": {
-     "obj": 22813,
+     "obj": 22672,
      "real": 0.0,
-     "dif": -22813.0,
+     "dif": -22672.0,
      "objFecha": 0.0
     },
     "hmld": {
-     "obj": 3068.7,
+     "obj": 3021.8,
      "real": 0.0,
-     "dif": -3068.7,
+     "dif": -3021.8,
      "objFecha": 0.0
     },
     "hsr": {
-     "obj": 798.5,
+     "obj": 780,
      "real": 0.0,
-     "dif": -798.5,
+     "dif": -780.0,
      "objFecha": 0.0
     },
     "sprint": {
-     "obj": 12.6,
+     "obj": 12.3,
      "real": 0.0,
-     "dif": -12.6,
+     "dif": -12.3,
      "objFecha": 0.0
     },
     "acc": {
-     "obj": 65.7,
+     "obj": 64.6,
      "real": 0.0,
-     "dif": -65.7,
+     "dif": -64.6,
      "objFecha": 0.0
     },
     "dec": {
-     "obj": 83.1,
+     "obj": 81.3,
      "real": 0.0,
-     "dif": -83.1,
+     "dif": -81.3,
      "objFecha": 0.0
     }
    },
@@ -190784,32 +190884,32 @@ window.GPS_DATA_ALL = {
      "jugador": "Martín, A.",
      "grupo": "D",
      "distancia": {
-      "obj": null,
+      "obj": 20276,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": null,
+      "obj": 2225.2,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": null,
+      "obj": 465.4,
       "real": null,
       "dif": null
      },
      "sprint": {
-      "obj": null,
+      "obj": 6.6,
       "real": null,
       "dif": null
      },
      "acc": {
-      "obj": null,
+      "obj": 46,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": null,
+      "obj": 51.1,
       "real": null,
       "dif": null
      }
@@ -191412,34 +191512,34 @@ window.GPS_DATA_ALL = {
    ],
    "teamAvg": {
     "distancia": {
-     "obj": 22813,
+     "obj": 22672,
      "real": 0,
-     "dif": -22813
+     "dif": -22672
     },
     "hmld": {
-     "obj": 3068.7,
+     "obj": 3021.8,
      "real": 0,
-     "dif": -3068.7
+     "dif": -3021.8
     },
     "hsr": {
-     "obj": 798.5,
+     "obj": 780,
      "real": 0,
-     "dif": -798.5
+     "dif": -780
     },
     "sprint": {
-     "obj": 12.6,
+     "obj": 12.3,
      "real": 0,
-     "dif": -12.6
+     "dif": -12.3
     },
     "acc": {
-     "obj": 65.7,
+     "obj": 64.6,
      "real": 0,
-     "dif": -65.7
+     "dif": -64.6
     },
     "dec": {
-     "obj": 83.1,
+     "obj": 81.3,
      "real": 0,
-     "dif": -83.1
+     "dif": -81.3
     }
    },
    "nota": "Acumulado de toda la semana: sesiones de entrenamiento + partido(s). Objetivo de la semana completa de Microciclo 19 (Lunes MD+1 individual según rol en J11 + Miércoles MD-4 + Jueves MD-3 + Viernes MD-2 + Sábado MD-1). Acumulado (Real) pendiente de cargar sesión a sesión."
