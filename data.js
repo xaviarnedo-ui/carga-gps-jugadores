@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-11-16 09:47",
+  "generado": "2026-11-16 09:54",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-19)"
  },
  "refPartido": {
@@ -3383,11 +3383,11 @@ window.GPS_DATA_ALL = {
     },
     "MD-4": {
      "distancia": 0.5,
-     "hmld": 0.42,
-     "hsr": 0.18,
+     "hmld": 0.48,
+     "hsr": 0.25,
      "sprint": 0.1,
-     "acc": 0.75,
-     "dec": 0.65
+     "acc": 0.85,
+     "dec": 0.72
     },
     "MD-3": {
      "distancia": 0.72,
@@ -185994,12 +185994,12 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "hmld": {
-       "obj": 595.3,
+       "obj": 680.3,
        "real": null,
        "dif": null
       },
       "hsr": {
-       "obj": 64.9,
+       "obj": 90.2,
        "real": null,
        "dif": null
       },
@@ -186009,12 +186009,12 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "acc": {
-       "obj": 17.7,
+       "obj": 20.1,
        "real": null,
        "dif": null
       },
       "dec": {
-       "obj": 21.3,
+       "obj": 23.5,
        "real": null,
        "dif": null
       },
@@ -186033,12 +186033,12 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "hmld": {
-       "obj": 850.3,
+       "obj": 971.8,
        "real": null,
        "dif": null
       },
       "hsr": {
-       "obj": 91.9,
+       "obj": 127.7,
        "real": null,
        "dif": null
       },
@@ -186048,12 +186048,12 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "acc": {
-       "obj": 27.4,
+       "obj": 31,
        "real": null,
        "dif": null
       },
       "dec": {
-       "obj": 33.3,
+       "obj": 36.9,
        "real": null,
        "dif": null
       },
@@ -186072,12 +186072,12 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "hmld": {
-       "obj": 807.9,
+       "obj": 923.3,
        "real": null,
        "dif": null
       },
       "hsr": {
-       "obj": 120.9,
+       "obj": 167.9,
        "real": null,
        "dif": null
       },
@@ -186087,12 +186087,12 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "acc": {
-       "obj": 23,
+       "obj": 26,
        "real": null,
        "dif": null
       },
       "dec": {
-       "obj": 29.4,
+       "obj": 32.6,
        "real": null,
        "dif": null
       },
@@ -186189,12 +186189,12 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "hmld": {
-       "obj": 661.6,
+       "obj": 756.1,
        "real": null,
        "dif": null
       },
       "hsr": {
-       "obj": 98.9,
+       "obj": 137.3,
        "real": null,
        "dif": null
       },
@@ -186204,12 +186204,12 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "acc": {
-       "obj": 25.9,
+       "obj": 29.3,
        "real": null,
        "dif": null
       },
       "dec": {
-       "obj": 33.7,
+       "obj": 37.4,
        "real": null,
        "dif": null
       },
@@ -186384,12 +186384,12 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "hmld": {
-       "obj": 582.9,
+       "obj": 666.1,
        "real": null,
        "dif": null
       },
       "hsr": {
-       "obj": 84.8,
+       "obj": 117.8,
        "real": null,
        "dif": null
       },
@@ -186399,12 +186399,12 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "acc": {
-       "obj": 17.4,
+       "obj": 19.7,
        "real": null,
        "dif": null
       },
       "dec": {
-       "obj": 28.3,
+       "obj": 31.4,
        "real": null,
        "dif": null
       },
@@ -186633,12 +186633,12 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "hmld": {
-       "obj": 409.9,
+       "obj": 468.5,
        "real": null,
        "dif": null
       },
       "hsr": {
-       "obj": 42.1,
+       "obj": 58.5,
        "real": null,
        "dif": null
       },
@@ -186648,12 +186648,12 @@ window.GPS_DATA_ALL = {
        "dif": null
       },
       "acc": {
-       "obj": 15.1,
+       "obj": 17.2,
        "real": null,
        "dif": null
       },
       "dec": {
-       "obj": 15.5,
+       "obj": 17.2,
        "real": null,
        "dif": null
       },
@@ -186670,12 +186670,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "hmld": {
-      "obj": 707,
+      "obj": 738,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 91.9,
+      "obj": 102.8,
       "real": null,
       "dif": null
      },
@@ -186685,12 +186685,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "acc": {
-      "obj": 21.8,
+      "obj": 22.7,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 28.7,
+      "obj": 29.7,
       "real": null,
       "dif": null
      },
@@ -190004,13 +190004,13 @@ window.GPS_DATA_ALL = {
       "objFecha": null
      },
      "hmld": {
-      "obj": 2225.2,
+      "obj": 2310.2,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "hsr": {
-      "obj": 465.4,
+      "obj": 490.7,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -190022,13 +190022,13 @@ window.GPS_DATA_ALL = {
       "objFecha": null
      },
      "acc": {
-      "obj": 46,
+      "obj": 48.4,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "dec": {
-      "obj": 51.1,
+      "obj": 53.3,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -190045,13 +190045,13 @@ window.GPS_DATA_ALL = {
       "objFecha": null
      },
      "hmld": {
-      "obj": 3178.5,
+      "obj": 3300,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "hsr": {
-      "obj": 658.6,
+      "obj": 694.4,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -190063,13 +190063,13 @@ window.GPS_DATA_ALL = {
       "objFecha": null
      },
      "acc": {
-      "obj": 71.2,
+      "obj": 74.8,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "dec": {
-      "obj": 80,
+      "obj": 83.6,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -190086,13 +190086,13 @@ window.GPS_DATA_ALL = {
       "objFecha": null
      },
      "hmld": {
-      "obj": 3019.9,
+      "obj": 3135.3,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "hsr": {
-      "obj": 866.4,
+      "obj": 913.4,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -190104,13 +190104,13 @@ window.GPS_DATA_ALL = {
       "objFecha": null
      },
      "acc": {
-      "obj": 59.7,
+      "obj": 62.7,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "dec": {
-      "obj": 70.6,
+      "obj": 73.8,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -190209,13 +190209,13 @@ window.GPS_DATA_ALL = {
       "objFecha": null
      },
      "hmld": {
-      "obj": 3347.2,
+      "obj": 3441.7,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "hsr": {
-      "obj": 1038,
+      "obj": 1076.4,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -190227,13 +190227,13 @@ window.GPS_DATA_ALL = {
       "objFecha": null
      },
      "acc": {
-      "obj": 91.3,
+      "obj": 94.7,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "dec": {
-      "obj": 117.2,
+      "obj": 120.9,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -190414,13 +190414,13 @@ window.GPS_DATA_ALL = {
       "objFecha": null
      },
      "hmld": {
-      "obj": 2178.9,
+      "obj": 2262.1,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "hsr": {
-      "obj": 607.6,
+      "obj": 640.6,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -190432,13 +190432,13 @@ window.GPS_DATA_ALL = {
       "objFecha": null
      },
      "acc": {
-      "obj": 45.2,
+      "obj": 47.5,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "dec": {
-      "obj": 68,
+      "obj": 71.1,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -190701,13 +190701,13 @@ window.GPS_DATA_ALL = {
       "objFecha": null
      },
      "hmld": {
-      "obj": 2073.9,
+      "obj": 2132.5,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "hsr": {
-      "obj": 441.9,
+      "obj": 458.3,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -190719,13 +190719,13 @@ window.GPS_DATA_ALL = {
       "objFecha": null
      },
      "acc": {
-      "obj": 53.4,
+      "obj": 55.5,
       "real": null,
       "dif": null,
       "objFecha": null
      },
      "dec": {
-      "obj": 53.9,
+      "obj": 55.6,
       "real": null,
       "dif": null,
       "objFecha": null
@@ -190740,15 +190740,15 @@ window.GPS_DATA_ALL = {
      "objFecha": 0.0
     },
     "hmld": {
-     "obj": 3021.8,
+     "obj": 3052.8,
      "real": 0.0,
-     "dif": -3021.8,
+     "dif": -3052.8,
      "objFecha": 0.0
     },
     "hsr": {
-     "obj": 780,
+     "obj": 790.9,
      "real": 0.0,
-     "dif": -780.0,
+     "dif": -790.9,
      "objFecha": 0.0
     },
     "sprint": {
@@ -190758,15 +190758,15 @@ window.GPS_DATA_ALL = {
      "objFecha": 0.0
     },
     "acc": {
-     "obj": 64.6,
+     "obj": 65.5,
      "real": 0.0,
-     "dif": -64.6,
+     "dif": -65.5,
      "objFecha": 0.0
     },
     "dec": {
-     "obj": 81.3,
+     "obj": 82.3,
      "real": 0.0,
-     "dif": -81.3,
+     "dif": -82.3,
      "objFecha": 0.0
     }
    },
@@ -190889,12 +190889,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "hmld": {
-      "obj": 2225.2,
+      "obj": 2310.2,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 465.4,
+      "obj": 490.7,
       "real": null,
       "dif": null
      },
@@ -190904,12 +190904,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "acc": {
-      "obj": 46,
+      "obj": 48.4,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 51.1,
+      "obj": 53.3,
       "real": null,
       "dif": null
      }
@@ -190924,12 +190924,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "hmld": {
-      "obj": 3178.5,
+      "obj": 3300,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 658.6,
+      "obj": 694.4,
       "real": null,
       "dif": null
      },
@@ -190939,12 +190939,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "acc": {
-      "obj": 71.2,
+      "obj": 74.8,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 80,
+      "obj": 83.6,
       "real": null,
       "dif": null
      }
@@ -190959,12 +190959,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "hmld": {
-      "obj": 3019.9,
+      "obj": 3135.3,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 866.4,
+      "obj": 913.4,
       "real": null,
       "dif": null
      },
@@ -190974,12 +190974,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "acc": {
-      "obj": 59.7,
+      "obj": 62.7,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 70.6,
+      "obj": 73.8,
       "real": null,
       "dif": null
      }
@@ -191064,12 +191064,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "hmld": {
-      "obj": 3347.2,
+      "obj": 3441.7,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 1038,
+      "obj": 1076.4,
       "real": null,
       "dif": null
      },
@@ -191079,12 +191079,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "acc": {
-      "obj": 91.3,
+      "obj": 94.7,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 117.2,
+      "obj": 120.9,
       "real": null,
       "dif": null
      }
@@ -191239,12 +191239,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "hmld": {
-      "obj": 2178.9,
+      "obj": 2262.1,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 607.6,
+      "obj": 640.6,
       "real": null,
       "dif": null
      },
@@ -191254,12 +191254,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "acc": {
-      "obj": 45.2,
+      "obj": 47.5,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 68,
+      "obj": 71.1,
       "real": null,
       "dif": null
      }
@@ -191484,12 +191484,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "hmld": {
-      "obj": 2073.9,
+      "obj": 2132.5,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 441.9,
+      "obj": 458.3,
       "real": null,
       "dif": null
      },
@@ -191499,12 +191499,12 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "acc": {
-      "obj": 53.4,
+      "obj": 55.5,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 53.9,
+      "obj": 55.6,
       "real": null,
       "dif": null
      }
@@ -191517,14 +191517,14 @@ window.GPS_DATA_ALL = {
      "dif": -22672
     },
     "hmld": {
-     "obj": 3021.8,
+     "obj": 3052.8,
      "real": 0,
-     "dif": -3021.8
+     "dif": -3052.8
     },
     "hsr": {
-     "obj": 780,
+     "obj": 790.9,
      "real": 0,
-     "dif": -780
+     "dif": -790.9
     },
     "sprint": {
      "obj": 12.3,
@@ -191532,14 +191532,14 @@ window.GPS_DATA_ALL = {
      "dif": -12.3
     },
     "acc": {
-     "obj": 64.6,
+     "obj": 65.5,
      "real": 0,
-     "dif": -64.6
+     "dif": -65.5
     },
     "dec": {
-     "obj": 81.3,
+     "obj": 82.3,
      "real": 0,
-     "dif": -81.3
+     "dif": -82.3
     }
    },
    "nota": "Acumulado de toda la semana: sesiones de entrenamiento + partido(s). Objetivo de la semana completa de Microciclo 19 (Lunes MD+1 individual según rol en J11 + Miércoles MD-4 + Jueves MD-3 + Viernes MD-2 + Sábado MD-1). Acumulado (Real) pendiente de cargar sesión a sesión."
