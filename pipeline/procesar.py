@@ -299,10 +299,14 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
             if cumpl:
                 res["cumplimiento_medio"] = round(sum(cumpl) / len(cumpl))
         for d, e in estados_dia.items():
-            # quien juega cuenta como full ese día sin cambiar su estado vigente, salvo que el
-            # preparador lo indique (--estado D=full: alta en el partido)
-            if e in E.PERSISTENTES and e != vigentes[d] and (d not in datos or d in override):
+            # cambio de estado persistente → vigente + historial (como `gps.py estado`). Incluye a
+            # quien estaba en rehab/lesión y juega el partido: ese día es full y _registro_lesiones
+            # le da el alta, así que el vigente pasa a full desde la fecha del partido.
+            if e in E.PERSISTENTES and e != vigentes[d]:
                 E.cambiar(est, d, e, fecha.isoformat(), f"{key}")
+                if e == C.FULL:
+                    res["avisos"].append(f"Cambio de estado: {nombres[d]} {vigentes[d]} → {e} "
+                                         f"(vigente desde {fecha.isoformat()})")
         if partido.cuenta_para_ref(key) and not dry_run:
             reales = {d: v for d, v in datos.items() if d not in fallos_gps and d not in proxies}
             nombres_ref = {d: wt["REF_PARTIDO"].cell(r, 2).value
