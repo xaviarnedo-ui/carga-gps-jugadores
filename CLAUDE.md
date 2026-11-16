@@ -94,6 +94,7 @@ repetirla a lo largo de la temporada (p. ej. cada pocas jornadas o cuando lo pid
   MD-1 = lo que se hace y sin objetivo de sprint; +1 Suplentes sin cambios). Ver la propuesta en GPS/Informes.
   16/11/2026: MD-4 del Tipo B subido (HMLD 0,48 · HSR 0,25 · ACC 0,85 · DEC 0,72), aprobado por el preparador
   tomando como referencia el S81; copia previa en GPS/_backups/coef-20261116.
+  Mismo día, A y C en la misma proporción: A 0,43 · 0,17 · 0,77 · 0,64; C 0,60 · 0,69 · 1,12 · 0,97.
 - Avisos del dashboard (Inicio): ACWR PL/HSR/Sprint (>1,3 y <0,8), picos de HSR/sprints de 7 días >+15% sobre
   la media de las 4 semanas anteriores, quién no ha llegado al 95% de su vel. máx en 7 días y no titulares por
   debajo del 75% de la carga de 7 días de los titulares del último partido, y quién lleva 3 microciclos seguidos con la
