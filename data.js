@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-11-16 15:31",
+  "generado": "2026-11-16 21:01",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-19)"
  },
  "refPartido": {
@@ -164,7 +164,7 @@ window.GPS_DATA_ALL = {
       "velMax": null
      }
     },
-    "dispo": "rehab",
+    "dispo": "ok",
     "primeraFecha": "2026-09-03"
    },
    {
@@ -192,7 +192,7 @@ window.GPS_DATA_ALL = {
       }
      }
     ],
-    "dispo": "rehab",
+    "dispo": "ok",
     "primeraFecha": "2026-07-16"
    },
    {
@@ -3506,7 +3506,7 @@ window.GPS_DATA_ALL = {
    "dorsal": 4,
    "tipo": "Rotura isquiotibial",
    "baja": "2026-08-25",
-   "alta": null,
+   "alta": "2026-11-16",
    "nota": "Fecha confirmada por el cuerpo técnico (informe 03/09).",
    "jugador": "Payeras, M."
   },
@@ -3551,7 +3551,7 @@ window.GPS_DATA_ALL = {
    "dorsal": 3,
    "tipo": "Lesión isquiotibial",
    "baja": "2026-09-26",
-   "alta": null,
+   "alta": "2026-11-16",
    "nota": "Pinchazo en S50 (se retiró a los 21:42); confirmada el 28/09.",
    "jugador": "Espiñeiro, A."
   },
@@ -185327,80 +185327,76 @@ window.GPS_DATA_ALL = {
       "jugador": "Espiñeiro, A.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 6132.9,
        "real": 6101,
-       "dif": null
+       "dif": -31.9
       },
       "hmld": {
-       "obj": null,
+       "obj": 899.5,
        "real": 749,
-       "dif": null
+       "dif": -150.5
       },
       "hsr": {
-       "obj": null,
+       "obj": 278,
        "real": 173,
-       "dif": null
+       "dif": -105
       },
       "sprint": {
-       "obj": null,
+       "obj": 4.1,
        "real": 2,
-       "dif": null
+       "dif": -2.1
       },
       "acc": {
-       "obj": null,
+       "obj": 16.8,
        "real": 11,
-       "dif": null
+       "dif": -5.8
       },
       "dec": {
-       "obj": null,
+       "obj": 25.2,
        "real": 19,
-       "dif": null
+       "dif": -6.2
       },
       "velMax": 25.7,
       "playerLoad": 622,
-      "duracion": "61.1",
-      "distSprint": 25,
-      "estado": "rehab"
+      "duracion": "61.1"
      },
      {
       "dorsal": 4,
       "jugador": "Payeras, M.",
       "grupo": "D",
       "distancia": {
-       "obj": null,
+       "obj": 5905,
        "real": 5666,
-       "dif": null
+       "dif": -239
       },
       "hmld": {
-       "obj": null,
+       "obj": 730,
        "real": 538,
-       "dif": null
+       "dif": -192
       },
       "hsr": {
-       "obj": null,
+       "obj": 175.8,
        "real": 95,
-       "dif": null
+       "dif": -80.8
       },
       "sprint": {
-       "obj": null,
+       "obj": 1.6,
        "real": 0,
-       "dif": null
+       "dif": -1.6
       },
       "acc": {
-       "obj": null,
+       "obj": 14.7,
        "real": 11,
-       "dif": null
+       "dif": -3.7
       },
       "dec": {
-       "obj": null,
+       "obj": 14.7,
        "real": 11,
-       "dif": null
+       "dif": -3.7
       },
       "velMax": 23.97,
       "playerLoad": 504,
-      "duracion": "61.1",
-      "distSprint": 0,
-      "estado": "rehab"
+      "duracion": "61.1"
      },
      {
       "dorsal": 5,
@@ -186091,39 +186087,39 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 4182.8,
-      "real": 4264.2,
-      "dif": 81.4
+      "obj": 4366.4,
+      "real": 4426.1,
+      "dif": 59.7
      },
      "hmld": {
-      "obj": 479.9,
-      "real": 503.4,
-      "dif": 23.5
+      "obj": 513.4,
+      "real": 517.5,
+      "dif": 4.1
      },
      "hsr": {
-      "obj": 272.8,
-      "real": 158.8,
-      "dif": -114
+      "obj": 263.6,
+      "real": 156.3,
+      "dif": -107.3
      },
      "sprint": {
-      "obj": 4,
-      "real": 2.4,
-      "dif": -1.6
+      "obj": 3.8,
+      "real": 2.3,
+      "dif": -1.5
      },
      "acc": {
-      "obj": 18.1,
-      "real": 7.6,
-      "dif": -10.5
+      "obj": 17.6,
+      "real": 7.9,
+      "dif": -9.7
      },
      "dec": {
-      "obj": 27.8,
-      "real": 7.7,
-      "dif": -20.1
+      "obj": 26.2,
+      "real": 8.4,
+      "dif": -17.8
      },
-     "velMax": 24.43,
-     "playerLoad": 446.7
+     "velMax": 24.47,
+     "playerLoad": 458.4
     },
-    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. · Bejarano, A."
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Bejarano, A."
    },
    "S86": {
     "date": "2026-11-18",
@@ -186175,12 +186171,36 @@ window.GPS_DATA_ALL = {
       "dorsal": 3,
       "jugador": "Espiñeiro, A.",
       "grupo": "D",
-      "distancia": null,
-      "hmld": null,
-      "hsr": null,
-      "sprint": null,
-      "acc": null,
-      "dec": null,
+      "distancia": {
+       "obj": 4867.4,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 702,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 115.8,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 1,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 20.4,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 25.9,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
@@ -186190,12 +186210,36 @@ window.GPS_DATA_ALL = {
       "dorsal": 4,
       "jugador": "Payeras, M.",
       "grupo": "D",
-      "distancia": null,
-      "hmld": null,
-      "hsr": null,
-      "sprint": null,
-      "acc": null,
-      "dec": null,
+      "distancia": {
+       "obj": 4686.5,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 569.8,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 73.2,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.4,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 17.8,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 15.1,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
@@ -186966,12 +187010,36 @@ window.GPS_DATA_ALL = {
       "dorsal": 3,
       "jugador": "Espiñeiro, A.",
       "grupo": "D",
-      "distancia": null,
-      "hmld": null,
-      "hsr": null,
-      "sprint": null,
-      "acc": null,
-      "dec": null,
+      "distancia": {
+       "obj": 7009.1,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1096.9,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 393.9,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 8.8,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 16.8,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 21.6,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
@@ -186981,12 +187049,36 @@ window.GPS_DATA_ALL = {
       "dorsal": 4,
       "jugador": "Payeras, M.",
       "grupo": "D",
-      "distancia": null,
-      "hmld": null,
-      "hsr": null,
-      "sprint": null,
-      "acc": null,
-      "dec": null,
+      "distancia": {
+       "obj": 6748.6,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 890.2,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 249,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 3.4,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 14.7,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 12.6,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
@@ -187757,12 +187849,36 @@ window.GPS_DATA_ALL = {
       "dorsal": 3,
       "jugador": "Espiñeiro, A.",
       "grupo": "D",
-      "distancia": null,
-      "hmld": null,
-      "hsr": null,
-      "sprint": null,
-      "acc": null,
-      "dec": null,
+      "distancia": {
+       "obj": 2433.7,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 204.8,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 83.4,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.5,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 2.9,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 2.2,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
@@ -187772,12 +187888,36 @@ window.GPS_DATA_ALL = {
       "dorsal": 4,
       "jugador": "Payeras, M.",
       "grupo": "D",
-      "distancia": null,
-      "hmld": null,
-      "hsr": null,
-      "sprint": null,
-      "acc": null,
-      "dec": null,
+      "distancia": {
+       "obj": 2343.2,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 166.2,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 52.7,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.2,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 2.5,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 1.3,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
@@ -188544,12 +188684,32 @@ window.GPS_DATA_ALL = {
       "dorsal": 3,
       "jugador": "Espiñeiro, A.",
       "grupo": "D",
-      "distancia": null,
-      "hmld": null,
-      "hsr": null,
+      "distancia": {
+       "obj": 2725.7,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 292.5,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 37.1,
+       "real": null,
+       "dif": null
+      },
       "sprint": null,
-      "acc": null,
-      "dec": null,
+      "acc": {
+       "obj": 9.1,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 9,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
@@ -188559,12 +188719,32 @@ window.GPS_DATA_ALL = {
       "dorsal": 4,
       "jugador": "Payeras, M.",
       "grupo": "D",
-      "distancia": null,
-      "hmld": null,
-      "hsr": null,
+      "distancia": {
+       "obj": 2624.4,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 237.4,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 23.4,
+       "real": null,
+       "dif": null
+      },
       "sprint": null,
-      "acc": null,
-      "dec": null,
+      "acc": {
+       "obj": 8,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 5.2,
+       "real": null,
+       "dif": null
+      },
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
@@ -190133,40 +190313,40 @@ window.GPS_DATA_ALL = {
      "jugador": "Espiñeiro, A.",
      "grupo": "D",
      "distancia": {
-      "obj": null,
+      "obj": 23168.8,
       "real": 6101,
-      "dif": null,
-      "objFecha": null
+      "dif": -17067.8,
+      "objFecha": 6132.9
      },
      "hmld": {
-      "obj": null,
+      "obj": 3195.7,
       "real": 749,
-      "dif": null,
-      "objFecha": null
+      "dif": -2446.7,
+      "objFecha": 899.5
      },
      "hsr": {
-      "obj": null,
+      "obj": 908.2,
       "real": 173,
-      "dif": null,
-      "objFecha": null
+      "dif": -735.2,
+      "objFecha": 278
      },
      "sprint": {
-      "obj": null,
+      "obj": 14.4,
       "real": 2,
-      "dif": null,
-      "objFecha": null
+      "dif": -12.4,
+      "objFecha": 4.1
      },
      "acc": {
-      "obj": null,
+      "obj": 66,
       "real": 11,
-      "dif": null,
-      "objFecha": null
+      "dif": -55,
+      "objFecha": 16.8
      },
      "dec": {
-      "obj": null,
+      "obj": 83.9,
       "real": 19,
-      "dif": null,
-      "objFecha": null
+      "dif": -64.9,
+      "objFecha": 25.2
      }
     },
     {
@@ -190174,40 +190354,40 @@ window.GPS_DATA_ALL = {
      "jugador": "Payeras, M.",
      "grupo": "D",
      "distancia": {
-      "obj": null,
+      "obj": 22307.7,
       "real": 5666,
-      "dif": null,
-      "objFecha": null
+      "dif": -16641.7,
+      "objFecha": 5905
      },
      "hmld": {
-      "obj": null,
+      "obj": 2593.6,
       "real": 538,
-      "dif": null,
-      "objFecha": null
+      "dif": -2055.6,
+      "objFecha": 730
      },
      "hsr": {
-      "obj": null,
+      "obj": 574.1,
       "real": 95,
-      "dif": null,
-      "objFecha": null
+      "dif": -479.1,
+      "objFecha": 175.8
      },
      "sprint": {
-      "obj": null,
+      "obj": 5.6,
       "real": 0,
-      "dif": null,
-      "objFecha": null
+      "dif": -5.6,
+      "objFecha": 1.6
      },
      "acc": {
-      "obj": null,
+      "obj": 57.7,
       "real": 11,
-      "dif": null,
-      "objFecha": null
+      "dif": -46.7,
+      "objFecha": 14.7
      },
      "dec": {
-      "obj": null,
+      "obj": 48.9,
       "real": 11,
-      "dif": null,
-      "objFecha": null
+      "dif": -37.9,
+      "objFecha": 14.7
      }
     },
     {
@@ -190951,40 +191131,40 @@ window.GPS_DATA_ALL = {
    ],
    "teamAvg": {
     "distancia": {
-     "obj": 22672,
-     "real": 4264.2,
-     "dif": -18407.8,
-     "objFecha": 4182.8
+     "obj": 22678.6,
+     "real": 4426.1,
+     "dif": -18252.5,
+     "objFecha": 4366.4
     },
     "hmld": {
-     "obj": 3052.8,
-     "real": 503.4,
-     "dif": -2549.4,
-     "objFecha": 479.9
+     "obj": 3037,
+     "real": 517.5,
+     "dif": -2519.5,
+     "objFecha": 513.4
     },
     "hsr": {
-     "obj": 790.9,
-     "real": 158.8,
-     "dif": -632.1,
-     "objFecha": 121.2
+     "obj": 785.9,
+     "real": 156.3,
+     "dif": -629.6,
+     "objFecha": 131.8
     },
     "sprint": {
-     "obj": 12.3,
-     "real": 2.4,
-     "dif": -9.9,
-     "objFecha": 1.8
+     "obj": 12.1,
+     "real": 2.3,
+     "dif": -9.8,
+     "objFecha": 1.9
     },
     "acc": {
-     "obj": 65.5,
-     "real": 7.6,
-     "dif": -57.9,
-     "objFecha": 8.0
+     "obj": 65.1,
+     "real": 7.9,
+     "dif": -57.2,
+     "objFecha": 8.8
     },
     "dec": {
-     "obj": 82.3,
-     "real": 7.7,
-     "dif": -74.6,
-     "objFecha": 12.4
+     "obj": 80.7,
+     "real": 8.4,
+     "dif": -72.3,
+     "objFecha": 13.1
     }
    },
    "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."
@@ -191031,34 +191211,34 @@ window.GPS_DATA_ALL = {
      "jugador": "Espiñeiro, A.",
      "grupo": "D",
      "distancia": {
-      "obj": null,
+      "obj": 23168.8,
       "real": 6101,
-      "dif": null
+      "dif": -17067.8
      },
      "hmld": {
-      "obj": null,
+      "obj": 3195.7,
       "real": 749,
-      "dif": null
+      "dif": -2446.7
      },
      "hsr": {
-      "obj": null,
+      "obj": 908.2,
       "real": 173,
-      "dif": null
+      "dif": -735.2
      },
      "sprint": {
-      "obj": null,
+      "obj": 14.4,
       "real": 2,
-      "dif": null
+      "dif": -12.4
      },
      "acc": {
-      "obj": null,
+      "obj": 66,
       "real": 11,
-      "dif": null
+      "dif": -55
      },
      "dec": {
-      "obj": null,
+      "obj": 83.9,
       "real": 19,
-      "dif": null
+      "dif": -64.9
      }
     },
     {
@@ -191066,34 +191246,34 @@ window.GPS_DATA_ALL = {
      "jugador": "Payeras, M.",
      "grupo": "D",
      "distancia": {
-      "obj": null,
+      "obj": 22307.7,
       "real": 5666,
-      "dif": null
+      "dif": -16641.7
      },
      "hmld": {
-      "obj": null,
+      "obj": 2593.6,
       "real": 538,
-      "dif": null
+      "dif": -2055.6
      },
      "hsr": {
-      "obj": null,
+      "obj": 574.1,
       "real": 95,
-      "dif": null
+      "dif": -479.1
      },
      "sprint": {
-      "obj": null,
+      "obj": 5.6,
       "real": 0,
-      "dif": null
+      "dif": -5.6
      },
      "acc": {
-      "obj": null,
+      "obj": 57.7,
       "real": 11,
-      "dif": null
+      "dif": -46.7
      },
      "dec": {
-      "obj": null,
+      "obj": 48.9,
       "real": 11,
-      "dif": null
+      "dif": -37.9
      }
     },
     {
@@ -191729,34 +191909,34 @@ window.GPS_DATA_ALL = {
    ],
    "teamAvg": {
     "distancia": {
-     "obj": 22672,
-     "real": 4264.2,
-     "dif": -18407.8
+     "obj": 22678.6,
+     "real": 4426.1,
+     "dif": -18252.5
     },
     "hmld": {
-     "obj": 3052.8,
-     "real": 503.4,
-     "dif": -2549.4
+     "obj": 3037,
+     "real": 517.5,
+     "dif": -2519.5
     },
     "hsr": {
-     "obj": 790.9,
-     "real": 158.8,
-     "dif": -632.1
+     "obj": 785.9,
+     "real": 156.3,
+     "dif": -629.6
     },
     "sprint": {
-     "obj": 12.3,
-     "real": 2.4,
-     "dif": -9.9
+     "obj": 12.1,
+     "real": 2.3,
+     "dif": -9.8
     },
     "acc": {
-     "obj": 65.5,
-     "real": 7.6,
-     "dif": -57.9
+     "obj": 65.1,
+     "real": 7.9,
+     "dif": -57.2
     },
     "dec": {
-     "obj": 82.3,
-     "real": 7.7,
-     "dif": -74.6
+     "obj": 80.7,
+     "real": 8.4,
+     "dif": -72.3
     }
    },
    "nota": "Acumulado de toda la semana: sesiones de entrenamiento + partido(s). Objetivo de la semana completa de Microciclo 19 (Lunes MD+1 individual según rol en J11 + Miércoles MD-4 + Jueves MD-3 + Viernes MD-2 + Sábado MD-1). Acumulado (Real) pendiente de cargar sesión a sesión."
