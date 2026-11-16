@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-11-16 09:54",
+  "generado": "2026-11-16 10:08",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-19)"
  },
  "refPartido": {
@@ -3338,11 +3338,11 @@ window.GPS_DATA_ALL = {
     },
     "MD-4": {
      "distancia": 0.47,
-     "hmld": 0.38,
-     "hsr": 0.12,
+     "hmld": 0.43,
+     "hsr": 0.17,
      "sprint": 0.08,
-     "acc": 0.68,
-     "dec": 0.58
+     "acc": 0.77,
+     "dec": 0.64
     },
     "MD-3": {
      "distancia": 0.55,
@@ -3428,11 +3428,11 @@ window.GPS_DATA_ALL = {
     },
     "MD-4": {
      "distancia": 0.55,
-     "hmld": 0.525,
-     "hsr": 0.5,
+     "hmld": 0.6,
+     "hsr": 0.69,
      "sprint": 0.45,
-     "acc": 0.99,
-     "dec": 0.88
+     "acc": 1.12,
+     "dec": 0.97
     },
     "MD-3": {
      "distancia": 0.73,
