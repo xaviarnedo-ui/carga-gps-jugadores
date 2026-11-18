@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-11-16 21:01",
+  "generado": "2026-11-18 08:34",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-19)"
  },
  "refPartido": {
@@ -186926,39 +186926,39 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 5282.6,
+      "obj": 5232.1,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 738,
+      "obj": 727.8,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 102.8,
+      "obj": 102,
       "real": null,
       "dif": null
      },
      "sprint": {
-      "obj": 1.1,
+      "obj": 1,
       "real": null,
       "dif": null
      },
      "acc": {
-      "obj": 22.7,
+      "obj": 22.3,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 29.7,
+      "obj": 28.8,
       "real": null,
       "dif": null
      },
      "velMax": null,
      "playerLoad": null
     },
-    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. · Bejarano, A."
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Bejarano, A."
    },
    "S87": {
     "date": "2026-11-19",
@@ -187765,39 +187765,39 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 7607,
+      "obj": 7534.2,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 1262.5,
+      "obj": 1235.6,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 434.1,
+      "obj": 422.8,
       "real": null,
       "dif": null
      },
      "sprint": {
-      "obj": 8.9,
+      "obj": 8.7,
       "real": null,
       "dif": null
      },
      "acc": {
-      "obj": 20.3,
+      "obj": 19.8,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 26.5,
+      "obj": 25.6,
       "real": null,
       "dif": null
      },
      "velMax": null,
      "playerLoad": null
     },
-    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. · Bejarano, A."
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Bejarano, A."
    },
    "S88": {
     "date": "2026-11-20",
@@ -188604,17 +188604,17 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 2641.3,
+      "obj": 2616,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 235.7,
+      "obj": 230.7,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 91.9,
+      "obj": 89.5,
       "real": null,
       "dif": null
      },
@@ -188624,7 +188624,7 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "acc": {
-      "obj": 3.5,
+      "obj": 3.4,
       "real": null,
       "dif": null
      },
@@ -188636,7 +188636,7 @@ window.GPS_DATA_ALL = {
      "velMax": null,
      "playerLoad": null
     },
-    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. · Bejarano, A."
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Bejarano, A."
    },
    "S89": {
     "date": "2026-11-21",
@@ -189363,17 +189363,17 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 2958.3,
+      "obj": 2929.9,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 336.7,
+      "obj": 329.5,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 40.9,
+      "obj": 39.8,
       "real": null,
       "dif": null
      },
@@ -189383,19 +189383,19 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "acc": {
-      "obj": 11,
+      "obj": 10.8,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 11.1,
+      "obj": 10.7,
       "real": null,
       "dif": null
      },
      "velMax": null,
      "playerLoad": null
     },
-    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Espiñeiro, A. · Payeras, M. · Bejarano, A."
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Bejarano, A."
    }
   },
   "partidos": {
