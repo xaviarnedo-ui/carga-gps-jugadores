@@ -312,6 +312,16 @@ def cambiar_tipo(n, tipo, estados=None):
     return hechos
 
 
+def refrescar_pendiente(ws, estados):
+    """Sesión aún no cargada: rehace la MEDIA EQUIPO del objetivo (full = quien tiene objetivo,
+    sin los fuera de la media) y la nota de estados según el estado vigente de `estados`."""
+    filas, media = filas_jugadores(ws)
+    sesion.escribir_media(ws, filas, media, {d: C.FULL for d, r in filas.items()
+                                             if sesion.tiene_objetivo(ws, r)})
+    nombres = {d: ws.cell(r, 2).value for d, r in filas.items()}
+    sesion.escribir_notas(ws, media, sesion.nota_estados(nombres, {d: E.vigente(estados, d) for d in filas}))
+
+
 def propagar_estados(n, dorsales, estados=None):
     """Cambio de estado confirmado fuera de un PDF (p. ej. diagnóstico de lesión o alta): lo
     aplica a las sesiones AÚN NO CARGADAS del microciclo `n` (las cargadas no se tocan).
@@ -348,10 +358,7 @@ def propagar_estados(n, dorsales, estados=None):
             elif E.vigente(estados, d) == C.FULL and d in ref:     # alta: objetivo del día
                 clave = dia + (E.rol_md1(key, d, estados) or roles.get(d, "S")) if dia == "MD+1" else dia
                 sesion._escribe_obj(ws, filas[d], referencia.objetivo(ref[d], coefs[tipo][clave]))
-        sesion.escribir_media(ws, filas, media, {d: C.FULL for d, r in filas.items()
-                                                 if sesion.tiene_objetivo(ws, r)})
-        nombres = {d: ws.cell(r, 2).value for d, r in filas.items()}
-        sesion.escribir_notas(ws, media, sesion.nota_estados(nombres, {d: E.vigente(estados, d) for d in filas}))
+        refrescar_pendiente(ws, estados)
         tocadas.append(key)
     acumulado.recalcular(wb)
     wb.save(ruta)

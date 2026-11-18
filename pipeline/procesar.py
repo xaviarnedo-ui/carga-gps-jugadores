@@ -335,6 +335,12 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
                 E.cambiar(est, d, e, fecha.isoformat(), key)
                 res["avisos"].append(f"Cambio de estado: {nombres[d]} {antes} → {e} "
                                      f"(objetivos ajustados en {', '.join(tocadas[d]) or '—'})")
+        # sesiones pendientes con objetivos cambiados: MEDIA EQUIPO y nota con los estados nuevos
+        # (E.cambiar ya ha actualizado el vigente de `est`)
+        pendientes = {k for ks in tocadas.values() for k in ks if k != key}
+        for k, wsk, _ in sesion.hojas_sesion(wb):
+            if k in pendientes and not sesion.hecha(wsk):
+                microciclo.refrescar_pendiente(wsk, est)
         sesion.rellenar(ws, datos, estados_dia)
         _, media = filas_jugadores(ws)
         sesion.escribir_notas(ws, media, sesion.nota_estados(nombres, estados_dia, nota))
