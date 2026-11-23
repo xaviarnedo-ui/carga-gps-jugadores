@@ -1,7 +1,7 @@
 """Comparativa de carga GPS entre la temporada pasada (25-26) y esta (26-27), por tipo de día,
 siempre sobre las MISMAS jornadas (J1…JN de cada temporada). Se repite a lo largo del año.
 
-- 25-26: los PDF de Catapult de PROFESIONAL/…/AT BALEARES 25-26/GPS se leen por OCR
+- 25-26: los PDF de Catapult de PROFESIONAL/Clubes/…/AT BALEARES 25-26/GPS se leen por OCR
   (`catapult_ocr`) solo la primera vez; lo leído se guarda en
   GPS/Comparativa temporadas/Temporada 25-26.json (fuera del repo, que es público).
 - 26-27: las hojas *_GPS de los Microciclo N.xlsx.
@@ -31,7 +31,7 @@ import openpyxl
 from . import config as C
 
 PREV, ACT = "25-26", "26-27"
-CARPETA_PREV = os.path.expanduser("~/Desktop/PROFESIONAL/AT BALEARES/AT BALEARES 25-26/GPS")
+CARPETA_PREV = os.path.expanduser("~/Desktop/PROFESIONAL/Clubes/AT BALEARES/AT BALEARES 25-26/GPS")
 DIR = os.path.join(C.GPS_DIR, "Comparativa temporadas")
 STORE = os.path.join(DIR, f"Temporada {PREV}.json")
 HTML = os.path.join(DIR, f"Comparativa carga {PREV} vs {ACT}.html")

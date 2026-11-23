@@ -68,7 +68,7 @@ Semana con días de descanso extra: `abrir --dias=",,MD-4,MD-3,MD-2,MD-1,J10"` (
 defecto la última jugada) por tipo de día (MD+1 suplentes, MD-4…MD-1, partido), la semana tipo y la
 evolución por tramos de 5 jornadas. Hecha por primera vez el 04/11/2026 (J1-J9); el preparador quiere
 repetirla a lo largo de la temporada (p. ej. cada pocas jornadas o cuando lo pida).
-- 25-26: PDF en `~/Desktop/PROFESIONAL/AT BALEARES/AT BALEARES 25-26/GPS` (toda la temporada). Su texto
+- 25-26: PDF en `~/Desktop/PROFESIONAL/Clubes/AT BALEARES/AT BALEARES 25-26/GPS` (toda la temporada). Su texto
   está codificado → OCR (`pipeline/catapult_ocr.py`, Apple Vision con pyobjc 10.3.1 instalado con
   `pip3 install --user`). Lo leído se guarda en `GPS/Comparativa temporadas/Temporada 25-26.json` y no
   se vuelve a leer; cada jornada nueva son ~5 PDF (~1 min cada uno). Si un PDF no cuadra con su fila
