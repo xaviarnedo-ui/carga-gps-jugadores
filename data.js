@@ -4,8 +4,8 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-11-22 18:14",
-  "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-19)"
+  "generado": "2026-11-24 09:14",
+  "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-20)"
  },
  "refPartido": {
   "nota": "REF_PARTIDO = media ponderada por minutos jugados (desde 19/10; antes, media simple) de la pretemporada completa (PT1-PT3, PT5-PT9; PT4 anulado; días 'Modified' fuera) como UN dato de peso 1 y de cada partido de Liga con GPS real (J1 excluido, sin GPS), con peso = minutos jugados / duración del partido. Cada partido de Liga se extrapola con la fórmula de fatiga a su DURACIÓN REAL (minutos del jugador que más jugó, con descuento), no a 95' (desde 25/09; J2 y J3 recalculados). La media del equipo se calcula con toda la plantilla de campo. Vel. máx tomada del mejor registro de partido.",
@@ -3688,6 +3688,7 @@ window.GPS_DATA_ALL = {
   }
  },
  "microciclos": [
+  "M20",
   "M19",
   "M18",
   "M17",
@@ -185473,7 +185474,7 @@ window.GPS_DATA_ALL = {
    "temporada": "2026-27",
    "calculoISO": "2026-11-22",
    "calculoFecha": "22/11",
-   "estado": "activo",
+   "estado": "cerrado",
    "completo": true
   },
   "orden": [
@@ -196291,6 +196292,9656 @@ window.GPS_DATA_ALL = {
      "S88",
      "S89",
      "J12"
+    ]
+   }
+  }
+ },
+ "M20": {
+  "meta": {
+   "n": 20,
+   "titulo": "Microciclo 20",
+   "tipo": "B",
+   "semana": "MICROCICLO 20 (23-29 NOV)",
+   "temporada": "2026-27",
+   "calculoISO": "2026-11-22",
+   "calculoFecha": "22/11",
+   "estado": "activo",
+   "completo": false
+  },
+  "orden": [
+   {
+    "tipo": "sesion",
+    "key": "S90"
+   },
+   {
+    "tipo": "sesion",
+    "key": "S91"
+   },
+   {
+    "tipo": "sesion",
+    "key": "S92"
+   },
+   {
+    "tipo": "sesion",
+    "key": "S93"
+   },
+   {
+    "tipo": "partido",
+    "key": "J13"
+   }
+  ],
+  "sesiones": {
+   "S90": {
+    "date": "2026-11-24",
+    "role": "MD-4",
+    "tipo": "B",
+    "nota": "Microciclo 20 — Tipo B, objetivo MD-4. Objetivo INDIVIDUAL: REF_PARTIDO propio de cada jugador × coeficiente MD-4 de Tipo B. Real pendiente de cargar. LEYENDA: VERDE = en zona (Distancia y HMLD ±10%, HSR/ACC/DEC ±20%, Sprints ±2) · AZUL = por debajo · NARANJA = por encima hasta el doble de la tolerancia · ROJO = más.",
+    "titulo": "SESIÓN S90 (Martes 24/11/2026) — OBJETIVO vs REAL",
+    "players": [
+     {
+      "dorsal": 2,
+      "jugador": "Montcheu, F.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 5147.7,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 782.6,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 140.7,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 1.3,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 20.9,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 31.3,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 3,
+      "jugador": "Espiñeiro, A.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 4867.4,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 702,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 115.8,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 1,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 20.4,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 25.9,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 4,
+      "jugador": "Payeras, M.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 4686.5,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 569.8,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 73.2,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.4,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 17.8,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 15.1,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 5,
+      "jugador": "Martín, A.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2574.6,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 336.9,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 45.4,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.3,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 10.1,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 11.4,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 6,
+      "jugador": "Bonet, G.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 2915.2,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 489.6,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 64.8,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.4,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 15.7,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 18.4,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 7,
+      "jugador": "Riera, N.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2841.4,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 470.3,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 88.6,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.7,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 13.6,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 16.5,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 8,
+      "jugador": "Cherta, J.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 2832,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 469.9,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 68.5,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.6,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 12.7,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 15.9,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 9,
+      "jugador": "Caballero, R.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": 4972.9,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 803.6,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 138.7,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 1.2,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 27.5,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 34.6,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 10,
+      "jugador": "Andone, F.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": 2486.7,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 376.1,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 68.8,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.6,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 14.4,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 18.4,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 11,
+      "jugador": "Martín, M.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 5500.6,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1007.9,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 184.8,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 1.7,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 27.3,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 32.8,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 14,
+      "jugador": "Hernández, P.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 5222.9,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 756.9,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 88.2,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.7,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 26.3,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 28.7,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 16,
+      "jugador": "Anglada, H.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2476.7,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 290.7,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 35.7,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.3,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 7.5,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 10.1,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 17,
+      "jugador": "Catalá, R.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": 5317.9,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 855.5,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 145.9,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 1.2,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 37.2,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 31.2,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 18,
+      "jugador": "López, I.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 4781.3,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 666.1,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 117.8,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 1.1,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 19.7,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 31.4,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 19,
+      "jugador": "Catalá, A.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": 2810.3,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 484.2,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 88.5,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.8,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 16,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 22.1,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 20,
+      "jugador": "Bejarano, A.",
+      "grupo": "DL",
+      "distancia": null,
+      "hmld": null,
+      "hsr": null,
+      "sprint": null,
+      "acc": null,
+      "dec": null,
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 21,
+      "jugador": "Bover, R.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 2798.8,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 400.1,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 63.9,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.5,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 5,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 11.8,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 22,
+      "jugador": "Soler, M.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 5489.6,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 761.5,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 104.6,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.8,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 14,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 27.4,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 23,
+      "jugador": "Bah, A.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2576.3,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 408.6,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 60,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.5,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 15.6,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 20.6,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 24,
+      "jugador": "Llinares, I.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 2757.6,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 505.9,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 90.4,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.8,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 17.3,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 23.4,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 26,
+      "jugador": "Fontanet, B.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 4598.3,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 468.5,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 58.5,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.7,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 17.2,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 17.2,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     }
+    ],
+    "teamAvg": {
+     "distancia": {
+      "obj": 3882.7,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 580.3,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 92.1,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 0.8,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 17.8,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 22.2,
+      "real": null,
+      "dif": null
+     },
+     "velMax": null,
+     "playerLoad": null
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Bejarano, A."
+   },
+   "S91": {
+    "date": "2026-11-25",
+    "role": "MD-3",
+    "tipo": "B",
+    "nota": "Microciclo 20 — Tipo B, objetivo MD-3. Objetivo INDIVIDUAL: REF_PARTIDO propio de cada jugador × coeficiente MD-3 de Tipo B. Real pendiente de cargar. LEYENDA: VERDE = en zona (Distancia y HMLD ±10%, HSR/ACC/DEC ±20%, Sprints ±2) · AZUL = por debajo · NARANJA = por encima hasta el doble de la tolerancia · ROJO = más.",
+    "titulo": "SESIÓN S91 (Miércoles 25/11/2026) — OBJETIVO vs REAL",
+    "players": [
+     {
+      "dorsal": 2,
+      "jugador": "Montcheu, F.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 7412.7,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1222.8,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 478.4,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 10.9,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 17.2,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 26.1,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 3,
+      "jugador": "Espiñeiro, A.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 7009.1,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1096.9,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 393.9,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 8.8,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 16.8,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 21.6,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 4,
+      "jugador": "Payeras, M.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 6748.6,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 890.2,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 249,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 3.4,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 14.7,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 12.6,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 5,
+      "jugador": "Martín, A.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 7414.8,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1052.8,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 308.6,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 5.7,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 16.6,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 19,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 6,
+      "jugador": "Bonet, G.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 8395.8,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1530.1,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 440.4,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 6.5,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 25.9,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 30.7,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 7,
+      "jugador": "Riera, N.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 8183.2,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1469.7,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 602.6,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 12,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 22.4,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 27.5,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 8,
+      "jugador": "Cherta, J.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 8156.2,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1468.5,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 466,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 9.6,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 20.9,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 26.5,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 9,
+      "jugador": "Caballero, R.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": 7160.9,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1255.6,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 471.4,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 10.6,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 22.6,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 28.9,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 10,
+      "jugador": "Andone, F.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": 7161.6,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1175.1,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 467.4,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 10.5,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 23.7,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 30.7,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 11,
+      "jugador": "Martín, M.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 7920.9,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1574.8,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 628.5,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 14.8,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 22.5,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 27.3,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 14,
+      "jugador": "Hernández, P.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 7521,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1182.7,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 299.9,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 6.2,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 21.6,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 23.9,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 16,
+      "jugador": "Anglada, H.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 7132.8,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 908.4,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 242.8,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 5.1,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 12.2,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 16.9,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 17,
+      "jugador": "Catalá, R.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": 7657.8,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1336.7,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 496.2,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 10.4,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 30.7,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 26,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 18,
+      "jugador": "López, I.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 6885.1,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1040.8,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 400.3,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 9,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 16.2,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 26.2,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 19,
+      "jugador": "Catalá, A.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": 8093.7,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1513.2,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 601.8,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 12.8,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 26.3,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 36.9,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 20,
+      "jugador": "Bejarano, A.",
+      "grupo": "DL",
+      "distancia": null,
+      "hmld": null,
+      "hsr": null,
+      "sprint": null,
+      "acc": null,
+      "dec": null,
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 21,
+      "jugador": "Bover, R.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 8060.5,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1250.5,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 434.2,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 7.4,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 8.1,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 19.7,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 22,
+      "jugador": "Soler, M.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 7905,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1189.8,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 355.7,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 6.7,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 11.5,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 22.9,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 23,
+      "jugador": "Bah, A.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 7419.7,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1276.8,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 407.8,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 8.8,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 25.6,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 34.3,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 24,
+      "jugador": "Llinares, I.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 7941.8,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 1580.9,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 614.7,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 12.6,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 28.5,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 38.9,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 26,
+      "jugador": "Fontanet, B.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 6621.6,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 732,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 198.7,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 5.5,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 14.1,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 14.3,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     }
+    ],
+    "teamAvg": {
+     "distancia": {
+      "obj": 7540.1,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 1237.4,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 427.9,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 8.9,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 19.9,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 25.5,
+      "real": null,
+      "dif": null
+     },
+     "velMax": null,
+     "playerLoad": null
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Bejarano, A."
+   },
+   "S92": {
+    "date": "2026-11-26",
+    "role": "MD-2",
+    "tipo": "B",
+    "nota": "Microciclo 20 — Tipo B, objetivo MD-2. Objetivo INDIVIDUAL: REF_PARTIDO propio de cada jugador × coeficiente MD-2 de Tipo B. Real pendiente de cargar. LEYENDA: VERDE = en zona (Distancia y HMLD ±10%, HSR/ACC/DEC ±20%, Sprints ±2) · AZUL = por debajo · NARANJA = por encima hasta el doble de la tolerancia · ROJO = más.",
+    "titulo": "SESIÓN S92 (Jueves 26/11/2026) — OBJETIVO vs REAL",
+    "players": [
+     {
+      "dorsal": 2,
+      "jugador": "Montcheu, F.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2573.8,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 228.3,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 101.3,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.6,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 3,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 2.6,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 3,
+      "jugador": "Espiñeiro, A.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2433.7,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 204.8,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 83.4,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.5,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 2.9,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 2.2,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 4,
+      "jugador": "Payeras, M.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2343.2,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 166.2,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 52.7,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.2,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 2.5,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 1.3,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 5,
+      "jugador": "Martín, A.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2574.6,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 196.5,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 65.3,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.3,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 2.8,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 1.9,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 6,
+      "jugador": "Bonet, G.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 2915.2,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 285.6,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 93.3,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.4,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 4.4,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 3.1,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 7,
+      "jugador": "Riera, N.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2841.4,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 274.3,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 127.6,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.7,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 3.8,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 2.8,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 8,
+      "jugador": "Cherta, J.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 2832,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 274.1,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 98.7,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.6,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 3.6,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 2.7,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 9,
+      "jugador": "Caballero, R.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": 2486.4,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 234.4,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 99.8,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.6,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 3.9,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 2.9,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 10,
+      "jugador": "Andone, F.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": 2486.7,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 219.4,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 99,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.6,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 4.1,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 3.1,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 11,
+      "jugador": "Martín, M.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2750.3,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 294,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 133.1,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.9,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 3.9,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 2.7,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 14,
+      "jugador": "Hernández, P.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 2611.5,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 220.8,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 63.5,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.4,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 3.7,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 2.4,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 16,
+      "jugador": "Anglada, H.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2476.7,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 169.6,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 51.4,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.3,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 2.1,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 1.7,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 17,
+      "jugador": "Catalá, R.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": 2659,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 249.5,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 105.1,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.6,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 5.3,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 2.6,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 18,
+      "jugador": "López, I.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2390.7,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 194.3,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 84.8,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.5,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 2.8,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 2.6,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 19,
+      "jugador": "Catalá, A.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": 2810.3,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 282.5,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 127.4,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.8,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 4.5,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 3.7,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 20,
+      "jugador": "Bejarano, A.",
+      "grupo": "DL",
+      "distancia": null,
+      "hmld": null,
+      "hsr": null,
+      "sprint": null,
+      "acc": null,
+      "dec": null,
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 21,
+      "jugador": "Bover, R.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 2798.8,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 233.4,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 91.9,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.4,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 1.4,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 2,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 22,
+      "jugador": "Soler, M.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 2744.8,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 222.1,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 75.3,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.4,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 2,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 2.3,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 23,
+      "jugador": "Bah, A.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2576.3,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 238.3,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 86.4,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.5,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 4.4,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 3.4,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 24,
+      "jugador": "Llinares, I.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 2757.6,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 295.1,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 130.2,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.7,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 4.9,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 3.9,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 26,
+      "jugador": "Fontanet, B.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2299.2,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 136.6,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 42.1,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": 0.3,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": 2.4,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 1.4,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     }
+    ],
+    "teamAvg": {
+     "distancia": {
+      "obj": 2618.1,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 231,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 90.6,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 0.5,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 3.4,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 2.6,
+      "real": null,
+      "dif": null
+     },
+     "velMax": null,
+     "playerLoad": null
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Bejarano, A."
+   },
+   "S93": {
+    "date": "2026-11-27",
+    "role": "MD-1",
+    "tipo": "B",
+    "nota": "Microciclo 20 — Tipo B, objetivo MD-1. Objetivo INDIVIDUAL: REF_PARTIDO propio de cada jugador × coeficiente MD-1 de Tipo B. Real pendiente de cargar. LEYENDA: VERDE = en zona (Distancia y HMLD ±10%, HSR/ACC/DEC ±20%, Sprints ±2) · AZUL = por debajo · NARANJA = por encima hasta el doble de la tolerancia · ROJO = más.",
+    "titulo": "SESIÓN S93 (Viernes 27/11/2026) — OBJETIVO vs REAL",
+    "players": [
+     {
+      "dorsal": 2,
+      "jugador": "Montcheu, F.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2882.7,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 326.1,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 45,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 9.3,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 10.9,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 3,
+      "jugador": "Espiñeiro, A.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2725.7,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 292.5,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 37.1,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 9.1,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 9,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 4,
+      "jugador": "Payeras, M.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2624.4,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 237.4,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 23.4,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 8,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 5.2,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 5,
+      "jugador": "Martín, A.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2883.6,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 280.8,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 29,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 9,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 7.9,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 6,
+      "jugador": "Bonet, G.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 3265,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 408,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 41.4,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 14.1,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 12.8,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 7,
+      "jugador": "Riera, N.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 3182.3,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 391.9,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 56.7,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 12.2,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 11.5,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 8,
+      "jugador": "Cherta, J.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 3171.8,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 391.6,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 43.9,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 11.4,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 11.1,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 9,
+      "jugador": "Caballero, R.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": 2784.8,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 334.8,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 44.4,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 12.3,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 12,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 10,
+      "jugador": "Andone, F.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": 2785,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 313.4,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 44,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 12.9,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 12.8,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 11,
+      "jugador": "Martín, M.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 3080.4,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 419.9,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 59.2,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 12.2,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 11.4,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 14,
+      "jugador": "Hernández, P.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 2924.9,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 315.4,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 28.2,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 11.7,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 10,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 16,
+      "jugador": "Anglada, H.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2773.8,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 242.2,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 22.9,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 6.7,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 7,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 17,
+      "jugador": "Catalá, R.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": 2978.1,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 356.4,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 46.7,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 16.6,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 10.8,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 18,
+      "jugador": "López, I.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2677.5,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 277.6,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 37.7,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 8.8,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 10.9,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 19,
+      "jugador": "Catalá, A.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": 3147.5,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 403.5,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 56.6,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 14.3,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 15.4,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 20,
+      "jugador": "Bejarano, A.",
+      "grupo": "DL",
+      "distancia": null,
+      "hmld": null,
+      "hsr": null,
+      "sprint": null,
+      "acc": null,
+      "dec": null,
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 21,
+      "jugador": "Bover, R.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 3134.7,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 333.5,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 40.9,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 4.4,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 8.2,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 22,
+      "jugador": "Soler, M.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 3074.2,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 317.3,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 33.5,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 6.3,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 9.5,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 23,
+      "jugador": "Bah, A.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2885.4,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 340.5,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 38.4,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 13.9,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 14.3,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 24,
+      "jugador": "Llinares, I.",
+      "grupo": "M",
+      "distancia": {
+       "obj": 3088.5,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 421.6,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 57.9,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 15.5,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 16.2,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 26,
+      "jugador": "Fontanet, B.",
+      "grupo": "D",
+      "distancia": {
+       "obj": 2575,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": 195.2,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": 18.7,
+       "real": null,
+       "dif": null
+      },
+      "sprint": null,
+      "acc": {
+       "obj": 7.7,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": 6,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     }
+    ],
+    "teamAvg": {
+     "distancia": {
+      "obj": 2932.3,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 330,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 40.3,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": null,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 10.8,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 10.6,
+      "real": null,
+      "dif": null
+     },
+     "velMax": null,
+     "playerLoad": null
+    },
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Bejarano, A."
+   }
+  },
+  "partidos": {
+   "J13": {
+    "date": "2026-11-28",
+    "role": "Partido",
+    "rival": "Orihuela",
+    "nota": "No lleva Obj/Dif. Datos pendientes de cargar tras el encuentro.",
+    "titulo": "PARTIDO J13 · vs Orihuela (28/11/2026) — DATOS DE PARTIDO (Liga, Jornada 13)",
+    "estimado": false,
+    "players": [
+     {
+      "dorsal": 2,
+      "jugador": "Montcheu, F.",
+      "grupo": "D",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 3,
+      "jugador": "Espiñeiro, A.",
+      "grupo": "D",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 4,
+      "jugador": "Payeras, M.",
+      "grupo": "D",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 5,
+      "jugador": "Martín, A.",
+      "grupo": "D",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 6,
+      "jugador": "Bonet, G.",
+      "grupo": "M",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 7,
+      "jugador": "Riera, N.",
+      "grupo": "D",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 8,
+      "jugador": "Cherta, J.",
+      "grupo": "M",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 9,
+      "jugador": "Caballero, R.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 10,
+      "jugador": "Andone, F.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 11,
+      "jugador": "Martín, M.",
+      "grupo": "D",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 14,
+      "jugador": "Hernández, P.",
+      "grupo": "M",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 16,
+      "jugador": "Anglada, H.",
+      "grupo": "D",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 17,
+      "jugador": "Catalá, R.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 18,
+      "jugador": "López, I.",
+      "grupo": "D",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 19,
+      "jugador": "Catalá, A.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 20,
+      "jugador": "Bejarano, A.",
+      "grupo": "DL",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 21,
+      "jugador": "Bover, R.",
+      "grupo": "M",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 22,
+      "jugador": "Soler, M.",
+      "grupo": "M",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 23,
+      "jugador": "Bah, A.",
+      "grupo": "D",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 24,
+      "jugador": "Llinares, I.",
+      "grupo": "M",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     },
+     {
+      "dorsal": 26,
+      "jugador": "Fontanet, B.",
+      "grupo": "D",
+      "distancia": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hmld": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "hsr": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "sprint": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "acc": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "dec": {
+       "obj": null,
+       "real": null,
+       "dif": null
+      },
+      "velMax": null,
+      "playerLoad": null,
+      "duracion": null,
+      "estado": "na"
+     }
+    ],
+    "teamAvg": {
+     "distancia": {
+      "obj": 7278.7,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 1183.8,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 355.7,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 7,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 20.3,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 31.3,
+      "real": null,
+      "dif": null
+     },
+     "velMax": null,
+     "playerLoad": null
+    },
+    "objNota": "OBJETIVO = REF_PARTIDO previa al partido escalada a los minutos jugados (fórmula de fatiga, duración 98.2'). Estimados por fallo de GPS: sin cumplimiento."
+   }
+  },
+  "extras": {},
+  "cargasObjetivo": {
+   "players": [
+    {
+     "dorsal": 2,
+     "jugador": "Montcheu, F.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 18016.9,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 2559.8,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 765.4,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 12.8,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 50.4,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 70.9,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 3,
+     "jugador": "Espiñeiro, A.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 17035.9,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 2296.2,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 630.2,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 10.3,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 49.2,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 58.7,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 4,
+     "jugador": "Payeras, M.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 16402.7,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 1863.6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 398.3,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 4,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 43,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 34.2,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 5,
+     "jugador": "Martín, A.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 18022.2,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 2203.9,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 493.7,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 6.7,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 48.5,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 51.6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 6,
+     "jugador": "Bonet, G.",
+     "grupo": "M",
+     "distancia": {
+      "obj": 20406.4,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 3202.9,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 704.6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 7.7,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 75.8,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 83.5,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 7,
+     "jugador": "Riera, N.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 19889.7,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 3076.5,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 964.1,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 14.1,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 65.6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 74.8,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 8,
+     "jugador": "Cherta, J.",
+     "grupo": "M",
+     "distancia": {
+      "obj": 19824,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 3074,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 745.7,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 11.3,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 61.3,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 72.1,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 9,
+     "jugador": "Caballero, R.",
+     "grupo": "DL",
+     "distancia": {
+      "obj": 17405,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 2628.4,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 754.3,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 12.4,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 66.3,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 78.4,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 10,
+     "jugador": "Andone, F.",
+     "grupo": "DL",
+     "distancia": {
+      "obj": 17406.6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 2460,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 747.9,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 12.3,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 69.5,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 83.4,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 11,
+     "jugador": "Martín, M.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 19252.2,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 3296.6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 1005.6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 17.4,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 65.9,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 74.2,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 14,
+     "jugador": "Hernández, P.",
+     "grupo": "M",
+     "distancia": {
+      "obj": 18280.3,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 2475.8,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 479.8,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 7.3,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 63.3,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 65,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 16,
+     "jugador": "Anglada, H.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 17336.6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 1901.6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 388.5,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 35.9,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 45.8,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 17,
+     "jugador": "Catalá, R.",
+     "grupo": "DL",
+     "distancia": {
+      "obj": 18612.8,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 2798.1,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 793.9,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 12.2,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 89.8,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 70.6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 18,
+     "jugador": "López, I.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 16734.6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 2178.8,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 640.6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 10.6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 47.5,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 71.1,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 19,
+     "jugador": "Catalá, A.",
+     "grupo": "DL",
+     "distancia": {
+      "obj": 19672.1,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 3167.6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 962.8,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 15.1,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 77.1,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 100.3,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 20,
+     "jugador": "Bejarano, A.",
+     "grupo": "DL",
+     "distancia": {
+      "obj": null,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": null,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": null,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": null,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": null,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": null,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 21,
+     "jugador": "Bover, R.",
+     "grupo": "M",
+     "distancia": {
+      "obj": 19591.6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 2617.7,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 694.7,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 8.7,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 23.8,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 53.5,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 22,
+     "jugador": "Soler, M.",
+     "grupo": "M",
+     "distancia": {
+      "obj": 19213.6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 2490.7,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 569.1,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 7.9,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 33.8,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 62.1,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 23,
+     "jugador": "Bah, A.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 18034,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 2672.8,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 652.6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 10.3,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 75,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 93.2,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 24,
+     "jugador": "Llinares, I.",
+     "grupo": "M",
+     "distancia": {
+      "obj": 19303,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 3309.4,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 983.6,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 14.8,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 83.5,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 105.7,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    },
+    {
+     "dorsal": 26,
+     "jugador": "Fontanet, B.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 16094.1,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hmld": {
+      "obj": 1532.3,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "hsr": {
+      "obj": 318,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "sprint": {
+      "obj": 6.5,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "acc": {
+      "obj": 41.4,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     },
+     "dec": {
+      "obj": 38.9,
+      "real": null,
+      "dif": null,
+      "objFecha": null
+     }
+    }
+   ],
+   "teamAvg": {
+    "distancia": {
+     "obj": 18326.7,
+     "real": 0.0,
+     "dif": -18326.7,
+     "objFecha": 0.0
+    },
+    "hmld": {
+     "obj": 2590.3,
+     "real": 0.0,
+     "dif": -2590.3,
+     "objFecha": 0.0
+    },
+    "hsr": {
+     "obj": 684.7,
+     "real": 0.0,
+     "dif": -684.7,
+     "objFecha": 0.0
+    },
+    "sprint": {
+     "obj": 10.4,
+     "real": 0.0,
+     "dif": -10.4,
+     "objFecha": 0.0
+    },
+    "acc": {
+     "obj": 58.3,
+     "real": 0.0,
+     "dif": -58.3,
+     "objFecha": 0.0
+    },
+    "dec": {
+     "obj": 69.4,
+     "real": 0.0,
+     "dif": -69.4,
+     "objFecha": 0.0
+    }
+   },
+   "nota": "Objetivo acumulado de las sesiones de entrenamiento de la semana (sin partido)."
+  },
+  "cargasSemana": {
+   "players": [
+    {
+     "dorsal": 2,
+     "jugador": "Montcheu, F.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 18016.9,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 2559.8,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 765.4,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 12.8,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 50.4,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 70.9,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 3,
+     "jugador": "Espiñeiro, A.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 17035.9,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 2296.2,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 630.2,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 10.3,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 49.2,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 58.7,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 4,
+     "jugador": "Payeras, M.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 16402.7,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 1863.6,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 398.3,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 4,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 43,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 34.2,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 5,
+     "jugador": "Martín, A.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 18022.2,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 2203.9,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 493.7,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 6.7,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 48.5,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 51.6,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 6,
+     "jugador": "Bonet, G.",
+     "grupo": "M",
+     "distancia": {
+      "obj": 20406.4,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 3202.9,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 704.6,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 7.7,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 75.8,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 83.5,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 7,
+     "jugador": "Riera, N.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 19889.7,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 3076.5,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 964.1,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 14.1,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 65.6,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 74.8,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 8,
+     "jugador": "Cherta, J.",
+     "grupo": "M",
+     "distancia": {
+      "obj": 19824,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 3074,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 745.7,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 11.3,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 61.3,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 72.1,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 9,
+     "jugador": "Caballero, R.",
+     "grupo": "DL",
+     "distancia": {
+      "obj": 17405,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 2628.4,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 754.3,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 12.4,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 66.3,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 78.4,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 10,
+     "jugador": "Andone, F.",
+     "grupo": "DL",
+     "distancia": {
+      "obj": 17406.6,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 2460,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 747.9,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 12.3,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 69.5,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 83.4,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 11,
+     "jugador": "Martín, M.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 19252.2,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 3296.6,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 1005.6,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 17.4,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 65.9,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 74.2,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 14,
+     "jugador": "Hernández, P.",
+     "grupo": "M",
+     "distancia": {
+      "obj": 18280.3,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 2475.8,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 479.8,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 7.3,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 63.3,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 65,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 16,
+     "jugador": "Anglada, H.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 17336.6,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 1901.6,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 388.5,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 6,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 35.9,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 45.8,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 17,
+     "jugador": "Catalá, R.",
+     "grupo": "DL",
+     "distancia": {
+      "obj": 18612.8,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 2798.1,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 793.9,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 12.2,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 89.8,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 70.6,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 18,
+     "jugador": "López, I.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 16734.6,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 2178.8,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 640.6,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 10.6,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 47.5,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 71.1,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 19,
+     "jugador": "Catalá, A.",
+     "grupo": "DL",
+     "distancia": {
+      "obj": 19672.1,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 3167.6,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 962.8,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 15.1,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 77.1,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 100.3,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 20,
+     "jugador": "Bejarano, A.",
+     "grupo": "DL",
+     "distancia": {
+      "obj": null,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": null,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": null,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": null,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": null,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": null,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 21,
+     "jugador": "Bover, R.",
+     "grupo": "M",
+     "distancia": {
+      "obj": 19591.6,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 2617.7,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 694.7,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 8.7,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 23.8,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 53.5,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 22,
+     "jugador": "Soler, M.",
+     "grupo": "M",
+     "distancia": {
+      "obj": 19213.6,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 2490.7,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 569.1,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 7.9,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 33.8,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 62.1,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 23,
+     "jugador": "Bah, A.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 18034,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 2672.8,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 652.6,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 10.3,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 75,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 93.2,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 24,
+     "jugador": "Llinares, I.",
+     "grupo": "M",
+     "distancia": {
+      "obj": 19303,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 3309.4,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 983.6,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 14.8,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 83.5,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 105.7,
+      "real": null,
+      "dif": null
+     }
+    },
+    {
+     "dorsal": 26,
+     "jugador": "Fontanet, B.",
+     "grupo": "D",
+     "distancia": {
+      "obj": 16094.1,
+      "real": null,
+      "dif": null
+     },
+     "hmld": {
+      "obj": 1532.3,
+      "real": null,
+      "dif": null
+     },
+     "hsr": {
+      "obj": 318,
+      "real": null,
+      "dif": null
+     },
+     "sprint": {
+      "obj": 6.5,
+      "real": null,
+      "dif": null
+     },
+     "acc": {
+      "obj": 41.4,
+      "real": null,
+      "dif": null
+     },
+     "dec": {
+      "obj": 38.9,
+      "real": null,
+      "dif": null
+     }
+    }
+   ],
+   "teamAvg": {
+    "distancia": {
+     "obj": 18326.7,
+     "real": 0,
+     "dif": -18326.7
+    },
+    "hmld": {
+     "obj": 2590.3,
+     "real": 0,
+     "dif": -2590.3
+    },
+    "hsr": {
+     "obj": 684.7,
+     "real": 0,
+     "dif": -684.7
+    },
+    "sprint": {
+     "obj": 10.4,
+     "real": 0,
+     "dif": -10.4
+    },
+    "acc": {
+     "obj": 58.3,
+     "real": 0,
+     "dif": -58.3
+    },
+    "dec": {
+     "obj": 69.4,
+     "real": 0,
+     "dif": -69.4
+    }
+   },
+   "nota": "Acumulado de toda la semana: sesiones de entrenamiento + partido(s). Objetivo de la semana completa de Microciclo 20 (Martes MD-4 + Miércoles MD-3 + Jueves MD-2 + Viernes MD-1). Acumulado (Real) pendiente de cargar sesión a sesión."
+  },
+  "cargaAC": {
+   "players": [
+    {
+     "dorsal": 2,
+     "jugador": "Montcheu, F.",
+     "grupo": "D",
+     "acwr": 1.09,
+     "cargaAguda": 415.8,
+     "cargaCronica": 382.1,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 1.13,
+     "cargaAgudaHsr": 216.4,
+     "cargaCronicaHsr": 191.3,
+     "acwrSprint": 1.19,
+     "cargaAgudaSprint": 4.6,
+     "cargaCronicaSprint": 3.9,
+     "serie": {
+      "pl": [
+       665,
+       310,
+       459,
+       900,
+       316,
+       314,
+       0,
+       0,
+       0,
+       444,
+       767,
+       389,
+       320,
+       0,
+       649,
+       0,
+       644,
+       802,
+       294,
+       320,
+       195,
+       701,
+       0,
+       559,
+       840,
+       362,
+       327,
+       121.8
+      ],
+      "aguda": [
+       387,
+       431,
+       398,
+       432,
+       429,
+       423,
+       423,
+       328,
+       284,
+       282,
+       263,
+       273,
+       274,
+       274,
+       367,
+       367,
+       396,
+       401,
+       387,
+       387,
+       415,
+       422,
+       422,
+       410,
+       416,
+       425,
+       426,
+       416
+      ],
+      "cronica": [
+       378,
+       389,
+       388,
+       399,
+       403,
+       398,
+       398,
+       382,
+       382,
+       379,
+       379,
+       380,
+       377,
+       365,
+       371,
+       371,
+       369,
+       365,
+       367,
+       366,
+       373,
+       376,
+       376,
+       371,
+       378,
+       379,
+       378,
+       382
+      ],
+      "acwr": [
+       1.02,
+       1.11,
+       1.03,
+       1.08,
+       1.06,
+       1.06,
+       1.06,
+       0.86,
+       0.74,
+       0.74,
+       0.69,
+       0.72,
+       0.73,
+       0.75,
+       0.99,
+       0.99,
+       1.07,
+       1.1,
+       1.05,
+       1.06,
+       1.11,
+       1.12,
+       1.12,
+       1.11,
+       1.1,
+       1.12,
+       1.13,
+       1.09
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 3,
+     "jugador": "Espiñeiro, A.",
+     "grupo": "D",
+     "acwr": 1.22,
+     "cargaAguda": 336.7,
+     "cargaCronica": 277,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 1.64,
+     "cargaAgudaHsr": 181.3,
+     "cargaCronicaHsr": 110.6,
+     "acwrSprint": 1.48,
+     "cargaAgudaSprint": 3.2,
+     "cargaCronicaSprint": 2.1,
+     "serie": {
+      "pl": [
+       325,
+       488,
+       0,
+       0,
+       434,
+       670,
+       0,
+       0,
+       429,
+       0,
+       273,
+       361,
+       596,
+       0,
+       262,
+       366,
+       0,
+       317,
+       295,
+       584,
+       0,
+       622,
+       0,
+       475,
+       669,
+       249,
+       220,
+       121.8
+      ],
+      "aguda": [
+       159,
+       228,
+       179,
+       179,
+       178,
+       274,
+       274,
+       227,
+       219,
+       219,
+       258,
+       248,
+       237,
+       237,
+       274,
+       265,
+       265,
+       272,
+       262,
+       261,
+       261,
+       312,
+       260,
+       328,
+       378,
+       371,
+       319,
+       337
+      ],
+      "cronica": [
+       55,
+       72,
+       72,
+       72,
+       87,
+       111,
+       111,
+       111,
+       127,
+       127,
+       136,
+       149,
+       168,
+       168,
+       173,
+       186,
+       186,
+       198,
+       208,
+       229,
+       229,
+       243,
+       243,
+       248,
+       272,
+       265,
+       273,
+       277
+      ],
+      "acwr": [
+       2.89,
+       3.17,
+       2.49,
+       2.49,
+       2.05,
+       2.47,
+       2.47,
+       2.05,
+       1.72,
+       1.72,
+       1.9,
+       1.66,
+       1.41,
+       1.41,
+       1.58,
+       1.42,
+       1.42,
+       1.37,
+       1.26,
+       1.14,
+       1.14,
+       1.28,
+       1.07,
+       1.32,
+       1.39,
+       1.4,
+       1.17,
+       1.22
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 4,
+     "jugador": "Payeras, M.",
+     "grupo": "D",
+     "acwr": 1.14,
+     "cargaAguda": 297.5,
+     "cargaCronica": 260.9,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 1.22,
+     "cargaAgudaHsr": 98.5,
+     "cargaCronicaHsr": 80.9,
+     "acwrSprint": 0.96,
+     "cargaAgudaSprint": 1.2,
+     "cargaCronicaSprint": 1.2,
+     "serie": {
+      "pl": [
+       269,
+       337,
+       0,
+       0,
+       381,
+       600,
+       0,
+       0,
+       369,
+       0,
+       266,
+       302,
+       557,
+       0,
+       187,
+       335,
+       325,
+       522,
+       286,
+       487,
+       0,
+       504,
+       0,
+       441,
+       548,
+       252,
+       216,
+       121.8
+      ],
+      "aguda": [
+       145,
+       193,
+       152,
+       152,
+       141,
+       227,
+       227,
+       188,
+       193,
+       193,
+       231,
+       220,
+       213,
+       213,
+       240,
+       235,
+       282,
+       318,
+       316,
+       306,
+       306,
+       351,
+       303,
+       320,
+       324,
+       319,
+       280,
+       298
+      ],
+      "cronica": [
+       133,
+       131,
+       124,
+       124,
+       130,
+       140,
+       140,
+       124,
+       137,
+       129,
+       132,
+       143,
+       154,
+       154,
+       154,
+       166,
+       178,
+       196,
+       206,
+       213,
+       213,
+       231,
+       231,
+       237,
+       256,
+       249,
+       257,
+       261
+      ],
+      "acwr": [
+       1.09,
+       1.47,
+       1.23,
+       1.23,
+       1.08,
+       1.62,
+       1.62,
+       1.52,
+       1.41,
+       1.5,
+       1.75,
+       1.54,
+       1.38,
+       1.38,
+       1.56,
+       1.42,
+       1.58,
+       1.62,
+       1.53,
+       1.44,
+       1.44,
+       1.52,
+       1.31,
+       1.35,
+       1.27,
+       1.28,
+       1.09,
+       1.14
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 5,
+     "jugador": "Martín, A.",
+     "grupo": "D",
+     "acwr": 1.13,
+     "cargaAguda": 454,
+     "cargaCronica": 401.7,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 1.32,
+     "cargaAgudaHsr": 188.4,
+     "cargaCronicaHsr": 143.1,
+     "acwrSprint": 1.44,
+     "cargaAgudaSprint": 3.7,
+     "cargaCronicaSprint": 2.6,
+     "serie": {
+      "pl": [
+       235,
+       244,
+       392,
+       1060,
+       255,
+       266,
+       971,
+       0,
+       0,
+       428,
+       598,
+       350,
+       316,
+       1055,
+       0,
+       0,
+       360,
+       0,
+       312,
+       318,
+       910,
+       319,
+       0,
+       560,
+       706,
+       346,
+       274,
+       973
+      ],
+      "aguda": [
+       431,
+       466,
+       441,
+       521,
+       511,
+       497,
+       489,
+       455,
+       421,
+       426,
+       360,
+       373,
+       380,
+       392,
+       392,
+       392,
+       383,
+       297,
+       292,
+       292,
+       271,
+       317,
+       317,
+       346,
+       446,
+       451,
+       445,
+       454
+      ],
+      "cronica": [
+       423,
+       432,
+       432,
+       452,
+       452,
+       449,
+       451,
+       440,
+       440,
+       436,
+       436,
+       437,
+       436,
+       438,
+       430,
+       430,
+       422,
+       394,
+       398,
+       398,
+       393,
+       399,
+       399,
+       399,
+       406,
+       407,
+       404,
+       402
+      ],
+      "acwr": [
+       1.02,
+       1.08,
+       1.02,
+       1.15,
+       1.13,
+       1.11,
+       1.08,
+       1.03,
+       0.96,
+       0.98,
+       0.83,
+       0.85,
+       0.87,
+       0.89,
+       0.91,
+       0.91,
+       0.91,
+       0.75,
+       0.73,
+       0.73,
+       0.69,
+       0.79,
+       0.79,
+       0.87,
+       1.1,
+       1.11,
+       1.1,
+       1.13
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 6,
+     "jugador": "Bonet, G.",
+     "grupo": "M",
+     "acwr": 1.02,
+     "cargaAguda": 505.9,
+     "cargaCronica": 498.2,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 0.95,
+     "cargaAgudaHsr": 171.6,
+     "cargaCronicaHsr": 180.3,
+     "acwrSprint": 1.23,
+     "cargaAgudaSprint": 3.3,
+     "cargaCronicaSprint": 2.7,
+     "serie": {
+      "pl": [
+       240,
+       269,
+       426,
+       1022,
+       279,
+       294,
+       1156,
+       0,
+       0,
+       428,
+       764,
+       355,
+       366,
+       1228,
+       343,
+       0,
+       573,
+       798,
+       348,
+       366,
+       1154,
+       324,
+       0,
+       614,
+       777,
+       364,
+       289,
+       1173
+      ],
+      "aguda": [
+       464,
+       503,
+       482,
+       549,
+       542,
+       527,
+       527,
+       492,
+       454,
+       454,
+       417,
+       428,
+       438,
+       449,
+       498,
+       498,
+       518,
+       523,
+       522,
+       522,
+       512,
+       509,
+       509,
+       515,
+       512,
+       514,
+       503,
+       506
+      ],
+      "cronica": [
+       299,
+       308,
+       315,
+       352,
+       362,
+       372,
+       414,
+       400,
+       400,
+       402,
+       405,
+       405,
+       418,
+       462,
+       456,
+       456,
+       457,
+       457,
+       463,
+       458,
+       499,
+       491,
+       491,
+       492,
+       500,
+       502,
+       498,
+       498
+      ],
+      "acwr": [
+       1.55,
+       1.63,
+       1.53,
+       1.56,
+       1.5,
+       1.42,
+       1.27,
+       1.23,
+       1.14,
+       1.13,
+       1.03,
+       1.06,
+       1.05,
+       0.97,
+       1.09,
+       1.09,
+       1.13,
+       1.14,
+       1.13,
+       1.14,
+       1.03,
+       1.04,
+       1.04,
+       1.05,
+       1.02,
+       1.02,
+       1.01,
+       1.02
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 7,
+     "jugador": "Riera, N.",
+     "grupo": "D",
+     "acwr": 1.21,
+     "cargaAguda": 491.1,
+     "cargaCronica": 407.4,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 1.48,
+     "cargaAgudaHsr": 316.4,
+     "cargaCronicaHsr": 213.1,
+     "acwrSprint": 1.5,
+     "cargaAgudaSprint": 5.7,
+     "cargaCronicaSprint": 3.8,
+     "serie": {
+      "pl": [
+       229,
+       259,
+       375,
+       40,
+       175,
+       284,
+       481,
+       0,
+       0,
+       437,
+       637,
+       415,
+       434,
+       0,
+       612,
+       0,
+       644,
+       745,
+       370,
+       355,
+       1170,
+       282,
+       0,
+       585,
+       746,
+       338,
+       314,
+       1173
+      ],
+      "aguda": [
+       458,
+       495,
+       464,
+       389,
+       364,
+       355,
+       263,
+       231,
+       194,
+       202,
+       288,
+       322,
+       343,
+       275,
+       362,
+       362,
+       392,
+       407,
+       401,
+       389,
+       557,
+       509,
+       509,
+       501,
+       501,
+       497,
+       491,
+       491
+      ],
+      "cronica": [
+       399,
+       408,
+       421,
+       423,
+       418,
+       415,
+       393,
+       393,
+       393,
+       393,
+       397,
+       400,
+       404,
+       362,
+       377,
+       377,
+       375,
+       372,
+       378,
+       378,
+       380,
+       390,
+       390,
+       390,
+       396,
+       396,
+       395,
+       407
+      ],
+      "acwr": [
+       1.15,
+       1.21,
+       1.1,
+       0.92,
+       0.87,
+       0.86,
+       0.67,
+       0.59,
+       0.49,
+       0.51,
+       0.73,
+       0.81,
+       0.85,
+       0.76,
+       0.96,
+       0.96,
+       1.05,
+       1.09,
+       1.06,
+       1.03,
+       1.47,
+       1.31,
+       1.31,
+       1.28,
+       1.27,
+       1.26,
+       1.24,
+       1.21
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 8,
+     "jugador": "Cherta, J.",
+     "grupo": "M",
+     "acwr": 1.05,
+     "cargaAguda": 515.4,
+     "cargaCronica": 489.1,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 0.87,
+     "cargaAgudaHsr": 152.3,
+     "cargaCronicaHsr": 175.6,
+     "acwrSprint": 0.79,
+     "cargaAgudaSprint": 2.6,
+     "cargaCronicaSprint": 3.2,
+     "serie": {
+      "pl": [
+       720,
+       272,
+       435,
+       1437,
+       291,
+       273,
+       385,
+       0,
+       0,
+       473,
+       754,
+       352,
+       353,
+       338,
+       673,
+       0,
+       693,
+       874,
+       357,
+       315,
+       1093,
+       346,
+       0,
+       660,
+       844,
+       372,
+       308,
+       1078
+      ],
+      "aguda": [
+       391,
+       429,
+       406,
+       521,
+       524,
+       518,
+       545,
+       442,
+       403,
+       408,
+       311,
+       320,
+       331,
+       324,
+       420,
+       420,
+       452,
+       469,
+       470,
+       464,
+       572,
+       525,
+       525,
+       521,
+       516,
+       519,
+       518,
+       515
+      ],
+      "cronica": [
+       452,
+       461,
+       461,
+       489,
+       491,
+       487,
+       472,
+       460,
+       460,
+       458,
+       458,
+       457,
+       457,
+       425,
+       440,
+       440,
+       442,
+       437,
+       443,
+       442,
+       455,
+       445,
+       445,
+       447,
+       454,
+       458,
+       458,
+       489
+      ],
+      "acwr": [
+       0.87,
+       0.93,
+       0.88,
+       1.07,
+       1.07,
+       1.06,
+       1.15,
+       0.96,
+       0.88,
+       0.89,
+       0.68,
+       0.7,
+       0.72,
+       0.76,
+       0.95,
+       0.95,
+       1.02,
+       1.07,
+       1.06,
+       1.05,
+       1.26,
+       1.18,
+       1.18,
+       1.17,
+       1.14,
+       1.13,
+       1.13,
+       1.05
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 9,
+     "jugador": "Caballero, R.",
+     "grupo": "DL",
+     "acwr": 1.01,
+     "cargaAguda": 354,
+     "cargaCronica": 351,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 1.2,
+     "cargaAgudaHsr": 160.9,
+     "cargaCronicaHsr": 134.5,
+     "acwrSprint": 1.22,
+     "cargaAgudaSprint": 3.1,
+     "cargaCronicaSprint": 2.6,
+     "serie": {
+      "pl": [
+       226,
+       212,
+       337,
+       33,
+       262,
+       246,
+       755,
+       0,
+       0,
+       379,
+       587,
+       299,
+       301,
+       892,
+       321,
+       0,
+       521,
+       699,
+       323,
+       290,
+       358,
+       605,
+       0,
+       545,
+       724,
+       0,
+       253,
+       110
+      ],
+      "aguda": [
+       374,
+       405,
+       382,
+       310,
+       309,
+       302,
+       296,
+       264,
+       233,
+       239,
+       318,
+       324,
+       332,
+       351,
+       397,
+       397,
+       417,
+       433,
+       437,
+       435,
+       359,
+       399,
+       399,
+       403,
+       406,
+       360,
+       355,
+       354
+      ],
+      "cronica": [
+       371,
+       379,
+       377,
+       361,
+       363,
+       361,
+       363,
+       351,
+       351,
+       347,
+       348,
+       347,
+       347,
+       353,
+       357,
+       357,
+       357,
+       357,
+       361,
+       361,
+       354,
+       359,
+       359,
+       360,
+       367,
+       358,
+       356,
+       351
+      ],
+      "acwr": [
+       1.01,
+       1.07,
+       1.01,
+       0.86,
+       0.85,
+       0.84,
+       0.82,
+       0.75,
+       0.66,
+       0.69,
+       0.91,
+       0.93,
+       0.96,
+       0.99,
+       1.11,
+       1.11,
+       1.17,
+       1.21,
+       1.21,
+       1.2,
+       1.01,
+       1.11,
+       1.11,
+       1.12,
+       1.11,
+       1.01,
+       1.0,
+       1.01
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 10,
+     "jugador": "Andone, F.",
+     "grupo": "DL",
+     "acwr": 1.25,
+     "cargaAguda": 468.4,
+     "cargaCronica": 374,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 1.63,
+     "cargaAgudaHsr": 255.1,
+     "cargaCronicaHsr": 156.6,
+     "acwrSprint": 1.72,
+     "cargaAgudaSprint": 4,
+     "cargaCronicaSprint": 2.3,
+     "serie": {
+      "pl": [
+       244,
+       246,
+       361,
+       46,
+       275,
+       276,
+       818,
+       0,
+       0,
+       389,
+       643,
+       309,
+       319,
+       509,
+       543,
+       0,
+       572,
+       695,
+       356,
+       319,
+       0,
+       605,
+       0,
+       553,
+       680,
+       347,
+       277,
+       817
+      ],
+      "aguda": [
+       408,
+       443,
+       420,
+       352,
+       346,
+       338,
+       324,
+       289,
+       254,
+       258,
+       343,
+       348,
+       354,
+       310,
+       387,
+       387,
+       414,
+       421,
+       428,
+       428,
+       355,
+       364,
+       364,
+       361,
+       359,
+       358,
+       352,
+       468
+      ],
+      "cronica": [
+       357,
+       366,
+       370,
+       354,
+       355,
+       353,
+       373,
+       357,
+       357,
+       363,
+       364,
+       364,
+       365,
+       372,
+       377,
+       377,
+       376,
+       375,
+       380,
+       380,
+       346,
+       362,
+       362,
+       363,
+       369,
+       370,
+       368,
+       374
+      ],
+      "acwr": [
+       1.14,
+       1.21,
+       1.14,
+       0.99,
+       0.97,
+       0.96,
+       0.87,
+       0.81,
+       0.71,
+       0.71,
+       0.94,
+       0.96,
+       0.97,
+       0.83,
+       1.03,
+       1.03,
+       1.1,
+       1.12,
+       1.13,
+       1.13,
+       1.03,
+       1.01,
+       1.01,
+       0.99,
+       0.97,
+       0.97,
+       0.96,
+       1.25
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 11,
+     "jugador": "Martín, M.",
+     "grupo": "D",
+     "acwr": 1.08,
+     "cargaAguda": 467.1,
+     "cargaCronica": 431.3,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 1.26,
+     "cargaAgudaHsr": 266.3,
+     "cargaCronicaHsr": 211.8,
+     "acwrSprint": 1.37,
+     "cargaAgudaSprint": 5.7,
+     "cargaCronicaSprint": 4.2,
+     "serie": {
+      "pl": [
+       662,
+       281,
+       497,
+       1023,
+       314,
+       295,
+       0,
+       0,
+       0,
+       424,
+       808,
+       406,
+       322,
+       506,
+       674,
+       0,
+       658,
+       779,
+       363,
+       335,
+       460,
+       689,
+       0,
+       606,
+       818,
+       359,
+       307,
+       125
+      ],
+      "aguda": [
+       355,
+       395,
+       385,
+       446,
+       448,
+       439,
+       439,
+       344,
+       304,
+       294,
+       263,
+       276,
+       280,
+       352,
+       449,
+       449,
+       482,
+       478,
+       472,
+       474,
+       467,
+       469,
+       469,
+       462,
+       467,
+       467,
+       463,
+       467
+      ],
+      "cronica": [
+       415,
+       425,
+       428,
+       443,
+       445,
+       441,
+       425,
+       408,
+       408,
+       403,
+       405,
+       406,
+       405,
+       391,
+       404,
+       404,
+       405,
+       401,
+       406,
+       406,
+       399,
+       404,
+       404,
+       406,
+       414,
+       416,
+       414,
+       431
+      ],
+      "acwr": [
+       0.86,
+       0.93,
+       0.9,
+       1.01,
+       1.01,
+       1.0,
+       1.03,
+       0.84,
+       0.75,
+       0.73,
+       0.65,
+       0.68,
+       0.69,
+       0.9,
+       1.11,
+       1.11,
+       1.19,
+       1.19,
+       1.16,
+       1.17,
+       1.17,
+       1.16,
+       1.16,
+       1.14,
+       1.13,
+       1.12,
+       1.12,
+       1.08
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 14,
+     "jugador": "Hernández, P.",
+     "grupo": "M",
+     "acwr": 1.13,
+     "cargaAguda": 382.1,
+     "cargaCronica": 336.8,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 1.27,
+     "cargaAgudaHsr": 153.3,
+     "cargaCronicaHsr": 120.4,
+     "acwrSprint": 1.53,
+     "cargaAgudaSprint": 3,
+     "cargaCronicaSprint": 2,
+     "serie": {
+      "pl": [
+       441,
+       260,
+       377,
+       33,
+       295,
+       256,
+       156,
+       0,
+       0,
+       387,
+       685,
+       269,
+       263,
+       462,
+       551,
+       0,
+       464,
+       722,
+       293,
+       248,
+       286,
+       627,
+       0,
+       463,
+       707,
+       266,
+       252,
+       116
+      ],
+      "aguda": [
+       367,
+       404,
+       385,
+       319,
+       329,
+       323,
+       260,
+       197,
+       160,
+       161,
+       254,
+       250,
+       251,
+       295,
+       374,
+       374,
+       385,
+       390,
+       394,
+       391,
+       366,
+       377,
+       377,
+       377,
+       375,
+       371,
+       372,
+       382
+      ],
+      "cronica": [
+       374,
+       383,
+       382,
+       366,
+       369,
+       365,
+       336,
+       325,
+       325,
+       323,
+       326,
+       325,
+       325,
+       305,
+       324,
+       324,
+       321,
+       320,
+       323,
+       322,
+       325,
+       329,
+       329,
+       327,
+       334,
+       336,
+       334,
+       337
+      ],
+      "acwr": [
+       0.98,
+       1.05,
+       1.01,
+       0.87,
+       0.89,
+       0.88,
+       0.77,
+       0.61,
+       0.49,
+       0.5,
+       0.78,
+       0.77,
+       0.77,
+       0.97,
+       1.15,
+       1.15,
+       1.2,
+       1.22,
+       1.22,
+       1.21,
+       1.13,
+       1.15,
+       1.15,
+       1.15,
+       1.12,
+       1.1,
+       1.11,
+       1.13
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 16,
+     "jugador": "Anglada, H.",
+     "grupo": "D",
+     "acwr": 1.29,
+     "cargaAguda": 480.4,
+     "cargaCronica": 372.2,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 1.61,
+     "cargaAgudaHsr": 189.6,
+     "cargaCronicaHsr": 117.6,
+     "acwrSprint": 1.69,
+     "cargaAgudaSprint": 3.6,
+     "cargaCronicaSprint": 2.1,
+     "serie": {
+      "pl": [
+       277,
+       249,
+       434,
+       1041,
+       244,
+       256,
+       0,
+       0,
+       0,
+       407,
+       582,
+       347,
+       304,
+       644,
+       367,
+       0,
+       542,
+       710,
+       349,
+       306,
+       0,
+       632,
+       0,
+       538,
+       664,
+       307,
+       263,
+       959
+      ],
+      "aguda": [
+       427,
+       463,
+       444,
+       515,
+       504,
+       493,
+       357,
+       318,
+       282,
+       278,
+       213,
+       227,
+       234,
+       326,
+       379,
+       379,
+       398,
+       416,
+       417,
+       417,
+       325,
+       363,
+       363,
+       362,
+       356,
+       350,
+       343,
+       480
+      ],
+      "cronica": [
+       411,
+       420,
+       421,
+       439,
+       440,
+       437,
+       405,
+       393,
+       393,
+       391,
+       390,
+       391,
+       391,
+       380,
+       383,
+       383,
+       381,
+       378,
+       380,
+       380,
+       361,
+       372,
+       372,
+       371,
+       375,
+       374,
+       372,
+       372
+      ],
+      "acwr": [
+       1.04,
+       1.1,
+       1.05,
+       1.17,
+       1.15,
+       1.13,
+       0.88,
+       0.81,
+       0.72,
+       0.71,
+       0.55,
+       0.58,
+       0.6,
+       0.86,
+       0.99,
+       0.99,
+       1.04,
+       1.1,
+       1.1,
+       1.1,
+       0.9,
+       0.98,
+       0.98,
+       0.98,
+       0.95,
+       0.94,
+       0.92,
+       1.29
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 17,
+     "jugador": "Catalá, R.",
+     "grupo": "DL",
+     "acwr": 0.95,
+     "cargaAguda": 324.7,
+     "cargaCronica": 343.5,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 1.06,
+     "cargaAgudaHsr": 193,
+     "cargaCronicaHsr": 182.1,
+     "acwrSprint": 0.99,
+     "cargaAgudaSprint": 3.3,
+     "cargaCronicaSprint": 3.3,
+     "serie": {
+      "pl": [
+       539,
+       238,
+       375,
+       790,
+       264,
+       253,
+       177,
+       0,
+       0,
+       335,
+       616,
+       295,
+       281,
+       221,
+       518,
+       0,
+       491,
+       706,
+       303,
+       269,
+       674,
+       364,
+       0,
+       481,
+       613,
+       298,
+       250,
+       121
+      ],
+      "aguda": [
+       342,
+       376,
+       355,
+       399,
+       399,
+       390,
+       377,
+       300,
+       266,
+       260,
+       235,
+       239,
+       243,
+       250,
+       324,
+       324,
+       346,
+       359,
+       360,
+       358,
+       423,
+       401,
+       401,
+       400,
+       386,
+       386,
+       383,
+       325
+      ],
+      "cronica": [
+       318,
+       327,
+       327,
+       338,
+       339,
+       336,
+       335,
+       321,
+       321,
+       317,
+       319,
+       320,
+       319,
+       327,
+       332,
+       332,
+       332,
+       330,
+       334,
+       333,
+       347,
+       342,
+       342,
+       340,
+       345,
+       346,
+       344,
+       344
+      ],
+      "acwr": [
+       1.08,
+       1.15,
+       1.09,
+       1.18,
+       1.18,
+       1.16,
+       1.13,
+       0.93,
+       0.83,
+       0.82,
+       0.74,
+       0.75,
+       0.76,
+       0.76,
+       0.98,
+       0.98,
+       1.04,
+       1.09,
+       1.08,
+       1.08,
+       1.22,
+       1.17,
+       1.17,
+       1.18,
+       1.12,
+       1.12,
+       1.11,
+       0.95
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 18,
+     "jugador": "López, I.",
+     "grupo": "D",
+     "acwr": 0.71,
+     "cargaAguda": 261.7,
+     "cargaCronica": 369.9,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 0.76,
+     "cargaAgudaHsr": 119.9,
+     "cargaCronicaHsr": 158,
+     "acwrSprint": 0.72,
+     "cargaAgudaSprint": 2.3,
+     "cargaCronicaSprint": 3.2,
+     "serie": {
+      "pl": [
+       541,
+       260,
+       363,
+       994,
+       228,
+       239,
+       840,
+       0,
+       0,
+       365,
+       537,
+       270,
+       236,
+       933,
+       243,
+       0,
+       496,
+       606,
+       307,
+       260,
+       808,
+       269,
+       0,
+       500,
+       597,
+       274,
+       192,
+       0
+      ],
+      "aguda": [
+       243,
+       280,
+       269,
+       341,
+       341,
+       375,
+       495,
+       418,
+       381,
+       381,
+       316,
+       322,
+       321,
+       334,
+       369,
+       369,
+       388,
+       398,
+       403,
+       406,
+       389,
+       392,
+       392,
+       393,
+       392,
+       387,
+       377,
+       262
+      ],
+      "cronica": [
+       285,
+       294,
+       307,
+       342,
+       340,
+       339,
+       349,
+       349,
+       349,
+       352,
+       351,
+       351,
+       351,
+       350,
+       350,
+       350,
+       351,
+       347,
+       353,
+       354,
+       350,
+       356,
+       356,
+       358,
+       361,
+       363,
+       370,
+       370
+      ],
+      "acwr": [
+       0.85,
+       0.95,
+       0.88,
+       1.0,
+       1.0,
+       1.11,
+       1.42,
+       1.2,
+       1.09,
+       1.08,
+       0.9,
+       0.92,
+       0.91,
+       0.95,
+       1.05,
+       1.05,
+       1.11,
+       1.15,
+       1.14,
+       1.15,
+       1.11,
+       1.1,
+       1.1,
+       1.1,
+       1.09,
+       1.07,
+       1.02,
+       0.71
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 19,
+     "jugador": "Catalá, A.",
+     "grupo": "DL",
+     "acwr": 0.93,
+     "cargaAguda": 429.1,
+     "cargaCronica": 461.1,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 0.89,
+     "cargaAgudaHsr": 210.6,
+     "cargaCronicaHsr": 236.1,
+     "acwrSprint": 0.79,
+     "cargaAgudaSprint": 3.9,
+     "cargaCronicaSprint": 4.9,
+     "serie": {
+      "pl": [
+       571,
+       297,
+       410,
+       1127,
+       245,
+       270,
+       858,
+       0,
+       0,
+       413,
+       650,
+       362,
+       337,
+       1067,
+       298,
+       0,
+       576,
+       788,
+       360,
+       301,
+       978,
+       257,
+       0,
+       532,
+       744,
+       321,
+       284,
+       866
+      ],
+      "aguda": [
+       407,
+       450,
+       429,
+       506,
+       497,
+       482,
+       540,
+       458,
+       416,
+       416,
+       348,
+       365,
+       374,
+       404,
+       447,
+       447,
+       470,
+       490,
+       489,
+       484,
+       472,
+       466,
+       466,
+       459,
+       453,
+       448,
+       445,
+       429
+      ],
+      "cronica": [
+       404,
+       415,
+       414,
+       434,
+       434,
+       430,
+       432,
+       422,
+       422,
+       420,
+       419,
+       421,
+       421,
+       429,
+       432,
+       432,
+       432,
+       432,
+       437,
+       436,
+       440,
+       444,
+       444,
+       444,
+       449,
+       450,
+       446,
+       461
+      ],
+      "acwr": [
+       1.01,
+       1.08,
+       1.04,
+       1.17,
+       1.15,
+       1.12,
+       1.25,
+       1.09,
+       0.99,
+       0.99,
+       0.83,
+       0.87,
+       0.89,
+       0.94,
+       1.03,
+       1.03,
+       1.09,
+       1.13,
+       1.12,
+       1.11,
+       1.07,
+       1.05,
+       1.05,
+       1.03,
+       1.01,
+       1.0,
+       1.0,
+       0.93
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 20,
+     "jugador": "Bejarano, A.",
+     "grupo": "DL",
+     "acwr": 3.38,
+     "cargaAguda": 161.4,
+     "cargaCronica": 47.8,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 0,
+     "cargaAgudaHsr": 0,
+     "cargaCronicaHsr": 0,
+     "acwrSprint": 0,
+     "cargaAgudaSprint": 0,
+     "cargaCronicaSprint": 0,
+     "serie": {
+      "pl": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       208,
+       0,
+       425,
+       0,
+       473,
+       0,
+       232,
+       0,
+       0
+      ],
+      "aguda": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       30,
+       30,
+       90,
+       90,
+       158,
+       158,
+       191,
+       161,
+       161
+      ],
+      "cronica": [
+       145,
+       127,
+       119,
+       119,
+       111,
+       102,
+       102,
+       90,
+       90,
+       73,
+       57,
+       57,
+       41,
+       41,
+       41,
+       41,
+       15,
+       0,
+       0,
+       7,
+       7,
+       23,
+       23,
+       40,
+       40,
+       48,
+       48,
+       48
+      ],
+      "acwr": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       4.29,
+       4.29,
+       3.91,
+       3.91,
+       3.95,
+       3.95,
+       3.98,
+       3.35,
+       3.38
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 21,
+     "jugador": "Bover, R.",
+     "grupo": "M",
+     "acwr": 1.02,
+     "cargaAguda": 381.6,
+     "cargaCronica": 374.7,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 1,
+     "cargaAgudaHsr": 171,
+     "cargaCronicaHsr": 171,
+     "acwrSprint": 0.95,
+     "cargaAgudaSprint": 2.7,
+     "cargaCronicaSprint": 2.9,
+     "serie": {
+      "pl": [
+       236,
+       239,
+       401,
+       54,
+       231,
+       258,
+       851,
+       0,
+       0,
+       378,
+       646,
+       338,
+       298,
+       795,
+       262,
+       0,
+       528,
+       732,
+       341,
+       293,
+       747,
+       253,
+       0,
+       478,
+       646,
+       326,
+       268,
+       700
+      ],
+      "aguda": [
+       378,
+       412,
+       389,
+       323,
+       321,
+       315,
+       324,
+       291,
+       256,
+       253,
+       338,
+       353,
+       359,
+       351,
+       388,
+       388,
+       410,
+       422,
+       422,
+       422,
+       415,
+       413,
+       413,
+       406,
+       394,
+       392,
+       388,
+       382
+      ],
+      "cronica": [
+       364,
+       373,
+       372,
+       356,
+       357,
+       353,
+       370,
+       357,
+       357,
+       354,
+       356,
+       357,
+       357,
+       379,
+       376,
+       376,
+       373,
+       372,
+       377,
+       376,
+       367,
+       368,
+       368,
+       364,
+       369,
+       372,
+       371,
+       375
+      ],
+      "acwr": [
+       1.04,
+       1.1,
+       1.05,
+       0.91,
+       0.9,
+       0.89,
+       0.88,
+       0.82,
+       0.72,
+       0.71,
+       0.95,
+       0.99,
+       1.01,
+       0.93,
+       1.03,
+       1.03,
+       1.1,
+       1.13,
+       1.12,
+       1.12,
+       1.13,
+       1.12,
+       1.12,
+       1.12,
+       1.07,
+       1.05,
+       1.05,
+       1.02
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 22,
+     "jugador": "Soler, M.",
+     "grupo": "M",
+     "acwr": 0.98,
+     "cargaAguda": 424,
+     "cargaCronica": 434.4,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 1.24,
+     "cargaAgudaHsr": 205.1,
+     "cargaCronicaHsr": 165,
+     "acwrSprint": 1.51,
+     "cargaAgudaSprint": 4.1,
+     "cargaCronicaSprint": 2.8,
+     "serie": {
+      "pl": [
+       587,
+       275,
+       373,
+       893,
+       270,
+       271,
+       1084,
+       0,
+       0,
+       425,
+       745,
+       315,
+       337,
+       691,
+       478,
+       0,
+       608,
+       852,
+       331,
+       356,
+       303,
+       670,
+       0,
+       556,
+       825,
+       357,
+       287,
+       137
+      ],
+      "aguda": [
+       403,
+       442,
+       413,
+       458,
+       458,
+       451,
+       536,
+       452,
+       413,
+       420,
+       399,
+       406,
+       415,
+       359,
+       427,
+       427,
+       453,
+       469,
+       471,
+       474,
+       418,
+       446,
+       446,
+       438,
+       434,
+       438,
+       428,
+       424
+      ],
+      "cronica": [
+       420,
+       430,
+       427,
+       438,
+       441,
+       437,
+       438,
+       428,
+       428,
+       427,
+       427,
+       426,
+       428,
+       410,
+       427,
+       427,
+       426,
+       425,
+       429,
+       430,
+       408,
+       432,
+       432,
+       431,
+       440,
+       443,
+       442,
+       434
+      ],
+      "acwr": [
+       0.96,
+       1.03,
+       0.97,
+       1.05,
+       1.04,
+       1.03,
+       1.22,
+       1.06,
+       0.96,
+       0.98,
+       0.93,
+       0.95,
+       0.97,
+       0.88,
+       1.0,
+       1.0,
+       1.06,
+       1.1,
+       1.1,
+       1.1,
+       1.02,
+       1.03,
+       1.03,
+       1.02,
+       0.99,
+       0.99,
+       0.97,
+       0.98
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 23,
+     "jugador": "Bah, A.",
+     "grupo": "D",
+     "acwr": 1.1,
+     "cargaAguda": 389.6,
+     "cargaCronica": 353.8,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 1.05,
+     "cargaAgudaHsr": 191.6,
+     "cargaCronicaHsr": 183,
+     "acwrSprint": 1.24,
+     "cargaAgudaSprint": 4.3,
+     "cargaCronicaSprint": 3.5,
+     "serie": {
+      "pl": [
+       213,
+       257,
+       375,
+       72,
+       227,
+       212,
+       896,
+       0,
+       0,
+       342,
+       554,
+       319,
+       275,
+       669,
+       274,
+       0,
+       516,
+       590,
+       272,
+       273,
+       842,
+       263,
+       0,
+       492,
+       614,
+       242,
+       234,
+       882
+      ],
+      "aguda": [
+       368,
+       405,
+       392,
+       332,
+       327,
+       317,
+       322,
+       291,
+       255,
+       250,
+       319,
+       332,
+       341,
+       308,
+       348,
+       348,
+       372,
+       378,
+       371,
+       371,
+       395,
+       394,
+       394,
+       390,
+       394,
+       389,
+       384,
+       390
+      ],
+      "cronica": [
+       322,
+       331,
+       331,
+       317,
+       319,
+       314,
+       337,
+       322,
+       322,
+       318,
+       318,
+       320,
+       320,
+       344,
+       339,
+       339,
+       339,
+       342,
+       343,
+       343,
+       357,
+       350,
+       350,
+       351,
+       355,
+       355,
+       353,
+       354
+      ],
+      "acwr": [
+       1.14,
+       1.22,
+       1.18,
+       1.05,
+       1.03,
+       1.01,
+       0.96,
+       0.9,
+       0.79,
+       0.79,
+       1.0,
+       1.04,
+       1.07,
+       0.9,
+       1.03,
+       1.03,
+       1.1,
+       1.11,
+       1.08,
+       1.08,
+       1.11,
+       1.13,
+       1.13,
+       1.11,
+       1.11,
+       1.1,
+       1.09,
+       1.1
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 24,
+     "jugador": "Llinares, I.",
+     "grupo": "M",
+     "acwr": 1.2,
+     "cargaAguda": 444.7,
+     "cargaCronica": 371.2,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 1.31,
+     "cargaAgudaHsr": 250.7,
+     "cargaCronicaHsr": 190.9,
+     "acwrSprint": 1.32,
+     "cargaAgudaSprint": 4.6,
+     "cargaCronicaSprint": 3.5,
+     "serie": {
+      "pl": [
+       227,
+       264,
+       392,
+       72,
+       262,
+       275,
+       319,
+       0,
+       0,
+       432,
+       677,
+       358,
+       305,
+       446,
+       558,
+       0,
+       535,
+       750,
+       329,
+       310,
+       770,
+       297,
+       0,
+       605,
+       755,
+       380,
+       281,
+       795
+      ],
+      "aguda": [
+       369,
+       407,
+       393,
+       329,
+       320,
+       311,
+       259,
+       226,
+       189,
+       194,
+       281,
+       294,
+       299,
+       317,
+       397,
+       397,
+       411,
+       422,
+       418,
+       418,
+       465,
+       427,
+       427,
+       437,
+       438,
+       445,
+       441,
+       445
+      ],
+      "cronica": [
+       377,
+       386,
+       386,
+       374,
+       374,
+       370,
+       360,
+       349,
+       349,
+       347,
+       347,
+       347,
+       346,
+       350,
+       356,
+       356,
+       353,
+       351,
+       355,
+       354,
+       362,
+       355,
+       355,
+       359,
+       367,
+       369,
+       367,
+       371
+      ],
+      "acwr": [
+       0.98,
+       1.05,
+       1.02,
+       0.88,
+       0.86,
+       0.84,
+       0.72,
+       0.65,
+       0.54,
+       0.56,
+       0.81,
+       0.85,
+       0.86,
+       0.91,
+       1.12,
+       1.12,
+       1.16,
+       1.2,
+       1.18,
+       1.18,
+       1.28,
+       1.2,
+       1.2,
+       1.22,
+       1.19,
+       1.21,
+       1.2,
+       1.2
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    },
+    {
+     "dorsal": 26,
+     "jugador": "Fontanet, B.",
+     "grupo": "D",
+     "acwr": 1.05,
+     "cargaAguda": 269,
+     "cargaCronica": 255.9,
+     "plS90": null,
+     "plS91": null,
+     "plS92": null,
+     "plS93": null,
+     "plJ13": null,
+     "acwrHsr": 1.42,
+     "cargaAgudaHsr": 153.7,
+     "cargaCronicaHsr": 108.6,
+     "acwrSprint": 1.59,
+     "cargaAgudaSprint": 3.3,
+     "cargaCronicaSprint": 2.1,
+     "serie": {
+      "pl": [
+       227,
+       262,
+       376,
+       72,
+       262,
+       241,
+       48,
+       0,
+       0,
+       321,
+       520,
+       313,
+       263,
+       725,
+       286,
+       0,
+       492,
+       625,
+       0,
+       248,
+       0,
+       538,
+       0,
+       521,
+       598,
+       226,
+       0,
+       0
+      ],
+      "aguda": [
+       315,
+       352,
+       337,
+       284,
+       321,
+       308,
+       213,
+       180,
+       143,
+       135,
+       199,
+       206,
+       209,
+       306,
+       347,
+       347,
+       371,
+       386,
+       342,
+       339,
+       236,
+       272,
+       272,
+       276,
+       272,
+       304,
+       269,
+       269
+      ],
+      "cronica": [
+       282,
+       292,
+       291,
+       276,
+       279,
+       276,
+       278,
+       264,
+       264,
+       248,
+       267,
+       270,
+       268,
+       266,
+       269,
+       269,
+       268,
+       268,
+       260,
+       259,
+       259,
+       278,
+       278,
+       280,
+       285,
+       293,
+       282,
+       256
+      ],
+      "acwr": [
+       1.12,
+       1.21,
+       1.16,
+       1.03,
+       1.15,
+       1.12,
+       0.77,
+       0.68,
+       0.54,
+       0.54,
+       0.75,
+       0.76,
+       0.78,
+       1.15,
+       1.29,
+       1.29,
+       1.38,
+       1.44,
+       1.32,
+       1.31,
+       0.91,
+       0.98,
+       0.98,
+       0.99,
+       0.95,
+       1.04,
+       0.95,
+       1.05
+      ],
+      "ses": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       ""
+      ]
+     }
+    }
+   ],
+   "teamAvg": {
+    "acwr": 1.19,
+    "cargaAguda": 393.1,
+    "cargaCronica": 361.6,
+    "plS90": null,
+    "plS91": null,
+    "plS92": null,
+    "plS93": null,
+    "plJ13": null,
+    "acwrHsr": 1.22,
+    "cargaAgudaHsr": 192.3,
+    "cargaCronicaHsr": 161.5,
+    "acwrSprint": 1.26,
+    "cargaAgudaSprint": 3.6,
+    "cargaCronicaSprint": 2.9
+   },
+   "nota": "Carga aguda = Σ métrica de los últimos 7 días naturales ÷ 7 · Carga crónica = Σ últimos 28 días ÷ 28 · ACWR = aguda ÷ crónica (sobre totales sin redondear). Los días sin sesión cuentan como 0. La media del equipo excluye a jugadores con ACWR = 0,00 (normalmente lesión/baja prolongada). Microciclo 20 EN CURSO (fecha de cálculo 22/11/2026). LEYENDA ACWR: AZUL < 0,80 (infracarga) · VERDE 0,80-1,30 (zona óptima) · AMARILLO 1,31-1,50 (precaución) · ROJO > 1,50 (riesgo de sobrecarga).",
+   "serieDias": [
+    "2026-10-26",
+    "2026-10-27",
+    "2026-10-28",
+    "2026-10-29",
+    "2026-10-30",
+    "2026-10-31",
+    "2026-11-01",
+    "2026-11-02",
+    "2026-11-03",
+    "2026-11-04",
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15",
+    "2026-11-16",
+    "2026-11-17",
+    "2026-11-18",
+    "2026-11-19",
+    "2026-11-20",
+    "2026-11-21",
+    "2026-11-22"
+   ],
+   "serieTeam": {
+    "pl": [
+     384,
+     276,
+     398,
+     595,
+     276,
+     302,
+     653,
+     0,
+     399,
+     400,
+     615,
+     336,
+     339,
+     699,
+     426,
+     350,
+     539,
+     701,
+     326,
+     322,
+     717,
+     457,
+     0,
+     535,
+     706,
+     311,
+     268,
+     577
+    ],
+    "aguda": [
+     360,
+     399,
+     376,
+     383,
+     380,
+     383,
+     374,
+     320,
+     286,
+     286,
+     298,
+     306,
+     311,
+     321,
+     379,
+     379,
+     400,
+     407,
+     404,
+     384,
+     381,
+     391,
+     387,
+     393,
+     399,
+     399,
+     388,
+     393
+    ],
+    "cronica": [
+     333,
+     340,
+     341,
+     346,
+     348,
+     347,
+     347,
+     336,
+     337,
+     334,
+     335,
+     337,
+     338,
+     337,
+     341,
+     343,
+     341,
+     356,
+     360,
+     344,
+     344,
+     350,
+     350,
+     351,
+     359,
+     359,
+     359,
+     362
+    ],
+    "acwr": [
+     1.08,
+     1.17,
+     1.1,
+     1.11,
+     1.09,
+     1.1,
+     1.08,
+     0.95,
+     0.85,
+     0.86,
+     0.89,
+     0.91,
+     0.92,
+     0.95,
+     1.11,
+     1.1,
+     1.17,
+     1.14,
+     1.12,
+     1.12,
+     1.11,
+     1.12,
+     1.11,
+     1.12,
+     1.11,
+     1.11,
+     1.08,
+     1.19
+    ],
+    "ses": [
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
     ]
    }
   }
