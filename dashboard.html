@@ -1289,18 +1289,29 @@ function tablaBajas(s, bajas){
 
 /* ===== 2 · MICROCICLOS ===== */
 function viewMicrociclos(root){
-  const M=METRICS[state.metric];
-  const p=panel("Comparativa de microciclos",
-    `${M.lab} acumulada por microciclo (suma de la media del equipo en cada sesión). Objetivo vs real y % de cumplimiento.`);
+  const M=METRICS[state.metric], K=state.metric;
+  const todos = BUCKET_ORDER.every(b=>state.buckets.has(b));
+  const p=panel("Comparativa de microciclos", M.noObj
+    ? `${M.lab} acumulada por microciclo (suma de la media del equipo en cada sesión).`
+    : `${M.lab} por microciclo: media de lo que suma cada jugador en la semana frente a la media de su objetivo semanal `+
+      `(como la app y el Acumulado del Excel). Semana en curso: objetivo a fecha.`+(todos?"":" Solo los tipos de sesión filtrados, sin las Extra."));
 
   const rows = MICROS.map(mc=>{
     const ss = RAW.sessions.filter(s=>s.mc===mc && !s.isMatch && state.buckets.has(s.bucket));
-    let real=0, obj=0, hasObj=false, n=0;
-    ss.forEach(s=>{
-      const tv=teamPoint(s, state.metric, "abs"); if(tv!=null){ real+=tv; n++; }
-      const to=teamObj(s, state.metric, "abs"); if(to!=null){ obj+=to; hasObj=true; }
-    });
-    return {mc, real, obj:hasObj?obj:null, n, tipo:(RAW.sessions.find(s=>s.mc===mc)||{}).mcTipo};
+    const n = ss.filter(sessionHasData).length;
+    const tipo = (RAW.sessions.find(s=>s.mc===mc)||{}).mcTipo;
+    if(M.noObj){     // PL / vel. máx: sin objetivo; suma de la media del equipo de cada sesión
+      let real=0; ss.forEach(s=>{ const tv=teamPoint(s, K, "abs"); if(tv!=null) real+=tv; });
+      return {mc, real, obj:null, n, tipo};
+    }
+    // igual que la app: media (entre los jugadores con objetivo semanal) de su objetivo semanal y de su acumulado
+    const A = acumuladoSemana(mc, todos ? null : (s=>state.buckets.has(s.bucket)));
+    const ref = A.hechas.length===A.ses.length ? "obj" : "objF";
+    const conObj = A.filas.filter(r=> RADAR_METRICS.some(k=>r.obj[k]!=null));
+    const conK = conObj.filter(r=> r[ref][K]!=null);
+    const obj = conK.length ? conObj.reduce((a,r)=>a+(r[ref][K]||0),0)/conObj.length : null;
+    const real = conObj.length ? conObj.reduce((a,r)=>a+(r.acum[K]||0),0)/conObj.length : 0;
+    return {mc, real, obj, n, tipo};
   }).filter(r=>r.n>0);
 
   if(!rows.length){ p.appendChild(el("p",{class:"note"},"Sin datos.")); root.appendChild(p); return; }
@@ -1360,10 +1371,12 @@ function viewMicrociclos(root){
 // Obj semana = Σ Obj de las sesiones de entrenamiento · Obj a fecha = Σ Obj de las ya hechas ·
 // Acumulado = Σ real de sesiones + Extra; quien tiene objetivo semanal solo acumula desde su primer
 // día con objetivo (la readaptación previa no se compara con el objetivo). Media = con objetivo.
-function acumuladoSemana(mc){
-  const ses = RAW.sessions.filter(s=>s.mc===mc && !s.isMatch);
+// filtro (opcional): solo esas sesiones de entrenamiento y sin las Extra (p. ej. la Comparativa de
+// microciclos filtrada por tipo de día)
+function acumuladoSemana(mc, filtro){
+  const ses = RAW.sessions.filter(s=>s.mc===mc && !s.isMatch && (!filtro || filtro(s)));
   const hechas = ses.filter(sessionHasData);
-  const extras = RAW.extras.filter(s=>s.mc===mc);
+  const extras = filtro ? [] : RAW.extras.filter(s=>s.mc===mc);
   const filas = {};
   const f = d => filas[d] || (filas[d] = {d, obj:{}, objF:{}, acum:{}, pl:null, min:null, desde:null, parcial:false});
   const conObj = pr => RADAR_METRICS.some(k=>raw(pr,k).obj!=null);
