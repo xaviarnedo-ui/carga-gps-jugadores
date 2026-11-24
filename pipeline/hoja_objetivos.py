@@ -83,7 +83,9 @@ def _deficits(key_ant, fecha):
 
 
 def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False, bloque=None, nota_bloque=None,
-            notas=None):
+            notas=None, partir=False):
+    """partir: titulares (≥60' en el último partido) y suplentes por separado, cada grupo con su media
+    (en el MD+1 se hace siempre)."""
     n, wb, ws = _buscar(key)
     fecha = fecha_hoja(ws)
     tipo, dia = sesion.tipo_y_dia(ws)
@@ -164,11 +166,22 @@ def generar(key, compensar=None, por_dorsal=True, sin_lesionados=False, bloque=N
     todos = sorted((x for g in con.values() for x in g), key=lambda x: x[0])
     # MD+1: titulares (solo objetivo de distancia y HMLD = recuperación) y suplentes por separado,
     # cada grupo con su media (decisión del preparador, 09/11/2026)
-    partir_md1 = dia == "MD+1" and por_dorsal
-    if partir_md1:
+    partir_md1 = (dia == "MD+1" or partir) and por_dorsal
+    if partir_md1 and dia == "MD+1":
         tit = [x for x in todos if x[2]["hsr"] is None]
         bloques = [("Titulares · recuperación (solo distancia y HMLD)", tit, "Media titulares"),
                    ("Suplentes · sesión completa", [x for x in todos if x not in tit], "Media suplentes")]
+    elif partir_md1:
+        # titulares / suplentes según los minutos del último partido (o el rol fijado a mano)
+        from . import microciclo
+        from .procesar import _ultimo_partido_antes
+        ult = _ultimo_partido_antes(fecha)
+        roles = microciclo.roles_md1(ult) if ult is not None else {}
+        nom_p = ult.title[:-4] if ult is not None else "último partido"
+        es_tit = lambda d: (E.rol_md1(key, d, est) or roles.get(d, "S")) == "T"
+        tit = [x for x in todos if es_tit(x[0])]
+        bloques = [(f"Titulares {nom_p} (≥60′)", tit, "Media titulares"),
+                   ("Suplentes", [x for x in todos if x not in tit], "Media suplentes")]
     else:
         bloques = ([(None, todos, None)] if por_dorsal
                    else [(titulo, con.get(g), None) for g, titulo in POS])
@@ -233,7 +246,7 @@ tr.med td {{ border-top: 1.5px solid #333; background: #f6f6f3; }}
 tr:nth-child(even):not(.grp):not(.med) td {{ background: #fafafa; }}
 .foot {{ margin-top: 6px; font-size: 8.5pt; color: #333; line-height: 1.45; }}
 .foot span {{ color: #777; }}
-{"td { height: 19px; padding-top: 0; padding-bottom: 0; } .foot { margin-top: 3px; line-height: 1.3; }" if compensar or bloque else ""}
+{"td { height: 19px; padding-top: 0; padding-bottom: 0; } .foot { margin-top: 3px; line-height: 1.3; }" if compensar or bloque or partir_md1 else ""}
 </style></head><body>
 <div class="head"><h1>{key} · {dia}{" + compensación" if compensar else ""}{" + bloque ACWR" if bloque else ""} <small>Tipo {tipo} · {DIAS[fecha.weekday()]} {fecha:%d/%m/%Y}</small></h1>
 <div class="club">AT BALEARES · Microciclo {n}{(" · " + partido[:-4] + " vs " + rival) if rival else ""}<br>

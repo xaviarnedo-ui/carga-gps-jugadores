@@ -136,6 +136,8 @@ def main():
     a.add_argument("--sin-lesionados", action="store_true", help="sin los jugadores en readaptación o lesionados")
     a.add_argument("--bloque", action="append", help="extra a mano: 2=hsr:150,sprint:4 (repetible)")
     a.add_argument("--nota-bloque", help="texto del pie para el bloque (contenido de la tarea)")
+    a.add_argument("--partir", action="store_true",
+                   help="titulares (≥60' en el último partido) y suplentes por separado (en MD+1 siempre)")
     a.add_argument("--nota-jugador", action="append",
                    help="nota en la columna Notas de un jugador (repetible): 26=\"Tope 3-4 sprints\"")
     a = sub.add_parser("comparativa")
@@ -246,7 +248,7 @@ def main():
             d, t = item.split("=", 1)
             notas[int(d)] = t.strip().strip('"')
         print(hoja_objetivos.generar(args.sesion.upper(), args.compensar, not args.por_posicion, args.sin_lesionados,
-                                     bloque, args.nota_bloque, notas))
+                                     bloque, args.nota_bloque, notas, args.partir))
 
     elif args.cmd == "disponibilidad":
         print(disponibilidad.generar())
