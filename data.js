@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-11-25 13:23",
+  "generado": "2026-11-25 13:41",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-20)"
  },
  "refPartido": {
@@ -164,7 +164,7 @@ window.GPS_DATA_ALL = {
       "velMax": null
      }
     },
-    "dispo": "ok",
+    "dispo": "baja",
     "primeraFecha": "2026-09-03"
    },
    {
@@ -3824,6 +3824,15 @@ window.GPS_DATA_ALL = {
    "alta": "2026-11-15",
    "nota": "",
    "jugador": "Martin, A."
+  },
+  {
+   "id": 12,
+   "dorsal": 3,
+   "tipo": "Pendiente de pruebas",
+   "baja": "2026-11-25",
+   "alta": null,
+   "nota": "",
+   "jugador": "Espiñeiro, A."
   }
  ],
  "whoop": [
@@ -198108,36 +198117,12 @@ window.GPS_DATA_ALL = {
       "dorsal": 3,
       "jugador": "Espiñeiro, A.",
       "grupo": "D",
-      "distancia": {
-       "obj": 2433.7,
-       "real": null,
-       "dif": null
-      },
-      "hmld": {
-       "obj": 204.8,
-       "real": null,
-       "dif": null
-      },
-      "hsr": {
-       "obj": 83.4,
-       "real": null,
-       "dif": null
-      },
-      "sprint": {
-       "obj": 0.5,
-       "real": null,
-       "dif": null
-      },
-      "acc": {
-       "obj": 2.9,
-       "real": null,
-       "dif": null
-      },
-      "dec": {
-       "obj": 2.2,
-       "real": null,
-       "dif": null
-      },
+      "distancia": null,
+      "hmld": null,
+      "hsr": null,
+      "sprint": null,
+      "acc": null,
+      "dec": null,
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
@@ -198863,17 +198848,17 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 2618.1,
+      "obj": 2627.8,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 231,
+      "obj": 232.4,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 90.6,
+      "obj": 91,
       "real": null,
       "dif": null
      },
@@ -198895,7 +198880,7 @@ window.GPS_DATA_ALL = {
      "velMax": null,
      "playerLoad": null
     },
-    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Bejarano, A."
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Bejarano, A. Lesionados / no disponibles (sin sesión ni objetivo): Espiñeiro, A."
    },
    "S93": {
     "date": "2026-11-27",
@@ -198943,32 +198928,12 @@ window.GPS_DATA_ALL = {
       "dorsal": 3,
       "jugador": "Espiñeiro, A.",
       "grupo": "D",
-      "distancia": {
-       "obj": 2725.7,
-       "real": null,
-       "dif": null
-      },
-      "hmld": {
-       "obj": 292.5,
-       "real": null,
-       "dif": null
-      },
-      "hsr": {
-       "obj": 37.1,
-       "real": null,
-       "dif": null
-      },
+      "distancia": null,
+      "hmld": null,
+      "hsr": null,
       "sprint": null,
-      "acc": {
-       "obj": 9.1,
-       "real": null,
-       "dif": null
-      },
-      "dec": {
-       "obj": 9,
-       "real": null,
-       "dif": null
-      },
+      "acc": null,
+      "dec": null,
       "velMax": null,
       "playerLoad": null,
       "duracion": null,
@@ -199622,17 +199587,17 @@ window.GPS_DATA_ALL = {
     ],
     "teamAvg": {
      "distancia": {
-      "obj": 2932.3,
+      "obj": 2943.1,
       "real": null,
       "dif": null
      },
      "hmld": {
-      "obj": 330,
+      "obj": 332,
       "real": null,
       "dif": null
      },
      "hsr": {
-      "obj": 40.3,
+      "obj": 40.4,
       "real": null,
       "dif": null
      },
@@ -199642,19 +199607,19 @@ window.GPS_DATA_ALL = {
       "dif": null
      },
      "acc": {
-      "obj": 10.8,
+      "obj": 10.9,
       "real": null,
       "dif": null
      },
      "dec": {
-      "obj": 10.6,
+      "obj": 10.7,
       "real": null,
       "dif": null
      },
      "velMax": null,
      "playerLoad": null
     },
-    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Bejarano, A."
+    "notaDia": "Rehab (informativo, sin objetivo; no cuenta para la MEDIA EQUIPO, sí para Acumulado individual y ACWR): Bejarano, A. Lesionados / no disponibles (sin sesión ni objetivo): Espiñeiro, A."
    }
   },
   "partidos": {
@@ -200661,39 +200626,39 @@ window.GPS_DATA_ALL = {
      "jugador": "Espiñeiro, A.",
      "grupo": "D",
      "distancia": {
-      "obj": 17035.9,
+      "obj": 11876.5,
       "real": 6637,
-      "dif": -10398.9,
+      "dif": -5239.5,
       "objFecha": 11876.5
      },
      "hmld": {
-      "obj": 2296.2,
+      "obj": 1798.9,
       "real": 1144,
-      "dif": -1152.2,
+      "dif": -654.9,
       "objFecha": 1798.9
      },
      "hsr": {
-      "obj": 630.2,
+      "obj": 509.7,
       "real": 389,
-      "dif": -241.2,
+      "dif": -120.7,
       "objFecha": 509.7
      },
      "sprint": {
-      "obj": 10.3,
+      "obj": 9.8,
       "real": 6,
-      "dif": -4.3,
+      "dif": -3.8,
       "objFecha": 9.8
      },
      "acc": {
-      "obj": 49.2,
+      "obj": 37.2,
       "real": 19,
-      "dif": -30.2,
+      "dif": -18.2,
       "objFecha": 37.2
      },
      "dec": {
-      "obj": 58.7,
+      "obj": 47.5,
       "real": 24,
-      "dif": -34.7,
+      "dif": -23.5,
       "objFecha": 47.5
      }
     },
@@ -201479,39 +201444,39 @@ window.GPS_DATA_ALL = {
    ],
    "teamAvg": {
     "distancia": {
-     "obj": 16973.2,
+     "obj": 16715.3,
      "real": 9787.2,
-     "dif": -7186.0,
+     "dif": -6928.1,
      "objFecha": 11422.9
     },
     "hmld": {
-     "obj": 2378.7,
+     "obj": 2353.9,
      "real": 1563.2,
-     "dif": -815.5,
+     "dif": -790.7,
      "objFecha": 1817.8
     },
     "hsr": {
-     "obj": 651,
+     "obj": 644.9,
      "real": 528.5,
-     "dif": -122.5,
+     "dif": -116.4,
      "objFecha": 520.1
     },
     "sprint": {
-     "obj": 10.2,
+     "obj": 10.1,
      "real": 9.2,
-     "dif": -1.0,
+     "dif": -0.9,
      "objFecha": 9.6
     },
     "acc": {
-     "obj": 52,
+     "obj": 51.4,
      "real": 32.3,
-     "dif": -19.7,
+     "dif": -19.1,
      "objFecha": 37.7
     },
     "dec": {
-     "obj": 61,
+     "obj": 60.4,
      "real": 40.5,
-     "dif": -20.5,
+     "dif": -19.9,
      "objFecha": 47.8
     }
    },
@@ -201559,34 +201524,34 @@ window.GPS_DATA_ALL = {
      "jugador": "Espiñeiro, A.",
      "grupo": "D",
      "distancia": {
-      "obj": 17035.9,
+      "obj": 11876.5,
       "real": 6637,
-      "dif": -10398.9
+      "dif": -5239.5
      },
      "hmld": {
-      "obj": 2296.2,
+      "obj": 1798.9,
       "real": 1144,
-      "dif": -1152.2
+      "dif": -654.9
      },
      "hsr": {
-      "obj": 630.2,
+      "obj": 509.7,
       "real": 389,
-      "dif": -241.2
+      "dif": -120.7
      },
      "sprint": {
-      "obj": 10.3,
+      "obj": 9.8,
       "real": 6,
-      "dif": -4.3
+      "dif": -3.8
      },
      "acc": {
-      "obj": 49.2,
+      "obj": 37.2,
       "real": 19,
-      "dif": -30.2
+      "dif": -18.2
      },
      "dec": {
-      "obj": 58.7,
+      "obj": 47.5,
       "real": 24,
-      "dif": -34.7
+      "dif": -23.5
      }
     },
     {
@@ -202257,34 +202222,34 @@ window.GPS_DATA_ALL = {
    ],
    "teamAvg": {
     "distancia": {
-     "obj": 16973.2,
+     "obj": 16715.3,
      "real": 9787.2,
-     "dif": -7186
+     "dif": -6928.1
     },
     "hmld": {
-     "obj": 2378.7,
+     "obj": 2353.9,
      "real": 1563.2,
-     "dif": -815.5
+     "dif": -790.7
     },
     "hsr": {
-     "obj": 651,
+     "obj": 644.9,
      "real": 528.5,
-     "dif": -122.5
+     "dif": -116.4
     },
     "sprint": {
-     "obj": 10.2,
+     "obj": 10.1,
      "real": 9.2,
-     "dif": -1
+     "dif": -0.9
     },
     "acc": {
-     "obj": 52,
+     "obj": 51.4,
      "real": 32.3,
-     "dif": -19.7
+     "dif": -19.1
     },
     "dec": {
-     "obj": 61,
+     "obj": 60.4,
      "real": 40.5,
-     "dif": -20.5
+     "dif": -19.9
     }
    },
    "nota": "Acumulado de toda la semana: sesiones de entrenamiento + partido(s). Objetivo de la semana completa de Microciclo 20 (Martes MD-4 + Miércoles MD-3 + Jueves MD-2 + Viernes MD-1). Acumulado (Real) pendiente de cargar sesión a sesión."
