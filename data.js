@@ -4,7 +4,7 @@ window.GPS_DATA_ALL = {
  "meta": {
   "temporada": "2026-27",
   "club": "AT BALEARES",
-  "generado": "2026-11-26 12:25",
+  "generado": "2026-11-26 12:28",
   "fuente": "AT BALEARES 26-27/GPS (Microciclo 1-20)"
  },
  "refPartido": {
@@ -3828,7 +3828,7 @@ window.GPS_DATA_ALL = {
   {
    "id": 12,
    "dorsal": 3,
-   "tipo": "Pendiente de pruebas",
+   "tipo": "Esguince grado I",
    "baja": "2026-11-25",
    "alta": null,
    "nota": "",
