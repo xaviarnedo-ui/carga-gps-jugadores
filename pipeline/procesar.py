@@ -200,9 +200,12 @@ def procesar(pdfs, override=None, fallos_gps=None, nota="", extra=False, dry_run
                                "sesión fuera de calendario usa --extra; si es un rehab del mismo "
                                "día que una sesión, pásalo junto al PDF de esa sesión.")
     fecha = (principal or infs[0]).fecha
-    key = principal.codigo if principal else f"Extra_{fecha:%d-%m}"
+    # --extra manda siempre a Extra_dd-mm aunque el PDF traiga código (p. ej. un rehab titulado
+    # «J13 …»): si no, la hoja extra sustituiría a la de la sesión o el partido.
+    con_codigo = principal is not None and not extra
+    key = principal.codigo if con_codigo else f"Extra_{fecha:%d-%m}"
     key = clave_copa(key, fecha)
-    n, ruta = localizar(key) if principal else localizar_por_fecha(fecha)
+    n, ruta = localizar(key) if con_codigo else localizar_por_fecha(fecha)
     wb = openpyxl.load_workbook(ruta)
     wt = openpyxl.load_workbook(C.TIPO_XLSX)
     ref, coefs = referencia.ref_partido(wt), referencia.coeficientes(wt)
