@@ -59,7 +59,7 @@ Distancia en sprint («Distancia de la banda de velocidad 6 (m)», columna opcio
 y KPI «Dist. sprint (m)» en la app. Para extenderlo a todos, quitar el filtro en `sesion.rellenar` y `_procesar_extra`.
 Un rehab en un PDF aparte del mismo día se pasa junto al PDF de la sesión (se fusiona).
 Tras `procesar` (sin `--prueba`) los PDF se mueven solos a `GPS/Sesiones/` o `GPS/Partidos/` (partidos de Liga y del filial con `--ref-duracion`); si ya existía uno con ese nombre, el viejo va a la Papelera.
-Una sesión fuera de calendario (p. ej. un martes) va con `--extra` → hoja `Extra_dd-mm_GPS`.
+Una sesión fuera de calendario (p. ej. un martes) va con `--extra` → hoja `Extra_dd-mm_GPS`. Con `--extra` va a esa hoja aunque el PDF se titule «J13 …» o «S90 …». Dos extras del mismo día (p. ej. rehab antes del partido + carrera postpartido) se pasan juntos: si ya existe la hoja con otros jugadores, `procesar` se para.
 Semana con días de descanso extra: `abrir --dias=",,MD-4,MD-3,MD-2,MD-1,J10"` (vacío = descanso; acepta de 1 a 6 sesiones; con `=` porque empieza por coma). Lo que hagan los lesionados un día de descanso del equipo va con `--extra`.
 
 ## Comparativa con la temporada pasada (se repite durante el año)

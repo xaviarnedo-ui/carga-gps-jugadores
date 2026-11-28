@@ -426,6 +426,11 @@ def _procesar_extra(wb, ruta, n, key, fecha, infs, alias, est, res, dry_run, not
         datos = {d: v for d, v in datos.items() if d in solo}
     nombre = f"{key}_GPS"
     if nombre in wb.sheetnames:
+        previos = {r[0] for r in wb[nombre].iter_rows(min_row=5, values_only=True) if isinstance(r[0], int)}
+        if previos - set(datos):
+            raise NecesitaDecision(
+                f"Ya existe {nombre} con {sorted(previos - set(datos))}, que no están en este PDF: "
+                "dos extras del mismo día se pasan juntos (los dos PDF/CSV a la vez) o se perderían.")
         del wb[nombre]
     ws = wb.create_sheet(nombre, index=wb.sheetnames.index("Acumulado"))
     dia = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"][fecha.weekday()]
